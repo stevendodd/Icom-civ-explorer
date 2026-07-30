@@ -27,7 +27,16 @@
     }
   }
 
+  // Apply the theme as early as possible (this script is in <head>, so it
+  // runs during parse, before first paint) to minimise the pre-paint flash of
+  // the default dark theme. The toggle button (if present yet) gets its aria
+  // state updated; applyTheme() re-checks for the button on DOMContentLoaded
+  // in case it hadn't been parsed yet.
+  applyTheme(resolveTheme());
+
   document.addEventListener("DOMContentLoaded", function () {
+    // Re-apply so the toggle button (parsed after this script) gets its aria
+    // state set, then wire up the click handler.
     applyTheme(resolveTheme());
     var btn = document.querySelector(".theme-toggle");
     if (!btn) return;

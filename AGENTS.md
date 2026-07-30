@@ -107,6 +107,16 @@ pytest
   (e.g. `IC-7300`) is **not** accepted as an id — use `7300`.
 - Search (`q`) is case-insensitive substring matching across `cmd`,
   `sub_cmd`, `data`, and `description` — not a structured query language.
+- **Keep docs in sync after any API/UI change.** Three surfaces must agree:
+  the OpenAPI spec at `/openapi.json` (auto-generated — authoritative), the
+  in-UI docs table in `static/index.html` (Endpoints table + code examples),
+  and the README.md API overview. Verify the endpoint list (`GET /radios`,
+  `/radios/{id}`, `/radios/{id}/capabilities`, `/commands`, `/radios/{id}/commands`,
+  `POST /feedback`, `GET /feedback`, `GET /health`), param names
+  (`q`, `radio_id`, `limit`, `offset`), and response field names
+  (radios: `id/name/address/command_count`; commands:
+  `radio_id/cmd/sub_cmd/data/description`; capabilities:
+  `name/description/command_evidence/radios`).
   - The dev HTTPS cert is generated into the OS temp dir on first run; do not
   commit cert/key files (`*.pem`, `*.key`, `*.crt` are gitignored).
 

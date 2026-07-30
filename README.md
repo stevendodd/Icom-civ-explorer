@@ -147,6 +147,8 @@ tests/
 - `GET /commands?radio_id=7300&q=frequency` — search/filter commands
 - `GET /radios/{radio_id}/commands?q=vfo` — search within one radio
 - `POST /feedback` — submit a correction for review (the only write path)
+- `GET /feedback` — download all submitted feedback as JSONL
+- `GET /health` — health check
 
 The query (`q`) matches against command code, sub-command, data payload, and
 description (case-insensitive). The API is read-only except for `/feedback`,
