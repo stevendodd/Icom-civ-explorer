@@ -9,7 +9,7 @@ from datetime import datetime, timezone
 from importlib import resources
 from pathlib import Path
 
-from fastapi import FastAPI, HTTPException, Query, status
+from fastapi import FastAPI, HTTPException, Query, Request, status
 from fastapi.responses import FileResponse, Response
 from fastapi.staticfiles import StaticFiles
 
@@ -84,6 +84,52 @@ def _static_dir() -> Path:
 def index():
     """Serve the single-page web UI (API docs + interactive browser forms)."""
     return FileResponse(_static_dir() / "index.html", media_type="text/html")
+
+
+@app.get("/sitemap.xml", include_in_schema=False)
+def sitemap(request: Request):
+    """Serve a sitemap with absolute URLs for search engine indexing.
+
+    URLs are built from the incoming request so the sitemap is valid on any
+    deployment host (sitemaps require absolute URLs per sitemaps.org).
+    """
+    # Build the base URL, honouring proxy forwarding headers so the sitemap
+    # advertises the correct public scheme/host (e.g. https://...) when the
+    # container serves plain HTTP behind a TLS-terminating reverse proxy.
+    from urllib.parse import urlparse
+
+    parsed = urlparse(str(request.base_url))
+    scheme = request.headers.get("x-forwarded-proto", "").split(",")[0].strip() or parsed.scheme
+    host = request.headers.get("x-forwarded-host", "").split(",")[0].strip() or parsed.netloc
+    base = f"{scheme}://{host.rstrip('/')}"
+    urls = [("/", 1.0, "monthly"), ("/docs", 0.7, "yearly"), ("/openapi.json", 0.6, "monthly")]
+    body = ['<?xml version="1.0" encoding="UTF-8"?>',
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+    for path, priority, changefreq in urls:
+        body.append("  <url>")
+        body.append(f"    <loc>{base}{path}</loc>")
+        body.append(f"    <changefreq>{changefreq}</changefreq>")
+        body.append(f"    <priority>{priority}</priority>")
+        body.append("  </url>")
+    body.append("</urlset>")
+    return Response(content="\n".join(body), media_type="application/xml")
+
+
+@app.get("/robots.txt", include_in_schema=False)
+def robots(request: Request):
+    """Serve robots.txt, pointing crawlers at the sitemap.
+
+    The Sitemap directive uses an absolute URL built from the request's
+    forwarded headers so it advertises the correct public scheme/host.
+    """
+    from urllib.parse import urlparse
+
+    parsed = urlparse(str(request.base_url))
+    scheme = request.headers.get("x-forwarded-proto", "").split(",")[0].strip() or parsed.scheme
+    host = request.headers.get("x-forwarded-host", "").split(",")[0].strip() or parsed.netloc
+    base = f"{scheme}://{host.rstrip('/')}"
+    body = "User-agent: *\nAllow: /\nSitemap: " + base + "/sitemap.xml\n"
+    return Response(content=body, media_type="text/plain")
 
 
 # Mount static assets (JS/CSS) under /static so the CSP can scope them.
