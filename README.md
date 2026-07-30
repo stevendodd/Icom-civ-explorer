@@ -295,15 +295,13 @@ vectors, input validation, and the data loader.
 
 ## Data sources
 
-The reference data in `src/civ_api/data/` was sourced from the
-`pycom-radio-controller` project's `docs/` directory:
+The reference data in `src/civ_api/data/`:
 
 - `civ-command-table-<model>.csv` — per-radio CI-V command tables
 - `civ-radio-capabilities.json` — radio registry and capability matrix
 - `civ-aux.md` — unified encoding reference (BCD frequency, modes, etc.)
 
-These files are the source of truth. Do not hand-edit them; update from
-upstream Icom documentation.
+These files are the source of truth.
 
 ## License
 
