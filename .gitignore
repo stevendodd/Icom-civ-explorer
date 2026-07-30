@@ -1,0 +1,20 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.coverage
+htmlcov/
+*.pem
+*.key
+*.crt
+.env
+upload.sh
+
+# Copied reference manuals (Icom CI-V PDFs + text extracts). Large, licensed,
+# and not shipped with the package. Keep locally for cross-checking commands.
+docs/icom manuals/

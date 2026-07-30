@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+   <title>Icom CI-V Explorer</title>
+   <link rel="stylesheet" href="/static/styles.css">
+   <script src="/static/theme.js"></script>
+ </head>
+<body>
+  <header>
+    <div class="header-row">
+      <div class="header-title">
+        <h1>Icom CI-V Explorer</h1>
+        <p class="tagline">Searchable reference for the Icom CI-V protocol across multiple radios.</p>
+      </div>
+       <div class="header-actions">
+         <button type="button" class="theme-toggle" aria-label="Switch to light theme" aria-pressed="false" title="Switch to light theme"><svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zM12 1v3M12 20v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M1 12h3M20 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg></button>
+         <a class="github-link" href="https://github.com/stevendodd/Icom-civ-explorer" rel="noopener noreferrer" aria-label="View on GitHub" title="View on GitHub"><svg viewBox="0 0 16 16" width="22" height="22" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+       </div>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button type="button" class="tab-btn active" data-tab="radios" aria-selected="true">Radios</button>
+    <button type="button" class="tab-btn" data-tab="browse">Browse</button>
+    <button type="button" class="tab-btn" data-tab="commands">Commands</button>
+    <button type="button" class="tab-btn" data-tab="feedback">Feedback</button>
+    <button type="button" class="tab-btn" data-tab="docs">API Docs</button>
+  </nav>
+
+  <main>
+    <!-- Radios tab -->
+    <section id="tab-radios" class="tab-panel active">
+      <p class="help">Top-level radio info: default CI-V transceiver address and command count. Click a row for capabilities.</p>
+      <table id="radios-table">
+        <thead>
+          <tr><th>ID</th><th>Model</th><th>CI-V Address</th><th>Commands</th><th>Capabilities</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <div id="radio-detail" class="detail" hidden></div>
+    </section>
+
+    <!-- Browse tab -->
+    <section id="tab-browse" class="tab-panel">
+      <p class="help">Browse a radio's commands by code. Pick a radio to see its command codes, then click a code to drill into its sub-commands.</p>
+      <label for="browse-radio">Radio
+        <select id="browse-radio" name="radio_id">
+          <option value="">Select a radio…</option>
+        </select>
+      </label>
+      <div id="browse-codes" class="browse-codes" hidden></div>
+      <div id="browse-detail" class="detail" hidden></div>
+    </section>
+
+    <!-- Commands tab -->
+    <section id="tab-commands" class="tab-panel">
+      <form id="search-form" class="search-form" autocomplete="off">
+        <label for="radio-select">Radio
+          <select id="radio-select" name="radio_id">
+            <option value="">All radios</option>
+          </select>
+        </label>
+        <label for="search-q">Search
+          <input type="text" id="search-q" name="q" placeholder="e.g. frequency, VFO, 05" maxlength="100">
+        </label>
+        <button type="submit">Search</button>
+      </form>
+      <p id="search-meta" class="meta"></p>
+      <table id="commands-table">
+        <thead>
+          <tr><th>Radio</th><th>Cmd</th><th>Sub cmd</th><th>Data</th><th>Description</th><th></th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <!-- Feedback tab -->
+    <section id="tab-feedback" class="tab-panel">
+      <p class="help">Spotted a wrong or missing command or capability? Submit a correction for review. The API is read-only; this is the only write path and submissions never modify the reference data directly.</p>
+      <p class="help"><a href="/feedback" download>Download all submitted feedback</a> (JSONL)</p>
+      <form id="feedback-form" class="feedback-form" autocomplete="off">
+        <label for="fb-radio">Radio <span class="req">*</span>
+          <select id="fb-radio" name="radio_id" required></select>
+        </label>
+        <label for="fb-field">Field to correct <span class="req">*</span>
+          <select id="fb-field" name="field" required>
+            <option value="cmd">cmd</option>
+            <option value="sub_cmd">sub_cmd</option>
+            <option value="data">data</option>
+            <option value="description">description</option>
+            <option value="capability">capability</option>
+          </select>
+        </label>
+        <label for="fb-cmd">Command (hex)
+          <input type="text" id="fb-cmd" name="cmd" pattern="[0-9A-Fa-f]{1,4}" maxlength="8" placeholder="e.g. 05 (blank for capability)">
+        </label>
+        <label for="fb-subcmd">Sub-command (hex)
+          <input type="text" id="fb-subcmd" name="sub_cmd" pattern="[0-9A-Fa-f]{1,4}" maxlength="8" placeholder="e.g. 00">
+        </label>
+        <label for="fb-capname">Capability name
+          <input type="text" id="fb-capname" name="capability_name" maxlength="64" placeholder="e.g. satellite_mode (if field is capability)">
+        </label>
+        <label for="fb-value">Suggested value <span class="req">*</span>
+          <input type="text" id="fb-value" name="suggested_value" required maxlength="500">
+        </label>
+        <label for="fb-notes" class="span-2">Notes / evidence
+          <textarea id="fb-notes" name="notes" maxlength="2000" rows="3" placeholder="Manual page, source link, etc."></textarea>
+        </label>
+        <label for="fb-submitter" class="span-2">Your name (optional)
+          <input type="text" id="fb-submitter" name="submitter" maxlength="100">
+        </label>
+        <div class="form-actions">
+          <button type="submit">Submit feedback</button>
+        </div>
+      </form>
+      <div id="feedback-result" class="result" hidden></div>
+    </section>
+
+    <!-- Docs tab -->
+    <section id="tab-docs" class="tab-panel">
+      <h2>API Documentation</h2>
+      <p>Interactive Swagger UI is available at <a href="/docs" rel="noopener noreferrer">/docs</a> (OpenAPI spec at <a href="/openapi.json">/openapi.json</a>). The sections below show how to call the API from code or an AI agent.</p>
+
+      <h3>Endpoints</h3>
+      <table class="docs-table">
+        <thead><tr><th>Method</th><th>Path</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>GET</td><td><code>/radios</code></td><td>List all supported radios with CI-V addresses and command counts.</td></tr>
+          <tr><td>GET</td><td><code>/radios/{radio_id}</code></td><td>Single radio info (id is a lowercase short code like <code>7300</code>).</td></tr>
+          <tr><td>GET</td><td><code>/radios/{radio_id}/capabilities</code></td><td>Capability matrix for one radio.</td></tr>
+          <tr><td>GET</td><td><code>/commands?radio_id=7300&amp;q=frequency&amp;limit=100&amp;offset=0</code></td><td>Search/filter commands. <code>q</code> matches cmd, sub_cmd, data, and description (case-insensitive).</td></tr>
+          <tr><td>GET</td><td><code>/radios/{radio_id}/commands?q=vfo</code></td><td>Commands for one radio, with optional search.</td></tr>
+          <tr><td>POST</td><td><code>/feedback</code></td><td>Submit a correction (JSON body). Only write path; appends to a review queue.</td></tr>
+          <tr><td>GET</td><td><code>/feedback</code></td><td>Download all submitted feedback as a JSONL file (one JSON object per line).</td></tr>
+          <tr><td>GET</td><td><code>/health</code></td><td>Health check.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Quick facts</h3>
+      <ul>
+        <li>Served over HTTPS. A self-signed dev cert is auto-generated on first run; pass <code>CIV_CERT</code>/<code>CIV_KEY</code> for a real cert.</li>
+        <li>Radio ids are lowercase short codes (<code>7300</code>, <code>7300mk2</code>). The model name (<code>IC-7300</code>) is <strong>not</strong> accepted as an id.</li>
+        <li><code>q</code> is case-insensitive substring matching across <code>cmd</code>, <code>sub_cmd</code>, <code>data</code>, and <code>description</code> — not a query language.</li>
+        <li>Feedback <code>cmd</code>/<code>sub_cmd</code> must be 1-4 hex chars; free-text fields are length-capped (see the OpenAPI schema for exact limits).</li>
+        <li>All responses are JSON; <code>limit</code> (1-500) and <code>offset</code> (>=0) paginate list endpoints.</li>
+      </ul>
+
+      <h3>Calling the API from code</h3>
+
+      <h4>curl</h4>
+      <p class="code-caption">List radios, then search the IC-7300 command table for frequency commands:</p>
+      <pre><code>curl -k https://localhost:8443/radios
+curl -k "https://localhost:8443/commands?radio_id=7300&amp;q=frequency&amp;limit=10"</code></pre>
+      <p class="code-caption"><code>-k</code> skips cert verification for the self-signed dev cert. Drop it when using a real CA-signed certificate.</p>
+
+      <h4>Python (requests)</h4>
+      <pre><code>import requests
+
+BASE = "https://localhost:8443"
+SESSION = requests.Session()
+SESSION.verify = False  # dev cert only; use a real CA bundle in production
+
+# Which radios are supported?
+radios = SESSION.get(f"{BASE}/radios").json()
+for r in radios:
+    print(r["id"], r["name"], r["address"], r["command_count"])
+
+# Search IC-9700 commands for "satellite"
+hits = SESSION.get(f"{BASE}/radios/9700/commands", params={"q": "sat"}).json()
+for c in hits["items"]:
+    print(c["cmd"], c["sub_cmd"], c["description"])
+
+# Capabilities of the IC-7300
+caps = SESSION.get(f"{BASE}/radios/7300/capabilities").json()
+for cap in caps:
+    print(cap["name"], cap["radios"]["7300"])
+</code></pre>
+
+      <h4>Python (httpx, async)</h4>
+      <pre><code>import httpx
+
+async with httpx.AsyncClient(base_url="https://localhost:8443", verify=False) as client:
+    radios = (await client.get("/radios")).json()
+    cmds  = (await client.get("/commands", params={"radio_id": "7300", "q": "vfo"})).json()
+</code></pre>
+
+      <h4>JavaScript (fetch)</h4>
+      <pre><code>const BASE = "https://localhost:8443";
+
+// List radios
+const radios = await (await fetch(`${BASE}/radios`)).json();
+
+// Search commands for the IC-7300
+const url = new URL(`${BASE}/commands`);
+url.searchParams.set("radio_id", "7300");
+url.searchParams.set("q", "frequency");
+url.searchParams.set("limit", "50");
+const result = await (await fetch(url)).json();
+console.log(result.total, result.items);
+</code></pre>
+
+      <h4>Submitting feedback</h4>
+      <pre><code>curl -k -X POST https://localhost:8443/feedback \
+  -H "Content-Type: application/json" \
+  -d '{"radio_id":"7300","cmd":"05","sub_cmd":"","field":"description",\
+        "suggested_value":"Set operating frequency (corrected)",\
+        "notes":"Manual p.19-9","submitter":"tester"}'</code></pre>
+
+      <h3>Using the API from an AI agent</h3>
+      <p>The API is read-only (except <code>POST /feedback</code>) and returns structured JSON, which makes it straightforward for an LLM/agent to call via HTTP tool use. Recommended workflow:</p>
+      <ol>
+        <li><strong>Discover</strong> supported radios with <code>GET /radios</code> to get valid radio ids and addresses.</li>
+        <li><strong>Search</strong> with <code>GET /commands?q=...</code> (and optionally <code>radio_id=...</code>) to find commands by functionality or code. <code>q</code> is plain substring matching — keep queries short.</li>
+        <li><strong>Drill down</strong> with <code>GET /radios/{id}/capabilities</code> to check whether a feature is supported on a specific radio.</li>
+        <li><strong>Submit corrections</strong> with <code>POST /feedback</code> when the agent finds a wrong or missing entry. Validate <code>radio_id</code> against <code>/radios</code> first.</li>
+      </ol>
+
+      <h4>Agent tool schema (example)</h4>
+      <p>When exposing the API to an agent, describe each endpoint as an HTTP tool. Example tool definitions (OpenAI function-calling style, trimmed):</p>
+      <pre><code>{
+  "name": "civ_search_commands",
+  "description": "Search Icom CI-V commands across cmd/sub_cmd/data/description. Returns JSON.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "q":        {"type": "string", "description": "Free-text search, e.g. 'frequency'"},
+      "radio_id": {"type": "string", "description": "Optional radio id: 705,7100,7300,7300mk2,7610,7760,9700"},
+      "limit":    {"type": "integer", "minimum": 1, "maximum": 500, "default": 100},
+      "offset":   {"type": "integer", "minimum": 0, "default": 0}
+    }
+  }
+}
+{
+  "name": "civ_list_radios",
+  "description": "List supported Icom radios with default CI-V addresses and command counts.",
+  "parameters": {"type": "object", "properties": {}}
+}
+{
+  "name": "civ_radio_capabilities",
+  "description": "Get the capability matrix for one radio.",
+  "parameters": {
+    "type": "object",
+    "properties": {"radio_id": {"type": "string"}},
+    "required": ["radio_id"]
+  }
+}</code></pre>
+
+      <h4>Agent prompt guidance</h4>
+      <ul>
+        <li>Always call <code>civ_list_radios</code> first to learn valid radio ids; never guess them.</li>
+        <li><code>radio_id</code> is a lowercase short code (e.g. <code>7300</code>), <strong>not</strong> the model name (<code>IC-7300</code>).</li>
+        <li>If <code>q</code> returns too many rows, add <code>radio_id</code> to narrow, or increase <code>limit</code> (max 500).</li>
+        <li>When reporting a command from the API, include the <code>radio_id</code>, <code>cmd</code>, and <code>sub_cmd</code> so the user can verify.</li>
+        <li>Only call <code>POST /feedback</code> when the user explicitly asks to submit a correction.</li>
+      </ul>
+
+      <h4>Pointing an agent at this server</h4>
+      <p>If your agent framework reads an OpenAPI spec, point it at <code>/openapi.json</code>. The spec is self-describing and includes parameter constraints (hex patterns, length caps, enums) that help the agent construct valid requests.</p>
+    </section>
+  </main>
+
+  <aside class="promo">
+    <img class="promo-img" src="/static/about.jpeg" alt="Pycom Radio Controller interface">
+    <div class="promo-body">
+      <p class="promo-title">Pycom Radio Controller</p>
+      <p class="promo-text">Remote control of your Icom radio. A companion application for this reference API.</p>
+      <a href="https://pycom.stevendodd.net" rel="noopener noreferrer">https://pycom.stevendodd.net</a>
+    </div>
+  </aside>
+
+  <footer>
+    <p>Icom CI-V Explorer &middot; read-only reference API &middot; <a href="/docs" rel="noopener noreferrer">Swagger UI</a></p>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,6 +1,7 @@
-MIT License
+MIT License with Attribution
 
-Copyright (c) 2026 Steven Dodd
+Copyright (c) 2026 Steven Dodd / Icom CI-V Explorer
+Source: https://github.com/stevendodd/Icom-civ-explorer
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -9,8 +10,16 @@ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+1. The above copyright notice and this permission notice shall be included in all
+   copies or substantial portions of the Software.
+
+2. Attribution: Software that uses this Software, in whole or in part, whether
+   verbatim, modified, or incorporated into a larger work, must include a
+   visible attribution to the "Icom CI-V Explorer" project and its source
+   repository (https://github.com/stevendodd/Icom-civ-explorer). This attribution
+   must appear in the software's documentation, README, or an equivalent
+   credits / about notice accessible to end users. For applications with a user
+   interface, a credits or about screen satisfies this requirement.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,

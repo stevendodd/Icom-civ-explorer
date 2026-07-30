@@ -1,0 +1,181 @@
+{
+  "radios": [
+    {"id": "705", "name": "IC-705", "address": "A4", "csv": "civ-command-table-705.csv"},
+    {"id": "7100", "name": "IC-7100", "address": "88", "csv": "civ-command-table-7100.csv"},
+    {"id": "7300", "name": "IC-7300", "address": "94", "csv": "civ-command-table-7300.csv"},
+    {"id": "7300mk2", "name": "IC-7300 MK2", "address": "B6", "csv": "civ-command-table-7300mk2.csv"},
+    {"id": "7610", "name": "IC-7610", "address": "98", "csv": "civ-command-table-7610.csv"},
+    {"id": "7760", "name": "IC-7760", "address": "B2", "csv": "civ-command-table-7760.csv"},
+    {"id": "9700", "name": "IC-9700", "address": "A2", "csv": "civ-command-table-9700.csv"}
+  ],
+  "capabilities": [
+    {
+      "name": "satellite_mode",
+      "description": "Satellite mode (split TX/RX bands with independent VFOs)",
+      "command_evidence": "0x16 0x5A",
+      "radios": {"705": false, "7100": false, "7300": false, "7300mk2": false, "7610": false, "7760": false, "9700": true}
+    },
+    {
+      "name": "dv_mode",
+      "description": "D-STAR DV (Digital Voice) mode",
+      "command_evidence": "Mode 0x17, commands 0x1F/0x20/0x22",
+      "radios": {"705": true, "7100": true, "7300": false, "7300mk2": false, "7610": false, "7760": false, "9700": true}
+    },
+    {
+      "name": "dd_mode",
+      "description": "D-STAR DD (Digital Data) mode",
+      "command_evidence": "Mode 0x22",
+      "radios": {"705": false, "7100": false, "7300": false, "7300mk2": false, "7610": false, "7760": false, "9700": true}
+    },
+    {
+      "name": "wfm_mode",
+      "description": "Wide FM mode",
+      "command_evidence": "Mode 0x06=WFM",
+      "radios": {"705": true, "7100": true, "7300": false, "7300mk2": false, "7610": false, "7760": false, "9700": false}
+    },
+    {
+      "name": "gps_dprs",
+      "description": "GPS / D-PRS (APRS via D-STAR)",
+      "command_evidence": "GPS commands 0x23, 0x1A 0x05 0x02xx",
+      "radios": {"705": true, "7100": true, "7300": false, "7300mk2": false, "7610": false, "7760": false, "9700": true}
+    },
+    {
+      "name": "antenna_tuner",
+      "description": "Built-in antenna tuner",
+      "command_evidence": "0x1C 0x01 tuner command",
+      "radios": {"705": "external (AH-705)", "7100": "external", "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": false}
+    },
+    {
+      "name": "attenuator",
+      "description": "RF attenuator",
+      "command_evidence": "0x11 (7300/7300mk2/7610) or 0F 11 sub-command (7100/7760/9700)",
+      "radios": {"705": "20 dB", "7100": "12 dB", "7300": "20 dB", "7300mk2": "20 dB", "7610": "3-45 dB (16 steps)", "7760": "3-45 dB (16 steps)", "9700": "10 dB"}
+    },
+    {
+      "name": "dual_watch",
+      "description": "Dual watch (receive on two bands simultaneously)",
+      "command_evidence": "0x07 0xC0/C1/C2 (7610/7760) or 0x16 0x59 (9700)",
+      "radios": {"705": false, "7100": false, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
+    },
+    {
+      "name": "external_preamp",
+      "description": "External preamp control (band-specific)",
+      "command_evidence": "0x16 0x02 with 4-value combined internal+external (9700)",
+      "radios": {"705": false, "7100": false, "7300": false, "7300mk2": false, "7610": false, "7760": false, "9700": true}
+    },
+    {
+      "name": "network_lan",
+      "description": "Network (LAN/WLAN) connectivity for remote control",
+      "command_evidence": "Network SET commands 0x1A 0x05 0x0137+",
+      "radios": {"705": "WLAN", "7100": false, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
+    },
+    {
+      "name": "band_selector",
+      "description": "Main/Sub band selector command (0x29)",
+      "command_evidence": "0x29 command (00=MAIN, 01=SUB)",
+      "radios": {"705": false, "7100": false, "7300": false, "7300mk2": false, "7610": true, "7760": true, "9700": false}
+    },
+    {
+      "name": "memory_keyer",
+      "description": "Memory keyer (CW message storage)",
+      "command_evidence": "0x1A 0x02",
+      "radios": {"705": true, "7100": true, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
+    },
+    {
+      "name": "voice_tx_memory",
+      "description": "Voice TX memory (recorded voice messages via CI-V command 0x28)",
+      "command_evidence": "0x28",
+      "radios": {"705": true, "7100": false, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
+    },
+    {
+      "name": "spectrum_scope",
+      "description": "Spectrum scope / waterfall display",
+      "command_evidence": "0x27 scope commands",
+      "radios": {"705": true, "7100": false, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
+    },
+    {
+      "name": "ntp",
+      "description": "NTP server time sync",
+      "command_evidence": "NTP commands 0x1A 0x08/0x09",
+      "radios": {"705": true, "7100": false, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
+    },
+    {
+      "name": "apf",
+      "description": "Audio Peak Filter (APF)",
+      "command_evidence": "0x16 0x32 sub-command",
+      "radios": {"705": false, "7100": false, "7300": false, "7300mk2": true, "7610": true, "7760": true, "9700": false}
+    },
+    {
+      "name": "battery_powered",
+      "description": "Battery powered (internal battery pack)",
+      "command_evidence": "Battery SET commands 0x1A 0x05 0x0363+",
+      "radios": {"705": true, "7100": false, "7300": false, "7300mk2": false, "7610": false, "7760": false, "9700": false}
+    },
+    {
+      "name": "rit",
+      "description": "Receiver Incremental Tuning (RIT)",
+      "command_evidence": "0x21",
+      "radios": {"705": true, "7100": true, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
+    },
+    {
+      "name": "cw_messages",
+      "description": "CW message sending via CI-V",
+      "command_evidence": "0x17",
+      "radios": {"705": true, "7100": true, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
+    },
+    {
+      "name": "rtty_decode",
+      "description": "Built-in RTTY decoder",
+      "command_evidence": "RTTY DECODE SET commands",
+      "radios": {"705": true, "7100": true, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
+    },
+    {
+      "name": "screen_capture",
+      "description": "Screen capture function",
+      "command_evidence": "Screen capture SET commands",
+      "radios": {"705": true, "7100": false, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
+    },
+    {
+      "name": "sd_card",
+      "description": "SD card slot for recording/storage",
+      "command_evidence": "SD card SET commands",
+      "radios": {"705": true, "7100": false, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
+    },
+    {
+      "name": "qso_recorder",
+      "description": "QSO recorder (audio recording)",
+      "command_evidence": "QSO RECORDER SET commands",
+      "radios": {"705": true, "7100": false, "7300": false, "7300mk2": true, "7610": true, "7760": true, "9700": true}
+    },
+    {
+      "name": "tw_pbt",
+      "description": "Twin PBT (Passband Tuning)",
+      "command_evidence": "0x14 0x07/0x14 0x08",
+      "radios": {"705": true, "7100": true, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
+    },
+    {
+      "name": "ip_plus",
+      "description": "IP Plus function (intercept point enhancement)",
+      "command_evidence": "0x16 0x65 sub-command",
+      "radios": {"705": false, "7100": false, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
+    },
+    {
+      "name": "touch_screen",
+      "description": "Touch screen display",
+      "command_evidence": "Not a CI-V feature but affects UI design",
+      "radios": {"705": true, "7100": false, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": false}
+    },
+    {
+      "name": "ant_selection",
+      "description": "ANT1/ANT2 selection and RX ANT",
+      "command_evidence": "0x12 command",
+      "radios": {"705": false, "7100": false, "7300": false, "7300mk2": false, "7610": true, "7760": true, "9700": false}
+    },
+    {
+      "name": "external_meter",
+      "description": "External meter output (S-meter, Po, SWR, etc.)",
+      "command_evidence": "External Meter SET commands",
+      "radios": {"705": false, "7100": false, "7300": false, "7300mk2": false, "7610": true, "7760": true, "9700": false}
+    }
+  ]
+}

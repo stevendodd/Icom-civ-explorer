@@ -1,0 +1,478 @@
+/* ============================================================
+   Icom CI-V Explorer — theme + layout
+   Default: dark. Optional light theme via [data-theme="light"]
+   Palette aligned with pycom.stevendodd.net (Icom brand blue).
+   ============================================================ */
+:root,
+[data-theme="dark"] {
+  --bg:             #1a1a1a;
+  --surface:        #222222;
+  --surface-2:      #2a2a2a;
+  --surface-3:      #2a2a2a;
+  --text:           #ffffff;
+  --text-secondary: #cccccc;
+  --text-muted:      #a1a1a1;
+  --border:         #ffffff;
+  --border-subtle:  #444444;
+  --accent:         #4da3ff;
+  --accent-strong:  #7fbfff;
+  --accent-btn:     #0062cc;
+  --accent-btn-hover: #0056b3;
+  --accent-brand:   #0055A5;
+  --accent-2:       #7ee787;
+  --danger:         #ff6b6b;
+  --req:            #ff8c69;
+  --shadow:         rgba(0, 0, 0, 0.5);
+  --header-tint:    linear-gradient(to right, rgba(0, 85, 165, 0.18), transparent);
+  --accent-tint:    rgba(77, 163, 255, 0.12);
+  --code-bg:        #2a2a2a;
+  --row-hover:      #2a2a2a;
+}
+
+[data-theme="light"] {
+  --bg:             #F8F9FA;
+  --surface:        #FFFFFF;
+  --surface-2:      #F1F3F5;
+  --surface-3:      #E9ECEF;
+  --text:           #212529;
+  --text-secondary: #495057;
+  --text-muted:      #58707e;
+  --border:         #DEE2E6;
+  --border-subtle:  #DEE2E6;
+  --accent:         #0055A5;
+  --accent-strong:  #003d7a;
+  --accent-btn:     #0055A5;
+  --accent-btn-hover: #003d7a;
+  --accent-brand:   #0055A5;
+  --accent-2:       #1E7A34;
+  --danger:         #DC3545;
+  --req:            #c44a1a;
+  --shadow:         rgba(0, 0, 0, 0.12);
+  --header-tint:    linear-gradient(to right, #E6F0FF, transparent);
+  --accent-tint:    rgba(0, 85, 165, 0.10);
+  --code-bg:        #EAF2FC;
+  --row-hover:      #D6E6F7;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.55;
+}
+
+/* ---- header (sticky) --------------------------------------------------- */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  padding: 1.1rem 2rem 0.9rem;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--surface);
+  background-image: var(--header-tint);
+}
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+.header-title { min-width: 0; }
+header h1 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.tagline { margin: 0.2rem 0 0; color: var(--text-muted); font-size: 0.9rem; }
+
+.header-actions { display: flex; align-items: center; gap: 0.6rem; }
+
+/* GitHub icon link */
+.github-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--text-secondary);
+  line-height: 0;
+  padding: 0.35rem;
+  border-radius: 6px;
+  transition: color 0.15s, background 0.15s;
+}
+.github-link svg { fill: currentColor; display: block; }
+.github-link:hover { color: var(--accent); background: var(--accent-tint); }
+
+/* Theme toggle button */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  padding: 0;
+  background: var(--surface-2);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s, border-color 0.15s;
+}
+.theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+.theme-toggle svg { width: 1.05rem; height: 1.05rem; fill: currentColor; }
+.theme-toggle .icon-sun { display: none; }
+.theme-toggle .icon-moon { display: block; }
+[data-theme="light"] .theme-toggle .icon-sun { display: block; }
+[data-theme="light"] .theme-toggle .icon-moon { display: none; }
+
+/* ---- tabs ------------------------------------------------------------- */
+nav.tabs {
+  position: sticky;
+  top: 64px;
+  z-index: 19;
+  display: flex;
+  gap: 0.15rem;
+  padding: 0 2rem;
+  max-width: 1140px;
+  margin: 0 auto;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border-subtle);
+  overflow-x: auto;
+}
+.tab-btn {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-muted);
+  padding: 0.7rem 1rem;
+  font-size: 0.92rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.15s;
+}
+.tab-btn:hover { color: var(--text); }
+.tab-btn.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  font-weight: 600;
+}
+
+/* ---- main ------------------------------------------------------------- */
+main { padding: 1.75rem 2rem 2rem; max-width: 1140px; margin: 0 auto; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ---- help / meta ------------------------------------------------------ */
+.help, .meta {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  margin: 0 0 1rem;
+}
+.help a { color: var(--accent); }
+
+/* ---- tables ----------------------------------------------------------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  overflow: hidden;
+}
+th, td {
+  text-align: left;
+  padding: 0.6rem 0.7rem;
+  border-bottom: 1px solid var(--border-subtle);
+  vertical-align: top;
+}
+th { color: var(--text-muted); font-weight: 600; }
+tbody tr { transition: background 0.1s; }
+tbody tr:hover { background: var(--row-hover); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* ---- code / pre ------------------------------------------------------- */
+code {
+  background: var(--code-bg);
+  padding: 0.12rem 0.36rem;
+  border-radius: 4px;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.85em;
+  color: var(--accent-strong);
+}
+[data-theme="light"] code { color: var(--accent); }
+
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 0.95rem 1.1rem;
+  overflow-x: auto;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+pre code { background: none; padding: 0; color: var(--text); }
+.code-caption { color: var(--text-muted); font-size: 0.85rem; margin: 0.5rem 0 0.25rem; }
+
+/* Copy-to-clipboard button on docs code blocks. The <pre> is wrapped in a
+   .pre-wrap container so the button stays pinned while the code scrolls. */
+.pre-wrap { position: relative; }
+.copy-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: var(--surface-3);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 5px;
+  padding: 0.25rem 0.55rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  opacity: 0.85;
+  transition: color 0.15s, border-color 0.15s, background 0.15s, opacity 0.15s;
+}
+.pre-wrap:hover .copy-btn { opacity: 1; }
+.copy-btn:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-tint); }
+.copy-btn.copied { color: var(--accent-2); border-color: var(--accent-2); opacity: 1; }
+.copy-btn svg { width: 0.85rem; height: 0.85rem; fill: currentColor; }
+
+/* ---- forms ------------------------------------------------------------ */
+.search-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.8rem 1rem;
+  align-items: end;
+  margin-bottom: 1.25rem;
+  padding: 1.1rem 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+}
+[data-theme="light"] .search-form { border-left: 3px solid var(--accent); }
+
+.feedback-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.85rem 1.1rem;
+  align-items: end;
+  margin-bottom: 1.25rem;
+  padding: 1.25rem 1.4rem;
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  border-left: 3px solid var(--accent);
+  border-radius: 8px;
+}
+.feedback-form label { width: 100%; }
+.feedback-form label.span-2 { grid-column: 1 / -1; }
+.feedback-form .form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 0.3rem;
+}
+@media (max-width: 600px) {
+  .feedback-form { grid-template-columns: 1fr; }
+  .feedback-form label.span-2 { grid-column: auto; }
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  gap: 0.3rem;
+  font-weight: 500;
+}
+
+input, select, textarea {
+  font-family: inherit;
+  font-size: 0.95rem;
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 0.5rem 0.65rem;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+textarea { font-size: 0.92rem; resize: vertical; min-height: 3.5rem; }
+input::placeholder, textarea::placeholder { color: var(--text-muted); opacity: 0.8; }
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-tint);
+}
+
+button {
+  background: var(--accent-btn);
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.55rem 1.25rem;
+  align-self: end;
+  transition: background 0.15s;
+}
+button:hover { background: var(--accent-btn-hover); }
+button:disabled { opacity: 0.5; cursor: default; }
+
+.req { color: var(--req); font-weight: 700; }
+
+/* ---- detail card ------------------------------------------------------ */
+.detail {
+  margin-top: 1.5rem;
+  padding: 1.25rem 1.4rem;
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  box-shadow: 0 1px 4px var(--shadow);
+}
+[data-theme="light"] .detail { border-left: 3px solid var(--accent); }
+.detail h3 { margin-top: 0; }
+.detail h4 { margin: 1rem 0 0.4rem; }
+.detail ul { padding-left: 1.2rem; }
+.detail li { margin-bottom: 0.25rem; }
+
+/* ---- capabilities table ---------------------------------------------- */
+.caps-table { margin-top: 0.6rem; }
+.caps-table td { vertical-align: top; }
+.caps-table tr.cap-false,
+.caps-table tr.cap-false td { color: var(--text-muted); }
+.caps-table .cap-true { color: var(--accent-2); font-weight: 600; }
+
+/* ---- browse: command code chips -------------------------------------- */
+.browse-codes { margin-top: 1rem; }
+.code-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.6rem;
+}
+.code-chip {
+  background: var(--code-bg);
+  color: var(--accent-strong);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.85rem;
+  padding: 0.35rem 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+[data-theme="light"] .code-chip { color: var(--accent); }
+.code-chip:hover { border-color: var(--accent); color: var(--accent); }
+.back-btn {
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  margin-bottom: 0.85rem;
+  font-size: 0.85rem;
+  padding: 0.35rem 0.85rem;
+}
+.back-btn:hover { background: var(--row-hover); }
+.browse-table th:first-child,
+.browse-table td:first-child {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  color: var(--accent-strong);
+  width: 90px;
+}
+[data-theme="light"] .browse-table th:first-child,
+[data-theme="light"] .browse-table td:first-child { color: var(--accent); }
+#browse-detail { margin-top: 1rem; }
+
+/* ---- result messages ------------------------------------------------- */
+.result {
+  margin-top: 1.25rem;
+  padding: 1rem 1.15rem;
+  border-radius: 8px;
+  border-left: 4px solid;
+}
+.result.ok  { background: var(--accent-tint); border-color: var(--accent-2); color: var(--accent-2); }
+.result.err { background: rgba(220, 53, 69, 0.12); border-color: var(--danger); color: var(--danger); }
+
+/* ---- feedback download link ----------------------------------------- */
+a[download] { font-weight: 600; }
+
+/* ---- docs ----------------------------------------------------------- */
+.docs-table td:first-child { width: 70px; }
+.docs-table td:nth-child(2) { white-space: nowrap; }
+
+a { color: var(--accent); }
+a:hover { text-decoration: underline; }
+
+/* ---- headings in docs ----------------------------------------------- */
+h2 {
+  margin-top: 1.75rem;
+  font-size: 1.25rem;
+}
+h3 {
+  margin-top: 1.5rem;
+  font-size: 1.08rem;
+}
+h4 { margin-top: 1rem; color: var(--text); font-size: 0.98rem; }
+ol, ul { padding-left: 1.4rem; }
+li { margin-bottom: 0.3rem; }
+
+/* ---- footer --------------------------------------------------------- */
+footer {
+  margin-top: 2.5rem;
+  padding: 1.1rem 2rem;
+  border-top: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  text-align: center;
+}
+footer a { color: var(--accent); }
+
+/* ---- promo (pycom companion) --------------------------------------- */
+.promo {
+  max-width: 1140px;
+  margin: 1.75rem auto;
+  padding: 0;
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  border-left: 3px solid var(--accent);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+  box-shadow: 0 1px 4px var(--shadow);
+}
+.promo-img {
+  width: 50%;
+  max-width: 50%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+.promo-body {
+  padding: 1.1rem 1.3rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.promo-title { margin: 0 0 0.25rem; font-weight: 700; color: var(--accent); font-size: 1rem; }
+.promo-text { margin: 0 0 0.45rem; color: var(--text-muted); font-size: 0.9rem; }
+.promo a { font-size: 0.9rem; }
+
+/* ---- responsive ----------------------------------------------------- */
+@media (max-width: 720px) {
+  header, nav.tabs, main { padding-left: 1rem; padding-right: 1rem; }
+  nav.tabs { top: 60px; }
+  .promo { flex-direction: column; }
+  .promo-img { width: 100%; max-width: 100%; max-height: 200px; }
+}
