@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="no-referrer">
   <meta name="google-site-verification" content="vVwGaC1JAlR74d10vQ0mNbQeoR7jEPChyaXv4eZWP5g" />
+  <link rel="icon" href="/static/favicon-32x32.png" sizes="32x32"/>
+  <link rel="icon" href="/static/favicon-48x48.png" sizes="48x48"/>
+  <link rel="icon" href="/static/favicon-256x256.png" sizes="256x256"/>
+  <link rel="icon" type="image/png" href="/static/favicon.png">
+  <link rel="apple-touch-icon" href="/static/favicon-256x256.png" sizes="256x256">
    <title>Icom CI-V Explorer</title>
    <link rel="stylesheet" href="/static/styles.css">
    <script src="/static/theme.js"></script>
@@ -26,7 +31,7 @@
   <nav class="tabs">
     <button type="button" class="tab-btn active" data-tab="radios" aria-selected="true">Radios</button>
     <button type="button" class="tab-btn" data-tab="browse">Browse</button>
-    <button type="button" class="tab-btn" data-tab="commands">Commands</button>
+    <button type="button" class="tab-btn" data-tab="commands">Search</button>
     <button type="button" class="tab-btn" data-tab="feedback">Feedback</button>
     <button type="button" class="tab-btn" data-tab="docs">API Docs</button>
   </nav>
@@ -65,7 +70,7 @@
           </select>
         </label>
         <label for="search-q">Search
-          <input type="text" id="search-q" name="q" placeholder="e.g. frequency, VFO, 05" maxlength="100">
+          <input type="text" id="search-q" name="q" placeholder="e.g. frequency, VFO, 07 00" maxlength="100">
         </label>
         <button type="submit">Search</button>
       </form>
@@ -123,7 +128,266 @@
     <!-- Docs tab -->
     <section id="tab-docs" class="tab-panel">
       <h2>API Documentation</h2>
-      <p>Interactive Swagger UI is available at <a href="/docs" rel="noopener noreferrer">/docs</a> (OpenAPI spec at <a href="/openapi.json">/openapi.json</a>). The sections below show how to call the API from code or an AI agent.</p>
+      <p>The full OpenAPI specification is at <a href="/openapi.json">/openapi.json</a> and an interactive Swagger UI at <a href="/docs" rel="noopener noreferrer">/docs</a>. Point any OpenAPI-compatible client or AI agent at the spec — it is self-describing and includes every parameter constraint (hex patterns, length caps, enums).</p>
+
+      <h3>Use this API from an AI agent</h3>
+      <p>The easiest way to give an AI assistant or coding agent access to this reference is to feed it the OpenAPI spec. In your agent's prompt or tool configuration, point it at:</p>
+      <pre><code>https://icom-civ.stevendodd.net/openapi.json</code></pre>
+      <p>Your agent framework (or "create API skill" command) will read the spec and generate callable tools for each endpoint automatically — no manual schema authoring required. The spec carries the validation rules, so the agent can construct valid requests without guessing.</p>
+
+      <h4>Workflow once the agent is connected</h4>
+      <div class="workflow-cards">
+        <div class="workflow-card">
+          <span class="step-num">1</span>
+          <div class="step-body">
+            <div class="step-head"><span class="endpoint-badge get">GET</span><code>/radios</code></div>
+            <p><strong>Discover</strong> — list the valid radio ids and CI-V addresses. Never guess a radio id.</p>
+          </div>
+        </div>
+        <div class="workflow-card">
+          <span class="step-num">2</span>
+          <div class="step-body">
+            <div class="step-head"><span class="endpoint-badge get">GET</span><code>/commands?q=...</code></div>
+            <p><strong>Search</strong> — find commands by keyword or code. <code>q</code> is plain substring matching across <code>cmd</code>, <code>sub_cmd</code>, <code>data</code>, and <code>description</code>. Add <code>radio_id</code> to narrow.</p>
+          </div>
+        </div>
+        <div class="workflow-card">
+          <span class="step-num">3</span>
+          <div class="step-body">
+            <div class="step-head"><span class="endpoint-badge get">GET</span><code>/radios/{id}/capabilities</code></div>
+            <p><strong>Drill down</strong> — confirm whether a feature is supported on a specific radio.</p>
+          </div>
+        </div>
+        <div class="workflow-card">
+          <span class="step-num">4</span>
+          <div class="step-body">
+            <div class="step-head"><span class="endpoint-badge post">POST</span><code>/feedback</code></div>
+            <p><strong>Correct</strong> — submit a correction only when the user explicitly asks. Validate <code>radio_id</code> against <code>/radios</code> first.</p>
+          </div>
+        </div>
+      </div>
+
+      <h4>Key rules for agents</h4>
+      <div class="callout">
+        <ul>
+          <li><code>radio_id</code> is a lowercase short code (<code>7300</code>, <code>7300mk2</code>), <strong>not</strong> the model name (<code>IC-7300</code>).</li>
+          <li>If <code>q</code> returns too many rows, narrow with <code>radio_id</code> or raise <code>limit</code> (max 500). Use <code>offset</code> to page through large result sets.</li>
+          <li>When reporting a command, include the <code>radio_id</code>, <code>cmd</code>, and <code>sub_cmd</code> so the user can verify.</li>
+          <li>The API is read-only except <code>POST /feedback</code>; feedback appends to a review queue and never mutates the live reference data.</li>
+        </ul>
+      </div>
+
+      <details class="skill-accordion">
+        <summary>If your coding harness doesn't read the OpenAPI spec, use this example skill definition</summary>
+        <p class="code-caption">Paste this into your agent's skill configuration to give it CI-V reference capabilities without OpenAPI tool generation:</p>
+        <pre><code>---
+name: civ-reference
+description: &gt;
+  Expert guidance for ICOM CI-V command reference. Queries the CI-V REST API
+  (https://icom-civ.stevendodd.net) for authoritative command data. Advises on command
+  construction, data encoding, sub-commands, and protocol details. Supports IC-705,
+  IC-7100, IC-7300, IC-7300 MK2, IC-7610, IC-7760, and IC-9700. Load this skill for
+  any question about CI-V commands, hex codes, data formats, or encoding for any
+  supported Icom radio.
+---
+
+# CI-V Reference Skill
+
+## Data Sources
+
+### 1. Primary — CI-V REST API (authoritative, always up-to-date)
+
+**Base URL:** `https://icom-civ.stevendodd.net`
+
+A read-only HTTPS REST API serving the parsed CI-V command tables and capability
+data for all supported radios. The API is the single source of truth — it is
+maintained alongside the CSVs and reflects the latest corrections. Always query
+the API first when network access is available.
+
+Use `curl` (or `webfetch`) against these endpoints:
+
+| Endpoint | Purpose |
+|----------|---------|
+| `GET /radios` | List all radios with default CI-V addresses and command counts |
+| `GET /radios/{radio_id}` | Single radio summary (id, name, address, command_count) |
+| `GET /radios/{radio_id}/capabilities` | Per-radio capability flags (satellite_mode, dv_mode, attenuator, …) |
+| `GET /radios/{radio_id}/commands?q=&lt;query&gt;&amp;limit=&lt;n&gt;&amp;offset=&lt;n&gt;` | List/search commands for one radio |
+| `GET /commands?radio_id=&lt;id&gt;&amp;q=&lt;query&gt;&amp;limit=&lt;n&gt;&amp;offset=&lt;n&gt;` | Cross-radio command search |
+| `POST /feedback` | Submit a correction for human review (see below) |
+| `GET /health` | Service health check |
+
+`radio_id` values: `705`, `7100`, `7300`, `7300mk2`, `7610`, `7760`, `9700`.
+
+**Command object schema** (from `/commands` and `/radios/{id}/commands`):
+```json
+{
+  "radio_id": "9700",
+  "cmd": "16",
+  "sub_cmd": "02",
+  "data": "00 to 03",
+  "description": "Send/read the Preamp/External Preamp ..."
+}
+```
+- `cmd` — primary command hex (no `0x` prefix), e.g. `"16"`, `"1A"`
+- `sub_cmd` — sub-command hex; may be empty `""` or a comma-separated multi-byte
+  string like `"05,02"` (meaning sub-cmd bytes `05` then `02`). Empty string = no sub-command
+- `data` — data payload description from the manual (free text, e.g. `"00 to 03"`)
+- `description` — human-readable description of the command
+
+**Capability object schema** (from `/radios/{id}/capabilities`):
+```json
+{
+  "name": "satellite_mode",
+  "label": "Satellite Mode",
+  "description": "Satellite mode (split TX/RX bands with independent VFOs)",
+  "command_evidence": "0x16 0x5A",
+  "radios": {"705": false, "7100": false, ..., "9700": true}
+}
+```
+- `name` — machine-readable capability name (snake_case, e.g. `"satellite_mode"`)
+- `label` — human-friendly display label (Title Case, e.g. `"Satellite Mode"`)
+The `radios` map values are booleans or descriptive strings (e.g. `"external (AH-705)`,
+`"20 dB"`). When filtering for one radio, read the matching key.
+
+**Pagination:** `limit` (1–500, default 100) and `offset` (default 0). The response
+includes `total`, so iterate with offset if `total &gt; limit`. Always check `total`
+and page through for complete results.
+
+**Search (`q`):** matches across `cmd`, `sub_cmd`, `data`, and `description`. It is a
+substring/keyword search, not a structured lookup. For an exact command-byte
+lookup, filter client-side on `cmd` + `sub_cmd` from a `q` query, or fetch the
+radio's full command list (page through if needed) and match.
+
+**Feedback / corrections:** the API is read-only; `POST /feedback` is the one write
+path. Submissions are appended to a JSONL log for human review and never mutate the
+reference data. Do not POST feedback autonomously — surface the discrepancy to the
+user and let them decide (see "Handling Discrepancies" below).
+
+### Supported Radios
+
+| Radio | ID | CI-V Address | API radio_id | Notes |
+|-------|-----|-------------|--------------|-------|
+| IC-9700 | 9700 | 0xA2 | `9700` | VHF/UHF, satellite mode, DV/DD |
+| IC-7610 | 7610 | 0x98 | `7610` | HF/50MHz, dual watch, band selector |
+| IC-7300 | 7300 | 0x94 | `7300` | HF/50MHz, built-in tuner, APF |
+| IC-7300 MK2 | 7300mk2 | 0xB6 | `7300mk2` | HF/50MHz, newer revision of 7300 |
+| IC-705 | 705 | 0xA4 | `705` | HF/VHF/UHF portable, DV, WFM, GPS |
+| IC-7100 | 7100 | 0x88 | `7100` | HF/VHF/UHF, DV/DD, WFM, GPS |
+| IC-7760 | 7760 | 0xB2 | `7760` | HF/50MHz, similar to 7610 |
+
+## CI-V Frame Structure
+
+All CI-V frames follow this structure:
+
+```
+FE FE [from_addr] [to_addr] [cmd] [sub_cmd...] [data...] FD
+```
+
+- Preamble: `FE FE` (2 bytes)
+- From address: Controller address (typically `E0` for serial, `E1` for UDP)
+- To address: Radio address (`A2` for IC-9700, `98` for IC-7610, …)
+- Command byte: From the API `cmd` field
+- Sub-command bytes: From the API `sub_cmd` field (comma-separated → individual bytes; empty → none)
+- Data bytes: From the API `data` field description (0 or more bytes)
+- Postamble: `FD` (1 byte)
+
+## Data Encoding Rules
+
+### Frequencies
+- Frequencies use **BCD encoding, little-endian** (2 digits per byte, LSB first).
+- Example: 144.000000 MHz → `00 00 00 44 01` (5 bytes for IC-9700)
+
+### Percentage Values (Power, SQL, Meter levels)
+- Use **decimal-nibble encoding**: each nibble holds one decimal digit (0-9).
+- 2-byte format: `0x0255` = 100%, `0x0128` = 50%, `0x0000` = 0%.
+- Extract with `int(b.hex())`. **NOT** `int.from_bytes()` — that would interpret as binary.
+
+### ON/OFF Values
+- `00` = OFF, `01` = ON (single byte)
+
+### Mode Encoding
+- Command `0x06` (Set mode) uses specific byte values per mode
+- See the IC-9700 manual for the complete mode table
+
+## Handling Discrepancies
+
+The API is the authoritative source, but it is not assumed to be 100% correct.
+CI-V reference data is hand-transcribed from Icom manuals and may contain errors.
+When this skill detects a discrepancy **do not silently assume the API is right.**
+
+Instead:
+
+1. **Surface the discrepancy explicitly** to the user. State what each source says:
+   the API value, the conflicting source value (codebase/CSV/manual), and where each
+   came from. Lead with the assumption that the API is the likely error.
+2. **Do not auto-correct** implementation code or pick a "winner" on the skill's own
+   judgement. CI-V byte errors cause silent data corruption or radio malfunction so a human must decide.
+3. **Offer options** to the user, for example:
+   - Treat the API as wrong (default when it conflicts with the codebase) and submit
+     feedback to correct the API
+   - Investigate further (consult the manual text in `icom manuals/`)
+   - Trust the API value anyway and change the codebase (requires explicit approval)
+4. **Use the `question` tool** when the choice materially affects the answer or any
+   code change. Present the conflicting values as the options, with the
+   "API is wrong / trust the codebase" option first and marked as recommended.
+5. **Feedback submissions are user-driven only.** Never POST to `/feedback`
+   autonomously. If the user wants to report an API error (the usual case for a
+   codebase conflict), build the feedback payload and show it to them for
+   confirmation before sending, or let them submit it themselves. The feedback
+   schema is:
+   ```json
+   {
+     "radio_id": "9700",
+     "cmd": "1A",
+     "sub_cmd": "05",
+     "field": "data",
+     "capability_name": "",
+     "suggested_value": "00 to 03",
+     "notes": "Manual says ...",
+     "submitter": ""
+   }
+   ```
+   Required: `radio_id`, `field`, `suggested_value`.
+
+Treat API and CSV command-count mismatches, differing `sub_cmd` byte sequences,
+differing `data` ranges, and missing/extra commands as discrepancies to confirm —
+not as bugs to fix unilaterally.
+
+## Expert Guidance Workflow
+
+When using this skill to answer CI-V questions:
+
+1. **Query the API first.** Use `curl` against the relevant endpoint:
+   ```bash
+   curl -s "https://icom-civ.stevendodd.net/radios/9700/commands?q=1A%2005&amp;limit=50" | python3 -m json.tool
+   curl -s "https://icom-civ.stevendodd.net/commands?q=satellite&amp;limit=100" | python3 -m json.tool
+   curl -s "https://icom-civ.stevendodd.net/radios/7610/capabilities" | python3 -m json.tool
+   ```
+   Note: `q` is a substring search. For an exact command-byte lookup, fetch the
+   radio's commands with a broad `q` (or no `q`, paging through `limit`/`offset`)
+   and filter client-side on `cmd`+`sub_cmd`.
+
+2. **Always specify the radio.** The SET menu sub-commands (`0x1A 0x05`) are
+   completely different between radios. Always pass the `radio_id` / `--radio`.
+
+3. **Check capabilities.** Query `/radios/{id}/capabilities` to confirm a radio supports a feature before
+   advising on its command bytes.
+
+4. **Encoding matters.** Remind about decimal-nibble encoding for percentages, BCD
+   for frequencies, and `byteorder="big"` for `int.from_bytes()` calls. These are
+   the highest-risk areas. The API `data` field is a description (e.g. `"00 to 03"`),
+   not the encoded bytes — apply the encoding rules to convert.
+
+5. **Send vs Read.** The API does not currently tag direction. Distinguish
+   manually: Read commands omit data bytes; the radio replies with the current
+   value. Send (write) commands include the data bytes. The `data` field's phrasing
+   often hints at this (`"Send/read the …"` = both; a bare range like `"00 to 03"`
+   is the data payload for Send, and the value returned for Read).
+
+6. **Discrepancies are findings, not fixes.** If API, CSV, implementation, or manual
+   disagree on a command byte, sub-command, or data encoding, surface it to the user
+   per "Handling Discrepancies" above. Do not auto-correct.</code></pre>
+      </details>
 
       <h3>Endpoints</h3>
       <table class="docs-table">
@@ -142,9 +406,8 @@
 
       <h3>Quick facts</h3>
       <ul>
-        <li>Served over HTTPS. A self-signed dev cert is auto-generated on first run; pass <code>CIV_CERT</code>/<code>CIV_KEY</code> for a real cert.</li>
         <li>Radio ids are lowercase short codes (<code>7300</code>, <code>7300mk2</code>). The model name (<code>IC-7300</code>) is <strong>not</strong> accepted as an id.</li>
-        <li><code>q</code> is case-insensitive substring matching across <code>cmd</code>, <code>sub_cmd</code>, <code>data</code>, and <code>description</code> — not a query language.</li>
+        <li><code>q</code> is case-insensitive substring matching — not a query language.</li>
         <li>Feedback <code>cmd</code>/<code>sub_cmd</code> must be 1-4 hex chars; free-text fields are length-capped (see the OpenAPI schema for exact limits).</li>
         <li>All responses are JSON; <code>limit</code> (1-500) and <code>offset</code> (>=0) paginate list endpoints.</li>
       </ul>
@@ -152,114 +415,33 @@
       <h3>Calling the API from code</h3>
 
       <h4>curl</h4>
-      <p class="code-caption">List radios, then search the IC-7300 command table for frequency commands:</p>
-      <pre><code>curl -k https://localhost:8443/radios
-curl -k "https://localhost:8443/commands?radio_id=7300&amp;q=frequency&amp;limit=10"</code></pre>
-      <p class="code-caption"><code>-k</code> skips cert verification for the self-signed dev cert. Drop it when using a real CA-signed certificate.</p>
+      <pre><code>curl https://icom-civ.stevendodd.net/radios
+curl "https://icom-civ.stevendodd.net/commands?radio_id=7300&amp;q=frequency&amp;limit=10"</code></pre>
 
-      <h4>Python (requests)</h4>
+      <h4>Python</h4>
       <pre><code>import requests
 
-BASE = "https://localhost:8443"
-SESSION = requests.Session()
-SESSION.verify = False  # dev cert only; use a real CA bundle in production
+BASE = "https://icom-civ.stevendodd.net"
 
-# Which radios are supported?
-radios = SESSION.get(f"{BASE}/radios").json()
-for r in radios:
-    print(r["id"], r["name"], r["address"], r["command_count"])
+# List radios
+for r in requests.get(f"{BASE}/radios").json():
+    print(r["id"], r["name"], r["address"])
 
-# Search IC-9700 commands for "satellite"
-hits = SESSION.get(f"{BASE}/radios/9700/commands", params={"q": "sat"}).json()
+# Search the IC-7300 for frequency commands
+hits = requests.get(f"{BASE}/commands", params={"radio_id": "7300", "q": "frequency"}).json()
 for c in hits["items"]:
     print(c["cmd"], c["sub_cmd"], c["description"])
 
 # Capabilities of the IC-7300
-caps = SESSION.get(f"{BASE}/radios/7300/capabilities").json()
-for cap in caps:
-    print(cap["name"], cap["radios"]["7300"])
-</code></pre>
-
-      <h4>Python (httpx, async)</h4>
-      <pre><code>import httpx
-
-async with httpx.AsyncClient(base_url="https://localhost:8443", verify=False) as client:
-    radios = (await client.get("/radios")).json()
-    cmds  = (await client.get("/commands", params={"radio_id": "7300", "q": "vfo"})).json()
-</code></pre>
-
-      <h4>JavaScript (fetch)</h4>
-      <pre><code>const BASE = "https://localhost:8443";
-
-// List radios
-const radios = await (await fetch(`${BASE}/radios`)).json();
-
-// Search commands for the IC-7300
-const url = new URL(`${BASE}/commands`);
-url.searchParams.set("radio_id", "7300");
-url.searchParams.set("q", "frequency");
-url.searchParams.set("limit", "50");
-const result = await (await fetch(url)).json();
-console.log(result.total, result.items);
-</code></pre>
+for cap in requests.get(f"{BASE}/radios/7300/capabilities").json():
+    print(cap["name"], cap["radios"]["7300"])</code></pre>
 
       <h4>Submitting feedback</h4>
-      <pre><code>curl -k -X POST https://localhost:8443/feedback \
+      <pre><code>curl -X POST https://icom-civ.stevendodd.net/feedback \
   -H "Content-Type: application/json" \
   -d '{"radio_id":"7300","cmd":"05","sub_cmd":"","field":"description",\
         "suggested_value":"Set operating frequency (corrected)",\
         "notes":"Manual p.19-9","submitter":"tester"}'</code></pre>
-
-      <h3>Using the API from an AI agent</h3>
-      <p>The API is read-only (except <code>POST /feedback</code>) and returns structured JSON, which makes it straightforward for an LLM/agent to call via HTTP tool use. Recommended workflow:</p>
-      <ol>
-        <li><strong>Discover</strong> supported radios with <code>GET /radios</code> to get valid radio ids and addresses.</li>
-        <li><strong>Search</strong> with <code>GET /commands?q=...</code> (and optionally <code>radio_id=...</code>) to find commands by functionality or code. <code>q</code> is plain substring matching — keep queries short.</li>
-        <li><strong>Drill down</strong> with <code>GET /radios/{id}/capabilities</code> to check whether a feature is supported on a specific radio.</li>
-        <li><strong>Submit corrections</strong> with <code>POST /feedback</code> when the agent finds a wrong or missing entry. Validate <code>radio_id</code> against <code>/radios</code> first.</li>
-      </ol>
-
-      <h4>Agent tool schema (example)</h4>
-      <p>When exposing the API to an agent, describe each endpoint as an HTTP tool. Example tool definitions (OpenAI function-calling style, trimmed):</p>
-      <pre><code>{
-  "name": "civ_search_commands",
-  "description": "Search Icom CI-V commands across cmd/sub_cmd/data/description. Returns JSON.",
-  "parameters": {
-    "type": "object",
-    "properties": {
-      "q":        {"type": "string", "description": "Free-text search, e.g. 'frequency'"},
-      "radio_id": {"type": "string", "description": "Optional radio id: 705,7100,7300,7300mk2,7610,7760,9700"},
-      "limit":    {"type": "integer", "minimum": 1, "maximum": 500, "default": 100},
-      "offset":   {"type": "integer", "minimum": 0, "default": 0}
-    }
-  }
-}
-{
-  "name": "civ_list_radios",
-  "description": "List supported Icom radios with default CI-V addresses and command counts.",
-  "parameters": {"type": "object", "properties": {}}
-}
-{
-  "name": "civ_radio_capabilities",
-  "description": "Get the capability matrix for one radio.",
-  "parameters": {
-    "type": "object",
-    "properties": {"radio_id": {"type": "string"}},
-    "required": ["radio_id"]
-  }
-}</code></pre>
-
-      <h4>Agent prompt guidance</h4>
-      <ul>
-        <li>Always call <code>civ_list_radios</code> first to learn valid radio ids; never guess them.</li>
-        <li><code>radio_id</code> is a lowercase short code (e.g. <code>7300</code>), <strong>not</strong> the model name (<code>IC-7300</code>).</li>
-        <li>If <code>q</code> returns too many rows, add <code>radio_id</code> to narrow, or increase <code>limit</code> (max 500).</li>
-        <li>When reporting a command from the API, include the <code>radio_id</code>, <code>cmd</code>, and <code>sub_cmd</code> so the user can verify.</li>
-        <li>Only call <code>POST /feedback</code> when the user explicitly asks to submit a correction.</li>
-      </ul>
-
-      <h4>Pointing an agent at this server</h4>
-      <p>If your agent framework reads an OpenAPI spec, point it at <code>/openapi.json</code>. The spec is self-describing and includes parameter constraints (hex patterns, length caps, enums) that help the agent construct valid requests.</p>
     </section>
   </main>
 

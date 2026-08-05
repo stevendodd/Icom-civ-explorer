@@ -135,7 +135,7 @@
         var val = c.radios[radio.id];
         var isFalse = val === false || val === "false" || val === "False";
         var tr = tag("tr", null, { class: isFalse ? "cap-false" : "" });
-        tr.appendChild(tag("td", c.name));
+        tr.appendChild(tag("td", c.label || c.name));
         var valCell = tag("td", String(val));
         if (!isFalse) valCell.className = "cap-true";
         tr.appendChild(valCell);

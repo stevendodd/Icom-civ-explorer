@@ -23,7 +23,8 @@ class RadioSummary(BaseModel):
 class Capability(BaseModel):
     """A single radio capability with per-radio support values."""
 
-    name: str
+    name: str = Field(..., description="Machine-readable capability name (snake_case)")
+    label: str = Field("", description="Human-friendly display label; falls back to name if empty")
     description: str
     command_evidence: str
     radios: dict[str, Union[bool, str]]

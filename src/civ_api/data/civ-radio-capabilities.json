@@ -10,172 +10,368 @@
   ],
   "capabilities": [
     {
+      "name": "radio_type",
+      "label": "Radio Type",
+      "description": "Radio type/class",
+      "command_evidence": "Hardware specification",
+      "radios": {"705": "Portable multimode HF/VHF/UHF", "7100": "HF/VHF/UHF multi-band (mobile/base)", "7300": "HF/50/70 MHz base", "7300mk2": "HF/50/70 MHz base", "7610": "HF/50 MHz base", "7760": "HF/50 MHz base (separate RF deck + control head)", "9700": "VHF/UHF/1.2 GHz all-mode base"}
+    },
+    {
+      "name": "tx_bands",
+      "label": "TX Bands",
+      "description": "Transmit bands",
+      "command_evidence": "Hardware specification",
+      "radios": {"705": "HF/50/144/430 MHz", "7100": "HF/50/70/144/430 MHz", "7300": "1.8-50/70 MHz", "7300mk2": "1.8-50/70 MHz", "7610": "1.8-50 MHz", "7760": "135 kHz*/1.8-50 MHz", "9700": "144/430/1200 MHz"}
+    },
+    {
+      "name": "rx_coverage",
+      "label": "RX Coverage",
+      "description": "RX coverage (general)",
+      "command_evidence": "Hardware specification",
+      "radios": {"705": "30 kHz-199.999 + 400-470 MHz", "7100": "30 kHz-199.999 + 400-470 MHz", "7300": "30 kHz-74.8 MHz", "7300mk2": "30 kHz-74.8 MHz", "7610": "30 kHz-60 MHz", "7760": "30 kHz-60 MHz", "9700": "118-1300 MHz approx."}
+    },
+    {
+      "name": "max_power",
+      "label": "Max Power",
+      "description": "Max TX power (SSB/CW/FM)",
+      "command_evidence": "Hardware specification",
+      "radios": {"705": "10 W (13.8V) / 5 W (battery)", "7100": "100 W (HF/50), 50 W (144), 35 W (430)", "7300": "100 W (AM 25W)", "7300mk2": "100 W (AM 25W)", "7610": "100 W", "7760": "200 W (AM 50W); 100% duty", "9700": "100 W (144), 75 W (430), 10 W (1200)"}
+    },
+    {
+      "name": "modes",
+      "label": "Modes",
+      "description": "Supported modes",
+      "command_evidence": "Hardware specification",
+      "radios": {"705": "SSB, CW, RTTY, AM, FM, DV, WFM (RX)", "7100": "SSB, CW, RTTY, AM, FM, DV, WFM (RX)", "7300": "SSB, CW, RTTY, AM, FM", "7300mk2": "SSB, CW, RTTY, AM, FM", "7610": "SSB, CW, RTTY, PSK, AM, FM", "7760": "SSB, CW, RTTY, PSK, AM, FM", "9700": "SSB, CW, RTTY, AM, FM, DV, DD"}
+    },
+    {
+      "name": "receiver_architecture",
+      "label": "Receiver Architecture",
+      "description": "Receiver architecture",
+      "command_evidence": "Hardware specification",
+      "radios": {"705": "RF Direct Sampling (HF) + IF sampling", "7100": "Triple conversion + dual DSP", "7300": "RF Direct Sampling", "7300mk2": "RF Direct Sampling (advanced)", "7610": "RF Direct Sampling (dual receiver)", "7760": "RF Direct Sampling (dual receiver)", "9700": "RF Direct Sampling (144/430) + IF sampling (1200)"}
+    },
+    {
+      "name": "display",
+      "label": "Display",
+      "description": "Display type",
+      "command_evidence": "Hardware specification",
+      "radios": {"705": "4.3\" colour TFT touchscreen", "7100": "Touchscreen DOT-Matrix LCD (detachable head)", "7300": "4.3\" colour TFT touchscreen", "7300mk2": "4.3\" colour TFT touchscreen", "7610": "7\" colour TFT touchscreen", "7760": "Dual touchscreens (7\" + 2.4\")", "9700": "4.3\" colour TFT touchscreen"}
+    },
+    {
+      "name": "attenuator",
+      "label": "Attenuator",
+      "description": "RF attenuator",
+      "command_evidence": "0x11 (7300/7300mk2/7610) or 0F 11 sub-command (7100/7760/9700)",
+      "radios": {"705": "20 dB", "7100": "12 dB", "7300": "20 dB", "7300mk2": "20 dB", "7610": "3-45 dB (16 steps)", "7760": "3-45 dB (16 steps)", "9700": "10 dB"}
+    },
+    {
+      "name": "preamp",
+      "label": "Preamp (Internal)",
+      "description": "RF preamp (internal)",
+      "command_evidence": "0x16 0x02 (00=OFF, 01=Preamp 1, 02=Preamp 2; 9700 also has EXT-P.AMP in 4-value encoding)",
+      "radios": {"705": true, "7100": true, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
+    },
+    {
+      "name": "external_preamp",
+      "label": "External Preamp",
+      "description": "External preamp control (additional to internal preamp)",
+      "command_evidence": "0x16 0x02 with 4-value combined internal+external encoding (9700 only: 00=both OFF, 01=P.AMP ON, 02=EXT-P.AMP ON, 03=both ON)",
+      "radios": {"705": false, "7100": false, "7300": false, "7300mk2": false, "7610": false, "7760": false, "9700": true}
+    },
+    {
+      "name": "digi_sel",
+      "label": "DIGI-SEL",
+      "description": "DIGI-SEL (digital pre-selector for out-of-band interference rejection)",
+      "command_evidence": "0x16 0x4E (on/off), 0x14 0x13 (shift amount)",
+      "radios": {"705": false, "7100": false, "7300": false, "7300mk2": false, "7610": true, "7760": true, "9700": false}
+    },
+    {
+      "name": "ip_plus",
+      "label": "IP+ Function",
+      "description": "IP Plus function (intercept point enhancement)",
+      "command_evidence": "0x16 0x65 sub-command",
+      "radios": {"705": false, "7100": false, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
+    },
+    {
+      "name": "tw_pbt",
+      "label": "Twin PBT",
+      "description": "Twin PBT (Passband Tuning)",
+      "command_evidence": "0x14 0x07/0x14 0x08",
+      "radios": {"705": true, "7100": true, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
+    },
+    {
+      "name": "apf",
+      "label": "Audio Peak Filter",
+      "description": "Audio Peak Filter (APF) for CW signals",
+      "command_evidence": "0x16 0x32 sub-command",
+      "radios": {"705": false, "7100": false, "7300": false, "7300mk2": true, "7610": true, "7760": true, "9700": false}
+    },
+    {
+      "name": "twin_peak_filter",
+      "label": "Twin Peak Filter",
+      "description": "Twin Peak Filter (distinct from APF; used for RTTY)",
+      "command_evidence": "0x16 0x4F",
+      "radios": {"705": true, "7100": true, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
+    },
+    {
+      "name": "rit",
+      "label": "RIT",
+      "description": "Receiver Incremental Tuning (RIT)",
+      "command_evidence": "0x21",
+      "radios": {"705": true, "7100": true, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
+    },
+    {
+      "name": "dual_watch",
+      "label": "Dual Watch",
+      "description": "Dual watch (receive on two bands simultaneously)",
+      "command_evidence": "0x07 0xC0/C1/C2 (7610/7760) or 0x16 0x59 (9700)",
+      "radios": {"705": false, "7100": false, "7300": false, "7300mk2": false, "7610": true, "7760": true, "9700": true}
+    },
+    {
+      "name": "band_selector",
+      "label": "Band Selector",
+      "description": "Main/Sub band selector command (0x29)",
+      "command_evidence": "0x29 command (00=MAIN, 01=SUB)",
+      "radios": {"705": false, "7100": false, "7300": false, "7300mk2": false, "7610": true, "7760": true, "9700": false}
+    },
+    {
+      "name": "full_duplex",
+      "label": "Full Duplex",
+      "description": "Full duplex (transmit on main band while receiving on sub-band)",
+      "command_evidence": "Icom UK IC-9700 product page; 0x16 0x5A satellite mode enables full duplex operation",
+      "radios": {"705": false, "7100": false, "7300": false, "7300mk2": false, "7610": false, "7760": false, "9700": true}
+    },
+    {
       "name": "satellite_mode",
+      "label": "Satellite Mode",
       "description": "Satellite mode (split TX/RX bands with independent VFOs)",
       "command_evidence": "0x16 0x5A",
       "radios": {"705": false, "7100": false, "7300": false, "7300mk2": false, "7610": false, "7760": false, "9700": true}
     },
     {
+      "name": "satellite_tracking",
+      "label": "Satellite Tracking",
+      "description": "Satellite doppler tracking (Normal/Reverse tracking) + AFC",
+      "command_evidence": "Icom UK IC-9700 product page: Normal and Reverse Tracking functions, AFC function",
+      "radios": {"705": false, "7100": false, "7300": false, "7300mk2": false, "7610": false, "7760": false, "9700": true}
+    },
+    {
       "name": "dv_mode",
+      "label": "D-STAR DV Mode",
       "description": "D-STAR DV (Digital Voice) mode",
       "command_evidence": "Mode 0x17, commands 0x1F/0x20/0x22",
       "radios": {"705": true, "7100": true, "7300": false, "7300mk2": false, "7610": false, "7760": false, "9700": true}
     },
     {
       "name": "dd_mode",
+      "label": "D-STAR DD Mode",
       "description": "D-STAR DD (Digital Data) mode",
       "command_evidence": "Mode 0x22",
       "radios": {"705": false, "7100": false, "7300": false, "7300mk2": false, "7610": false, "7760": false, "9700": true}
     },
     {
       "name": "wfm_mode",
+      "label": "Wide FM Mode",
       "description": "Wide FM mode",
       "command_evidence": "Mode 0x06=WFM",
       "radios": {"705": true, "7100": true, "7300": false, "7300mk2": false, "7610": false, "7760": false, "9700": false}
     },
     {
-      "name": "gps_dprs",
-      "description": "GPS / D-PRS (APRS via D-STAR)",
-      "command_evidence": "GPS commands 0x23, 0x1A 0x05 0x02xx",
-      "radios": {"705": true, "7100": true, "7300": false, "7300mk2": false, "7610": false, "7760": false, "9700": true}
-    },
-    {
-      "name": "antenna_tuner",
-      "description": "Built-in antenna tuner",
-      "command_evidence": "0x1C 0x01 tuner command",
-      "radios": {"705": "external (AH-705)", "7100": "external", "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": false}
-    },
-    {
-      "name": "attenuator",
-      "description": "RF attenuator",
-      "command_evidence": "0x11 (7300/7300mk2/7610) or 0F 11 sub-command (7100/7760/9700)",
-      "radios": {"705": "20 dB", "7100": "12 dB", "7300": "20 dB", "7300mk2": "20 dB", "7610": "3-45 dB (16 steps)", "7760": "3-45 dB (16 steps)", "9700": "10 dB"}
-    },
-    {
-      "name": "dual_watch",
-      "description": "Dual watch (receive on two bands simultaneously)",
-      "command_evidence": "0x07 0xC0/C1/C2 (7610/7760) or 0x16 0x59 (9700)",
-      "radios": {"705": false, "7100": false, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
-    },
-    {
-      "name": "external_preamp",
-      "description": "External preamp control (band-specific)",
-      "command_evidence": "0x16 0x02 with 4-value combined internal+external (9700)",
-      "radios": {"705": false, "7100": false, "7300": false, "7300mk2": false, "7610": false, "7760": false, "9700": true}
-    },
-    {
-      "name": "network_lan",
-      "description": "Network (LAN/WLAN) connectivity for remote control",
-      "command_evidence": "Network SET commands 0x1A 0x05 0x0137+",
-      "radios": {"705": "WLAN", "7100": false, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
-    },
-    {
-      "name": "band_selector",
-      "description": "Main/Sub band selector command (0x29)",
-      "command_evidence": "0x29 command (00=MAIN, 01=SUB)",
+      "name": "psk_mode",
+      "label": "PSK Mode",
+      "description": "PSK data mode (decode, tone frequency)",
+      "command_evidence": "PSK RX HPF/LPF, PSK tone frequency, PSK decode SET commands",
       "radios": {"705": false, "7100": false, "7300": false, "7300mk2": false, "7610": true, "7760": true, "9700": false}
     },
     {
+      "name": "rtty_decode",
+      "label": "RTTY Decoder",
+      "description": "Built-in RTTY decoder",
+      "command_evidence": "RTTY DECODE SET commands",
+      "radios": {"705": true, "7100": true, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
+    },
+    {
+      "name": "cw_decoder",
+      "label": "CW Decoder",
+      "description": "Built-in CW decoder (decodes Morse code without a PC)",
+      "command_evidence": "Icom UK IC-7300MK2 product page: Built-in CW Decoder",
+      "radios": {"705": false, "7100": false, "7300": false, "7300mk2": true, "7610": false, "7760": false, "9700": false}
+    },
+    {
+      "name": "cw_messages",
+      "label": "CW Messages",
+      "description": "CW message sending via CI-V",
+      "command_evidence": "0x17",
+      "radios": {"705": true, "7100": true, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
+    },
+    {
       "name": "memory_keyer",
+      "label": "Memory Keyer",
       "description": "Memory keyer (CW message storage)",
       "command_evidence": "0x1A 0x02",
       "radios": {"705": true, "7100": true, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
     },
     {
       "name": "voice_tx_memory",
+      "label": "Voice TX Memory",
       "description": "Voice TX memory (recorded voice messages via CI-V command 0x28)",
       "command_evidence": "0x28",
       "radios": {"705": true, "7100": false, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
     },
     {
+      "name": "vox",
+      "label": "VOX",
+      "description": "VOX (voice-activated transmit)",
+      "command_evidence": "0x16 0x46 (VOX on/off), 0x14 0x16/0x17 (VOX/Anti-VOX gain), 1A 05 xx (VOX delay; sub-cmd varies by radio)",
+      "radios": {"705": true, "7100": true, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
+    },
+    {
+      "name": "contest_number",
+      "label": "Contest Numbering",
+      "description": "Contest serial numbering / number style",
+      "command_evidence": "1A 05 0129/0131 (7100 serial number), 1A 05 0155 (7300 style); Icom UK product pages (7300mk2, 7760: Automatic Contest Serial Numbering)",
+      "radios": {"705": false, "7100": true, "7300": true, "7300mk2": true, "7610": false, "7760": true, "9700": false}
+    },
+    {
       "name": "spectrum_scope",
+      "label": "Spectrum Scope",
       "description": "Spectrum scope / waterfall display",
       "command_evidence": "0x27 scope commands",
       "radios": {"705": true, "7100": false, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
     },
     {
-      "name": "ntp",
-      "description": "NTP server time sync",
-      "command_evidence": "NTP commands 0x1A 0x08/0x09",
-      "radios": {"705": true, "7100": false, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
-    },
-    {
-      "name": "apf",
-      "description": "Audio Peak Filter (APF)",
-      "command_evidence": "0x16 0x32 sub-command",
-      "radios": {"705": false, "7100": false, "7300": false, "7300mk2": true, "7610": true, "7760": true, "9700": false}
-    },
-    {
-      "name": "battery_powered",
-      "description": "Battery powered (internal battery pack)",
-      "command_evidence": "Battery SET commands 0x1A 0x05 0x0363+",
-      "radios": {"705": true, "7100": false, "7300": false, "7300mk2": false, "7610": false, "7760": false, "9700": false}
-    },
-    {
-      "name": "rit",
-      "description": "Receiver Incremental Tuning (RIT)",
-      "command_evidence": "0x21",
-      "radios": {"705": true, "7100": true, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
-    },
-    {
-      "name": "cw_messages",
-      "description": "CW message sending via CI-V",
-      "command_evidence": "0x17",
-      "radios": {"705": true, "7100": true, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
-    },
-    {
-      "name": "rtty_decode",
-      "description": "Built-in RTTY decoder",
-      "command_evidence": "RTTY DECODE SET commands",
-      "radios": {"705": true, "7100": true, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
+      "name": "audio_scope",
+      "label": "Audio Scope",
+      "description": "Audio scope (FFT scope + oscilloscope for TX/RX audio analysis)",
+      "command_evidence": "Icom UK product pages: IC-7300, IC-7300MK2, IC-7610, IC-7760, IC-9700 (Audio Scope Function)",
+      "radios": {"705": false, "7100": false, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
     },
     {
       "name": "screen_capture",
+      "label": "Screen Capture",
       "description": "Screen capture function",
       "command_evidence": "Screen capture SET commands",
       "radios": {"705": true, "7100": false, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
     },
     {
-      "name": "sd_card",
-      "description": "SD card slot for recording/storage",
-      "command_evidence": "SD card SET commands",
-      "radios": {"705": true, "7100": false, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
-    },
-    {
-      "name": "qso_recorder",
-      "description": "QSO recorder (audio recording)",
-      "command_evidence": "QSO RECORDER SET commands",
-      "radios": {"705": true, "7100": false, "7300": false, "7300mk2": true, "7610": true, "7760": true, "9700": true}
-    },
-    {
-      "name": "tw_pbt",
-      "description": "Twin PBT (Passband Tuning)",
-      "command_evidence": "0x14 0x07/0x14 0x08",
-      "radios": {"705": true, "7100": true, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
-    },
-    {
-      "name": "ip_plus",
-      "description": "IP Plus function (intercept point enhancement)",
-      "command_evidence": "0x16 0x65 sub-command",
-      "radios": {"705": false, "7100": false, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
-    },
-    {
       "name": "touch_screen",
+      "label": "Touch Screen",
       "description": "Touch screen display",
       "command_evidence": "Not a CI-V feature but affects UI design",
-      "radios": {"705": true, "7100": false, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": false}
+      "radios": {"705": true, "7100": true, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": false}
+    },
+    {
+      "name": "hdmi_output",
+      "label": "HDMI Output",
+      "description": "HDMI port for external display connection",
+      "command_evidence": "Icom UK IC-7300MK2 product page: HDMI port for external display",
+      "radios": {"705": false, "7100": false, "7300": false, "7300mk2": true, "7610": false, "7760": false, "9700": false}
+    },
+    {
+      "name": "dvi_d",
+      "label": "DVI-D Output",
+      "description": "DVI-D connector for external display",
+      "command_evidence": "Icom UK product pages: IC-7610 (DVI-D connector), IC-7760 (DVI-D on control head)",
+      "radios": {"705": false, "7100": false, "7300": false, "7300mk2": false, "7610": true, "7760": true, "9700": false}
+    },
+    {
+      "name": "iq_output",
+      "label": "I/Q Output",
+      "description": "I/Q signal output to PC for spectrum analysis/decoding",
+      "command_evidence": "Icom UK product pages: IC-7610 (I/Q from USB), IC-7760 (dedicated I/Q connector)",
+      "radios": {"705": false, "7100": false, "7300": false, "7300mk2": false, "7610": true, "7760": true, "9700": false}
+    },
+    {
+      "name": "rx_antenna",
+      "label": "RX Antenna Connectors",
+      "description": "RX IN/OUT antenna connectors (for external BPF/preamp or receiving antennas)",
+      "command_evidence": "Icom UK product pages: IC-7300MK2 (RX-ANT Connectors), IC-7760 (RX IN/OUT connectors)",
+      "radios": {"705": false, "7100": false, "7300": false, "7300mk2": true, "7610": false, "7760": true, "9700": false}
     },
     {
       "name": "ant_selection",
+      "label": "Antenna Selection",
       "description": "ANT1/ANT2 selection and RX ANT",
       "command_evidence": "0x12 command",
       "radios": {"705": false, "7100": false, "7300": false, "7300mk2": false, "7610": true, "7760": true, "9700": false}
     },
     {
       "name": "external_meter",
+      "label": "External Meter",
       "description": "External meter output (S-meter, Po, SWR, etc.)",
       "command_evidence": "External Meter SET commands",
       "radios": {"705": false, "7100": false, "7300": false, "7300mk2": false, "7610": true, "7760": true, "9700": false}
+    },
+    {
+      "name": "sd_card",
+      "label": "SD Card",
+      "description": "SD card slot for recording/storage",
+      "command_evidence": "SD card SET commands",
+      "radios": {"705": true, "7100": true, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
+    },
+    {
+      "name": "qso_recorder",
+      "label": "QSO Recorder",
+      "description": "QSO recorder (audio recording)",
+      "command_evidence": "QSO RECORDER SET commands",
+      "radios": {"705": true, "7100": false, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
+    },
+    {
+      "name": "ft8_preset",
+      "label": "FT8 Preset",
+      "description": "One-touch FT8 mode preset",
+      "command_evidence": "Icom UK product pages: IC-7300MK2 (One-Touch FT8 Mode Preset), IC-7760 (PRESET FT8 Menu)",
+      "radios": {"705": false, "7100": false, "7300": false, "7300mk2": true, "7610": false, "7760": true, "9700": false}
+    },
+    {
+      "name": "battery_powered",
+      "label": "Battery Powered",
+      "description": "Battery powered (internal battery pack)",
+      "command_evidence": "Battery SET commands 0x1A 0x05 0x0363+",
+      "radios": {"705": true, "7100": false, "7300": false, "7300mk2": false, "7610": false, "7760": false, "9700": false}
+    },
+    {
+      "name": "gps_dprs",
+      "label": "GPS / D-PRS",
+      "description": "GPS / D-PRS (APRS via D-STAR)",
+      "command_evidence": "GPS commands 0x23, 0x1A 0x05 0x02xx",
+      "radios": {"705": true, "7100": true, "7300": false, "7300mk2": false, "7610": false, "7760": false, "9700": true}
+    },
+    {
+      "name": "network_lan",
+      "label": "Network / LAN",
+      "description": "Network connectivity (Ethernet/WLAN) for remote control",
+      "command_evidence": "Network SET commands 0x1A 0x05 0x0137+ (where present); Ethernet connector for RS-BA1 remote control",
+      "radios": {"705": "WLAN (Wi-Fi/Bluetooth)", "7100": false, "7300": false, "7300mk2": "Ethernet", "7610": "Ethernet", "7760": "Ethernet (LAN cable to RF deck + Internet remote)", "9700": "Ethernet"}
+    },
+    {
+      "name": "wifi_bluetooth",
+      "label": "Wi-Fi / Bluetooth",
+      "description": "Built-in Wi-Fi / Bluetooth connectivity",
+      "command_evidence": "WLAN SET commands 0x1A 0x05 0x0114+ (Icom UK product page: WLAN/Bluetooth technologies)",
+      "radios": {"705": true, "7100": false, "7300": false, "7300mk2": false, "7610": false, "7760": false, "9700": false}
+    },
+    {
+      "name": "antenna_tuner",
+      "label": "Antenna Tuner",
+      "description": "Built-in antenna tuner",
+      "command_evidence": "0x1C 0x01 tuner command",
+      "radios": {"705": "external (AH-705)", "7100": "external", "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": false}
+    },
+    {
+      "name": "dpd",
+      "label": "Digital Pre-Distortion",
+      "description": "Digital Pre-Distortion technology (clean TX signal)",
+      "command_evidence": "Icom UK IC-7760 product page: DPD (Digital Pre-Distortion) Technology",
+      "radios": {"705": false, "7100": false, "7300": false, "7300mk2": false, "7610": false, "7760": true, "9700": false}
+    },
+    {
+      "name": "ntp",
+      "label": "NTP Time Sync",
+      "description": "NTP server time sync",
+      "command_evidence": "NTP commands 0x1A 0x08/0x09",
+      "radios": {"705": true, "7100": false, "7300": false, "7300mk2": true, "7610": true, "7760": true, "9700": true}
     }
   ]
 }
