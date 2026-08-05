@@ -42,11 +42,16 @@
       <p class="help">Top-level radio info: default CI-V transceiver address and command count. Click a row for capabilities.</p>
       <table id="radios-table">
         <thead>
-          <tr><th>ID</th><th>Model</th><th>CI-V Address</th><th>Commands</th><th>Capabilities</th></tr>
+          <tr><th></th><th>ID</th><th>Model</th><th>CI-V Address</th><th>Commands</th><th>Capabilities</th></tr>
         </thead>
         <tbody></tbody>
       </table>
+      <div class="compare-bar">
+        <button type="button" id="compare-btn" class="compare-btn" disabled>Compare selected</button>
+        <span id="compare-count" class="compare-count"></span>
+      </div>
       <div id="radio-detail" class="detail" hidden></div>
+      <div id="compare-result" class="detail" hidden></div>
     </section>
 
     <!-- Browse tab -->

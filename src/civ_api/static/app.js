@@ -88,6 +88,11 @@
 
       radios.forEach(function (r) {
         var tr = document.createElement("tr");
+        var cbCell = tag("td");
+        var cb = tag("input", null, { type: "checkbox", "class": "radio-compare-cb", "data-rid": r.id });
+        cb.addEventListener("change", updateCompareButton);
+        cbCell.appendChild(cb);
+        tr.appendChild(cbCell);
         tr.appendChild(tag("td", r.id));
         tr.appendChild(tag("td", r.name));
         tr.appendChild(tag("td", r.address));
@@ -106,6 +111,115 @@
     });
   }
 
+  // ---- compare radios -------------------------------------------------------
+  function getSelectedRadios() {
+    var cbs = Array.prototype.slice.call(
+      document.querySelectorAll(".radio-compare-cb:checked")
+    );
+    return cbs.map(function (cb) { return cb.getAttribute("data-rid"); });
+  }
+
+  function updateCompareButton() {
+    var ids = getSelectedRadios();
+    var btn = el("compare-btn");
+    var count = el("compare-count");
+    btn.disabled = ids.length < 2;
+    count.textContent = ids.length === 0
+      ? ""
+      : ids.length + " selected" + (ids.length < 2 ? " (select at least 2)" : "");
+  }
+
+  // Cache of radio-id -> capabilities array (preserves the full ordered list).
+  var capsCache = {};
+
+  function fetchCaps(rid) {
+    if (capsCache[rid]) return Promise.resolve(capsCache[rid]);
+    return getJSON("/radios/" + encodeURIComponent(rid) + "/capabilities").then(function (caps) {
+      capsCache[rid] = caps;
+      return caps;
+    });
+  }
+
+  function showCompare() {
+    var ids = getSelectedRadios();
+    if (ids.length < 2) return;
+
+    var box = el("compare-result");
+    var detail = el("radio-detail");
+    detail.hidden = true;
+    clear(box);
+    box.hidden = false;
+
+    box.appendChild(tag("p", "Loading capabilities…", { class: "meta" }));
+
+    Promise.all(ids.map(fetchCaps)).then(function (allCaps) {
+      clear(box);
+
+      // Header row: Capability label + one column per selected radio.
+      var radioNames = ids.map(function (rid) {
+        var r = radiosCache.find(function (x) { return x.id === rid; });
+        return r ? r.name : rid;
+      });
+
+      var bar = tag("div", null, { class: "compare-header" });
+      bar.appendChild(tag("h3", "Comparing " + radioNames.join(" vs ")));
+      var close = tag("button", "Close", { type: "button", class: "back-btn" });
+      close.addEventListener("click", function () { box.hidden = true; });
+      bar.appendChild(close);
+      box.appendChild(bar);
+
+      // Build a merged ordered list of capability names (union, preserving
+      // the order of the first radio's list, then appending any new ones).
+      var ordered = [];
+      var seen = {};
+      allCaps.forEach(function (caps) {
+        caps.forEach(function (c) {
+          if (!seen[c.name]) { seen[c.name] = true; ordered.push(c.name); }
+        });
+      });
+
+      // Index: name -> { rid -> value } for quick lookup.
+      var index = {};
+      allCaps.forEach(function (caps, i) {
+        caps.forEach(function (c) {
+          if (!index[c.name]) index[c.name] = { label: c.label || c.name, desc: c.description };
+          index[c.name][ids[i]] = c.radios[ids[i]];
+        });
+      });
+
+      var table = tag("table", null, { class: "compare-table" });
+      var thead = tag("thead");
+      var hr = tag("tr", null, {});
+      hr.appendChild(tag("th", "Capability"));
+      radioNames.forEach(function (n) { hr.appendChild(tag("th", n)); });
+      thead.appendChild(hr);
+      table.appendChild(thead);
+
+      var tbody = tag("tbody");
+      ordered.forEach(function (name) {
+        var info = index[name];
+        var values = ids.map(function (rid) { return info[rid]; });
+        var allSame = values.every(function (v) { return v === values[0]; });
+        var tr = tag("tr", null, { class: allSame ? "" : "compare-diff" });
+        tr.appendChild(tag("td", info.label));
+        values.forEach(function (v) {
+          var display = v === false || v === undefined ? "\u2715" : (v === true ? "\u2713" : String(v));
+          var td = tag("td", display);
+          if (v === false || v === undefined) td.className = "cap-false-val";
+          else if (v === true) td.className = "cap-true-val";
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+      table.appendChild(tbody);
+      box.appendChild(table);
+    }).catch(function (err) {
+      clear(box);
+      box.appendChild(tag("p", "Error: " + err.message, { class: "meta" }));
+    });
+  }
+
+  // ---- radio detail --------------------------------------------------------
   function showRadioDetail(rid) {
     Promise.all([
       getJSON("/radios/" + encodeURIComponent(rid)),
@@ -447,6 +561,7 @@
   el("browse-radio").addEventListener("change", function () {
     loadBrowseRadio(el("browse-radio").value);
   });
+  el("compare-btn").addEventListener("click", showCompare);
   setupCopyButtons();
   loadRadios();
 })();
