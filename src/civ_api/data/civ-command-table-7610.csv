@@ -134,6 +134,7 @@
 "19","00","","Read the transceiver ID",""
 "1A","00","see p. 11","Send/read memory contents",""
 "1A","01","see p. 10","Send/read band stacking register contents",""
+"1A","02","see p. 13","Send/read memory keyer contents",""
 "1A","03","see p. 12","Send/read the selected IF filter width","29"
 "1A","04","see p. 12","Send/read the selected AGC time constant","29"
 "1A","05,0000","00","01 ~",""
