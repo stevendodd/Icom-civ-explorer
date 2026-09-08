@@ -18,3 +18,5 @@ upload.sh
 # Copied reference manuals (Icom CI-V PDFs + text extracts). Large, licensed,
 # and not shipped with the package. Keep locally for cross-checking commands.
 docs/icom manuals/
+# Live feedback submissions (runtime writes; never ship in package data)
+feedback.jsonl
