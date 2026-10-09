@@ -17,5 +17,9 @@ tests
 .git
 .gitignore
 .civ-admin.json
+# Licensed Icom manuals (136 MB) — never needed in the image or build context
+docs/
+# Local copy of the live feedback log (contains user submissions)
+feedback-live.jsonl
 Dockerfile
 .dockerignore

@@ -20,5 +20,7 @@ upload.sh
 docs/icom manuals/
 # Live feedback submissions (runtime writes; never ship in package data)
 feedback.jsonl
+# Local copy of the live feedback log pulled by scripts/feedback_admin.py
+feedback-live.jsonl
 # Site admin credentials for the feedback-management API (never commit)
 .civ-admin.json
