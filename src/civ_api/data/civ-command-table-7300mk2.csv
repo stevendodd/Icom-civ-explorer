@@ -392,7 +392,7 @@
 "21","02","00/01","Sets or reads the ON/OFF status of the ∂TX function. (00=OFF, 01=ON)"
 "25","","See p. 23","Sets or reads the operating frequency for the Selected or Unselected VFO."
 "26","","See p. 23","Sets or reads the operating mode, ON/OFF status of the data mode, and IF filter width for the Selected or Unselected VFO."
-"27","00","See p. 24","Outputs the scope waveform data to the controller (PC). The waveform data will be output to the controller (PC) only when both the spectrum scope (27 10) and the waveform data output function (27 11) are set to ON."
+"27","00","See p. 24","Outputs the scope waveform data to the controller (PC). The waveform data will be output to the controller (PC) only when both the spectrum scope (27 10) and the waveform data output function (27 11) are set to ON. Waveform framing (per manual p. 23): division number max 01 (LAN, sent all at once) or 11 (USB, divided into 11 sequential segments); data range 00~A0 (0~160), data length 475; LAN frame length 490; USB frame lengths: 1st=15, 2nd or later=53, 11th=28; the 1st frame carries only wave information, 2nd or later frames carry minimal wave information plus waveform data."
 "27","10","00/01","Sets or reads the ON/OFF status of the spectrum scope. (00=OFF, 01=ON)"
 "27","11","00/01","Sets or reads whether to output the scope waveform data to the controller (PC). (00=OFF, 01=ON) Valid only when sent through the [USB] or [LAN] port."
 "27","12","00","Sets or reads whether to use the Main or Sub scope. (Main only)"

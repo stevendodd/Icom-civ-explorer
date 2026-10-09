@@ -556,7 +556,7 @@
 "25","SEE","","p. 23. Send/read the Main or Sub band frequency",""
 "26","SEE","","p. 23. Send/read the operating mode and filter settings (for both Main and Sub bands)",""
 "27","00","00/01","Select/read ANT1 selection (00=RX ANT OFF, 01=RX ANT ON)",""
-"27","00","See p. 24",". Read the Scope waveform data ( Only when “Scope ON/OFF status” (Command: 27 10) and “Scope wave data output” (Command: 27 11) are set to “ON,” outputs the waveform data to the controller.)",""
+"27","00","See p. 24",". Read the Scope waveform data ( Only when “Scope ON/OFF status” (Command: 27 10) and “Scope wave data output” (Command: 27 11) are set to “ON,” outputs the waveform data to the controller.) Waveform framing (per manual p. 24): division number max 01 (LAN, all data sent at once) or 15 (USB, sequential); waveform data length 689; LAN frame length 704; USB frame lengths: 1st=15, 2nd or later=53, 15th=42; the 1st frame carries only wave information, later frames carry the Main/Sub scope data, order/division data, and waveform data.",""
 "27","01","","Speak the operating frequency and S meter level by voice synthesizer",""
 "27","01","00/01","Select/read ANT2 selection (00=RX ANT OFF, 01=RX ANT ON)",""
 "27","02","","Speak the operating mode by voice synthesizer LThe mode is announced after the ongoing speech.",""

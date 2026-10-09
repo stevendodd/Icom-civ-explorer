@@ -551,7 +551,7 @@
 "24","00","01","00/01 Set the TX output power for transceive (00=OFF, 01=ON)"
 "25","","See p. 27","Send/read the selected or unselected VFO frequency"
 "26","","See p. 27","Send/read the selected or unselected VFO's operating mode and filter"
-"27","00","See p. 28","Read the Scope waveform data (Only when ""Scope ON/OFF status"" (Command: 27 10) and ""Scope data output"" (Command: 27 11) are set to ""ON,"" outputs the waveform data to the controller.)"
+"27","00","See p. 28","Read the Scope waveform data (Only when ""Scope ON/OFF status"" (Command: 27 10) and ""Scope data output"" (Command: 27 11) are set to ""ON,"" outputs the waveform data to the controller.) Waveform framing (per manual p. 28): division number max 01 (WLAN, all data sent at once) or 11 (USB, divided into 11 sequential segments); data range 0~160 (00~A0), data length 475; the 1st frame carries only wave information, 2nd or later frames carry minimal wave information plus waveform data; the controller determines the data range and length (same as its scope display size)."
 "27","10","00/01","Send/read the Scope ON/OFF status (00=OFF, 01=ON)"
 "27","11","00/01","Send/read the Scope wave data output (00=OFF, 01=ON)"
 "27","12","00","Send/read the Main or Sub scope setting (00=Main (fixed))"
