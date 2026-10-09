@@ -179,7 +179,7 @@
           <li><code>radio_id</code> is a lowercase short code (<code>7300</code>, <code>7300mk2</code>), <strong>not</strong> the model name (<code>IC-7300</code>).</li>
           <li>If <code>q</code> returns too many rows, narrow with <code>radio_id</code> or raise <code>limit</code> (max 500). Use <code>offset</code> to page through large result sets.</li>
           <li>When reporting a command, include the <code>radio_id</code>, <code>cmd</code>, and <code>sub_cmd</code> so the user can verify.</li>
-          <li>The API is read-only except <code>POST /feedback</code>; feedback appends to a review queue and never mutates the live reference data.</li>
+          <li>The API is read-only except the feedback log: <code>POST /feedback</code> appends (public); <code>PUT /feedback</code> (whole-log replace) and <code>DELETE /feedback/{id}</code> manage it (HTTP Basic auth, fail-closed when admin credentials are not configured). Feedback writes never mutate the live reference data.</li>
         </ul>
       </div>
 
@@ -220,6 +220,9 @@ Use `curl` (or `webfetch`) against these endpoints:
 | `GET /radios/{radio_id}/commands?q=&lt;query&gt;&amp;limit=&lt;n&gt;&amp;offset=&lt;n&gt;` | List/search commands for one radio |
 | `GET /commands?radio_id=&lt;id&gt;&amp;q=&lt;query&gt;&amp;limit=&lt;n&gt;&amp;offset=&lt;n&gt;` | Cross-radio command search |
 | `POST /feedback` | Submit a correction for human review (see below) |
+| `GET /feedback` | Download all submitted feedback as a JSONL file (one JSON object per line) |
+| `PUT /feedback` | <em>Admin only</em>: replace the whole feedback log (body = the same JSONL GET returns; empty body clears the log). HTTP Basic auth required |
+| `DELETE /feedback/{id}` | <em>Admin only</em>: remove one feedback record by id. HTTP Basic auth required |
 | `GET /health` | Service health check |
 
 `radio_id` values: `705`, `7100`, `7300`, `7300mk2`, `7610`, `7760`, `9700`.
@@ -264,9 +267,12 @@ substring/keyword search, not a structured lookup. For an exact command-byte
 lookup, filter client-side on `cmd` + `sub_cmd` from a `q` query, or fetch the
 radio's full command list (page through if needed) and match.
 
-**Feedback / corrections:** the API is read-only; `POST /feedback` is the one write
-path. Submissions are appended to a JSONL log for human review and never mutate the
-reference data. Do not POST feedback autonomously — surface the discrepancy to the
+**Feedback / corrections:** the API is read-only except the feedback log;
+`POST /feedback` appends submissions to a JSONL review log and never mutates the
+reference data. `GET /feedback` downloads the log; `PUT /feedback` (whole-log
+replace) and `DELETE /feedback/{id}` manage it but are admin-only (HTTP Basic
+auth; 401 when the server has no admin credentials configured). Do not POST
+feedback autonomously — surface the discrepancy to the
 user and let them decide (see "Handling Discrepancies" below).
 
 ### Supported Radios
@@ -404,8 +410,10 @@ When using this skill to answer CI-V questions:
           <tr><td>GET</td><td><code>/radios/{radio_id}/capabilities</code></td><td>Capability matrix for one radio.</td></tr>
           <tr><td>GET</td><td><code>/commands?radio_id=7300&amp;q=frequency&amp;limit=100&amp;offset=0</code></td><td>Search/filter commands. <code>q</code> matches cmd, sub_cmd, data, and description (case-insensitive).</td></tr>
           <tr><td>GET</td><td><code>/radios/{radio_id}/commands?q=vfo</code></td><td>Commands for one radio, with optional search.</td></tr>
-          <tr><td>POST</td><td><code>/feedback</code></td><td>Submit a correction (JSON body). Only write path; appends to a review queue.</td></tr>
+          <tr><td>POST</td><td><code>/feedback</code></td><td>Submit a correction (JSON body). Appends to a review queue.</td></tr>
           <tr><td>GET</td><td><code>/feedback</code></td><td>Download all submitted feedback as a JSONL file (one JSON object per line).</td></tr>
+          <tr><td>PUT</td><td><code>/feedback</code></td><td>Admin (Basic auth): replace the whole feedback log with validated JSONL records; empty body clears it. Atomic.</td></tr>
+          <tr><td>DELETE</td><td><code>/feedback/{id}</code></td><td>Admin (Basic auth): remove one feedback record by id. Atomic.</td></tr>
           <tr><td>GET</td><td><code>/health</code></td><td>Health check.</td></tr>
         </tbody>
       </table>
@@ -415,6 +423,7 @@ When using this skill to answer CI-V questions:
         <li>Radio ids are lowercase short codes (<code>7300</code>, <code>7300mk2</code>). The model name (<code>IC-7300</code>) is <strong>not</strong> accepted as an id.</li>
         <li><code>q</code> is case-insensitive substring matching — not a query language.</li>
         <li>Feedback <code>cmd</code>/<code>sub_cmd</code> must be 1-4 hex chars; free-text fields are length-capped (see the OpenAPI schema for exact limits).</li>
+        <li>Feedback-log admin writes (<code>PUT</code>/<code>DELETE /feedback</code>) need HTTP Basic auth (<code>CIV_ADMIN_USER</code>/<code>CIV_ADMIN_PASS</code> server env, fail-closed 401 when unset). Replace/delete are atomic: on any validation failure the log is untouched.</li>
         <li>All responses are JSON; <code>limit</code> (1-500) and <code>offset</code> (>=0) paginate list endpoints.</li>
       </ul>
 
@@ -448,6 +457,13 @@ for cap in requests.get(f"{BASE}/radios/7300/capabilities").json():
   -d '{"radio_id":"7300","cmd":"05","sub_cmd":"","field":"description",\
         "suggested_value":"Set operating frequency (corrected)",\
         "notes":"Manual p.19-9","submitter":"tester"}'</code></pre>
+
+      <h4>Managing the feedback log (admin)</h4>
+      <pre><code>curl -u user:pass -X PUT https://icom-civ.stevendodd.net/feedback \
+  -H "Content-Type: application/x-ndjson" \
+  --data-binary @feedback.jsonl      # empty body clears the log
+
+curl -u user:pass -X DELETE https://icom-civ.stevendodd.net/feedback/&lt;record-id&gt;</code></pre>
     </section>
   </main>
 

@@ -109,9 +109,20 @@ pytest
 
 ## Conventions
 
-- The API is **read-only**. `/feedback` is the only write path; it appends to a
-  JSONL file (`CIV_FEEDBACK_FILE` env var overrides location) and never mutates
-  the reference data or the in-memory index.
+- The API is **read-only**. The feedback log is the only mutable surface:
+  `POST /feedback` (public, append) for user corrections, and `PUT /feedback`
+  (whole-log replace) / `DELETE /feedback/{id}` (single removal) — both admin
+  writes gated by HTTP Basic auth (`CIV_ADMIN_USER`/`CIV_ADMIN_PASS` server
+  env, fail-closed 401 when unset). Feedback writes never mutate the reference
+  data or the in-memory index.
+- Site feedback is triaged from the live log: `GET /feedback` (JSONL), then
+  verify claims against the bundled manuals (`docs/icom manuals/`), apply data
+  corrections, and prune the log via the admin endpoints. Use
+  `scripts/feedback_admin.py` (`pull` / `list` / `rm <id>` / `push --yes`) —
+  a stdlib client reading `.civ-admin.json` (repo root, chmod 600,
+  **gitignored — never commit credentials or put them in the image**).
+  Credentials can't be read back from the server; rotate by regenerating the
+  file and updating the Portainer container env.
 - Radio ids are case-normalized to lowercase on input; the model name
   (e.g. `IC-7300`) is **not** accepted as an id — use `7300`.
 - Search (`q`) is case-insensitive substring matching across `cmd`,

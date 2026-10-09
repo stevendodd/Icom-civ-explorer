@@ -276,6 +276,249 @@ def test_download_feedback_markup_is_inert_data_not_executable(
     assert body.count("<script>") == 1  # not duplicated / unescaped elsewhere
 
 
+# --- Feedback admin (PUT / DELETE, HTTP Basic auth) ------------------------
+
+ADMIN_USER = "admin-test"
+ADMIN_PASS = "test-pass-123"
+AUTH = ("admin-test", "test-pass-123")
+
+
+def _setup_admin(tmp_path, monkeypatch):
+    """Point the feedback log at a temp file and configure admin credentials."""
+    import json as _json
+    import uuid as _uuid
+
+    fb_file = tmp_path / "fb.jsonl"
+    monkeypatch.setenv("CIV_FEEDBACK_FILE", str(fb_file))
+    monkeypatch.setenv("CIV_ADMIN_USER", ADMIN_USER)
+    monkeypatch.setenv("CIV_ADMIN_PASS", ADMIN_PASS)
+    from civ_api import app as app_module
+    app_module._feedback_file = None
+    return fb_file, _json, _uuid
+
+
+def _seed_log(fb_file, json_mod, uuid_mod, n=3):
+    """Write n realistic records to the log file directly and return their ids."""
+    ids = []
+    lines = []
+    for i in range(n):
+        rid = str(uuid_mod.uuid4())
+        ids.append(rid)
+        lines.append(
+            json_mod.dumps(
+                {
+                    "radio_id": "7300",
+                    "cmd": "05",
+                    "sub_cmd": "",
+                    "field": "description",
+                    "capability_name": "",
+                    "suggested_value": f"correction {i}",
+                    "notes": "",
+                    "submitter": "seeder",
+                    "id": rid,
+                    "received_at": "2026-01-01T00:00:00+00:00",
+                }
+            )
+        )
+    fb_file.write_text("\n".join(lines) + "\n")
+    return ids
+
+
+def test_admin_rejects_without_credentials(tmp_path, monkeypatch) -> None:
+    _setup_admin(tmp_path, monkeypatch)
+    assert client.put("/feedback", content=b"").status_code == 401
+    assert client.delete("/feedback/some-id").status_code == 401
+
+
+def test_admin_fail_closed_when_env_unconfigured(tmp_path, monkeypatch) -> None:
+    monkeypatch.setenv("CIV_FEEDBACK_FILE", str(tmp_path / "fb.jsonl"))
+    monkeypatch.delenv("CIV_ADMIN_USER", raising=False)
+    monkeypatch.delenv("CIV_ADMIN_PASS", raising=False)
+    from civ_api import app as app_module
+    app_module._feedback_file = None
+
+    resp = client.put("/feedback", content=b"", auth=AUTH)
+    assert resp.status_code == 401
+    assert client.delete("/feedback/x", auth=AUTH).status_code == 401
+
+
+def test_admin_wrong_password_401(tmp_path, monkeypatch) -> None:
+    _setup_admin(tmp_path, monkeypatch)
+    resp = client.put("/feedback", content=b"", auth=(ADMIN_USER, "wrong"))
+    assert resp.status_code == 401
+    assert "www-authenticate" in {k.lower() for k in resp.headers}
+
+
+def test_admin_wrong_username_401(tmp_path, monkeypatch) -> None:
+    _setup_admin(tmp_path, monkeypatch)
+    resp = client.put("/feedback", content=b"", auth=("nobody", ADMIN_PASS))
+    assert resp.status_code == 401
+
+
+def test_admin_put_replaces_log(tmp_path, monkeypatch) -> None:
+    fb_file, json_mod, uuid_mod = _setup_admin(tmp_path, monkeypatch)
+    _seed_log(fb_file, json_mod, uuid_mod, n=3)
+
+    keep = json_mod.dumps(
+        {
+            "radio_id": "7300",
+            "cmd": "05",
+            "sub_cmd": "",
+            "field": "description",
+            "capability_name": "",
+            "suggested_value": "kept",
+            "notes": "",
+            "submitter": "seeder",
+            "id": str(uuid_mod.uuid4()),
+            "received_at": "2026-01-02T00:00:00+00:00",
+        }
+    )
+    resp = client.put("/feedback", content=(keep + "\n").encode(), auth=AUTH)
+    assert resp.status_code == 200
+    body = resp.json()
+    assert body["status"] == "replaced"
+    assert body["removed"] == 3
+    assert body["kept"] == 1
+    remaining = [json_mod.loads(line) for line in fb_file.read_text().splitlines() if line.strip()]
+    assert len(remaining) == 1
+    assert remaining[0]["suggested_value"] == "kept"
+    assert remaining[0].keys() >= {"id", "received_at", "radio_id", "field", "suggested_value"}
+
+
+def test_admin_put_empty_clears_log(tmp_path, monkeypatch) -> None:
+    fb_file, json_mod, uuid_mod = _setup_admin(tmp_path, monkeypatch)
+    _seed_log(fb_file, json_mod, uuid_mod, n=2)
+
+    resp = client.put("/feedback", content=b"", auth=AUTH)
+    assert resp.status_code == 200
+    assert resp.json()["kept"] == 0
+    assert fb_file.read_text() == ""
+    # The public download reflects the cleared state.
+    assert client.get("/feedback").content == b""
+
+
+def test_admin_put_clears_when_file_absent(tmp_path, monkeypatch) -> None:
+    _setup_admin(tmp_path, monkeypatch)
+    resp = client.put("/feedback", content=b"", auth=AUTH)
+    assert resp.status_code == 200
+    assert resp.json() == {"status": "replaced", "removed": 0, "kept": 0}
+
+
+def test_admin_put_validates_records(tmp_path, monkeypatch) -> None:
+    fb_file, json_mod, uuid_mod = _setup_admin(tmp_path, monkeypatch)
+    _seed_log(fb_file, json_mod, uuid_mod, n=1)
+
+    bad = '{"radio_id":"7300","field":"not-a-field","suggested_value":"x","id":"a","received_at":"t"}\n'
+    resp = client.put("/feedback", content=bad.encode(), auth=AUTH)
+    assert resp.status_code == 400
+    assert "Line 1" in resp.json()["detail"]
+
+    bad_json = b'{"radio_id": broken json\n'
+    resp = client.put("/feedback", content=bad_json, auth=AUTH)
+    assert resp.status_code == 400
+
+    ok_record = json_mod.dumps(
+        {
+            "radio_id": "zzznope",
+            "cmd": "",
+            "field": "capability",
+            "capability_name": "",
+            "suggested_value": "x",
+            "notes": "",
+            "submitter": "",
+            "id": str(uuid_mod.uuid4()),
+            "received_at": "2026-01-01T00:00:00+00:00",
+        }
+    )
+    resp = client.put("/feedback", content=(ok_record + "\n").encode(), auth=AUTH)
+    assert resp.status_code == 400
+    assert "unknown radio" in resp.json()["detail"]
+    # The log is untouched after all failed replaces.
+    assert len([l for l in fb_file.read_text().splitlines() if l.strip()]) == 1
+
+
+def test_admin_put_rejects_duplicate_ids(tmp_path, monkeypatch) -> None:
+    fb_file, json_mod, uuid_mod = _setup_admin(tmp_path, monkeypatch)
+    rec = json_mod.dumps(
+        {
+            "radio_id": "7300",
+            "cmd": "",
+            "field": "description",
+            "suggested_value": "x",
+            "id": str(uuid_mod.uuid4()),
+            "received_at": "t",
+        }
+    )
+    resp = client.put("/feedback", content=(rec + "\n" + rec + "\n").encode(), auth=AUTH)
+    assert resp.status_code == 400
+    assert "duplicate record id" in resp.json()["detail"]
+
+
+def test_admin_put_oversize_413(tmp_path, monkeypatch) -> None:
+    _setup_admin(tmp_path, monkeypatch)
+    big_line = ('{"radio_id":"7300","field":"description","suggested_value":"%s","id":"a1","received_at":"t"}' % ("x" * 600)).encode()
+    payload = b"\n".join([big_line] * 3000)
+    resp = client.put("/feedback", content=payload, auth=AUTH)
+    assert resp.status_code == 413
+
+
+def test_admin_delete_removes_single_record(tmp_path, monkeypatch) -> None:
+    fb_file, json_mod, uuid_mod = _setup_admin(tmp_path, monkeypatch)
+    ids = _seed_log(fb_file, json_mod, uuid_mod, n=3)
+
+    resp = client.delete(f"/feedback/{ids[1]}", auth=AUTH)
+    assert resp.status_code == 200
+    body = resp.json()
+    assert body == {"status": "deleted", "removed": 1, "kept": 2}
+    remaining_ids = [json_mod.loads(l)["id"] for l in fb_file.read_text().splitlines() if l.strip()]
+    assert ids[1] not in remaining_ids
+    assert set(remaining_ids) == {ids[0], ids[2]}
+
+
+def test_admin_delete_unknown_id_404(tmp_path, monkeypatch) -> None:
+    import uuid as _uuid
+
+    fb_file, json_mod, _ = _setup_admin(tmp_path, monkeypatch)
+    _seed_log(fb_file, json_mod, _uuid, n=2)
+
+    resp = client.delete(f"/feedback/{_uuid.uuid4()}", auth=AUTH)
+    assert resp.status_code == 404
+    assert resp.json()["detail"].startswith("Feedback id not found")
+    # Nothing was removed.
+    assert len([l for l in fb_file.read_text().splitlines() if l.strip()]) == 2
+
+
+def test_admin_delete_when_log_absent_404(tmp_path, monkeypatch) -> None:
+    import uuid as _uuid
+
+    _setup_admin(tmp_path, monkeypatch)
+    resp = client.delete(f"/feedback/{_uuid.uuid4()}", auth=AUTH)
+    assert resp.status_code == 404
+
+
+def test_admin_pull_modify_push_roundtrip(tmp_path, monkeypatch) -> None:
+    """The GET -> edit -> PUT workflow preserves the log byte-shape: after a
+    replace, GET returns parseable JSONL with exactly the pushed records."""
+    import json as _json
+    import uuid as _uuid
+
+    fb_file, _json_mod, _uuid_mod = _setup_admin(tmp_path, monkeypatch)
+    ids = _seed_log(fb_file, _json, _uuid, n=2)
+
+    got = client.get("/feedback").text
+    # Simulate the client editing: drop one record.
+    kept_line = [l for l in got.splitlines() if l.strip() and _json.loads(l)["id"] == ids[0]][0]
+    resp = client.put("/feedback", content=(kept_line + "\n").encode(), auth=AUTH)
+    assert resp.status_code == 200
+    assert resp.json() == {"status": "replaced", "removed": 2, "kept": 1}
+
+    reloaded = client.get("/feedback").text
+    records = [_json.loads(l) for l in reloaded.splitlines() if l.strip()]
+    assert len(records) == 1
+    assert records[0]["id"] == ids[0]
+    assert set(records[0].keys()) >= {"radio_id", "field", "suggested_value", "id", "received_at"}
+
+
 # --- UI & security -------------------------------------------------------
 
 def test_index_page_served() -> None:

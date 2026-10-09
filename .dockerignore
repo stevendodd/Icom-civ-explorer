@@ -16,5 +16,6 @@ tests
 .env
 .git
 .gitignore
+.civ-admin.json
 Dockerfile
 .dockerignore

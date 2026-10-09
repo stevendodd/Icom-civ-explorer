@@ -20,3 +20,5 @@ upload.sh
 docs/icom manuals/
 # Live feedback submissions (runtime writes; never ship in package data)
 feedback.jsonl
+# Site admin credentials for the feedback-management API (never commit)
+.civ-admin.json

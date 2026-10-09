@@ -3,20 +3,26 @@
 from __future__ import annotations
 
 import json
+import os
+import secrets
 import uuid
 from contextlib import asynccontextmanager
 from datetime import datetime, timezone
 from importlib import resources
 from pathlib import Path
 
-from fastapi import FastAPI, HTTPException, Query, Request, status
+from fastapi import Body, Depends, FastAPI, HTTPException, Query, Request, status
 from fastapi.responses import FileResponse, Response
+from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from fastapi.staticfiles import StaticFiles
+from pydantic import ValidationError
 
 from .models import (
     Capability,
     CommandListResponse,
     FeedbackAck,
+    FeedbackMutationAck,
+    FeedbackRecord,
     FeedbackSubmission,
     RadioSummary,
 )
@@ -36,7 +42,8 @@ app = FastAPI(
         "Read-only HTTPS REST API for the Icom CI-V protocol. Search CI-V "
         "commands by functionality or command code, filter by radio, and view "
         "top-level radio info (default transceiver IDs, capabilities). "
-        "Feedback/corrections can be submitted for review."
+        "Feedback/corrections can be submitted for review. Feedback log "
+        "administration (replace/delete) is available over HTTP Basic auth."
     ),
     version="0.1.0",
     lifespan=lifespan,
@@ -46,6 +53,37 @@ app.add_middleware(SecurityHeadersMiddleware)
 
 _store: DataStore | None = None
 _feedback_file: Path | None = None
+_admin_security = HTTPBasic(description="Feedback-admin credentials (server env CIV_ADMIN_USER / CIV_ADMIN_PASS)")
+
+# Abuse guards for the admin replace operation.
+_MAX_FEEDBACK_BODY_CHARS = 1_000_000
+_MAX_FEEDBACK_RECORDS = 5000
+
+
+def require_admin(credentials: HTTPBasicCredentials = Depends(_admin_security)) -> None:
+    """HTTP Basic-auth gate for the feedback management endpoints.
+
+    Credentials come from the ``CIV_ADMIN_USER`` / ``CIV_ADMIN_PASS`` server
+    environment variables. Comparison is constant-time to resist timing
+    analysis, and the gate **fails closed**: if either variable is unset (or
+    empty), no request can authenticate and every admin call returns 401.
+    """
+    user = os.environ.get("CIV_ADMIN_USER", "")
+    password = os.environ.get("CIV_ADMIN_PASS", "")
+    if not user or not password:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Feedback admin credentials are not configured on this server",
+            headers={"WWW-Authenticate": "Basic"},
+        )
+    user_ok = secrets.compare_digest(credentials.username, user)
+    pass_ok = secrets.compare_digest(credentials.password, password)
+    if not (user_ok and pass_ok):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid admin credentials",
+            headers={"WWW-Authenticate": "Basic"},
+        )
 
 
 def get_store() -> DataStore:
@@ -62,8 +100,6 @@ def get_feedback_file() -> Path:
     but can be overridden via the ``CIV_FEEDBACK_FILE`` environment variable
     for deployments that want a writable location outside the package.
     """
-    import os
-
     global _feedback_file
     if _feedback_file is None:
         env = os.environ.get("CIV_FEEDBACK_FILE")
@@ -72,6 +108,25 @@ def get_feedback_file() -> Path:
         else:
             _feedback_file = get_store().data_dir / "feedback.jsonl"
     return _feedback_file
+
+
+def _replace_feedback_lines(path: Path, lines: list[str]) -> None:
+    """Atomically replace the feedback log with the given JSONL lines.
+
+    Writes to a uniquely named temp file in the same directory (same
+    filesystem) and moves it into place with ``os.replace``, so a crash or
+    concurrent reader can never observe a partially written log.
+    """
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_name(f"{path.name}.{uuid.uuid4().hex[:8]}.tmp")
+    try:
+        with tmp.open("w", encoding="utf-8") as fh:
+            for line in lines:
+                fh.write(line if line.endswith("\n") else line + "\n")
+        os.replace(tmp, path)
+    except BaseException:
+        tmp.unlink(missing_ok=True)
+        raise
 
 
 def _static_dir() -> Path:
@@ -267,6 +322,100 @@ def download_feedback():
         media_type="application/x-ndjson",
         filename="feedback.jsonl",
     )
+
+
+def _ack(status_word: str, removed: int, kept: int) -> FeedbackMutationAck:
+    return FeedbackMutationAck(status=status_word, removed=removed, kept=kept)
+
+
+def _iter_feedback_lines(path: Path) -> list[str]:
+    """Return the non-empty JSONL lines currently in the feedback log."""
+    if not path.exists():
+        return []
+    return [line for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+
+
+@app.put(
+    "/feedback",
+    response_model=FeedbackMutationAck,
+    status_code=status.HTTP_200_OK,
+    tags=["feedback"],
+)
+def replace_feedback(
+    payload: str = Body("", media_type="application/x-ndjson"),
+    _admin: None = Depends(require_admin),
+) -> FeedbackMutationAck:
+    """Replace the entire feedback log with the submitted records.
+
+    Admin endpoint (HTTP Basic auth). The body is the same NDJSON format the
+    GET endpoint returns, so a pull/modify/push round-trip needs no
+    conversion. Every line is validated against the FeedbackRecord model and
+    every ``radio_id`` must exist, an id may not appear twice, and blank
+    lines are tolerated. An empty body clears the log. The write is atomic.
+    """
+    if len(payload) > _MAX_FEEDBACK_BODY_CHARS:
+        raise HTTPException(status_code=413, detail="Feedback log too large (1 MB limit)")
+    records: list[FeedbackRecord] = []
+    seen_ids: set[str] = set()
+    store = get_store()
+    for lineno, line in enumerate(payload.splitlines(), 1):
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            obj = json.loads(line)
+        except json.JSONDecodeError as exc:
+            raise HTTPException(status_code=400, detail=f"Line {lineno}: invalid JSON ({exc.msg})")
+        if not isinstance(obj, dict):
+            raise HTTPException(status_code=400, detail=f"Line {lineno}: record must be a JSON object")
+        try:
+            rec = FeedbackRecord.model_validate(obj)
+        except ValidationError as exc:
+            detail = "; ".join(f"{'.'.join(str(p) for p in err['loc'])}: {err['msg']}" for err in exc.errors())
+            raise HTTPException(status_code=400, detail=f"Line {lineno}: invalid record ({detail})")
+        if store.get_radio(rec.radio_id.lower()) is None:
+            raise HTTPException(status_code=400, detail=f"Line {lineno}: unknown radio id: {rec.radio_id}")
+        if rec.id in seen_ids:
+            raise HTTPException(status_code=400, detail=f"Line {lineno}: duplicate record id: {rec.id}")
+        seen_ids.add(rec.id)
+        records.append(rec)
+    if len(records) > _MAX_FEEDBACK_RECORDS:
+        raise HTTPException(status_code=413, detail=f"Too many records (max {_MAX_FEEDBACK_RECORDS})")
+    path = get_feedback_file()
+    removed = len(_iter_feedback_lines(path))
+    _replace_feedback_lines(path, [json.dumps(rec.model_dump()) for rec in records])
+    return _ack("replaced", removed=removed, kept=len(records))
+
+
+@app.delete(
+    "/feedback/{feedback_id}",
+    response_model=FeedbackMutationAck,
+    status_code=status.HTTP_200_OK,
+    tags=["feedback"],
+)
+def delete_feedback(feedback_id: str, _admin: None = Depends(require_admin)) -> FeedbackMutationAck:
+    """Remove a single feedback record by id.
+
+    Admin endpoint (HTTP Basic auth). All other records are preserved
+    verbatim; the rewrite is atomic. 404 if the id is unknown.
+    """
+    path = get_feedback_file()
+    kept_lines: list[str] = []
+    removed = 0
+    for line in _iter_feedback_lines(path):
+        try:
+            obj = json.loads(line)
+        except json.JSONDecodeError:
+            obj = None
+        record_id = obj.get("id") if isinstance(obj, dict) else None
+        if record_id == feedback_id:
+            removed += 1
+        else:
+            kept_lines.append(line)
+    if removed == 0:
+        raise HTTPException(status_code=404, detail=f"Feedback id not found: {feedback_id}")
+    _replace_feedback_lines(path, kept_lines)
+    return _ack("deleted", removed=removed, kept=len(kept_lines))
 
 
 @app.get("/health", tags=["meta"])

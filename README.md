@@ -1,8 +1,9 @@
 # Icom CI-V Explorer
 
 An HTTPS REST API for the Icom CI-V protocol. Read-only reference covering
-multiple Icom radios, with a single write path (`POST /feedback`) for
-user-submitted corrections. Built with FastAPI + Pydantic.
+multiple Icom radios, with a `POST /feedback` write path for user-submitted
+corrections and admin-only Basic-auth endpoints for managing the feedback
+log. Built with FastAPI + Pydantic.
 
 ## Supported radios
 
@@ -40,9 +41,10 @@ CIV_CERT=server.crt CIV_KEY=server.key python -m civ_api   # custom cert
 ## Architecture
 
 A read-only API that serves Icom CI-V reference data for 7 radios, with a
-single write path (`POST /feedback`) for user corrections. No database — the
-reference data is bundled CSV/JSON parsed once into memory at startup; feedback
-is appended to a separate JSONL file.
+write path (`POST /feedback`) for user corrections and a Basic-auth protected
+admin path for managing the feedback log. No database — the reference data is
+bundled CSV/JSON parsed once into memory at startup; feedback is appended to a
+separate JSONL file.
 
 ### Startup flow
 
@@ -92,6 +94,10 @@ Routes call `get_store()` (returns cached singleton) and use its methods:
 - `POST /feedback` → validates radio exists, appends a JSON record to
   `feedback.jsonl` (location via `CIV_FEEDBACK_FILE` env or bundled `data/`).
   **Never touches the in-memory index.**
+- `PUT /feedback` (admin) → atomically replaces the whole feedback log after
+  validating every record (HTTP Basic auth → `CIV_ADMIN_USER`/`CIV_ADMIN_PASS`).
+- `DELETE /feedback/{id}` (admin) → atomically removes one record by id
+  (HTTP Basic auth).
 - `GET /` → serves `static/index.html`; `/static/*` → mounted `StaticFiles`
 
 Every response passes through `SecurityHeadersMiddleware`
@@ -99,17 +105,21 @@ Every response passes through `SecurityHeadersMiddleware`
 `X-Frame-Options: DENY`, `Referrer-Policy`, HSTS. Swagger `/docs` gets a
 relaxed CSP.
 
-### The read-only invariant
+### The write-path invariant
 
 ```
 data/*.csv + *.json ──load──> DataStore (in-memory, immutable) ──> GET responses
-                                                                    │
-POST /feedback ──────────────────────────────────────────────────> feedback.jsonl (append-only)
+                                                                     │
+POST /feedback ──────────────────────────────────────────────────> feedback.jsonl (append)
+PUT /feedback (admin) ───────────────────────────────────────────> feedback.jsonl (atomic replace)
+DELETE /feedback/{id} (admin) ───────────────────────────────────> feedback.jsonl (atomic remove)
 ```
 
 The reference data is the source of truth, loaded once. Feedback is the only
-write path and is firewalled from it — it writes to a separate JSONL file for
-later human review, never mutating the index or the bundled data.
+mutable surface and is firewalled from it — writes go to a separate JSONL file
+for later review, never mutating the index or the bundled data. The admin
+replace/delete operations are HTTP Basic-auth gated and fail closed when
+`CIV_ADMIN_USER`/`CIV_ADMIN_PASS` are not configured.
 
 ### Storing data
 
@@ -117,8 +127,10 @@ There is no database. The "store" is:
 
 - **Reads**: bundled CSV/JSON files in `src/civ_api/data/`, parsed once into the
   in-memory `DataStore` at startup.
-- **Writes**: `feedback.jsonl` (append-only, one JSON object per line), created
+- **Writes**: `feedback.jsonl` (one JSON object per line), created
   next to the bundled data by default or wherever `CIV_FEEDBACK_FILE` points.
+  `POST` appends; the admin `PUT`/`DELETE` rewrite atomically (temp file +
+  `os.replace`).
 
 ### Package layout
 
@@ -134,8 +146,11 @@ src/civ_api/
                  importlib.resources so it works from an installed wheel
   static/      — bundled web UI (index.html, app.js, styles.css) served at /
                  JS uses textContent only (never innerHTML); no inline handlers
+scripts/
+  feedback_admin.py — agent/CLI client for the admin feedback endpoints
+                      (pull/list/rm/push; reads .civ-admin.json, gitignored)
 tests/
-  test_api.py  — endpoints + UI + security tests
+  test_api.py  — endpoints + UI + security + admin-auth tests
   test_store.py — loader tests
 ```
 
@@ -146,13 +161,19 @@ tests/
 - `GET /radios/{radio_id}/capabilities` — capabilities for a radio
 - `GET /commands?radio_id=7300&q=frequency` — search/filter commands
 - `GET /radios/{radio_id}/commands?q=vfo` — search within one radio
-- `POST /feedback` — submit a correction for review (the only write path)
+- `POST /feedback` — submit a correction for review
 - `GET /feedback` — download all submitted feedback as JSONL
+- `PUT /feedback` — admin: replace the whole feedback log (Basic auth; body
+  is the same JSONL format GET returns; empty body clears the log)
+- `DELETE /feedback/{id}` — admin: remove one feedback record (Basic auth)
 - `GET /health` — health check
 
 The query (`q`) matches against command code, sub-command, data payload, and
-description (case-insensitive). The API is read-only except for `/feedback`,
-which appends to a JSONL file (`CIV_FEEDBACK_FILE` overrides the location).
+description (case-insensitive). The API is read-only except for the feedback
+log (`CIV_FEEDBACK_FILE` overrides its location): `POST` appends, while
+`PUT`/`DELETE` require HTTP Basic auth against the `CIV_ADMIN_USER` /
+`CIV_ADMIN_PASS` server environment variables and fail closed (401) when they
+are unset. Admin writes are atomic; on failure the log is untouched.
 
 ## Calling the API
 
@@ -223,11 +244,28 @@ curl -k -X POST https://localhost:8443/feedback \
         "notes":"Manual p.19-9","submitter":"tester"}'
 ```
 
+### Managing the feedback log (admin)
+
+```bash
+CREDS=.civ-admin.json   # gitignored; {"username": "...", "password": "...", "base_url": "https://..."}
+
+# Agent/CLI workflow (stdlib client, no dependencies):
+scripts/feedback_admin.py pull            # GET /feedback -> feedback-live.jsonl
+scripts/feedback_admin.py list            # summarize the live log
+scripts/feedback_admin.py rm <uuid>       # remove one record by id
+scripts/feedback_admin.py push --yes      # replace the log from feedback-live.jsonl
+
+# Raw curl equivalents:
+curl -u "$USER:$PASS" -X PUT https://localhost:8443/feedback \
+  -H "Content-Type: application/x-ndjson" --data-binary @feedback-live.jsonl
+curl -u "$USER:$PASS" -X DELETE https://localhost:8443/feedback/<uuid>
+```
+
 ## Using the API from an AI agent
 
-The API is read-only (except `POST /feedback`) and returns structured JSON,
-which makes it straightforward for an LLM/agent to call via HTTP tool use.
-Recommended workflow:
+The API is read-only (except the feedback write path) and returns structured
+JSON, which makes it straightforward for an LLM/agent to call via HTTP tool
+use. Recommended workflow:
 
 1. **Discover** supported radios with `GET /radios` to get valid radio ids and
    addresses.
@@ -282,6 +320,15 @@ Recommended workflow:
 - Feedback input is validated server-side: `cmd`/`sub_cmd` must match
   `^[0-9A-Fa-f]{1,4}$`, `field` is a fixed enum, and all free-text fields have
   length caps (see `src/civ_api/models.py`).
+- Feedback-log admin writes (`PUT`/`DELETE /feedback`) require HTTP Basic
+  auth. Credentials are server environment variables (`CIV_ADMIN_USER` /
+  `CIV_ADMIN_PASS`), comparison is constant-time (`secrets.compare_digest`),
+  and admin calls return 401 when the variables are not configured (fail
+  closed). Admin bodies are size- and record-capped, fully validated, and
+  only applied atomically on full validation success.
+- Admin credentials for clients live in a gitignored local file outside
+  version control (`.civ-admin.json`); they are never committed or baked into
+  container images (the Dockerfile contains no secrets).
 - The web UI inserts all API-sourced text via `textContent` (never
   `innerHTML`), so stored markup in reference data or feedback cannot execute.
   No inline event handlers, `eval`, or `document.write`.
@@ -292,8 +339,9 @@ Recommended workflow:
 pytest
 ```
 
-35 tests covering endpoints, UI serving, security headers, XSS/injection
-vectors, input validation, and the data loader.
+54 tests covering endpoints, UI serving, security headers, XSS/injection
+vectors, input validation, admin auth, the data loader, and the
+pull/modify/push feedback round-trip.
 
 ## Data sources
 

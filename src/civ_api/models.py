@@ -75,7 +75,29 @@ class FeedbackSubmission(BaseModel):
     submitter: str = Field("", max_length=100, description="Optional submitter handle/email")
 
 
+class FeedbackRecord(FeedbackSubmission):
+    """A stored feedback record, as persisted in the feedback.jsonl log.
+
+    Same validated fields as FeedbackSubmission plus the server-assigned id
+    and received_at timestamp. Used to validate the log content on admin
+    replace operations.
+    """
+
+    id: str = Field(..., min_length=1, max_length=64, description="Server-assigned record id (UUID)")
+    received_at: str = Field(
+        ..., min_length=1, max_length=64, description="UTC ISO timestamp when the record was received"
+    )
+
+
 class FeedbackAck(BaseModel):
     id: str
     status: str = Field(..., description="One of: 'received'")
     received_at: str
+
+
+class FeedbackMutationAck(BaseModel):
+    """Result of an admin feedback-log replacement or record deletion."""
+
+    status: str = Field(..., description="One of: 'replaced', 'deleted'")
+    removed: int = Field(..., description="Number of records removed from the log")
+    kept: int = Field(..., description="Number of records kept in the log")
