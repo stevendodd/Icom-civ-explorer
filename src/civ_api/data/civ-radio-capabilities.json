@@ -217,7 +217,7 @@
       "label": "Voice TX Memory",
       "description": "Voice TX memory (recorded voice messages via CI-V command 0x28)",
       "command_evidence": "0x28",
-      "radios": {"705": true, "7100": false, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
+      "radios": {"705": true, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true, "7100": "false (feature exists; not CI-V addressable — no 0x28 command)"}
     },
     {
       "name": "vox",

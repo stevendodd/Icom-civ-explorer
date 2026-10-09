@@ -119,7 +119,9 @@ pytest
   in-memory index.
 - Site feedback is triaged from the live log: `GET /feedback` (JSONL), then
   verify claims against the bundled manuals (`docs/icom manuals/`), apply data
-  corrections, and prune the log via the admin endpoints. Use
+  corrections, and prune the log via the admin endpoints. Items that need no
+  data change (confirmations, already-satisfied asks) are also pruned after
+  triage — the live log only ever holds unreviewed items. Use
   `scripts/feedback_admin.py` (`pull` / `list` / `rm <id>` / `push --yes`) —
   a stdlib client reading `.civ-admin.json` (repo root, chmod 600,
   **gitignored — never commit credentials or put them in the image**).
