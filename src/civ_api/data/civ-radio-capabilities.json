@@ -314,8 +314,8 @@
       "name": "qso_recorder",
       "label": "QSO Recorder",
       "description": "QSO recorder (audio recording)",
-      "command_evidence": "QSO RECORDER SET commands",
-      "radios": {"705": true, "7100": false, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
+      "command_evidence": "0x1A 0x05 0x0167-0x0172 (QSO RECORDER SET)",
+      "radios": {"705": true, "7100": true, "7300": true, "7300mk2": true, "7610": true, "7760": true, "9700": true}
     },
     {
       "name": "ft8_preset",
