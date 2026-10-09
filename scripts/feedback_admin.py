@@ -2,9 +2,9 @@
 """Feedback-admin client for the Icom CI-V Explorer site.
 
 Manages the review queue (feedback.jsonl) served by GET/PUT/DELETE /feedback
-on the live API. The PUT (log replace) and DELETE (record removal) endpoints
-require HTTP Basic auth; credentials come from a local credentials file that
-is never committed (gitignored).
+on the live API. All three operations (download log, replace log, delete a
+record) require HTTP Basic auth; credentials come from a local credentials
+file that is never committed (gitignored).
 
 Credentials file (first found wins):
   1. $CIV_ADMIN_CREDS

@@ -450,9 +450,6 @@ button:disabled { opacity: 0.5; cursor: default; }
 .result.ok  { background: var(--accent-tint); border-color: var(--accent-2); color: var(--accent-2); }
 .result.err { background: rgba(220, 53, 69, 0.12); border-color: var(--danger); color: var(--danger); }
 
-/* ---- feedback download link ----------------------------------------- */
-a[download] { font-weight: 600; }
-
 /* ---- docs ----------------------------------------------------------- */
 .docs-table td:first-child { width: 70px; }
 .docs-table td:nth-child(2) { white-space: nowrap; }

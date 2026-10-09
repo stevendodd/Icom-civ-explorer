@@ -111,11 +111,12 @@ pytest
 ## Conventions
 
 - The API is **read-only**. The feedback log is the only mutable surface:
-  `POST /feedback` (public, append) for user corrections, and `PUT /feedback`
-  (whole-log replace) / `DELETE /feedback/{id}` (single removal) — both admin
-  writes gated by HTTP Basic auth (`CIV_ADMIN_USER`/`CIV_ADMIN_PASS` server
-  env, fail-closed 401 when unset). Feedback writes never mutate the reference
-  data or the in-memory index.
+  `POST /feedback` (public, append) for user corrections, and
+  `GET /feedback` (download) / `PUT /feedback` (whole-log replace) /
+  `DELETE /feedback/{id}` (single removal) — all admin operations gated by
+  HTTP Basic auth (`CIV_ADMIN_USER`/`CIV_ADMIN_PASS` server env, fail-closed
+  401 when unset). Feedback writes never mutate the reference data or the
+  in-memory index.
 - Site feedback is triaged from the live log: `GET /feedback` (JSONL), then
   verify claims against the bundled manuals (`docs/icom manuals/`), apply data
   corrections, and prune the log via the admin endpoints. Use
@@ -134,8 +135,8 @@ pytest
   `static/index.html` (Endpoints table + code examples + skill definition
   accordion), and the README.md API overview. Verify the endpoint list
   (`GET /radios`, `/radios/{id}`, `/radios/{id}/capabilities`, `/commands`,
-  `/radios/{id}/commands`, `POST /feedback`, `GET /feedback`, `PUT /feedback`
-  (admin), `DELETE /feedback/{id}` (admin), `GET /health`),
+  `/radios/{id}/commands`, `POST /feedback`, `GET /feedback` (admin),
+  `PUT /feedback` (admin), `DELETE /feedback/{id}` (admin), `GET /health`),
   param names (`q`, `radio_id`, `limit`, `offset`), and response field names
   (radios: `id/name/address/command_count`; commands:
   `radio_id/cmd/sub_cmd/data/description`; capabilities:

@@ -43,8 +43,9 @@ app = FastAPI(
         "Read-only HTTPS REST API for the Icom CI-V protocol. Search CI-V "
         "commands by functionality or command code, filter by radio, and view "
         "top-level radio info (default transceiver IDs, capabilities). "
-        "Feedback/corrections can be submitted for review. Feedback log "
-        "administration (replace/delete) is available over HTTP Basic auth."
+        "Feedback/corrections can be submitted for review. Viewing and "
+        "managing the feedback log (download/replace/delete) requires "
+        "HTTP Basic auth."
     ),
     version="0.1.0",
     lifespan=lifespan,
@@ -312,12 +313,13 @@ def submit_feedback(submission: FeedbackSubmission) -> FeedbackAck:
 
 
 @app.get("/feedback", tags=["feedback"])
-def download_feedback():
+def download_feedback(_admin: None = Depends(require_admin)):
     """Download all submitted feedback as a JSONL file.
 
-    Returns the accumulated feedback log (one JSON object per line) so it can
-    be reviewed offline. If no feedback has been submitted yet, an empty file
-    (200) is returned rather than a 404 — an empty log is a valid state.
+    Admin endpoint (HTTP Basic auth). Returns the accumulated feedback log
+    (one JSON object per line) so it can be reviewed offline. If no feedback
+    has been submitted yet, an empty file (200) is returned rather than a
+    404 — an empty log is a valid state.
     """
     path = get_feedback_file()
     if not path.exists():

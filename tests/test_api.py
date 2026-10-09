@@ -162,12 +162,10 @@ def test_health() -> None:
 
 def test_download_feedback_empty_when_no_file(tmp_path, monkeypatch) -> None:
     """When no feedback has been submitted, the download endpoint returns a
-    200 with an empty body rather than a 404."""
-    monkeypatch.setenv("CIV_FEEDBACK_FILE", str(tmp_path / "fb.jsonl"))
-    from civ_api import app as app_module
-    app_module._feedback_file = None
+    200 with an empty body rather than a 404 (with valid admin auth)."""
+    _setup_admin(tmp_path, monkeypatch)
 
-    resp = client.get("/feedback")
+    resp = client.get("/feedback", auth=AUTH)
     assert resp.status_code == 200
     assert resp.content == b""
     assert resp.headers["content-type"].startswith("application/x-ndjson")
@@ -180,10 +178,7 @@ def test_download_feedback_returns_submitted_records(tmp_path, monkeypatch) -> N
     log verbatim as a downloadable file."""
     import json as _json
 
-    fb_file = tmp_path / "fb.jsonl"
-    monkeypatch.setenv("CIV_FEEDBACK_FILE", str(fb_file))
-    from civ_api import app as app_module
-    app_module._feedback_file = None
+    fb_file, _, _ = _setup_admin(tmp_path, monkeypatch)
 
     client.post(
         "/feedback",
@@ -196,7 +191,7 @@ def test_download_feedback_returns_submitted_records(tmp_path, monkeypatch) -> N
     )
     assert fb_file.exists()
 
-    resp = client.get("/feedback")
+    resp = client.get("/feedback", auth=AUTH)
     assert resp.status_code == 200
     assert resp.headers["content-type"].startswith("application/x-ndjson")
     assert "attachment" in resp.headers["content-disposition"]
@@ -215,11 +210,9 @@ def test_download_feedback_is_served_as_inert_download(tmp_path, monkeypatch) ->
     security middleware already adds these headers; this test pins them on the
     download route so a future override or streaming bypass is caught.
     """
-    monkeypatch.setenv("CIV_FEEDBACK_FILE", str(tmp_path / "fb.jsonl"))
-    from civ_api import app as app_module
-    app_module._feedback_file = None
+    _setup_admin(tmp_path, monkeypatch)
 
-    resp = client.get("/feedback")
+    resp = client.get("/feedback", auth=AUTH)
     # 1. Non-HTML content type — never text/html.
     ctype = resp.headers["content-type"]
     assert "html" not in ctype.lower()
@@ -245,9 +238,7 @@ def test_download_feedback_markup_is_inert_data_not_executable(
     """
     import json as _json
 
-    monkeypatch.setenv("CIV_FEEDBACK_FILE", str(tmp_path / "fb.jsonl"))
-    from civ_api import app as app_module
-    app_module._feedback_file = None
+    _setup_admin(tmp_path, monkeypatch)
 
     client.post(
         "/feedback",
@@ -260,7 +251,7 @@ def test_download_feedback_markup_is_inert_data_not_executable(
         },
     )
 
-    resp = client.get("/feedback")
+    resp = client.get("/feedback", auth=AUTH)
     assert resp.status_code == 200
     # The body is a single JSON line: the markup must survive as an escaped
     # JSON string value, not as a raw HTML tag in the byte stream.
@@ -276,7 +267,7 @@ def test_download_feedback_markup_is_inert_data_not_executable(
     assert body.count("<script>") == 1  # not duplicated / unescaped elsewhere
 
 
-# --- Feedback admin (PUT / DELETE, HTTP Basic auth) ------------------------
+# --- Feedback admin (GET / PUT / DELETE, HTTP Basic auth) -------------------
 
 ADMIN_USER = "admin-test"
 ADMIN_PASS = "test-pass-123"
@@ -410,7 +401,7 @@ def test_admin_put_empty_clears_log(tmp_path, monkeypatch) -> None:
     assert resp.json()["kept"] == 0
     assert fb_file.read_text() == ""
     # The public download reflects the cleared state.
-    assert client.get("/feedback").content == b""
+    assert client.get("/feedback", auth=AUTH).content == b""
 
 
 def test_admin_put_clears_when_file_absent(tmp_path, monkeypatch) -> None:
@@ -555,14 +546,14 @@ def test_admin_pull_modify_push_roundtrip(tmp_path, monkeypatch) -> None:
     fb_file, _json_mod, _uuid_mod = _setup_admin(tmp_path, monkeypatch)
     ids = _seed_log(fb_file, _json, _uuid, n=2)
 
-    got = client.get("/feedback").text
+    got = client.get("/feedback", auth=AUTH).text
     # Simulate the client editing: drop one record.
     kept_line = [l for l in got.splitlines() if l.strip() and _json.loads(l)["id"] == ids[0]][0]
     resp = client.put("/feedback", content=(kept_line + "\n").encode(), auth=AUTH)
     assert resp.status_code == 200
     assert resp.json() == {"status": "replaced", "removed": 2, "kept": 1}
 
-    reloaded = client.get("/feedback").text
+    reloaded = client.get("/feedback", auth=AUTH).text
     records = [_json.loads(l) for l in reloaded.splitlines() if l.strip()]
     assert len(records) == 1
     assert records[0]["id"] == ids[0]
@@ -576,16 +567,53 @@ def test_admin_pull_modify_push_roundtrip(tmp_path, monkeypatch) -> None:
 
 def test_openapi_admin_security_scheme(tmp_path, monkeypatch) -> None:
     """The OpenAPI spec must expose the HTTPBasic scheme and attach it to the
-    admin routes only — Swagger's lock icon and agent discovery depend on it."""
+    admin routes only — Swagger's lock icon and agent discovery depend on it.
+    POST (submit) must stay public."""
     from civ_api.app import app as real_app
 
     spec = real_app.openapi()
     schemes = spec.get("components", {}).get("securitySchemes", {})
     assert schemes.get("HTTPBasic", {}).get("scheme") == "basic"
+    assert spec["paths"]["/feedback"]["get"].get("security") == [{"HTTPBasic": []}]
     assert spec["paths"]["/feedback"]["put"].get("security") == [{"HTTPBasic": []}]
     assert spec["paths"]["/feedback/{feedback_id}"]["delete"].get("security") == [{"HTTPBasic": []}]
-    for public_op in ("/feedback",):  # GET /feedback must stay public
-        assert not spec["paths"][public_op]["get"].get("security")
+    assert not spec["paths"]["/feedback"]["post"].get("security")
+
+
+def test_admin_get_requires_auth(tmp_path, monkeypatch) -> None:
+    """Unauthenticated GET /feedback must 401 with the Basic challenge."""
+    _setup_admin(tmp_path, monkeypatch)
+    resp = client.get("/feedback")
+    assert resp.status_code == 401
+    assert resp.headers["www-authenticate"].lower().startswith("basic")
+    # And a wrong password must also 401.
+    assert client.get("/feedback", auth=(ADMIN_USER, "wrong")).status_code == 401
+
+
+def test_post_feedback_public_even_without_admin_env(tmp_path, monkeypatch) -> None:
+    """POST /feedback (submit) must keep working with NO admin credentials
+    configured at all: the fail-closed gate applies to log management only."""
+    monkeypatch.setenv("CIV_FEEDBACK_FILE", str(tmp_path / "fb.jsonl"))
+    monkeypatch.delenv("CIV_ADMIN_USER", raising=False)
+    monkeypatch.delenv("CIV_ADMIN_PASS", raising=False)
+    from civ_api import app as app_module
+    app_module._feedback_file = None
+
+    resp = client.post(
+        "/feedback",
+        json={
+            "radio_id": "7300",
+            "cmd": "05",
+            "field": "description",
+            "suggested_value": "public submission",
+        },
+    )
+    assert resp.status_code == 201
+    assert resp.json()["status"] == "received"
+    # With admin env unset the management endpoints stay 401 in the same state.
+    assert client.get("/feedback").status_code == 401
+    assert client.put("/feedback", content=b"").status_code == 401
+    assert client.delete("/feedback/some-id").status_code == 401
 
 
 # --- UI & security -------------------------------------------------------

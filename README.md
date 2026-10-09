@@ -94,6 +94,8 @@ Routes call `get_store()` (returns cached singleton) and use its methods:
 - `POST /feedback` → validates radio exists, appends a JSON record to
   `feedback.jsonl` (location via `CIV_FEEDBACK_FILE` env or bundled `data/`).
   **Never touches the in-memory index.**
+- `GET /feedback` (admin) → downloads the JSONL log (HTTP Basic auth;
+  empty log returns a 200 empty file).
 - `PUT /feedback` (admin) → atomically replaces the whole feedback log after
   validating every record (HTTP Basic auth → `CIV_ADMIN_USER`/`CIV_ADMIN_PASS`).
 - `DELETE /feedback/{id}` (admin) → atomically removes one record by id
@@ -111,15 +113,16 @@ relaxed CSP.
 data/*.csv + *.json ──load──> DataStore (in-memory, immutable) ──> GET responses
                                                                      │
 POST /feedback ──────────────────────────────────────────────────> feedback.jsonl (append)
+GET /feedback (admin) ───────────────────────────────────────────> feedback.jsonl (download)
 PUT /feedback (admin) ───────────────────────────────────────────> feedback.jsonl (atomic replace)
 DELETE /feedback/{id} (admin) ───────────────────────────────────> feedback.jsonl (atomic remove)
 ```
 
 The reference data is the source of truth, loaded once. Feedback is the only
 mutable surface and is firewalled from it — writes go to a separate JSONL file
-for later review, never mutating the index or the bundled data. The admin
-replace/delete operations are HTTP Basic-auth gated and fail closed when
-`CIV_ADMIN_USER`/`CIV_ADMIN_PASS` are not configured.
+for later review, never mutating the index or the bundled data. Downloading,
+replacing, and deleting log content are HTTP Basic-auth gated and fail closed
+when `CIV_ADMIN_USER`/`CIV_ADMIN_PASS` are not configured.
 
 ### Storing data
 
@@ -162,7 +165,8 @@ tests/
 - `GET /commands?radio_id=7300&q=frequency` — search/filter commands
 - `GET /radios/{radio_id}/commands?q=vfo` — search within one radio
 - `POST /feedback` — submit a correction for review
-- `GET /feedback` — download all submitted feedback as JSONL
+- `GET /feedback` — admin: download all submitted feedback as JSONL
+  (HTTP Basic auth)
 - `PUT /feedback` — admin: replace the whole feedback log (Basic auth; body
   is the same JSONL format GET returns; empty body clears the log)
 - `DELETE /feedback/{id}` — admin: remove one feedback record (Basic auth)
@@ -170,10 +174,11 @@ tests/
 
 The query (`q`) matches against command code, sub-command, data payload, and
 description (case-insensitive). The API is read-only except for the feedback
-log (`CIV_FEEDBACK_FILE` overrides its location): `POST` appends, while
-`PUT`/`DELETE` require HTTP Basic auth against the `CIV_ADMIN_USER` /
-`CIV_ADMIN_PASS` server environment variables and fail closed (401) when they
-are unset. Admin writes are atomic; on failure the log is untouched.
+log (`CIV_FEEDBACK_FILE` overrides its location): `POST` appends (public),
+while `GET`/`PUT`/`DELETE` require HTTP Basic auth against the
+`CIV_ADMIN_USER` / `CIV_ADMIN_PASS` server environment variables and fail
+closed (401) when they are unset. Admin operations are atomic; on failure the
+log is untouched.
 
 ## Calling the API
 
@@ -250,13 +255,15 @@ curl -k -X POST https://localhost:8443/feedback \
 # Credentials: .civ-admin.json (repo root, gitignored), or pass --creds / set
 # CIV_ADMIN_CREDS. Format: {"username": "...", "password": "...", "base_url": "https://..."}
 
-# Agent/CLI workflow (stdlib client, no dependencies):
-scripts/feedback_admin.py pull            # GET /feedback -> feedback-live.jsonl
+# Agent/CLI workflow (stdlib client, no dependencies). All operations,
+# including pull/list, authenticate with the stored credentials:
+scripts/feedback_admin.py pull            # GET /feedback (admin) -> feedback-live.jsonl
 scripts/feedback_admin.py list            # summarize the live log
 scripts/feedback_admin.py rm <uuid>       # remove one record by id
 scripts/feedback_admin.py push --yes      # replace the log from feedback-live.jsonl
 
 # Raw curl equivalents:
+curl -u "$USER:$PASS" https://localhost:8443/feedback > feedback.jsonl
 curl -u "$USER:$PASS" -X PUT https://localhost:8443/feedback \
   -H "Content-Type: application/x-ndjson" --data-binary @feedback-live.jsonl
 curl -u "$USER:$PASS" -X DELETE https://localhost:8443/feedback/<uuid>
@@ -321,8 +328,9 @@ use. Recommended workflow:
 - Feedback input is validated server-side: `cmd`/`sub_cmd` must match
   `^[0-9A-Fa-f]{1,4}$`, `field` is a fixed enum, and all free-text fields have
   length caps (see `src/civ_api/models.py`).
-- Feedback-log admin writes (`PUT`/`DELETE /feedback`) require HTTP Basic
-  auth. Credentials are server environment variables (`CIV_ADMIN_USER` /
+- Feedback-log admin operations (`GET`/`PUT`/`DELETE /feedback`) require HTTP
+  Basic auth; `POST /feedback` (submit) stays public. Credentials are server
+  environment variables (`CIV_ADMIN_USER` /
   `CIV_ADMIN_PASS`), comparison is constant-time (`secrets.compare_digest`),
   and admin calls return 401 when the variables are not configured (fail
   closed). Admin bodies are size- and record-capped, fully validated, and
@@ -340,9 +348,9 @@ use. Recommended workflow:
 pytest
 ```
 
-58 tests covering endpoints, UI serving, security headers, XSS/injection
-vectors, input validation, admin auth, the data loader, and the
-pull/modify/push feedback round-trip.
+60 tests covering endpoints, UI serving, security headers, XSS/injection
+vectors, input validation, admin auth (and the public-POST pin), the data
+loader, and the pull/modify/push feedback round-trip.
 
 ## Data sources
 
