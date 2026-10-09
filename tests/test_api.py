@@ -332,14 +332,30 @@ def test_admin_rejects_without_credentials(tmp_path, monkeypatch) -> None:
 
 def test_admin_fail_closed_when_env_unconfigured(tmp_path, monkeypatch) -> None:
     monkeypatch.setenv("CIV_FEEDBACK_FILE", str(tmp_path / "fb.jsonl"))
-    monkeypatch.delenv("CIV_ADMIN_USER", raising=False)
-    monkeypatch.delenv("CIV_ADMIN_PASS", raising=False)
     from civ_api import app as app_module
     app_module._feedback_file = None
 
+    # Fully unset → 401.
+    monkeypatch.delenv("CIV_ADMIN_USER", raising=False)
+    monkeypatch.delenv("CIV_ADMIN_PASS", raising=False)
     resp = client.put("/feedback", content=b"", auth=AUTH)
     assert resp.status_code == 401
     assert client.delete("/feedback/x", auth=AUTH).status_code == 401
+
+    # Set but EMPTY must also fail closed.
+    monkeypatch.setenv("CIV_ADMIN_USER", "")
+    monkeypatch.setenv("CIV_ADMIN_PASS", "")
+    assert client.put("/feedback", content=b"", auth=AUTH).status_code == 401
+    assert client.delete("/feedback/x", auth=AUTH).status_code == 401
+
+
+def test_admin_401_carries_basic_challenge_without_header(tmp_path, monkeypatch) -> None:
+    """A missing Authorization header must still return the Basic challenge
+    (browsers/HTTP libraries rely on it to prompt)."""
+    _setup_admin(tmp_path, monkeypatch)
+    resp = client.put("/feedback")
+    assert resp.status_code == 401
+    assert resp.headers["www-authenticate"].lower().startswith("basic")
 
 
 def test_admin_wrong_password_401(tmp_path, monkeypatch) -> None:
@@ -462,6 +478,40 @@ def test_admin_put_oversize_413(tmp_path, monkeypatch) -> None:
     assert resp.status_code == 413
 
 
+def test_admin_put_body_cap_413(tmp_path, monkeypatch) -> None:
+    """The 1 MB *body* cap fires before anything is parsed or stored."""
+    _setup_admin(tmp_path, monkeypatch)
+    resp = client.put("/feedback", content=b"x" * (2_000_000), auth=AUTH)
+    assert resp.status_code == 413
+    assert "1 MB" in resp.json()["detail"]
+
+
+def test_admin_put_rejects_unknown_extra_keys(tmp_path, monkeypatch) -> None:
+    """FeedbackRecord forbids extra keys: a replace must never silently drop
+    fields it doesn't know about (contract: PUT body round-trips GET output)."""
+    fb_file, _json, _uuid = _setup_admin(tmp_path, monkeypatch)
+    _seed_log(fb_file, _json, _uuid, n=1)
+
+    record = {
+        "radio_id": "7300",
+        "cmd": "05",
+        "sub_cmd": "",
+        "field": "description",
+        "capability_name": "",
+        "suggested_value": "x",
+        "notes": "",
+        "submitter": "",
+        "id": str(_uuid.uuid4()),
+        "received_at": "2026-01-01T00:00:00+00:00",
+        "EXTRA": "smuggled",
+    }
+    resp = client.put("/feedback", content=(_json.dumps(record) + "\n").encode(), auth=AUTH)
+    assert resp.status_code == 400
+    assert "Line 1" in resp.json()["detail"]
+    # Log untouched.
+    assert len([l for l in fb_file.read_text().splitlines() if l.strip()]) == 1
+
+
 def test_admin_delete_removes_single_record(tmp_path, monkeypatch) -> None:
     fb_file, json_mod, uuid_mod = _setup_admin(tmp_path, monkeypatch)
     ids = _seed_log(fb_file, json_mod, uuid_mod, n=3)
@@ -516,7 +566,26 @@ def test_admin_pull_modify_push_roundtrip(tmp_path, monkeypatch) -> None:
     records = [_json.loads(l) for l in reloaded.splitlines() if l.strip()]
     assert len(records) == 1
     assert records[0]["id"] == ids[0]
-    assert set(records[0].keys()) >= {"radio_id", "field", "suggested_value", "id", "received_at"}
+    # Exact field set: GET output must round-trip PUT field-for-field (no
+    # fields silently added or dropped). FeedbackRecord has extra="forbid".
+    assert set(records[0].keys()) == {
+        "radio_id", "cmd", "sub_cmd", "field", "capability_name",
+        "suggested_value", "notes", "submitter", "id", "received_at",
+    }
+
+
+def test_openapi_admin_security_scheme(tmp_path, monkeypatch) -> None:
+    """The OpenAPI spec must expose the HTTPBasic scheme and attach it to the
+    admin routes only — Swagger's lock icon and agent discovery depend on it."""
+    from civ_api.app import app as real_app
+
+    spec = real_app.openapi()
+    schemes = spec.get("components", {}).get("securitySchemes", {})
+    assert schemes.get("HTTPBasic", {}).get("scheme") == "basic"
+    assert spec["paths"]["/feedback"]["put"].get("security") == [{"HTTPBasic": []}]
+    assert spec["paths"]["/feedback/{feedback_id}"]["delete"].get("security") == [{"HTTPBasic": []}]
+    for public_op in ("/feedback",):  # GET /feedback must stay public
+        assert not spec["paths"][public_op]["get"].get("security")
 
 
 # --- UI & security -------------------------------------------------------

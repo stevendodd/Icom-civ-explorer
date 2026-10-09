@@ -93,18 +93,55 @@ def _auth_header(username: str, password: str) -> str:
     return f"Basic {token}"
 
 
-def _http(method: str, base_url: str, username: str, password: str, body: str | None) -> tuple[int, bytes]:
+def _http(
+    method: str,
+    base_url: str,
+    username: str,
+    password: str,
+    path: str = "/feedback",
+    body: str | None = None,
+) -> tuple[int, bytes]:
     headers = {"Authorization": _auth_header(username, password)}
     data = None
     if body is not None:
         data = body.encode("utf-8")
         headers["Content-Type"] = "application/x-ndjson"
-    req = request.Request(base_url.rstrip("/") + "/feedback", data=data, headers=headers, method=method)
+    req = request.Request(base_url.rstrip("/") + path, data=data, headers=headers, method=method)
     try:
         with request.urlopen(req, timeout=TIMEOUT) as resp:
             return resp.status, resp.read()
     except error.HTTPError as exc:
         return exc.code, exc.read()
+
+
+def _call(
+    method: str,
+    base_url: str,
+    username: str,
+    password: str,
+    path: str = "/feedback",
+    body: str | None = None,
+) -> tuple[int, bytes] | None:
+    """Call _http but report network-level failures (DNS/refused/timeout) as a
+    clean one-line stderr message instead of a traceback. Returns None when the
+    network is unreachable (no HTTP response at all)."""
+    try:
+        return _http(method, base_url, username, password, path, body)
+    except error.URLError as exc:
+        reason = getattr(exc, "reason", exc)
+        print(f"error: {method} {base_url.rstrip('/')}{path}: network failure: {reason}", file=sys.stderr)
+        return None
+    except OSError as exc:
+        print(f"error: {method} {base_url.rstrip('/')}{path}: network failure: {exc}", file=sys.stderr)
+        return None
+
+
+def _parse_ack(text: str) -> dict:
+    try:
+        ack = json.loads(text)
+        return ack if isinstance(ack, dict) else {}
+    except json.JSONDecodeError:
+        return {}
 
 
 def _body_text(content: bytes) -> str:
@@ -127,7 +164,10 @@ def _records(text: str) -> list[dict]:
 
 def cmd_pull(args: argparse.Namespace) -> int:
     base_url, username, password = load_creds(args.creds)
-    status_code, content = _http("GET", base_url, username, password, None)
+    result = _call("GET", base_url, username, password)
+    if result is None:
+        return 1
+    status_code, content = result
     if status_code != 200:
         print(f"error: GET /feedback -> HTTP {status_code}: {_body_text(content)}", file=sys.stderr)
         return 1
@@ -140,7 +180,10 @@ def cmd_pull(args: argparse.Namespace) -> int:
 
 def cmd_list(args: argparse.Namespace) -> int:
     base_url, username, password = load_creds(args.creds)
-    status_code, content = _http("GET", base_url, username, password, None)
+    result = _call("GET", base_url, username, password)
+    if result is None:
+        return 1
+    status_code, content = result
     if status_code != 200:
         print(f"error: GET /feedback -> HTTP {status_code}: {_body_text(content)}", file=sys.stderr)
         return 1
@@ -167,21 +210,13 @@ def cmd_rm(args: argparse.Namespace) -> int:
     base_url, username, password = load_creds(args.creds)
     failed = 0
     for record_id in args.ids:
-        target = base_url.rstrip("/") + f"/feedback/{record_id}"
-        req = request.Request(
-            target,
-            headers={"Authorization": _auth_header(username, password)},
-            method="DELETE",
-        )
-        try:
-            with request.urlopen(req, timeout=TIMEOUT) as resp:
-                body = resp.read()
-            status_code = resp.status
-        except error.HTTPError as exc:
-            body = exc.read()
-            status_code = exc.code
+        result = _call("DELETE", base_url, username, password, path=f"/feedback/{record_id}")
+        if result is None:
+            failed = 1
+            continue
+        status_code, body = result
         if status_code == 200:
-            ack = json.loads(_body_text(body))
+            ack = _parse_ack(_body_text(body))
             print(f"{record_id}: deleted ({ack.get('removed')} removed, {ack.get('kept')} kept)")
         else:
             print(f"{record_id}: HTTP {status_code}: {_body_text(body)}", file=sys.stderr)
@@ -199,15 +234,18 @@ def cmd_push(args: argparse.Namespace) -> int:
     dups = {i for i in ids if ids.count(i) > 1}
     if dups:
         print(f"error: duplicate record ids in {src}: {sorted(dups)}", file=sys.stderr)
-        return 2
+        return 1
     if not args.yes:
         print(f"about to replace the live log ({len(records)} record(s)) from {src}; rerun with --yes")
         return 0
-    status_code, content = _http("PUT", base_url, username, password, body)
+    result = _call("PUT", base_url, username, password, body=body)
+    if result is None:
+        return 1
+    status_code, content = result
     if status_code != 200:
         print(f"error: PUT /feedback -> HTTP {status_code}: {_body_text(content)}", file=sys.stderr)
         return 1
-    ack = json.loads(_body_text(content))
+    ack = _parse_ack(_body_text(content))
     print(f"replaced: {ack.get('removed')} removed, {ack.get('kept')} kept")
     return 0
 
@@ -230,7 +268,7 @@ def main() -> int:
 
     p_push = sub.add_parser("push", help="Replace the live feedback log with a local JSONL file")
     p_push.add_argument("file", nargs="?", default=DEFAULT_LOG_FILE)
-    p_push.add_argument("--yes", action="store_true", help="Proceed without only showing intent")
+    p_push.add_argument("--yes", action="store_true", help="Proceed with the replace (without this flag, push only prints its intent)")
     p_push.set_defaults(func=cmd_push)
 
     args = parser.parse_args()

@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import os
 import secrets
+import threading
 import uuid
 from contextlib import asynccontextmanager
 from datetime import datetime, timezone
@@ -53,6 +54,12 @@ app.add_middleware(SecurityHeadersMiddleware)
 
 _store: DataStore | None = None
 _feedback_file: Path | None = None
+# Serializes feedback-log writes within this process: POST appends bound to
+# the current inode while PUT/DELETE read-then-os.replace (new inode). Without
+# the lock a POST landing between a replace's read and replace would vanish
+# (fd writes into the unlinked inode). Assumes the single-process uvicorn
+# deployment (threaded handlers, no multi-worker mode).
+_feedback_lock = threading.Lock()
 _admin_security = HTTPBasic(description="Feedback-admin credentials (server env CIV_ADMIN_USER / CIV_ADMIN_PASS)")
 
 # Abuse guards for the admin replace operation.
@@ -282,10 +289,11 @@ def list_radio_commands(
 def submit_feedback(submission: FeedbackSubmission) -> FeedbackAck:
     """Submit a correction or comment on a command entry.
 
-    The API is read-only; this is the single write path. Submissions are
-    appended to a JSONL file for later review and never mutate the reference
-    data. The radio must exist; the command need not (it may be a missing
-    entry being reported).
+    The API is read-only; this is the single public write path (the feedback
+    log can additionally be replaced/deleted via the admin endpoints).
+    Submissions are appended to a JSONL file for later review and never
+    mutate the reference data. The radio must exist; the command need not
+    (it may be a missing entry being reported).
     """
     store = get_store()
     if store.get_radio(submission.radio_id.lower()) is None:
@@ -295,10 +303,11 @@ def submit_feedback(submission: FeedbackSubmission) -> FeedbackAck:
     record = submission.model_dump()
     record["id"] = str(uuid.uuid4())
     record["received_at"] = datetime.now(timezone.utc).isoformat()
-    path = get_feedback_file()
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("a", encoding="utf-8") as fh:
-        fh.write(json.dumps(record) + "\n")
+    with _feedback_lock:
+        path = get_feedback_file()
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with path.open("a", encoding="utf-8") as fh:
+            fh.write(json.dumps(record) + "\n")
     return FeedbackAck(id=record["id"], status="received", received_at=record["received_at"])
 
 
@@ -381,9 +390,10 @@ def replace_feedback(
         records.append(rec)
     if len(records) > _MAX_FEEDBACK_RECORDS:
         raise HTTPException(status_code=413, detail=f"Too many records (max {_MAX_FEEDBACK_RECORDS})")
-    path = get_feedback_file()
-    removed = len(_iter_feedback_lines(path))
-    _replace_feedback_lines(path, [json.dumps(rec.model_dump()) for rec in records])
+    with _feedback_lock:
+        path = get_feedback_file()
+        removed = len(_iter_feedback_lines(path))
+        _replace_feedback_lines(path, [json.dumps(rec.model_dump()) for rec in records])
     return _ack("replaced", removed=removed, kept=len(records))
 
 
@@ -399,22 +409,23 @@ def delete_feedback(feedback_id: str, _admin: None = Depends(require_admin)) -> 
     Admin endpoint (HTTP Basic auth). All other records are preserved
     verbatim; the rewrite is atomic. 404 if the id is unknown.
     """
-    path = get_feedback_file()
-    kept_lines: list[str] = []
-    removed = 0
-    for line in _iter_feedback_lines(path):
-        try:
-            obj = json.loads(line)
-        except json.JSONDecodeError:
-            obj = None
-        record_id = obj.get("id") if isinstance(obj, dict) else None
-        if record_id == feedback_id:
-            removed += 1
-        else:
-            kept_lines.append(line)
-    if removed == 0:
-        raise HTTPException(status_code=404, detail=f"Feedback id not found: {feedback_id}")
-    _replace_feedback_lines(path, kept_lines)
+    with _feedback_lock:
+        path = get_feedback_file()
+        kept_lines: list[str] = []
+        removed = 0
+        for line in _iter_feedback_lines(path):
+            try:
+                obj = json.loads(line)
+            except json.JSONDecodeError:
+                obj = None
+            record_id = obj.get("id") if isinstance(obj, dict) else None
+            if record_id == feedback_id:
+                removed += 1
+            else:
+                kept_lines.append(line)
+        if removed == 0:
+            raise HTTPException(status_code=404, detail=f"Feedback id not found: {feedback_id}")
+        _replace_feedback_lines(path, kept_lines)
     return _ack("deleted", removed=removed, kept=len(kept_lines))
 
 

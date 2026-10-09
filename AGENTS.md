@@ -43,8 +43,9 @@ Mulch write commands use file locking and atomic writes — multiple agents can 
 ## Project: Icom CI-V Explorer
 
 HTTPS REST API for the Icom CI-V protocol. Read-only reference covering
-multiple Icom radios, with a single write path (`POST /feedback`) for
-user-submitted corrections. Built with FastAPI + Pydantic.
+multiple Icom radios, with a public write path (`POST /feedback`) for
+user-submitted corrections and admin Basic-auth endpoints for managing the
+feedback log. Built with FastAPI + Pydantic.
 
 ## Commands
 
@@ -127,13 +128,14 @@ pytest
   (e.g. `IC-7300`) is **not** accepted as an id — use `7300`.
 - Search (`q`) is case-insensitive substring matching across `cmd`,
   `sub_cmd`, `data`, and `description` — not a structured query language.
-- **Keep docs in sync after any API/UI change.** Three surfaces must agree:
+- **Keep docs in sync after any API/UI change.** Four surfaces must agree:
   the OpenAPI spec at `/openapi.json` (auto-generated — authoritative), the
   Swagger UI at `/docs` (renders from the spec), the in-UI docs table in
   `static/index.html` (Endpoints table + code examples + skill definition
   accordion), and the README.md API overview. Verify the endpoint list
   (`GET /radios`, `/radios/{id}`, `/radios/{id}/capabilities`, `/commands`,
-  `/radios/{id}/commands`, `POST /feedback`, `GET /feedback`, `GET /health`),
+  `/radios/{id}/commands`, `POST /feedback`, `GET /feedback`, `PUT /feedback`
+  (admin), `DELETE /feedback/{id}` (admin), `GET /health`),
   param names (`q`, `radio_id`, `limit`, `offset`), and response field names
   (radios: `id/name/address/command_count`; commands:
   `radio_id/cmd/sub_cmd/data/description`; capabilities:

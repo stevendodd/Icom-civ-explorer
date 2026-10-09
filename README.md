@@ -247,7 +247,8 @@ curl -k -X POST https://localhost:8443/feedback \
 ### Managing the feedback log (admin)
 
 ```bash
-CREDS=.civ-admin.json   # gitignored; {"username": "...", "password": "...", "base_url": "https://..."}
+# Credentials: .civ-admin.json (repo root, gitignored), or pass --creds / set
+# CIV_ADMIN_CREDS. Format: {"username": "...", "password": "...", "base_url": "https://..."}
 
 # Agent/CLI workflow (stdlib client, no dependencies):
 scripts/feedback_admin.py pull            # GET /feedback -> feedback-live.jsonl

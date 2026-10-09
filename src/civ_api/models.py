@@ -2,7 +2,7 @@
 
 from typing import Literal, Optional, Union
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 # CI-V command and sub-command codes are short hex strings (e.g. "05", "1A").
@@ -54,8 +54,10 @@ class CommandListResponse(BaseModel):
 class FeedbackSubmission(BaseModel):
     """User-submitted correction or comment on a command entry.
 
-    The API is read-only; this is the one write path. Submissions are stored
-    locally (JSONL) for later review and do not mutate the reference data.
+    The API is read-only; this is the one public write path (the feedback log
+    itself can be replaced or pruned via the admin endpoints). Submissions
+    are stored locally (JSONL) for later review and do not mutate the
+    reference data.
 
     All free-text fields are length-capped to prevent abuse and to keep the
     JSONL append log manageable. Cmd/sub_cmd are constrained to short hex
@@ -80,8 +82,12 @@ class FeedbackRecord(FeedbackSubmission):
 
     Same validated fields as FeedbackSubmission plus the server-assigned id
     and received_at timestamp. Used to validate the log content on admin
-    replace operations.
+    replace operations. Unknown keys are rejected (``extra="forbid"``) so a
+    whole-log replace can never silently drop fields it does not know about:
+    the PUT body must round-trip the GET output field-for-field.
     """
+
+    model_config = ConfigDict(extra="forbid")
 
     id: str = Field(..., min_length=1, max_length=64, description="Server-assigned record id (UUID)")
     received_at: str = Field(
