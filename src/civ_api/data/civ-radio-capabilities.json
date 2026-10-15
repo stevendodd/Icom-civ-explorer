@@ -286,8 +286,8 @@
       "name": "rx_antenna",
       "label": "RX Antenna Connectors",
       "description": "RX IN/OUT antenna connectors (for external BPF/preamp or receiving antennas)",
-      "command_evidence": "Icom UK product pages: IC-7300MK2 (RX-ANT Connectors), IC-7760 (RX IN/OUT connectors)",
-      "radios": {"705": false, "7100": false, "7300": false, "7300mk2": true, "7610": false, "7760": true, "9700": false}
+      "command_evidence": "Icom UK product pages: IC-7300MK2 (RX-ANT Connectors), IC-7760 (RX IN/OUT connectors); IC-7610 CI-V: 0x12 00/01 (ANT1/ANT2 RX ANT OFF/ON), 0x1A 05 0275 (TYPE SET > RX-ANT Connectors)",
+      "radios": {"705": false, "7100": false, "7300": false, "7300mk2": true, "7610": true, "7760": true, "9700": false}
     },
     {
       "name": "ant_selection",
