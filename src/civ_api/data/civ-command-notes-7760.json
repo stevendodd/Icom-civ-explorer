@@ -2815,6 +2815,25 @@
    "pages": [],
    "matches": [
     {
+     "cmd": "02",
+     "sub_cmd": "",
+     "data": ""
+    },
+    {
+     "cmd": "02",
+     "sub_cmd": "00/01",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data 29 Command 29 supported.",
+   "kind": "asterisk",
+   "scope": "command",
+   "pages": [],
+   "matches": [
+    {
      "cmd": "21",
      "sub_cmd": "00",
      "data": ""
@@ -2947,20 +2966,6 @@
    "pages": [],
    "matches": [
     {
-     "cmd": "02",
-     "sub_cmd": "",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data 29 Command 29 supported.",
-   "kind": "asterisk",
-   "scope": "row",
-   "pages": [],
-   "matches": [
-    {
      "cmd": "1C",
      "sub_cmd": "04",
      "data": "00/01"
@@ -3013,7 +3018,7 @@
    "title": "Footnote *2",
    "body": "If the Antenna Type is set to “RX-I/O,” command “01 (RX ANT ON)” is invalid and “00 (RX ANT OFF)” is always returned.",
    "kind": "footnote",
-   "scope": "row",
+   "scope": "command",
    "pages": [],
    "matches": [
     {
@@ -3027,26 +3032,17 @@
    "title": "Footnote *2",
    "body": "If the Antenna Type is set to “RX-I/O,” command “01 (RX ANT ON)” is invalid and “00 (RX ANT OFF)” is always returned.",
    "kind": "footnote",
-   "scope": "row",
+   "scope": "command",
    "pages": [],
    "matches": [
     {
      "cmd": "01",
      "sub_cmd": "",
      "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Footnote *2",
-   "body": "If the Antenna Type is set to “RX-I/O,” command “01 (RX ANT ON)” is invalid and “00 (RX ANT OFF)” is always returned.",
-   "kind": "footnote",
-   "scope": "row",
-   "pages": [],
-   "matches": [
+    },
     {
-     "cmd": "02",
-     "sub_cmd": "",
+     "cmd": "01",
+     "sub_cmd": "00",
      "data": ""
     }
    ]
@@ -3055,7 +3051,26 @@
    "title": "Footnote *2",
    "body": "If the Antenna Type is set to “RX-I/O,” command “01 (RX ANT ON)” is invalid and “00 (RX ANT OFF)” is always returned.",
    "kind": "footnote",
-   "scope": "row",
+   "scope": "command",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "02",
+     "sub_cmd": "",
+     "data": ""
+    },
+    {
+     "cmd": "02",
+     "sub_cmd": "00/01",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Footnote *2",
+   "body": "If the Antenna Type is set to “RX-I/O,” command “01 (RX ANT ON)” is invalid and “00 (RX ANT OFF)” is always returned.",
+   "kind": "footnote",
+   "scope": "command",
    "pages": [],
    "matches": [
     {
@@ -3069,7 +3084,7 @@
    "title": "Footnote *4",
    "body": "In the CW mode, if the transceiver transmits or the Break-in function is ON, a message will be transmitted as CW code when you send it from your PC.",
    "kind": "footnote",
-   "scope": "row",
+   "scope": "command",
    "pages": [],
    "matches": [
     {
@@ -3083,12 +3098,17 @@
    "title": "Footnote *5",
    "body": "Sending the power ON command (18 01) turns ON the transceiver when the [USB B] port on the controller’s rear panel is connected to the PC and the transceiver is OFF (Standby/Shutdown). LWhen the transceiver is remotely controlled through the [REMOTE] jack on the RF deck’s rear panel, the transceiver is not turned ON even if the command is sent.",
    "kind": "footnote",
-   "scope": "row",
+   "scope": "command",
    "pages": [],
    "matches": [
     {
      "cmd": "01",
      "sub_cmd": "",
+     "data": ""
+    },
+    {
+     "cmd": "01",
+     "sub_cmd": "00",
      "data": ""
     }
    ]
@@ -5041,7 +5061,7 @@
    "title": "Footnote *1",
    "body": "1A 05  01 63, 1A 08, 1A 0A, and 1A 0D cannot be sent.",
    "kind": "footnote",
-   "scope": "row",
+   "scope": "command",
    "pages": [],
    "matches": [
     {

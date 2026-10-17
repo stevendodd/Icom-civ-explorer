@@ -2500,6 +2500,34 @@
    "pages": [],
    "matches": [
     {
+     "cmd": "02",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "",
+   "kind": "asterisk",
+   "scope": "command",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "03",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "",
+   "kind": "asterisk",
+   "scope": "command",
+   "pages": [],
+   "matches": [
+    {
      "cmd": "21",
      "sub_cmd": "00",
      "data": ""
@@ -2508,6 +2536,34 @@
      "cmd": "21",
      "sub_cmd": "01",
      "data": "00 or 01"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "",
+   "kind": "asterisk",
+   "scope": "command",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "25",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "",
+   "kind": "asterisk",
+   "scope": "command",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "26",
+     "sub_cmd": "",
+     "data": ""
     }
    ]
   },
@@ -2616,62 +2672,6 @@
     {
      "cmd": "27",
      "sub_cmd": "1E",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "",
-   "kind": "asterisk",
-   "scope": "row",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "02",
-     "sub_cmd": "",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "",
-   "kind": "asterisk",
-   "scope": "row",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "03",
-     "sub_cmd": "",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "",
-   "kind": "asterisk",
-   "scope": "row",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "25",
-     "sub_cmd": "",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "",
-   "kind": "asterisk",
-   "scope": "row",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "26",
-     "sub_cmd": "",
      "data": ""
     }
    ]

@@ -612,7 +612,7 @@
    "title": "Send/read data",
    "body": "",
    "kind": "asterisk",
-   "scope": "row",
+   "scope": "command",
    "pages": [],
    "matches": [
     {

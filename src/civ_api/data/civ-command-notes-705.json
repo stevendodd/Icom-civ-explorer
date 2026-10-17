@@ -786,6 +786,62 @@
    "pages": [],
    "matches": [
     {
+     "cmd": "02",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Footnote *1",
+   "body": "Read only data",
+   "kind": "footnote",
+   "scope": "command",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "03",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Footnote *1",
+   "body": "Read only data",
+   "kind": "footnote",
+   "scope": "command",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "04",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Footnote *1",
+   "body": "Read only data",
+   "kind": "footnote",
+   "scope": "command",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "0C",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Footnote *1",
+   "body": "Read only data",
+   "kind": "footnote",
+   "scope": "command",
+   "pages": [],
+   "matches": [
+    {
      "cmd": "15",
      "sub_cmd": "01",
      "data": "00/01"
@@ -879,11 +935,11 @@
    "title": "Footnote *1",
    "body": "Read only data",
    "kind": "footnote",
-   "scope": "row",
+   "scope": "command",
    "pages": [],
    "matches": [
     {
-     "cmd": "02",
+     "cmd": "09",
      "sub_cmd": "",
      "data": ""
     }
@@ -893,39 +949,11 @@
    "title": "Footnote *1",
    "body": "Read only data",
    "kind": "footnote",
-   "scope": "row",
+   "scope": "command",
    "pages": [],
    "matches": [
     {
-     "cmd": "03",
-     "sub_cmd": "",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Footnote *1",
-   "body": "Read only data",
-   "kind": "footnote",
-   "scope": "row",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "04",
-     "sub_cmd": "",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Footnote *1",
-   "body": "Read only data",
-   "kind": "footnote",
-   "scope": "row",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "0C",
+     "cmd": "0B",
      "sub_cmd": "",
      "data": ""
     }
@@ -983,34 +1011,6 @@
     {
      "cmd": "0F",
      "sub_cmd": "12",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Footnote *1",
-   "body": "Read only data",
-   "kind": "footnote",
-   "scope": "row",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "09",
-     "sub_cmd": "",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Footnote *1",
-   "body": "Read only data",
-   "kind": "footnote",
-   "scope": "row",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "0B",
-     "sub_cmd": "",
      "data": ""
     }
    ]
@@ -1187,7 +1187,7 @@
    "title": "Footnote *2",
    "body": "Send only data",
    "kind": "footnote",
-   "scope": "row",
+   "scope": "command",
    "pages": [],
    "matches": [
     {
@@ -1201,7 +1201,7 @@
    "title": "Footnote *2",
    "body": "Send only data",
    "kind": "footnote",
-   "scope": "row",
+   "scope": "command",
    "pages": [],
    "matches": [
     {
@@ -1215,13 +1215,23 @@
    "title": "Footnote *2",
    "body": "Send only data",
    "kind": "footnote",
-   "scope": "row",
+   "scope": "command",
    "pages": [],
    "matches": [
     {
      "cmd": "08",
      "sub_cmd": "",
      "data": ""
+    },
+    {
+     "cmd": "08",
+     "sub_cmd": "",
+     "data": "0000 ~ 0099"
+    },
+    {
+     "cmd": "08",
+     "sub_cmd": "A0",
+     "data": "0000 ~ 0100"
     }
    ]
   },
@@ -1229,7 +1239,7 @@
    "title": "Footnote *2",
    "body": "Send only data",
    "kind": "footnote",
-   "scope": "row",
+   "scope": "command",
    "pages": [],
    "matches": [
     {
@@ -3699,6 +3709,20 @@
    "pages": [],
    "matches": [
     {
+     "cmd": "02",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "scope": "command",
+   "pages": [],
+   "matches": [
+    {
      "cmd": "1F",
      "sub_cmd": "00",
      "data": ""
@@ -3711,6 +3735,34 @@
     {
      "cmd": "1F",
      "sub_cmd": "02",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "scope": "command",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "03",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "scope": "command",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "04",
+     "sub_cmd": "",
      "data": ""
     }
    ]
@@ -3736,6 +3788,20 @@
      "cmd": "21",
      "sub_cmd": "02",
      "data": "00/01"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "scope": "command",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "01",
+     "sub_cmd": "",
+     "data": ""
     }
    ]
   },
@@ -3748,6 +3814,34 @@
    "matches": [
     {
      "cmd": "05",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "scope": "command",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "25",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "scope": "command",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "26",
      "sub_cmd": "",
      "data": ""
     }
@@ -3835,20 +3929,6 @@
    "pages": [],
    "matches": [
     {
-     "cmd": "02",
-     "sub_cmd": "",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
-   "scope": "row",
-   "pages": [],
-   "matches": [
-    {
      "cmd": "1E",
      "sub_cmd": "03",
      "data": ""
@@ -3905,48 +3985,6 @@
    "pages": [],
    "matches": [
     {
-     "cmd": "03",
-     "sub_cmd": "",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
-   "scope": "row",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "04",
-     "sub_cmd": "",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
-   "scope": "row",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "01",
-     "sub_cmd": "",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
-   "scope": "row",
-   "pages": [],
-   "matches": [
-    {
      "cmd": "23",
      "sub_cmd": "02",
      "data": ""
@@ -3973,38 +4011,10 @@
    ]
   },
   {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
-   "scope": "row",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "25",
-     "sub_cmd": "",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
-   "scope": "row",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "26",
-     "sub_cmd": "",
-     "data": ""
-    }
-   ]
-  },
-  {
    "title": "Footnote *3",
    "body": "In the CW mode, if the [PTT] or an external TX switch is ON, or the Break-in function is ON, a message will be transmitted as CW code when you send it from your PC.",
    "kind": "footnote",
-   "scope": "row",
+   "scope": "command",
    "pages": [],
    "matches": [
     {
