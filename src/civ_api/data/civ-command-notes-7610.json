@@ -447,6 +447,237 @@
      "data": ""
     }
    ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "07",
+     "sub_cmd": "D2",
+     "data": "00"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "10",
+     "sub_cmd": "",
+     "data": "00 to 08"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "11",
+     "sub_cmd": "27",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "14",
+     "sub_cmd": "01",
+     "data": "00 00 ~ 02 55"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "16",
+     "sub_cmd": "02",
+     "data": "00"
+    },
+    {
+     "cmd": "16",
+     "sub_cmd": "02",
+     "data": "01"
+    },
+    {
+     "cmd": "16",
+     "sub_cmd": "02",
+     "data": "02"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "00",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0135",
+     "data": "00 or 01"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "01",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "02",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0135",
+     "data": "00 or 01"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0135",
+     "data": "00 or 01"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0135",
+     "data": "00 or 01"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "03",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "21",
+     "sub_cmd": "00",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "25",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "26",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "27",
+     "sub_cmd": "00",
+     "data": ""
+    }
+   ]
   }
  ]
 }

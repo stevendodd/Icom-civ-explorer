@@ -1039,6 +1039,84 @@
    ]
   },
   {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "10",
+     "sub_cmd": "",
+     "data": "00 ~ 13"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "11",
+     "sub_cmd": "00",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "14",
+     "sub_cmd": "01",
+     "data": "0000 ~ 0255"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "14",
+     "sub_cmd": "09",
+     "data": "0000 ~ 0255"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "16",
+     "sub_cmd": "02",
+     "data": "00 ~ 02"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "16",
+     "sub_cmd": "22",
+     "data": "00/01"
+    }
+   ]
+  },
+  {
    "title": "Table footnote *3",
    "body": "In the CW mode, if the [PTT] or an external TX switch is ON, or the Break-in function is ON, a message will be transmitted as CW code when you send it from your PC.",
    "kind": "footnote",
@@ -1078,6 +1156,19 @@
    ]
   },
   {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "00",
+     "data": ""
+    }
+   ]
+  },
+  {
    "title": "Table footnote *5",
    "body": "To insert a counter, first clear the other channel’s counter.",
    "kind": "footnote",
@@ -1086,6 +1177,2986 @@
     {
      "cmd": "1A",
      "sub_cmd": "02",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0001",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0002",
+     "data": "00 ~ 10"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0003",
+     "data": "00 ~ 10"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0004",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0005",
+     "data": "00 ~ 10"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0006",
+     "data": "00 ~ 10"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0007",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0008",
+     "data": "00 ~ 10"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0009",
+     "data": "00 ~ 10"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0010",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0011",
+     "data": "00 ~ 10"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0012",
+     "data": "00 ~ 10"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0013",
+     "data": "00 ~ 10"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0014",
+     "data": "00 ~ 10"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0015",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0016",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0017",
+     "data": "00 ~ 10"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0018",
+     "data": "00 ~ 10"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0019",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0020",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0021",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0022",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0023",
+     "data": "00 ~ 10"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0024",
+     "data": "00 ~ 10"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0025",
+     "data": "00 ~ 10"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0026",
+     "data": "00 ~ 10"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0027",
+     "data": "00 ~ 10"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0028",
+     "data": "00 ~ 10"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0029",
+     "data": "0000 ~ 0255"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0030",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0031",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0032",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0033",
+     "data": "00 ~ 03"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0034",
+     "data": "00 ~ 04"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0035",
+     "data": "00 ~ 03"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0036",
+     "data": "00 ~ 03"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0037",
+     "data": "00 ~ 04"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0038",
+     "data": "00 ~ 05"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0039",
+     "data": "00 ~ 05"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0041",
+     "data": "00 ~ 05"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0042",
+     "data": "00 ~ 05"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0043",
+     "data": "00 ~ 05"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0044",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0045",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0046",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0047",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0048",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0049",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0050",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0051",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0052",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0053",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0054",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0055",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0056",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0057",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0058",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0059",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0060",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0061",
+     "data": "0000 ~ 0255"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0062",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0063",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0064",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0065",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0066",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0067",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0068",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0069",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0070",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0071",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0072",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0073",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0074",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0075",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0076",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0077",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0078",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0079",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0080",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0081",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0082",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0083",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0084",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0085",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0086",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0087",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0088",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0089",
+     "data": "0000 ~ 0511"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0363",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0364",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0365",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0366",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0367",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0368",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0029",
+     "data": "0000 ~ 0255"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0030",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0031",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0032",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0033",
+     "data": "00 ~ 03"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0034",
+     "data": "00 ~ 04"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0035",
+     "data": "00 ~ 03"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0036",
+     "data": "00 ~ 03"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0037",
+     "data": "00 ~ 04"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0038",
+     "data": "00 ~ 05"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0039",
+     "data": "00 ~ 05"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0041",
+     "data": "00 ~ 05"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0042",
+     "data": "00 ~ 05"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0043",
+     "data": "00 ~ 05"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0044",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0045",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0046",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0047",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0048",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0049",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0050",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0051",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0052",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0053",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0054",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0055",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0056",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0057",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0058",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0059",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0060",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0061",
+     "data": "0000 ~ 0255"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0062",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0063",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0064",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0065",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0066",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0067",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0068",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0069",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0070",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0071",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0072",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0073",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0074",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0075",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0076",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0077",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0078",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0079",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0080",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0081",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0082",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0083",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0084",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0085",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0086",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0087",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0088",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0089",
+     "data": "0000 ~ 0511"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0363",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0364",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0365",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0366",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0367",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0368",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0074",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0075",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0076",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0077",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0078",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0079",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0080",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0081",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0082",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0083",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0084",
+     "data": "00/01"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0090",
+     "data": "00 ~ 03"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0091",
+     "data": "00 ~ 03"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0092",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0093",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0094",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0095",
+     "data": "00 ~ 10"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0096",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0097",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0098",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0099",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0100",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0101",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0102",
+     "data": "0000 ~ 0255"
+    },
+    {
+     "cmd": "22",
+     "sub_cmd": "02",
+     "data": "00/01"
+    },
+    {
+     "cmd": "22",
+     "sub_cmd": "03",
+     "data": "00/01"
+    },
+    {
+     "cmd": "22",
+     "sub_cmd": "04",
+     "data": "00/01"
+    },
+    {
+     "cmd": "22",
+     "sub_cmd": "05",
+     "data": "00 ~ 10"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0107",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0108",
+     "data": "00 ~ 30"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0109",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0110",
+     "data": "0000 ~ 0255"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0111",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0112",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0113",
+     "data": "0000 ~ 0255"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0114",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0115",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0116",
+     "data": "0000 ~ 0255"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0117",
+     "data": "0000 ~ 0255"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0118",
+     "data": "00 ~ 03"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0119",
+     "data": "00 ~ 03"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0120",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0121",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0123",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0124",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0125",
+     "data": "00 ~ 04"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0126",
+     "data": "00 ~ 04"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0127",
+     "data": "00 ~ 04"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0128",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0129",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0130",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0131",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0132",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0133",
+     "data": "00 ~ 03"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0134",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0135",
+     "data": "00/01"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0107",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0108",
+     "data": "00 ~ 30"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0109",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0110",
+     "data": "0000 ~ 0255"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0111",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0112",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0113",
+     "data": "0000 ~ 0255"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0114",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0115",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0116",
+     "data": "0000 ~ 0255"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0117",
+     "data": "0000 ~ 0255"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0118",
+     "data": "00 ~ 03"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0119",
+     "data": "00 ~ 03"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0120",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0121",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0123",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0124",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0125",
+     "data": "00 ~ 04"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0126",
+     "data": "00 ~ 04"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0127",
+     "data": "00 ~ 04"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0128",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0129",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0130",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0131",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0132",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0133",
+     "data": "00 ~ 03"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0134",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0135",
+     "data": "00/01"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0136",
+     "data": "0000 ~ 0255"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0137",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0138",
+     "data": "00 ~ 06"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0139",
+     "data": "00 ~ 06"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0140",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0141",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0142",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0143",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0144",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0145",
+     "data": "00 ~ 03"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0146",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0147",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0148",
+     "data": "00 ~ 04"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0149",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0150",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0151",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0152",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0153",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0154",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0155",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0156",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0157",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0158",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0159",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0160",
+     "data": "00 ~ 03"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0161",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0162",
+     "data": "00 ~ 03"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0163",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0164",
+     "data": "00/01"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0165",
+     "data": "20200101 ~ 20991231"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0166",
+     "data": "0000 ~ 2359"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0167",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0168",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0169",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0170",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0173",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0174",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0175",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0176",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0177",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0178",
+     "data": "00 ~ 03"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0179",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0180",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0181",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0182",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0183",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0184",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0185",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0186",
+     "data": "00 ~ 07"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0187",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0188",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0189",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0190",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0191",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0192",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0193",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0194",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0195",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0196",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0197",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0198",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0199",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0200",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0201",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0202",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0203",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0204",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0205",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0206",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0207",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0208",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0209",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0210",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0211",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0212",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0213",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0214",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0215",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0216",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0217",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0218",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0219",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0220",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0221",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0222",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0223",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0224",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0225",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0226",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0227",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0228",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0229",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0230",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0231",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0232",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0233",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0234",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0235",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0236",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0237",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0238",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0369",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0370",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0371",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0372",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0373",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0374",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0375",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0376",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0377",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0378",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0379",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0380",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0381",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0382",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0383",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0384",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0385",
+     "data": ""
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "1B",
+     "data": "00/01"
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "1C",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "20",
+     "data": "00/01"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0173",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0174",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0175",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0176",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0177",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0178",
+     "data": "00 ~ 03"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0179",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0180",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0181",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0182",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0183",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0184",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0185",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0186",
+     "data": "00 ~ 07"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0187",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0188",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0189",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0190",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0191",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0192",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0193",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0194",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0195",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0196",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0197",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0198",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0199",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0200",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0201",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0202",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0203",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0204",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0205",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0206",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0207",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0208",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0209",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0210",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0211",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0212",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0213",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0214",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0215",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0216",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0217",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0218",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0219",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0220",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0221",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0222",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0223",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0224",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0225",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0226",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0227",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0228",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0229",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0230",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0231",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0232",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0233",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0234",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0235",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0236",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0237",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0238",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0369",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0370",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0371",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0372",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0373",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0374",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0375",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0376",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0377",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0378",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0379",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0380",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0381",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0382",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0383",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0384",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0385",
+     "data": ""
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "1B",
+     "data": "00/01"
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "1C",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "20",
+     "data": "00/01"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0239",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0240",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0241",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0242",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0257",
+     "data": "00 ~ 03"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0258",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0259",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0260",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0261",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0262",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0263",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0275",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0276",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0277",
+     "data": "00 ~ 10"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0278",
+     "data": "00 ~ 06"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0279",
+     "data": "00 ~ 04"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0280",
+     "data": "00/01"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "14",
+     "sub_cmd": "16",
+     "data": "0000 ~ 0255"
+    },
+    {
+     "cmd": "14",
+     "sub_cmd": "17",
+     "data": "0000 ~ 0255"
+    },
+    {
+     "cmd": "16",
+     "sub_cmd": "46",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0359",
+     "data": "00 ~ 20"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0360",
+     "data": "00 ~ 03"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0367",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0173",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0174",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0175",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0176",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0177",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0178",
+     "data": "00 ~ 03"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0179",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0180",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0181",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0182",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0183",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0184",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0185",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0186",
+     "data": "00 ~ 07"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0187",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0188",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0189",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0190",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0191",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0192",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0193",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0194",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0195",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0196",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0197",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0198",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0199",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0200",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0201",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0202",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0203",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0204",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0205",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0206",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0207",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0208",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0209",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0210",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0211",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0212",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0213",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0214",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0215",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0216",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0217",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0218",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0219",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0220",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0221",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0222",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0223",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0224",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0225",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0226",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0227",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0228",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0229",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0230",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0231",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0232",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0233",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0234",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0235",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0236",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0237",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0238",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0369",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0370",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0371",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0372",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0373",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0374",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0375",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0376",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0377",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0378",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0379",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0380",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0381",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0382",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0383",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0384",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0385",
+     "data": ""
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "1B",
+     "data": "00/01"
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "1C",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "20",
+     "data": "00/01"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1B",
+     "sub_cmd": "00",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1C",
+     "sub_cmd": "00",
+     "data": "00/01"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "01",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "02",
+     "sub_cmd": "",
      "data": ""
     }
    ]
@@ -1148,6 +4219,32 @@
    ]
   },
   {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "03",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1F",
+     "sub_cmd": "00",
+     "data": ""
+    }
+   ]
+  },
+  {
    "title": "Table footnote *7",
    "body": "Output setting is automatically set to OFF after turning OFF the transceiver.",
    "kind": "footnote",
@@ -1157,6 +4254,29 @@
      "cmd": "20",
      "sub_cmd": "00",
      "data": "00"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "20",
+     "sub_cmd": "00",
+     "data": "00"
+    },
+    {
+     "cmd": "20",
+     "sub_cmd": "00",
+     "data": "01"
+    },
+    {
+     "cmd": "20",
+     "sub_cmd": "00",
+     "data": "02"
     }
    ]
   },
@@ -1187,6 +4307,19 @@
    ]
   },
   {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "01",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
    "title": "Table footnote *1",
    "body": "Read only data",
    "kind": "footnote",
@@ -1213,6 +4346,19 @@
    ]
   },
   {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "02",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
    "title": "Table footnote *1",
    "body": "Read only data",
    "kind": "footnote",
@@ -1222,6 +4368,19 @@
      "cmd": "20",
      "sub_cmd": "02",
      "data": "02"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "03",
+     "sub_cmd": "",
+     "data": ""
     }
    ]
   },
@@ -1278,6 +4437,19 @@
    ]
   },
   {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "04",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
    "title": "Table footnote *1",
    "body": "Read only data",
    "kind": "footnote",
@@ -1291,6 +4463,84 @@
    ]
   },
   {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "21",
+     "sub_cmd": "00",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "01",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "02",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "03",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "04",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "05",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
    "title": "Table footnote *1",
    "body": "Read only data",
    "kind": "footnote",
@@ -1300,6 +4550,102 @@
      "cmd": "23",
      "sub_cmd": "00",
      "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "01",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "02",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "24",
+     "sub_cmd": "00",
+     "data": "00"
+    },
+    {
+     "cmd": "24",
+     "sub_cmd": "00",
+     "data": "01"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "25",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "26",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "27",
+     "sub_cmd": "00",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "27",
+     "sub_cmd": "17",
+     "data": "0000/0001"
     }
    ]
   }

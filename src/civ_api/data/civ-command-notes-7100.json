@@ -467,6 +467,55 @@
      "data": ""
     }
    ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "17",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "01",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "00",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "01",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "02",
+     "data": ""
+    }
+   ]
   }
  ]
 }
