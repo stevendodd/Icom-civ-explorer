@@ -1,0 +1,498 @@
+{
+ "radio_id": "7100",
+ "source_pdf": "IC-7100_ENG_FM_5.pdf",
+ "asterisk_note": "",
+ "notes": [
+  {
+   "title": "Operating frequency",
+   "body": "XXX XX\n10 Hz digit: 0–9\n1 Hz digit: 0–9\n1 kHz digit: 0–9\n100 Hz digit: 0–9\n100 kHz digit: 0–9\n10 kHz digit: 0–9\n10 MHz digit: 0–9\n1 MHz digit: 0–9\n1000 MHz digit: 0 (Fixed)\n100 MHz digit: 0–4\n[5 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    369
+   ],
+   "matches": [
+    {
+     "cmd": "00",
+     "sub_cmd": "",
+     "data": ""
+    },
+    {
+     "cmd": "03",
+     "sub_cmd": "",
+     "data": ""
+    },
+    {
+     "cmd": "05",
+     "sub_cmd": "",
+     "data": ""
+    },
+    {
+     "cmd": "1C",
+     "sub_cmd": "03",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Operating mode",
+   "body": "XXX X\nq Operating mode w Filter setting\n00: LSB 05: FM 01: FIL1\n01: USB 06: WFM 02: FIL2\n02: AM 07: CW-R 03: FIL3\n03: CW 08: RTTY -R —\n04: RTTY 17: DV —\n•  Filter setting (w) can be skipped with command 01\nand 06. In that case, “FIL1” is automatically select-\ned with command 01, and the default filter setting\nof the operating mode is automatically selected\nwith command 06.\n•  When the WFM mode is selected with command\n06, “FIL1” is automatically selected with command\n[3 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    369
+   ],
+   "matches": [
+    {
+     "cmd": "01",
+     "sub_cmd": "",
+     "data": ""
+    },
+    {
+     "cmd": "04",
+     "sub_cmd": "",
+     "data": ""
+    },
+    {
+     "cmd": "06",
+     "sub_cmd": "00",
+     "data": ""
+    },
+    {
+     "cmd": "06",
+     "sub_cmd": "01",
+     "data": ""
+    },
+    {
+     "cmd": "06",
+     "sub_cmd": "02",
+     "data": ""
+    },
+    {
+     "cmd": "06",
+     "sub_cmd": "03",
+     "data": ""
+    },
+    {
+     "cmd": "06",
+     "sub_cmd": "04",
+     "data": ""
+    },
+    {
+     "cmd": "06",
+     "sub_cmd": "05",
+     "data": ""
+    },
+    {
+     "cmd": "06",
+     "sub_cmd": "06",
+     "data": ""
+    },
+    {
+     "cmd": "06",
+     "sub_cmd": "07",
+     "data": ""
+    },
+    {
+     "cmd": "06",
+     "sub_cmd": "08",
+     "data": ""
+    },
+    {
+     "cmd": "06",
+     "sub_cmd": "17",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "SSB transmission bandwidth setting",
+   "body": "Lower edge\nHigher edge\nLower edge\n0: 100Hz\n1: 200Hz\n2: 300Hz\n3: 500Hz\nHigher edge\n0: 2500Hz\n1: 2700Hz\n2: 2800Hz\n3: 2900Hz\n•  RX HPF and LPF settings in each operat-\ning mode\nLPF (upper side)\nHPF (lower side)\nHPF\n00: through\n01 to 20: 100 to 2000 Hz\nLPF\n05 to 24: 500 to 2400 Hz\n25: through\nSet the LPF value larger than HPF one.\n[2 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    369
+   ],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0056",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "CW message contents",
+   "body": "Set a CW message of up to 30 characters.\n• Character’s code\nCharacter ASCII code Description\n0–9 30–39 Number\nA–Z 41–5A Alphabetical characters\na–z 61–7A Alphabetical characters\nspace 20 Word space\n/ 2F Symbol\n? 3F Symbol\n. 2E Symbol\n– 2D Symbol\n, 2C Symbol\n: 3A Symbol\n’ 27 Symbol\n( 28 Symbol\n) 29 Symbol\n= 3D Symbol\n+ 2B Symbol\n” 22 Symbol\n@ 40 Symbol\n• “FF” stops sending CW messages.\n•  “^” is used to transmit a string of characters with no\ninter-character space.",
+   "kind": "panel",
+   "pages": [
+    369
+   ],
+   "matches": [
+    {
+     "cmd": "17",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Character code setting",
+   "body": "Character ASCII code Character ASCII code\nA–Z 41–5A a–z 61–7A\n0–9 30–39 Space 20\n! 21 # 23\n$ 24 % 25\n& 26 \\ 5C\n? 3F \" 22\n’ 27 ` 60\n^ 5E + 2B\n– 2D ✱ 2A\n⁄ 2F . 2E\n, 2C : 3A\n; 3B = 3D\n< 3C > 3E\n( 28 ) 29\n[ 5B ] 5D\n{ 7B } 7D\n¦ 7C _ 5F\n¯ 7E @ 40\n[1 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    370
+   ],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "00",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0200",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0207",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0208",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0209",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0211",
+     "data": ""
+    },
+    {
+     "cmd": "1F",
+     "sub_cmd": "02",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Band stacking register",
+   "body": "XXX X\nWhen sending the contents, the codes, such as op-\nerating frequency and operating mode*, should be\nadded after the frequency band code and register\ncode, as shown below.\n* See t to %1 on ‘Memory content setting.’ (p. 20-16)\nqFrequency band code\nCode Freq. band Frequency range (unit: MHz)\n13 GENE Other than above\nwRegister code\nCode Registered No.\n01 1 (latest)\n03 3 (oldest)\nTo read the contents, the register code should be add-\ned after the frequency band code, as shown below.\nExample:  When reading the oldest contents in the\n21 MHz band, the code “0703” is used.\n[15 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    370
+   ],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "01",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Memory keyer contents",
+   "body": "q: Channel data\nw–&1: Text data\nXXX …… XX\n01ɿ\u0001M1\n02ɿ\u0001M2\n03ɿ\u0001M3\n04ɿ\u0001M4\n• Character’s code\nCharacter ASCII code Description\n0–9 30–39 Number\nA–Z 41–5A Alphabetical characters\na–z 61–7A Alphabetical characters\nspace 20 Word space\n/ 2F Symbol\n? 3F Symbol\n, 2C Symbol\n. 2E Symbol\n@ 40 Symbol\n^ 5E e.g., to send BT, enter ^BT\n✱ 2A Inserts contest number (can be\nused for 1 channel only)\n[1 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    371
+   ],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "02",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Split offset frequency setting",
+   "body": "1 kHz digit: 0–9\n100 Hz digit: 0 (fixed)\n100 kHz digit: 0–9\n10 kHz digit: 0–9\n10 MHz digit: 0 (fixed)\n1 MHz digit: 0–9\nDirection:\n00: + direction\n01: – direction\n[4 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    371
+   ],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0016",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Duplex Offset frequency setting",
+   "body": "XXX XX\n1 kHz digit: 0–9\n100 Hz digit: 0–9\n100 kHz digit: 0–9\n10 kHz digit: 0–9\n10 MHz digit: 0 (fixed)\n1 MHz digit: 0–9\n[2 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    371
+   ],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0018",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "UTC Offset setting",
+   "body": "XXX X\n10 hour digit: 0–1\n1 hour digit: 0–9\n10 min. digit: 0–5\n1 min. digit: 0–9\nDirection\n00=+ direction\n01=– direction\n[3 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    371
+   ],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0123",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "My position data setting",
+   "body": "XXXXXXX00X0XXXXXXXX00XXXXXXX0X\nwert yuio !0 !1 !4† !5†!3†!2†\nLatitude AltitudeLongitude\n10 degree digit: 0–9\n1 degree digit: 0–9\n10 min. digit: 0–5\n1 min. digit: 0–9\n0.1 min. digit: 0–9\n0.01 min. digit: 0–9\n0.001 min. digit: 0–9\n0 (fixed)\n0 (fixed)\nS*=0/N*=1\n0 (fixed)\n100 degree digit: 0–1\n10 degree digit: 0–9\n1 degree digit: 0–9\n10 min. digit: 0–5\n1 min. digit: 0–9\n0.1 min. digit: 0–9\n0.01 min. digit: 0–9\n0.001 min. digit: 0–9\n0 (fixed)\n0 (fixed)\nW*=0/E*=1\n10000 meter digit: 0–1\n1000 meter digit: 0–9\n100 meter digit: 0–9\n10 meter digit: 0–9\n1 meter digit: 0–9\n0.1 meter digit: 0–9\n0 (fixed)\n+=0/−=1\n* S: South latitude  N: North latitude\nW: West longitude  E: East longitude\n†  When reading the contents with no altitude, sends !2, !3, !4\nand !5 as “FF .”\nWhen sending the contents with no altitude, set !2, !3, !4\nand !5 to “FF .”\n[1 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    371
+   ],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0186",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Alarm area (Group) setting",
+   "body": "XXX X0\n10 min. digit: 0–5\n1 min. digit: 0–9\n0.1 min. digit: 0–9\n0.01 min. digit: 0–9\n0.001 min. digit: 0–9\n0 (fixed)\n[3 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    371
+   ],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0191",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Unproto Address setting",
+   "body": "Set an unproto address of up to 56 characters.\nSee ‘Character code setting.’ (p. 20-12)",
+   "kind": "panel",
+   "pages": [
+    371
+   ],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0201",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "GPS-A Symbol setting",
+   "body": "Second digit\nFirst digit\n⁄, \\, 0 to 9, A to Z can be used for the first digit char-\nacter.\nSee ‘Character code setting’ for the second digit\ncharacter. (p. 20-12)\n[1 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    372
+   ],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0206",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Comment setting",
+   "body": "Set a comment of up to 43 characters.\nSee ‘Character code setting.’ (p. 20-12)",
+   "kind": "panel",
+   "pages": [
+    372
+   ],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0211",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "GPS message setting",
+   "body": "Set a GPS message of up to 20 characters.\nSee ‘Character code setting.’ (p. 20-12)",
+   "kind": "panel",
+   "pages": [
+    372
+   ],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0200",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Data mode with filter width setting",
+   "body": "01: FIL1\n02: FIL2\n03: FIL3\n00: Data mode OFF*\n01: Data mode ON\n*When “00” is set, set “00” in w.\n•  Repeater tone/tone squelch frequency\nsetting\nq* ew\n0 (fixed)\n0 (fixed)\n100 Hz digit\n10 Hz digit\n1 Hz digit\n0.1 Hz digit\n*Not necessary when setting a frequency.\n[3 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    372
+   ],
+   "matches": [
+    {
+     "cmd": "1B",
+     "sub_cmd": "00",
+     "data": ""
+    },
+    {
+     "cmd": "1B",
+     "sub_cmd": "01",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "DTCS code and polarity setting",
+   "body": "Transmit polarity:\n0: Normal\n1: Reverse\nReceive polarity:\n0: Normal\n1: Reverse\n0 (fixed)\nFirst digit: 0–7\nSecond digit: 0–7\nThird digit: 0–7\n[2 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    372
+   ],
+   "matches": [
+    {
+     "cmd": "1B",
+     "sub_cmd": "02",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Digital code squelch setting",
+   "body": "Second digit: 0–9\nFirst digit: 0–9\n[2 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    372
+   ],
+   "matches": [
+    {
+     "cmd": "1B",
+     "sub_cmd": "07",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "DV MY call sign setting",
+   "body": "Set your own call sign and note of up to 12 characters.\nʜʜ\nq–i Y our own call sign setting\no–!2 Note setting\n[2 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    372
+   ],
+   "matches": [
+    {
+     "cmd": "1F",
+     "sub_cmd": "00",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "DV TX call signs setting",
+   "body": "Set “UR,” “R1” and “R2” call signs of 8 characters (fixed).\n99ʜʜ99 99 9 9 999 9ʜʜ\n!7–@4o–!6q–i\nʜʜ\nq–i UR (Destination) call sign setting\no–!6 R1 (Access repeater) call sign setting\n!7–@4 R2 (Gateway/Link repeater) call sign setting\n• Character’s code of the call sign\nCharacter ASCII code Character ASCII code\n0–9 30–39 A–Z 41–5A\nSpace 20 ⁄ 2F",
+   "kind": "panel",
+   "pages": [
+    372
+   ],
+   "matches": [
+    {
+     "cmd": "1F",
+     "sub_cmd": "01",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "DV TX message setting",
+   "body": "Set the transmit message of up to 20 characters.\nSee ‘Character code setting.’ (p. 20-12)\n“FF” stops sending or reading messages.",
+   "kind": "panel",
+   "pages": [
+    372
+   ],
+   "matches": [
+    {
+     "cmd": "1F",
+     "sub_cmd": "02",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Memory content setting",
+   "body": "rqt ʙo! 0ɺ!1 !2 !4 @4!3 !5ʙ!7 @5ʙ@7@1ʙ@3!8ʙ@0\n999 ʜʜ 99999999999\u001199999999 9999 99 99999999 999999 9999\nwɺe\n$4ʙ%1\n99 ʜʜ 99 ʜʜʜʜʜʜ ʜʜ99 99\ntʙ%1 %2ʙ^0#6ʙ$3\n99 ʜʜ 99\n@8ʙ#5\n99 ʜʜ 99",
+   "kind": "panel",
+   "pages": [
+    374
+   ],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "00",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "RIT frequency settings",
+   "body": "10 Hz digit: 0–9\n100 Hz digit: 0–9\n1 Hz digit: 0–9\n1 kHz digit: 0–9\nXXXX XX\n00: + (plus)\n01: – (minus)\n•  Selected or unselected VFO frequency\nsettings\n00: Selected VFO\n01: Unselected VFO\nOperating frequency data\n(See “Operating frequency” described on page 20-11.)\n•  Selected or unselected VFO’s operating\nmode and filter settings\nBoth data and filter settings can be skipped. In that\ncase, “DATA OFF” and the default filter setting of the\noperating mode is automatically selected.\nq Operating mode setting\ne Filter setting\nw Data mode setting\n00: Selected VFO\n01: Unselected VFO\nq Operating mode w  Data mode\nsetting\ne  Filter\nsetting\n00: LSB 05: FM 00: Data mode OFF 01: FIL1\n01: USB 06: WFM 01: Data mode ON 02: FIL2\n02: AM 07: CW-R — 03: FIL3\n03: CW 08: RTTY -R — —\n04: RTTY 17: DV — —\n[2 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    375
+   ],
+   "matches": [
+    {
+     "cmd": "26",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *1",
+   "body": "In the CW mode, if an external TX switch is ON, or the Break-in func- tion is ON, a message will be transmitted as CW code when you send it from your PC.",
+   "kind": "footnote",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "17",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *2",
+   "body": "When sending the power ON command (18 01), the command “FE” must be sent before the basic format. • 19200 bps: 25,    • 9600 bps: 13,    • 4800 bps: 7, • 1200 bps: 3,    • 300 bps: 2 qw er t u FF     E × 7 88EFEE 1081OD F Example: When operating with 4800 bps q Preamble code (fixed) w Transceiver’s default address e Controller’s default address r Command number t Sub command number u End of message code (fixed)",
+   "kind": "footnote",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "18",
+     "sub_cmd": "01",
+     "data": ""
+    }
+   ]
+  }
+ ]
+}

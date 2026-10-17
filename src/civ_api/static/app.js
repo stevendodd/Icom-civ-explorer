@@ -276,6 +276,37 @@
   }
 
   // ---- commands -----------------------------------------------------------
+  // Manual note block for one command row: page refs as chips, then each
+  // note as a titled monospace panel. All text goes in via textContent.
+  function appendNoteCells(cell, item) {
+    if (item.page_refs && item.page_refs.length > 0) {
+      cell.appendChild(tag("div", "Manual: " + item.page_refs.join(", "),
+        { class: "note-ref" }));
+    }
+    (item.notes || []).forEach(function (n) {
+      var block = document.createElement("div");
+      block.className = "cmd-note";
+      var head = document.createElement("div");
+      head.className = "cmd-note-head";
+      head.textContent = (n.kind === "footnote" ? "Table note — " : "") + (n.title || "Manual note");
+      block.appendChild(head);
+      var pre = document.createElement("pre");
+      pre.className = "cmd-note-body";
+      pre.textContent = n.body || "";
+      block.appendChild(pre);
+      cell.appendChild(block);
+    });
+  }
+
+  function cmdCellWithNotes(item) {
+    var cell = document.createElement("td");
+    var desc = document.createElement("div");
+    desc.textContent = item.description || "";
+    cell.appendChild(desc);
+    appendNoteCells(cell, item);
+    return cell;
+  }
+
   function runSearch(ev) {
     ev.preventDefault();
     var params = {
@@ -296,7 +327,7 @@
         tr.appendChild(tag("td", c.cmd));
         tr.appendChild(tag("td", c.sub_cmd));
         tr.appendChild(tag("td", c.data));
-        tr.appendChild(tag("td", c.description));
+        tr.appendChild(cmdCellWithNotes(c));
         var cell = tag("td");
         var link = tag("a", "Feedback", { href: "#feedback", "data-cmd": "" });
         link.addEventListener("click", function (ev) {
@@ -483,7 +514,7 @@
       var tr = tag("tr", null, {});
       tr.appendChild(tag("td", c.sub_cmd));
       tr.appendChild(tag("td", c.data));
-      tr.appendChild(tag("td", c.description));
+      tr.appendChild(cmdCellWithNotes(c));
       var cell = tag("td");
       var link = tag("a", "Feedback", { href: "#feedback" });
       link.addEventListener("click", function (ev) {

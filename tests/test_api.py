@@ -77,7 +77,18 @@ def test_radio_commands_endpoint() -> None:
     body = resp.json()
     assert body["radio_id"] == "7300"
     assert body["total"] > 0
-    assert all("vfo" in item["description"].lower() for item in body["items"])
+
+    def matches(item) -> bool:
+        hay = (
+            item["cmd"] + " " + item["sub_cmd"] + " " + (item["data"] or "")
+            + " " + item["description"]
+        ).lower()
+        hay += " " + " ".join(
+            (n["title"] or "") + " " + (n["body"] or "") for n in item["notes"]
+        ).lower()
+        return "vfo" in hay
+
+    assert all(matches(item) for item in body["items"])
 
 
 def test_radio_capabilities_endpoint() -> None:

@@ -1,0 +1,571 @@
+{
+ "radio_id": "7760",
+ "source_pdf": "IC-7760_ENG_CI-V_2.pdf",
+ "asterisk_note": "(Asterisk) Send/read data 29 Command 29 supported.",
+ "notes": [
+  {
+   "title": "Operating frequency",
+   "body": "",
+   "kind": "panel",
+   "pages": [
+    17
+   ],
+   "matches": [
+    {
+     "cmd": "00",
+     "sub_cmd": "",
+     "data": ""
+    },
+    {
+     "cmd": "03",
+     "sub_cmd": "",
+     "data": ""
+    },
+    {
+     "cmd": "05",
+     "sub_cmd": "",
+     "data": ""
+    },
+    {
+     "cmd": "1C",
+     "sub_cmd": "03",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Operating mode",
+   "body": "1Operating mode 2Filter setting\n00:LSB 05 :FM 01:FIL1\n01:USB 07 :CW-R 02:FIL2\n02:AM 08 :RTTY-R 03:FIL3\n03:CW 12 :PSK —\n04:RTTY 13 :PSK-R —\nLFilter setting (2) can be skipped with commands 01\nand 06. In that case, “FIL1” is selected with command\n01 and the default filter setting of the operating mode is\nautomatically selected with command 06.",
+   "kind": "panel",
+   "pages": [
+    17
+   ],
+   "matches": [
+    {
+     "cmd": "01",
+     "sub_cmd": "",
+     "data": ""
+    },
+    {
+     "cmd": "01",
+     "sub_cmd": "00",
+     "data": ""
+    },
+    {
+     "cmd": "04",
+     "sub_cmd": "",
+     "data": ""
+    },
+    {
+     "cmd": "06",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Band edge frequency settings",
+   "body": "*  When obtaining the edge number (by command “02”), the\nedge number (1) is not returned.\n10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 6\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0  (Fixed)\n100 MHz digit: 0 (Fixed)\n[7 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    17
+   ],
+   "matches": [
+    {
+     "cmd": "02",
+     "sub_cmd": "",
+     "data": ""
+    },
+    {
+     "cmd": "02",
+     "sub_cmd": "00/01",
+     "data": ""
+    },
+    {
+     "cmd": "1E",
+     "sub_cmd": "01",
+     "data": ""
+    },
+    {
+     "cmd": "1E",
+     "sub_cmd": "03",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Band stacking register",
+   "body": "NOTE: When sending the contents, the codes, such\nas operating frequency and operating mode*, should\nbe added after the frequency band code and the\nregister code, as shown below.\n*  See 4 ~ 17 on “Memory content.” (p. 19)\n1: Frequency band codes\nCode Freq. band Frequency range (unit: MHz)\n11 GENE Other than above\n2: Register codes\nCode Registered number\n01 1 (Display on left side)\n02 2 (Display in center)\n03 3 (Display on Right side)\nTo read the contents, the register code should be\nadded after the frequency band code, as shown\nbelow.\nExample:  When reading the frequency displayed\nin the center of the display in the 21 MHz\nband, use code “07 02.”\n[11 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    18
+   ],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "01",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Memory content",
+   "body": "1, 2: Memory group number\n00 01 ~ 00 99: Memory channel 01 ~ 99\n01 00:  Programmed scan edge P1\n01 01:  Programmed scan edge P2\n3: Select memory setting\n0=OFF\nFixed\n1= 1\n2= 2\n3= 3\nLSet 0 for P1 and P2.\n4 ~ 8: Operating frequency setting\nLSee “\n• Operating frequency.” (p. 17)\n9, 10: Operating mode setting\nLSee “\n• Operating mode.” (p. 17)\n11: Data mode and tone type settings\n0: OFF , 1: TONE, 2: TSQL\n0: OFF , 1: DATA 1, 2: DATA 2, 3: DATA 3\n12 ~ 14: Repeater tone frequency setting\n15 ~ 17: Tone squelch frequency setting\nLSee “\n• Repeater tone/tone squelch settings.” (p. 23)\n18 ~ 27: Memory name settings\nUp to 10 characters.\nLSee “\n• Codes for character entries.”\nTo clear the memory channel contents on 1A 00:\n1, 2: Memory channel (00 01~00 99)\n3:  “FF”\n4:  None\n[6 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    19
+   ],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "00",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Codes for character entries",
+   "body": "1A 05  01 76, 01 83, 01 98, 02 03, 02 07, 03 71\n- Character codes— Letters and Numbers\nCharacter ASCII code\nA ~ Z 41 ~ 5A\nCharacter ASCII code\na ~ z 61 ~ 7A\n- Character codes— Symbols\nCharacter ASCII code\n$ 24\n& 26\n? 3F\n’ 27\n^ 5E\n− 2D\n/ 2F\n, 2C\n; 3B\n< 3C\n( 28\n[ 5B\n{ 7B\n| 7C\n͂ 7E\nCharacter ASCII code\n# 23\n% 25\n\\ 5C\n” 22\n` 60\n+ 2B\n* 2A\n. 2E\n: 3A\n= 3D\n> 3E\n) 29\n] 5D\n} 7D\n_ 5F\n@ 40\nCmd. Sub cmd. Set item/selectable characters\n1A 00 Memory name*\n05 01 76 Network > Network Name\n(up to 15 characters)\nA to Z, 0 to 9, ! \" # $ % & ( ) + , - . ; = @ [ ] ^\n01 83 Network > Network Radio Name*\n(up to 16 characters)\nLIllegal characters: \\ (space)\n01 98 Display > My Call\n(up to 10 characters)\nA to Z, 0 to 9, / @ - .\n02 03 Time Set > Date/Time >\nNTP Server Address\nA to Z, a to z, 0 to 9, - .\n02 07 Time Set > CLOCK2 Name*\n(up to 3 characters)\n03 71 Network > Controller Connection (via LAN) >\nPort Forwarding Settings >\nConnection Destination (RF Deck WAN Address)\n(up to 64 characters)\nA to Z, a to z, 0 to 9, - .\n* Usable characters:  A to Z, a to z, 0 to 9, (space), ! “ # $ % & ‘ ( ) * +, - .\n} ~\n[2 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    19
+   ],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "00",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Keyer memory character entries",
+   "body": "- Character codes\nCharacter ASCII code Description\n0 ~ 9 30 ~ 39 Numbers\nA ~ Z 41 ~ 5A Letters\nSpace 20 Word space\n/ 2F Symbol\n? 3F Symbol\n, 2C Symbol\n. 2E Symbol\n@ 40 Symbol\n^ 5E Example:  to send BT,\nenter “5E 42 54”\n* 2A Inserts the contest number\nLInformation\n• Spaces after the end of the sentence are not necessary.\n• To clear the Keyer memory contents, send one or more\nspaces.",
+   "kind": "panel",
+   "pages": [
+    20
+   ],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "02",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Keyer memory content",
+   "body": "1: Channel data\n01=M1 05=M5\n02=M2 06=M6\n03=M3 07=M7\n04=M4 08=M8\n2 ~ 71: Text data\n[2 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    20
+   ],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "02",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "IF filter width settings",
+   "body": "Mode Data Steps\nSSB/CW/\nRTTY/PSK 00 ~ 09 50 ~ 500 Hz (50 Hz)\nSSB/CW/PSK 10 ~ 40 600 Hz ~ 3.6 kHz (100 Hz)\nRTTY 10 ~ 31 600 Hz ~ 2.7 kHz (100 Hz)\nAM 00 ~ 49 200 Hz ~ 10.0 kHz (200 Hz)",
+   "kind": "panel",
+   "pages": [
+    20
+   ],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "03",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "AGC time constant settings",
+   "body": "Data\nAGC time constant (sec.)\nSSB/CW/RTTY/PSK AM\n00 OFF OFF\n[13 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    20
+   ],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "04",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "RX HPF/LPF settings for each operating mode",
+   "body": "HPF (Lower edge)\n00=Through\n01 ~ 20=100 ~ 2000 Hz\nLPF(Upper edge)\n05 ~ 24=500~2400 Hz\n25=Through\n• SSB/SSB-DATA transmission passband width\nsettings\nXX Higher edge\n0= 2500 Hz\n1= 2700 Hz\n2= 2800 Hz\n3= 2900 Hz\nLower edge\n0= 100 Hz\n1= 120 Hz\n2= 150 Hz\n3= 200 Hz\n4= 300 Hz\n5= 500 Hz\nLower edge\nHigher edge\nL The value of the HPF should be smaller than the LPF.\n[2 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    20
+   ],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0015",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "[AUTOTUNE] setting",
+   "body": "Data Function\n00 AUTOTUNE\n01 PRESET\n02 Voice/Keyer/RTTY/PSK Memory 1\n03 Voice/Keyer/RTTY/PSK Memory 2\n04 Voice/Keyer/RTTY/PSK Memory 3\n05 Voice/Keyer/RTTY/PSK Memory 4",
+   "kind": "panel",
+   "pages": [
+    21
+   ],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0089",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "[VOX/BK-IN] setting",
+   "body": "Data Function\n00 VOX/BK-IN\n01 PRESET\n02 Voice/Keyer/RTTY/PSK Memory 1\n03 Voice/Keyer/RTTY/PSK Memory 2\n04 Voice/Keyer/RTTY/PSK Memory 3\n05 Voice/Keyer/RTTY/PSK Memory 4",
+   "kind": "panel",
+   "pages": [
+    21
+   ],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0088",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Remote MIC Key setting",
+   "body": "Data Function\n00 No function\n01 UP\n02 DOWN\n03 UP (VFO: kHz)\n04 DOWN (VFO: kHz)\n05 XFC\n06 VFO/MEMO\n07 BAND UP\n08 BAND DOWN\n09 SPEECH\n10 MODE\n11 Voice/Keyer/RTTY/PSK Memory 1\n12 Voice/Keyer/RTTY/PSK Memory 2\n13 Voice/Keyer/RTTY/PSK Memory 3\n14 Voice/Keyer/RTTY/PSK Memory 4\n15 TS\n16 MPAD\n17 SPLIT\n18 CHANGE\n19 TUNER",
+   "kind": "panel",
+   "pages": [
+    21
+   ],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0090",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "IP address setting",
+   "body": "1st octet 4th octet3rd octet2nd octet\n1000 ：0 (Fixed)\n10 ：0 ~ 9\n1 ：0 ~ 9\n1000 ：0 (Fixed)\n10 ：0 ~ 9\n1 ：0 ~ 9\n1000 ：0 (Fixed)\n10 ：0 ~ 9\n1 ：0 ~ 9\n1000 ：0 (Fixed)\n10 ：0 ~ 9\n1 ：0 ~ 9\nLSet each octet to 00 00 ~ 02 55.\nLFF = blank in command 1A 05 01 67,  01 68,\n01 69, and 01 74.\n[8 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    21
+   ],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0162",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0171",
+     "data": "00/01"
+    }
+   ]
+  },
+  {
+   "title": "Split offset frequency setting",
+   "body": "1 kHz digit: 0 ~ 9\n100 Hz digit: 0\n(fixed)\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 9\n1 MHz digit: 0 ~ 9\nDirection:\n00=+ direction\n01=– direction\n2 3*¹\n4*²\n*1 Transverter offset only. Fix to ‘0’ for split offset setting.\n*2  No need to enter for the transverter offset frequency\nsetting.\n[3 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    21
+   ],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0060",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Color settings",
+   "body": "R (Red)\nG (Green)\nB (Blue)\n[6 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    22
+   ],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0193",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Data mode with filter width settings",
+   "body": "01=FIL1\n02=FIL2\n03=FIL3\n00=Data mode OFF*\n01=DATA1\n02=DATA2\n03=DATA3\n*When 00 is set, also set 00 to 2.\nBand Data mode Maximum output power\n[3 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    22
+   ],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "06",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "TX Power Limit setting",
+   "body": "1Band 2Data mode 3\u0007Maximum\noutput power\n01=1.8 MHz 07=18 MHz 01=OFF 00 02 = 2 W ~\n02 00 = 200 W02=3.5 MHz 08=21 MHz 02=ON (D1 ~ D3)\n03= 5 MHz 09=24 MHz\n04= 7 MHz 10=28 MHz\n05=10 MHz 11=50 MHz\n06=14 MHz",
+   "kind": "panel",
+   "pages": [
+    22
+   ],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "0C",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "UTC Offset setting",
+   "body": "Shift direction\n00=+ (plus)\n01=− (minus)\nOffset time\n[2 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    22
+   ],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0204",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0206",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0302",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0323",
+     "data": "00/01"
+    }
+   ]
+  },
+  {
+   "title": "Repeater tone/tone squelch frequency settings",
+   "body": "100Hz digit: 0 ~ 2\n10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n0.1 Hz digit: 0 ~ 9\nFixed digit: 0*\nFixed digit: 0*\n1*\n*Not necessary when setting a frequency.\n[3 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    23
+   ],
+   "matches": [
+    {
+     "cmd": "1B",
+     "sub_cmd": "00",
+     "data": ""
+    },
+    {
+     "cmd": "1B",
+     "sub_cmd": "01",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Main or Sub band’s frequency settings",
+   "body": "(See p. 17)\n• Main or Sub band’s operating mode and filter\nsettings\nBoth data and filter settings can be skipped. In that\ncase, “DATA OFF” and the default filter setting of the\noperating mode is automatically selected.\n1Operating mode setting\n2Data mode setting\n3Filter setting\n00=MAIN\n01=SUB\n1  Operating mode\nsetting\n2  Data mode\nsetting\n3  Filter\nsetting\n00:LSB 05:FM 00: Data mode OFF 01:FIL1\n01:USB 07:CW-R 01: Data mode 1 (D1) 02:FIL2\n02:AM 08:RTTY-R 02: Data mode 1 (D2) 03:FIL3\n03:CW 12:PSK 03: Data mode 1 (D3) —\n04:RTTY 13:PSK-R — —\n[1 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    23
+   ],
+   "matches": [
+    {
+     "cmd": "26",
+     "sub_cmd": "SEE",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Scope waveform data",
+   "body": "Outputs the waveform data to the controller (PC).\n1: Main or Sub scope data\n• 00=Main scope, 01=Sub scope\n2: Order of division data (Current): 01~15\n3:  Division number (Maximum): 01(LAN), 15(USB)\nWhen data is sent to the controller (PC) using the\nRF deck’s [LAN] port, all data is sent together.\nHowever, when the data is sent through the [USB B]\nport on the controller’s rear panel, the data is divided\nby 15 and sent in sequential order.\nDivision number Data length\nLAN 01 704\nUSB 15\n1st data 15\nlater data 53\n15th data 42\nThe 1st data sends only the wave information\n(1 ~ 6) without the waveform data (7). The\n2nd or later data sends the Main or Sub scope\ndata (1), the order of division data (Current) (2),\nthe division number (Maximum) (3), and the\nwaveform data (7).\n4: Spectrum scope mode data:\n• 00 = Center mode scope\n• 01 = Fixed mode scope\n• 02 = SCROLL-C mode scope\n• 03 = SCROLL-F mode scope\n5:  Waveform information:\nThe waveform information differs, depending on\nthe Spectrum scope mode.\n• In the Center mode:\nCenter frequency and span are sent.\nSee page 17 for Operating frequency data, and\npage 25 for the Scope span settings (2 ~ 6).\n• In the Fixed, SCROLL-C, and SCROLL-F modes:\nLower edge and higher edge frequencies are sent.\n10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 6\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0, F*\n100 MHz digit: 0 (Fixed)\n10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit:  0 ~ 9\n10 MHz digit:  0 ~ 6\n1 MHz digit:  0 ~ 9\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\nLower edge Higher edge\nL“F” means that the Lower edge frequency is a\nnegative value.\n6:  Out of range information:\n• 00 = In range\n• 01 = Out of range\nLIf the scope data is out of range, the waveform data\n(7) is omitted.\n7:  Waveform data:\nThe transceiver outputs the drawn waveform data.\nThe data range or data length of the waveform\ndata is judged by the controller (PC). (The data\nrange is basically the same as the display size of\nthe scope on the controller (PC).)\n• Data range: 00 ~ C8 (0 ~ 200)\n• Data length: 689\n[7 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    24
+   ],
+   "matches": [
+    {
+     "cmd": "27",
+     "sub_cmd": "00",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Spectrum scope mode settings",
+   "body": "00=Center mode\n01=Fixed mode\n02=SCROLL-C mode\n03=SCROLL-F mode\n00=MAIN\n01=SUB\n[1 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    24
+   ],
+   "matches": [
+    {
+     "cmd": "27",
+     "sub_cmd": "14",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Scope Reference level settings",
+   "body": "Adjustable range:  –30.0 dB ~ +10.0 dB\nin 0.5 dB steps.",
+   "kind": "panel",
+   "pages": [
+    25
+   ],
+   "matches": [
+    {
+     "cmd": "27",
+     "sub_cmd": "19",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Scope Hold settings",
+   "body": "00=Hold OFF\n01=Hold ON\n00=MAIN\n01=SUB\n00= + (plus)\n01= – (minus)\n00=Main scope\n01=Sub scope\n10 dB digit: 0 ~ 3\n1 dB digit: 0 ~ 9\n0.1 dB digit: 0, 5\n0.01 dB digit: 0 (Fixed)\n[2 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    25
+   ],
+   "matches": [
+    {
+     "cmd": "27",
+     "sub_cmd": "17",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Scope Sweep speed settings",
+   "body": "00=FAST\n01=MID\n02=SLOW\n00=MAIN\n01=SUB\n00=Narrow\n01=Wide\n00=MAIN\n01=SUB\n00=WIDE\n01=MID\n01=NAR\n00=MAIN\n01=SUB\n[3 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    25
+   ],
+   "matches": [
+    {
+     "cmd": "27",
+     "sub_cmd": "1A",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Scope VBW (Video Band Width) settings",
+   "body": "",
+   "kind": "panel",
+   "pages": [
+    25
+   ],
+   "matches": [
+    {
+     "cmd": "27",
+     "sub_cmd": "1D",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Scope RBW (Resolution Band Width) settings",
+   "body": "• Scope Edge number settings\n(in the Fixed mode and SCROLL-F mode Scope)\n01=Edge 1\n02=Edge 2\n03=Edge 3\n04=Edge 4\n00=MAIN\n01=SUB\n• Scope span settings\n(in the Center mode and SCROLL-C mode Scope)\n1 kHz digit: 0, 2, 5\n100 Hz digit: 0, 5\n100 kHz digit: 0, 1, 2, 5\n10 kHz digit: 0, 1, 2, 5\n10 Hz digit: 0 (Fixed)\n1 Hz digit: 0 (Fixed)\n10 MHz digit: 0 (Fixed)\n1 MHz digit: 0 (Fixed)\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\n00: MAIN\n01: SUB\nSpan (kHz)\n[11 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    25
+   ],
+   "matches": [
+    {
+     "cmd": "27",
+     "sub_cmd": "15",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Scope Fixed edge frequency settings",
+   "body": "LEntry of less than 1 kHz digits are ignored.\n1 Selectable Frequency ranges:\nData Frequency range (unit: MHz)\n2  Selectable Edge number: 01=1, 02=2, 03=3, 04=4\n10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 6\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\n10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 6\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\nFrequency range\nLower edge Higher edge\nEdge number: 01 ~ 04\n• Directly specify the Main or Sub band and\nsend/read the supported command\nSpecify the Main or Sub band before entering the\nsupported commands.\nWhen you receive the OK code (FB), or the NG code\n(FA), the Command 29 and Main/Sub specify (00 or 01)\nis omitted.\n00: MAIN\n01: SUB\nSupported commands\nCommands Data\nThe supported commands are marked by “29” in the\ncommand table.\n[17 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    26
+   ],
+   "matches": [
+    {
+     "cmd": "29",
+     "sub_cmd": "00 or 01",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *4",
+   "body": "In the CW mode, if the transceiver transmits or the Break-in function is ON, a message will be transmitted as CW code when you send it from your PC.",
+   "kind": "footnote",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "17",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *5",
+   "body": "Sending the power ON command (18 01) turns ON the transceiver when the [USB B] port on the controller’s rear panel is connected to the PC and the transceiver is OFF (Standby/Shutdown). LWhen the transceiver is remotely controlled through the [REMOTE] jack on the RF deck’s rear panel, the transceiver is not turned ON even if the command is sent.",
+   "kind": "footnote",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "01",
+     "sub_cmd": "",
+     "data": ""
+    },
+    {
+     "cmd": "18",
+     "sub_cmd": "01",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *1",
+   "body": "1A 05  01 63, 1A 08, 1A 0A, and 1A 0D cannot be sent.",
+   "kind": "footnote",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0163",
+     "data": ""
+    }
+   ]
+  }
+ ]
+}

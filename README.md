@@ -89,8 +89,13 @@ Routes call `get_store()` (returns cached singleton) and use its methods:
 - `GET /radios/{id}/capabilities` → `store.capabilities_for_radio(id)`
 - `GET /commands?radio_id=&q=&limit=&offset=` → `store.search_commands()` —
   case-insensitive substring match across `cmd`, `sub_cmd`, `data`,
-  `description`; pagination via slice
+  `description`, and the embedded manual-note bodies; pagination via slice
 - `GET /radios/{id}/commands?q=` → same, scoped to one radio
+- Manual notes: rows embed `page_refs` (the manual page references the row's
+  text cites) and `notes` (manual detail tables bound to the row — extracted
+  from the reference PDFs' detail sections and table-page footnotes by
+  `docs/icom manuals/extract_detail_panels.py` + `resolve_notes.py`, stored
+  as `data/civ-command-notes-<id>.json`)
 - `POST /feedback` → validates radio exists, appends a JSON record to
   `feedback.jsonl` (location via `CIV_FEEDBACK_FILE` env or bundled `data/`).
   **Never touches the in-memory index.**
@@ -290,7 +295,7 @@ use. Recommended workflow:
 ```json
 {
   "name": "civ_search_commands",
-  "description": "Search Icom CI-V commands across cmd/sub_cmd/data/description. Returns JSON.",
+  "description": "Search Icom CI-V commands across cmd/sub_cmd/data/description and manual note bodies. Returns JSON.",
   "parameters": {
     "type": "object",
     "properties": {
@@ -312,6 +317,11 @@ use. Recommended workflow:
   (max 500).
 - When reporting a command from the API, include the `radio_id`, `cmd`, and
   `sub_cmd` so the user can verify.
+- Rows carry `page_refs` (the manual pages the row cites) and `notes` (the
+  referenced manual tables as ASCII, e.g. the frequency data encoding). When
+  a data cell says "see p. N", the corresponding table is usually already
+  embedded in the row's `notes` — prefer quoting it over asking the user to
+  find the manual.
 - Only call `POST /feedback` when the user explicitly asks to submit a
   correction.
 - If your agent framework reads an OpenAPI spec, point it at `/openapi.json`.

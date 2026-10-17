@@ -30,6 +30,20 @@ class Capability(BaseModel):
     radios: dict[str, Union[bool, str]]
 
 
+class CommandNote(BaseModel):
+    """A manual note/panel bound to one or more command rows.
+
+    ``kind``: "panel" (a detail-section table from the manual, e.g. the
+    frequency data encoding) or "footnote" (a table-page footnote legend,
+    e.g. "*3 When sending the power ON command ...").
+    """
+
+    title: str = ""
+    body: str = ""
+    kind: str = "panel"
+    pages: list[int] = []
+
+
 class Command(BaseModel):
     """A single CI-V command row parsed from a radio's command table CSV."""
 
@@ -38,6 +52,14 @@ class Command(BaseModel):
     sub_cmd: str = Field("", description="Sub-command hex (e.g. '00'); empty if none")
     data: str = Field("", description="Data payload description from the manual")
     description: str = Field("", description="Human-readable command description")
+    page_refs: list[str] = Field(
+        default=[],
+        description="Manual page references the row's text cites, e.g. 'p. 17' or 'p. 19-9'",
+    )
+    notes: list[CommandNote] = Field(
+        default=[],
+        description="Manual detail content bound to this row (referenced tables as ASCII)",
+    )
 
 
 class CommandListResponse(BaseModel):

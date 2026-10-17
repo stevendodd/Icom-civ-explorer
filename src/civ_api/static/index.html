@@ -153,7 +153,7 @@
           <span class="step-num">2</span>
           <div class="step-body">
             <div class="step-head"><span class="endpoint-badge get">GET</span><code>/commands?q=...</code></div>
-            <p><strong>Search</strong> — find commands by keyword or code. <code>q</code> is plain substring matching across <code>cmd</code>, <code>sub_cmd</code>, <code>data</code>, and <code>description</code>. Add <code>radio_id</code> to narrow.</p>
+            <p><strong>Search</strong> — find commands by keyword or code. <code>q</code> is plain substring matching across <code>cmd</code>, <code>sub_cmd</code>, <code>data</code>, <code>description</code>, and the embedded manual-note bodies. Add <code>radio_id</code> to narrow.</p>
           </div>
         </div>
         <div class="workflow-card">
@@ -233,7 +233,16 @@ Use `curl` (or `webfetch`) against these endpoints:
   "cmd": "16",
   "sub_cmd": "02",
   "data": "00 to 03",
-  "description": "Send/read the Preamp/External Preamp ..."
+  "description": "Send/read the Preamp/External Preamp ...",
+  "page_refs": ["p. 19-9"],
+  "notes": [
+    {
+      "title": "Operating frequency",
+      "body": "10 Hz digit: 0-9\n1 Hz digit: 0-9\n...",
+      "kind": "panel",
+      "pages": [19]
+    }
+  ]
 }
 ```
 - `cmd` — primary command hex (no `0x` prefix), e.g. `"16"`, `"1A"`
@@ -241,6 +250,11 @@ Use `curl` (or `webfetch`) against these endpoints:
   string like `"05,02"` (meaning sub-cmd bytes `05` then `02`). Empty string = no sub-command
 - `data` — data payload description from the manual (free text, e.g. `"00 to 03"`)
 - `description` — human-readable description of the command
+- `page_refs` — manual page references the row's text cites (e.g. `"page_refs": ["p. 17"]`) for rows
+  that say "see p. N"; empty list when citing nothing
+- `notes` — the referenced manual content, embedded: detail-section tables/panels (ASCII,
+  e.g. the data-mode or frequency encoding tables) and numbered table footnotes (`"Table footnote *3"`),
+  each bound to the rows the manual applies them to. Empty list when the row has no notes
 
 **Capability object schema** (from `/radios/{id}/capabilities`):
 ```json
@@ -261,7 +275,8 @@ The `radios` map values are booleans or descriptive strings (e.g. `"external (AH
 includes `total`, so iterate with offset if `total &gt; limit`. Always check `total`
 and page through for complete results.
 
-**Search (`q`):** matches across `cmd`, `sub_cmd`, `data`, and `description`. It is a
+**Search (`q`):** matches across `cmd`, `sub_cmd`, `data`, `description`, and the
+embedded manual-note bodies. It is a
 substring/keyword search, not a structured lookup. For an exact command-byte
 lookup, filter client-side on `cmd` + `sub_cmd` from a `q` query, or fetch the
 radio's full command list (page through if needed) and match.
@@ -408,7 +423,7 @@ When using this skill to answer CI-V questions:
           <tr><td>GET</td><td><code>/radios</code></td><td>List all supported radios with CI-V addresses and command counts.</td></tr>
           <tr><td>GET</td><td><code>/radios/{radio_id}</code></td><td>Single radio info (id is a lowercase short code like <code>7300</code>).</td></tr>
           <tr><td>GET</td><td><code>/radios/{radio_id}/capabilities</code></td><td>Capability matrix for one radio.</td></tr>
-          <tr><td>GET</td><td><code>/commands?radio_id=7300&amp;q=frequency&amp;limit=100&amp;offset=0</code></td><td>Search/filter commands. <code>q</code> matches cmd, sub_cmd, data, and description (case-insensitive).</td></tr>
+          <tr><td>GET</td><td><code>/commands?radio_id=7300&amp;q=frequency&amp;limit=100&amp;offset=0</code></td><td>Search/filter commands. <code>q</code> matches cmd, sub_cmd, data, description, and manual-note bodies (case-insensitive).</td></tr>
           <tr><td>GET</td><td><code>/radios/{radio_id}/commands?q=vfo</code></td><td>Commands for one radio, with optional search.</td></tr>
           <tr><td>POST</td><td><code>/feedback</code></td><td>Submit a correction (JSON body). Appends to a review queue.</td></tr>
           <tr><td>GET</td><td><code>/feedback</code></td><td>Admin (Basic auth): download all submitted feedback as a JSONL file (one JSON object per line).</td></tr>

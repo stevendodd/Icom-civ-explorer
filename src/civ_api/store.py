@@ -14,7 +14,7 @@ from importlib import resources
 from pathlib import Path
 from typing import Any
 
-from .models import Capability, Command, RadioSummary
+from .models import Capability, Command, CommandNote, RadioSummary
 
 # Canonical radio id -> model name (kept in sync with civ-radio-capabilities.json).
 # The 9700 is the multi-band satellite/VHF+UHF/SHF rig; the rest are HF/50 MHz.
@@ -47,16 +47,33 @@ _SEE_PAGE_RE = re.compile(
 _BARE_PAGE_PREFIX_RE = re.compile(rf"^[pP]p?\.\s*{_PAGES_LIST}{_PAGES_TAIL}")
 
 
-def _strip_page_refs(value: str) -> str:
-    """Remove manual page references ("See p. <n>") from a CSV field value."""
-    # Remove any occurrence (standalone, leading, trailing, or mid-string),
-    # collapsing leftover whitespace and stray leading separators.
-    cleaned = _SEE_PAGE_RE.sub(" ", value)
-    # Also strip a bare leading "p. NN-N " prefix (no "See"), start of field only.
-    cleaned = _BARE_PAGE_PREFIX_RE.sub("", cleaned)
+def _strip_page_refs(value: str) -> tuple[str, list[str]]:
+    """Split manual page references ("See p. <n>") off a CSV field value.
+
+    Returns ``(cleaned, refs)`` where ``refs`` are the normalized page tokens
+    ("p. 17", "pp. 18 and 19", "p. 19-9") in order of appearance. The refs
+    surface as ``Command.page_refs``; the cleaned text is what the API/UI
+    render (previously the refs were discarded outright).
+    """
+    found: list[str] = []
+
+    def _capture(match: re.Match) -> str:
+        found.append(match.group(0).strip())
+        return " "
+
+    cleaned = _SEE_PAGE_RE.sub(_capture, value)
+    bare = _BARE_PAGE_PREFIX_RE.match(cleaned)
+    if bare:
+        found.append(bare.group(0).strip())
+        cleaned = _BARE_PAGE_PREFIX_RE.sub("", cleaned, count=1)
     # Tidy a leading separator left by a stripped leading "See p. N. ".
     cleaned = re.sub(r"^\s*\.?\s*", "", cleaned)
-    return " ".join(cleaned.split()).strip()
+    refs = []
+    for raw in found:
+        token = re.sub(r"(?i)^see\s+", "", raw).strip().rstrip(".").strip()
+        if token:
+            refs.append(" ".join(token.split()))
+    return " ".join(cleaned.split()).strip(), refs
 
 
 def _data_dir() -> Path:
@@ -70,6 +87,30 @@ def _load_capabilities_json(path: Path) -> dict[str, Any]:
         return json.load(fh)
 
 
+def _load_command_notes(path: Path) -> dict[tuple[str, str, str], list[CommandNote]]:
+    """Load a radio's curated note file: data/civ-command-notes-<id>.json.
+
+    Maps each note's ``matches`` entries (cmd, sub_cmd, data) to the note.
+    A missing file simply yields no notes for that radio.
+    """
+    if not path.exists():
+        return {}
+    with path.open(encoding="utf-8") as fh:
+        raw = json.load(fh)
+    index: dict[tuple[str, str, str], list[CommandNote]] = {}
+    for note in raw.get("notes", []):
+        obj = CommandNote(
+            title=note.get("title") or "",
+            body=note.get("body") or "",
+            kind=note.get("kind") or "panel",
+            pages=[int(p) for p in (note.get("pages") or [])],
+        )
+        for m in note.get("matches", []):
+            key = (m["cmd"], m["sub_cmd"], m["data"])
+            index.setdefault(key, []).append(obj)
+    return index
+
+
 def _load_command_csv(path: Path, radio_id: str) -> list[Command]:
     """Parse a CI-V command table CSV into :class:`Command` rows.
 
@@ -77,6 +118,7 @@ def _load_command_csv(path: Path, radio_id: str) -> list[Command]:
     ``Description``. Rows where Cmd is empty are skipped (they are
     continuation/formatting artifacts in the source tables).
     """
+    notes_index = _load_command_notes(path.with_name(f"civ-command-notes-{radio_id}.json"))
     commands: list[Command] = []
     with path.open(encoding="utf-8", newline="") as fh:
         reader = csv.DictReader(fh)
@@ -84,13 +126,26 @@ def _load_command_csv(path: Path, radio_id: str) -> list[Command]:
             cmd = (row.get("Cmd.") or "").strip()
             if not cmd:
                 continue
+            sub = (row.get("Sub cmd.") or "").strip()
+            data, data_refs = _strip_page_refs((row.get("Data") or "").strip())
+            description, refs = _strip_page_refs((row.get("Description") or "").strip())
+            seen = set()
+            page_refs = []
+            for ref in data_refs + refs:
+                if ref not in seen:
+                    seen.add(ref)
+                    page_refs.append(ref)
+            # Rows whose description cited nothing may still cite refs in
+            # the raw data cell ("see p. 22" placeholders).
             commands.append(
                 Command(
                     radio_id=radio_id,
                     cmd=cmd,
-                    sub_cmd=(row.get("Sub cmd.") or "").strip(),
-                    data=_strip_page_refs((row.get("Data") or "").strip()),
-                    description=_strip_page_refs((row.get("Description") or "").strip()),
+                    sub_cmd=sub,
+                    data=data,
+                    description=description,
+                    page_refs=page_refs,
+                    notes=notes_index.get((cmd, sub, data), []),
                 )
             )
     return commands
@@ -180,8 +235,13 @@ class DataStore:
 
         if query:
             tokens = query.lower().split()
+
             def matches(c: Command) -> bool:
                 hay = (c.cmd + " " + c.sub_cmd + " " + c.data + " " + c.description).lower()
+                if c.notes:
+                    hay += " " + " ".join(
+                        (n.title or "") + " " + (n.body or "") for n in c.notes
+                    ).lower()
                 return all(tok in hay for tok in tokens)
             filtered = [c for c in pool if matches(c)]
         else:

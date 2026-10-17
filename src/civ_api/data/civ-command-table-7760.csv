@@ -6,7 +6,6 @@
 "02","","See p. 17",". Read the band edge frequencies"
 "02","00/01","","Send/read the Transmit frequency monitor (XFC) (00=OFF, 01=ON)"
 "03","","See p. 17",". Read the operating frequency"
-"03","SEE","","p. 17. Send/read user-set TX band edge frequencies"
 "04","","See p. 17",". Read the operating mode"
 "05","","See p. 17",". Set the operating frequency"
 "06","","See p. 17",". Set the operating mode"

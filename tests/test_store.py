@@ -77,19 +77,22 @@ def test_unknown_radio_returns_none() -> None:
 
 def test_strip_page_refs_handles_hyphenated_ranges() -> None:
     # Manual refs with chapter-page ranges: "see p. 20-11" (whole field),
-    # mid-string, and leading-prefix forms must be stripped in full.
-    assert _strip_page_refs("see p. 20-11") == ""
+    # mid-string, and leading-prefix forms must be stripped in full; the
+    # captured refs surface as normalized page tokens.
+    assert _strip_page_refs("see p. 20-11") == ("", ["p. 20-11"])
     assert _strip_page_refs("see p. 20-15 Output the DV RX Call signs") == (
-        "Output the DV RX Call signs"
+        "Output the DV RX Call signs",
+        ["p. 20-15"],
     )
-    assert _strip_page_refs("See pp. 18 and 19 Read freq") == "Read freq"
-    assert _strip_page_refs("Read freq See pp. 14, 15") == "Read freq"
+    assert _strip_page_refs("See pp. 18 and 19 Read freq") == ("Read freq", ["pp. 18 and 19"])
+    assert _strip_page_refs("Read freq See pp. 14, 15") == ("Read freq", ["pp. 14, 15"])
     # Bare "p. NN-N " prefixes (no "See") are stripped at field start only.
     assert _strip_page_refs("p. 19-9 Send/read SSB RX HPF/LPF settings") == (
-        "Send/read SSB RX HPF/LPF settings"
+        "Send/read SSB RX HPF/LPF settings",
+        ["p. 19-9"],
     )
     # Mid-string "p. N" wording is prose, not a page-reference artifact.
-    assert _strip_page_refs("per manual p. 28: foo") == "per manual p. 28: foo"
+    assert _strip_page_refs("per manual p. 28: foo") == ("per manual p. 28: foo", [])
 
 
 def test_loader_strips_hyphenated_page_refs_from_real_data() -> None:
@@ -108,3 +111,32 @@ def test_loader_strips_hyphenated_page_refs_from_real_data() -> None:
     send_freq = next(c for c in cmds if c.cmd == "00" and not c.sub_cmd)
     assert send_freq.description == "Send frequency data (transceive)"
     assert not any(re.search(r"^p\. \d", c.description) for c in store.commands)
+
+
+def test_manual_notes_bound_to_matching_rows() -> None:
+    # 266 curated manual notes ship per radio; matching rows embed them.
+    store = DataStore.default()
+    turn_on = next(
+        c for c in store.radio_commands("7300") if c.cmd == "18" and c.sub_cmd == "01"
+    )
+    kinds = [n.kind for n in turn_on.notes]
+    assert "footnote" in kinds
+    fn = next(n for n in turn_on.notes if n.kind == "footnote")
+    assert "power ON command (18 01)" in fn.body
+
+    freq = next(c for c in store.radio_commands("7300") if c.cmd == "00" and not c.sub_cmd)
+    panels = [n for n in freq.notes if n.kind == "panel" and "frequency" in n.title.lower()]
+    assert panels
+    assert "10 Hz digit" in panels[0].body  # BCD digit layout from the manual
+
+
+def test_search_matches_note_bodies() -> None:
+    store = DataStore.default()
+    hits, _ = store.search_commands(radio_id="7300", query="counter", limit=500)
+    assert hits
+    assert all(
+        "counter" in (
+            (c.description or "") + " " + " ".join((n.body or "") for n in c.notes)
+        ).lower()
+        for c in hits
+    )
