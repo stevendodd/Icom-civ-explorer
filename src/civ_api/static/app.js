@@ -301,30 +301,38 @@
     }));
   }
 
+  function noteBlock(n) {
+    var block = document.createElement("div");
+    block.className = "cmd-note";
+    var head = document.createElement("div");
+    head.className = "cmd-note-head";
+    head.textContent = (n.kind === "footnote" ? "Table note — " : "") + (n.title || "Manual note");
+    block.appendChild(head);
+    var pre = document.createElement("pre");
+    pre.className = "cmd-note-body";
+    pre.textContent = n.body || "";
+    block.appendChild(pre);
+    return block;
+  }
+
   function appendNoteCells(cell, item, groupShared) {
-    // groupShared (browse path): { shared: Set-of-keys, isFirst: bool } —
-    // notes shared across the command group render only on its first row.
+    // groupShared (browse path): { shared: Set, rendered: {}, movedUp: {} } —
+    // notes shared across the group render once at their first row; notes
+    // already hoisted to the command-level block above the table are skipped.
     if (item.page_refs && item.page_refs.length > 0) {
       cell.appendChild(tag("div", "Manual: " + item.page_refs.join(", "),
         { class: "note-ref" }));
     }
     (item.notes || []).forEach(function (n) {
       var k = noteKey(n);
-      if (groupShared && groupShared.shared.has(k)) {
-        if (groupShared.rendered[k]) { return; }   // already shown at its first row
-        groupShared.rendered[k] = true;            // render once, here
+      if (groupShared) {
+        if (groupShared.movedUp && groupShared.movedUp[k]) { return; }
+        if (groupShared.shared.has(k)) {
+          if (groupShared.rendered[k]) { return; }   // already shown at its first row
+          groupShared.rendered[k] = true;            // render once, here
+        }
       }
-      var block = document.createElement("div");
-      block.className = "cmd-note";
-      var head = document.createElement("div");
-      head.className = "cmd-note-head";
-      head.textContent = (n.kind === "footnote" ? "Table note — " : "") + (n.title || "Manual note");
-      block.appendChild(head);
-      var pre = document.createElement("pre");
-      pre.className = "cmd-note-body";
-      pre.textContent = n.body || "";
-      block.appendChild(pre);
-      cell.appendChild(block);
+      cell.appendChild(noteBlock(n));
     });
   }
 
@@ -531,6 +539,27 @@
     detail.appendChild(back);
 
     var table = tag("table", null, { class: "browse-table" });
+    // Command-level rows (empty sub_cmd) carry the notes that apply to the
+    // whole command: render them once in a block above the table instead of
+    // on the first table row.
+    var movedUp = {};
+    var cmdNoteOrder = [];
+    rows.forEach(function (c) {
+      if (c.sub_cmd) { return; } // sub-command row: its notes stay row-bound
+      (c.notes || []).forEach(function (n) {
+        var k = noteKey(n);
+        if (!movedUp[k]) { movedUp[k] = n; cmdNoteOrder.push(k); }
+      });
+    });
+    if (cmdNoteOrder.length) {
+      var box = tag("div", null, { class: "cmd-notes-header" });
+      box.appendChild(tag("div", "Command " + cmd + " notes",
+        { class: "cmd-notes-header-title" }));
+      cmdNoteOrder.forEach(function (k) {
+        box.appendChild(noteBlock(movedUp[k]));
+      });
+      detail.appendChild(box);
+    }
     var shared = groupSharedNoteKeys(rows);
     var renderedShared = {};
     var thead = tag("thead");
@@ -549,6 +578,7 @@
       tr.appendChild(cmdCellWithNotes(c, {
         shared: shared,
         rendered: renderedShared,
+        movedUp: movedUp,
       }));
       var cell = tag("td");
       var link = tag("a", "Feedback", { href: "#feedback" });
