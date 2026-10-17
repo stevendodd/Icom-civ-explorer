@@ -285,20 +285,22 @@
     return (n.kind || "") + "|" + (n.title || "") + "|" + (n.body || "");
   }
 
-  function groupSharedNoteKeys(rows) {
-    // A note is "shared" when it appears on 2+ rows of the command group.
-    var counts = {};
+  function groupSharedNotes(rows) {
+    // Notes appearing on 2+ rows of the command group — returned as note
+    // objects in first-appearance order.
+    var counts = {}, last = {};
     (rows || []).forEach(function (c) {
-      var seen = {};
       (c.notes || []).forEach(function (n) {
         var k = noteKey(n);
-        if (!seen[k]) counts[k] = (counts[k] || 0) + 1;
-        seen[k] = true;
+        counts[k] = (counts[k] || 0) + 1;
+        last[k] = n;
       });
     });
-    return new Set(Object.keys(counts).filter(function (k) {
+    return Object.keys(counts).filter(function (k) {
       return counts[k] >= 2;
-    }));
+    }).map(function (k) {
+      return last[k];
+    });
   }
 
   function noteBlock(n) {
@@ -315,33 +317,25 @@
     return block;
   }
 
-  function appendNoteCells(cell, item, groupShared) {
-    // groupShared (browse path): { shared: Set, rendered: {}, movedUp: {} } —
-    // notes shared across the group render once at their first row; notes
-    // already hoisted to the command-level block above the table are skipped.
+  function appendNoteCells(cell, item, hoisted) {
+    // hoisted (browse path): keys of notes already rendered in the
+    // command-level block above the table — skipped on the rows.
     if (item.page_refs && item.page_refs.length > 0) {
       cell.appendChild(tag("div", "Manual: " + item.page_refs.join(", "),
         { class: "note-ref" }));
     }
     (item.notes || []).forEach(function (n) {
-      var k = noteKey(n);
-      if (groupShared) {
-        if (groupShared.movedUp && groupShared.movedUp[k]) { return; }
-        if (groupShared.shared.has(k)) {
-          if (groupShared.rendered[k]) { return; }   // already shown at its first row
-          groupShared.rendered[k] = true;            // render once, here
-        }
-      }
+      if (hoisted && hoisted[noteKey(n)]) { return; }
       cell.appendChild(noteBlock(n));
     });
   }
 
-  function cmdCellWithNotes(item, groupShared) {
+  function cmdCellWithNotes(item, hoisted) {
     var cell = document.createElement("td");
     var desc = document.createElement("div");
     desc.textContent = item.description || "";
     cell.appendChild(desc);
-    appendNoteCells(cell, item, groupShared);
+    appendNoteCells(cell, item, hoisted);
     return cell;
   }
 
@@ -539,29 +533,31 @@
     detail.appendChild(back);
 
     var table = tag("table", null, { class: "browse-table" });
-    // Command-level rows (empty sub_cmd) carry the notes that apply to the
-    // whole command: render them once in a block above the table instead of
-    // on the first table row.
-    var movedUp = {};
-    var cmdNoteOrder = [];
+    // Command-level notes hoist above the table: notes bound to the
+    // command's top-level row (empty sub_cmd), plus notes shared by 2+
+    // rows of the group. Rows skip whatever is listed here.
+    var hoisted = {};
+    var hoistOrder = [];
     rows.forEach(function (c) {
-      if (c.sub_cmd) { return; } // sub-command row: its notes stay row-bound
+      if (c.sub_cmd) { return; }
       (c.notes || []).forEach(function (n) {
         var k = noteKey(n);
-        if (!movedUp[k]) { movedUp[k] = n; cmdNoteOrder.push(k); }
+        if (!hoisted[k]) { hoisted[k] = n; hoistOrder.push(k); }
       });
     });
-    if (cmdNoteOrder.length) {
+    groupSharedNotes(rows).forEach(function (n) {
+      var k = noteKey(n);
+      if (!hoisted[k]) { hoisted[k] = n; hoistOrder.push(k); }
+    });
+    if (hoistOrder.length) {
       var box = tag("div", null, { class: "cmd-notes-header" });
       box.appendChild(tag("div", "Command " + cmd + " notes",
         { class: "cmd-notes-header-title" }));
-      cmdNoteOrder.forEach(function (k) {
-        box.appendChild(noteBlock(movedUp[k]));
+      hoistOrder.forEach(function (k) {
+        box.appendChild(noteBlock(hoisted[k]));
       });
       detail.appendChild(box);
     }
-    var shared = groupSharedNoteKeys(rows);
-    var renderedShared = {};
     var thead = tag("thead");
     var hr = tag("tr", null, {});
     hr.appendChild(tag("th", "Sub cmd"));
@@ -575,11 +571,7 @@
       var tr = tag("tr", null, {});
       tr.appendChild(tag("td", c.sub_cmd));
       tr.appendChild(tag("td", c.data));
-      tr.appendChild(cmdCellWithNotes(c, {
-        shared: shared,
-        rendered: renderedShared,
-        movedUp: movedUp,
-      }));
+      tr.appendChild(cmdCellWithNotes(c, hoisted));
       var cell = tag("td");
       var link = tag("a", "Feedback", { href: "#feedback" });
       link.addEventListener("click", function (ev) {
