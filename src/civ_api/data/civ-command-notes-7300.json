@@ -5,7 +5,7 @@
  "notes": [
   {
    "title": "Operating frequency",
-   "body": "\u0003\nXXX XX\n\u000e\u0019\n$/\n10 Hz digit: 0–9\n1 Hz digit: 0–9\n1 kHz digit: 0–9\n100 Hz digit: 0–9\n100 kHz digit: 0–9\n10 kHz digit: 0–9\n10 MHz digit: 0–6\n1 MHz digit: 0–9\n1000 MHz digit: 0\n(Fixed)\n100 MHz digit: 0\n(Fixed)\n[2 diagram glyph lines omitted]",
+   "body": "Data is 5 bytes (10 bytes of BCD), little-endian. Digit order: byte-1 low nibble = 10 Hz, byte-1 high = 1 Hz, byte-2 low = 1 kHz, byte-2 high = 100 Hz, byte-3 low = 100 kHz, byte-3 high = 10 kHz, byte-4 low = 10 MHz, byte-4 high = 1 MHz, byte-5 low = 1 GHz (0 fixed on IC-7300), byte-5 high = 100 MHz (0-3).\nExample: 14.257.000 MHz -> 00 00 57 42 01.\n\nCommands 00 / 03 / 05 read or set transceive frequency; command 1C 03 reads the transmit frequency in Split.",
    "kind": "panel",
    "pages": [
     166
@@ -35,7 +35,7 @@
   },
   {
    "title": "Operating mode",
-   "body": "Filter setting (2) can be skipped with command 01\nand 06. In that case, “FIL1” is selected with command\n01 and the default filter setting of the operating mode\nis automatically selected with command 06.\n\u0003\nXXX X\n\u000e\n1 Operating mode 2 Filter setting\n00: LSB 05: FM 01: FIL1\n01: USB 07: CW-R 02: FIL2\n02: AM 08: RTTY-R 03: FIL3\n03: CW\n04: RTTY",
+   "body": "Data is 1-2 bytes.\nByte 1 - operating mode: 00=LSB, 01=USB, 02=AM, 03=CW, 04=RTTY, 05=FM, 07=CW-R, 08=RTTY-R.\nByte 2 - filter: 01=FIL1, 02=FIL2, 03=FIL3 (optional with commands 01 and 06; FIL1/default selected when omitted).\n\nWith command 06, mode changes in transceive are output.",
    "kind": "panel",
    "pages": [
     166
@@ -89,8 +89,48 @@
    ]
   },
   {
+   "title": "Color settings",
+   "body": "\u0003\n\u000e\u0019$/:\nR (Red)\nG (Green)\nB (Blue)\n[5 diagram glyph lines omitted]",
+   "kind": "panel",
+   "pages": [
+    166
+   ],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0104",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Band edge frequency settings",
+   "body": "Band edge pair, one edge per data group:\n  byte 1: edge number (01-1E = 1-30); not returned when reading by command 02\n  bytes 2-6: lower edge frequency (5-byte BCD, same encoding as command 05)\n  byte 7: separator 2D (fixed)\n  bytes 8-12: higher edge frequency (5-byte BCD)\n\nCommand 02 reads band edge frequencies; commands 1E 01 / 1E 03 read or set numbered band edges.",
+   "kind": "panel",
+   "pages": [
+    166
+   ],
+   "matches": [
+    {
+     "cmd": "02",
+     "sub_cmd": "",
+     "data": ""
+    },
+    {
+     "cmd": "1E",
+     "sub_cmd": "01",
+     "data": ""
+    },
+    {
+     "cmd": "1E",
+     "sub_cmd": "03",
+     "data": ""
+    }
+   ]
+  },
+  {
    "title": "Band stacking register",
-   "body": "\u0003\nXXX X\n\u000e\n1 Frequency band codes\nCode Freq. band Frequency range (unit: MHz)\n11 GENE Other than above\n2 Register codes\nCode Registered number\n01 1 (latest)\n03 3 (oldest)\nFor example, when sending/reading the oldest\ncontents in the 21 MHz band, the code “07 03” is used.\n[11 diagram glyph lines omitted]",
+   "body": "\u0003\n\u000e\n1 Frequency band codes\nCode Freq. band Frequency range (unit: MHz)\n11 GENE Other than above\n2 Register codes\nCode Registered number\n01 1 (latest)\n03 3 (oldest)\nFor example, when sending/reading the oldest\ncontents in the 21 MHz band, the code “07 03” is used.\n[12 diagram glyph lines omitted]",
    "kind": "panel",
    "pages": [
     167
@@ -255,7 +295,7 @@
   },
   {
    "title": "RIT frequency settings",
-   "body": "10 Hz: 0–9\n100 Hz: 0–9\n1 Hz: 0–9\n1 kHz: 0–9\nXXXX XX\n00: + (plus)\n01: – (minus)",
+   "body": "10 Hz: 0–9\n100 Hz: 0–9\n1 Hz: 0–9\n1 kHz: 0–9\n00: + (plus)\n01: – (minus)\n[1 diagram glyph lines omitted]",
    "kind": "panel",
    "pages": [
     170
@@ -290,7 +330,7 @@
   },
   {
    "title": "UTC Offset setting",
-   "body": "Shift direction\n00: + (plus)\n01: − (minus)\nOffset time\n00 00−14 00\nXXX XX\n[1 diagram glyph lines omitted]",
+   "body": "Shift direction\n00: + (plus)\n01: − (minus)\nOffset time\n00 00−14 00\n[2 diagram glyph lines omitted]",
    "kind": "panel",
    "pages": [
     170

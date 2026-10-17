@@ -127,7 +127,7 @@ def test_manual_notes_bound_to_matching_rows() -> None:
     freq = next(c for c in store.radio_commands("7300") if c.cmd == "00" and not c.sub_cmd)
     panels = [n for n in freq.notes if n.kind == "panel" and "frequency" in n.title.lower()]
     assert panels
-    assert "10 Hz digit" in panels[0].body  # BCD digit layout from the manual
+    assert "10 Hz" in panels[0].body  # BCD digit layout from the manual
 
 
 def test_search_matches_note_bodies() -> None:

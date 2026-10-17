@@ -5,7 +5,7 @@
  "notes": [
   {
    "title": "Operating frequency",
-   "body": "",
+   "body": "Data is 5 bytes (10-byte BCD), little-endian. Digit order: byte-1 low = 10 Hz, byte-1 high = 1 Hz, byte-2 low = 1 kHz, byte-2 high = 100 Hz, byte-3 low = 100 kHz, byte-3 high = 10 kHz, byte-4 low = 10 MHz, byte-4 high = 1 MHz, byte-5 low = 1 GHz (0 fixed), byte-5 high = 100 MHz (0-4 on IC-705).\nExample: 144.000000 MHz -> 00 00 00 44 01\n\nCommands 00 / 03 / 05 read or set transceive frequency; command 1C 03 reads the transmit frequency in Split.",
    "kind": "panel",
    "pages": [
     17
@@ -55,7 +55,7 @@
   },
   {
    "title": "Operating mode",
-   "body": "1Operating mode 2Filter setting\n00:LSB 05 :FM 01:FIL1\n01:USB 06 :WFM 02:FIL2\n02:AM 07 :CW-R 03:FIL3\n03:CW 08 :RTTY-R —\n04:RTTY 17 :DV —\nLFilter setting, (2) can be skipped with command\n01 and 06. In that case, “FIL1” is selected with\ncommand 01 and the default filter setting of the\noperating mode is automatically selected with\ncommand 06.",
+   "body": "Data is 1-2 bytes.\nByte 1 - operating mode: 00=LSB, 01=USB, 02=AM, 03=CW, 04=RTTY, 05=FM, 06=WFM, 07=CW-R, 08=RTTY-R, 17=DV.\nByte 2 - filter: 01=FIL1, 02=FIL2, 03=FIL3 (optional with commands 01 and 06; FIL1/default selected when omitted).",
    "kind": "panel",
    "pages": [
     17
@@ -94,8 +94,33 @@
    ]
   },
   {
+   "title": "Band edge frequency settings",
+   "body": "Band edge frequencies are sent as pairs of BCD-encoded frequencies, one pair per edge:\n  byte 1: edge number (01-1E = 1-30) (not returned when reading by command 02)\n  bytes 2-6: lower edge frequency (5-byte BCD, same encoding as command 05)\n  byte 7: separator 2D (fixed)\n  bytes 8-12: higher edge frequency (5-byte BCD)\n\nCommand 02 reads band edge frequencies; command 1E 03 reads/sets numbered band edges (command 1E 01 reads them).",
+   "kind": "panel",
+   "pages": [
+    17
+   ],
+   "matches": [
+    {
+     "cmd": "02",
+     "sub_cmd": "",
+     "data": ""
+    },
+    {
+     "cmd": "1E",
+     "sub_cmd": "01",
+     "data": ""
+    },
+    {
+     "cmd": "1E",
+     "sub_cmd": "03",
+     "data": ""
+    }
+   ]
+  },
+  {
    "title": "Memory content",
-   "body": "26 ~ 28 29～36 37 ~ 44 45 ~ 52 6 ~ 52 53 ~ 68\nXXXX XX\n1, 2: Memory group number\n0000 ~ 0099: Memory channel group\n0100:  Call channel group\n3, 4: Memory channel numbers\n• When Memory channel group is selected,\n• When Call channel group is selected,\n0000, 0001: 144 C1, C2\n0002, 0003: 430 C1, C2\n5: Split and Select memory setting\n0=OFF*\n1= 1\n2= 2\n3= 3\n0=Split OFF,1=Split ON\n* Set 0 for Call channel.\n6~10: Operating frequency setting\nLSee “Operating frequency” (p 17)\n11, 12: Operating mode setting\nLSee “Operating mode” (p 17)\n13: Data mode setting\n1 byte data (XX)\n00: Data mode OFF\n01: Data mode ON\n14: Duplex and Tone settings\n0=Duplex OFF\n1=Duplex−\n2=Duplex+\n0=OFF\n1=TONE\n2=TSQL\n3=DTCS\n15: Digital squelch setting\n0=Digital squelch function OFF\n1=Digital call sign squelch function ON (DSQL)\n2=Digital code squelch function ON (CSQL)\nFixed\n16~18: Repeater tone frequency setting\n19~21: Repeater tone frequency setting\nLSee “Repeater tone/tone squelch frequency setting”\n(p. 22)\n22~24: DTCS code setting\nLSee “DTCS code and polarity setting” (p 22)\n25: DV Digital code squelch setting\nLSee “DV Digital code squelch setting” (p 23)\n26~28: Duplex offset frequency setting\nLSee “Duplex Offset frequency setting” (p 17)\n29~36:  UR (Destination) call sign setting\n(8 characters, fixed)\n37~44:  R1 (Access repeater) call sign setting\n(8 characters, fixed)\n45~52:  R2 (Gateway/Link repeater) call sign setting\n(8 characters, fixed)\nLSee “DV TX call signs setting” (p 23)\n53~68:  Memory name setting (16 characters, fixed)\nLSee “Codes for character entries” (p 19)\nTo clear the memory channel contents on 1A 00:\n1, 2:  Memory channel group (0000~0099)\nYou cannot specify group “0100” (Call\nchannel group)\n3, 4: Memory channel (0000~0099)\n5: “FF,” 6 ~ : None\nNOTE:\n• The same data as 6 ~ 52 are stored in 6 ~ 52.\n• When the Split function is ON, the data of 6 ~ 52\nis used for transmit.\n• Even if the Split function is OFF, enter the data\ninto 6 ~ 52 to match your transceiver. We\nrecommend that you set the same data as 6 ~ 52.\n[13 diagram glyph lines omitted]",
+   "body": "26 ~ 28 29～36 37 ~ 44 45 ~ 52 6 ~ 52 53 ~ 68\n1, 2: Memory group number\n0000 ~ 0099: Memory channel group\n0100:  Call channel group\n3, 4: Memory channel numbers\n• When Memory channel group is selected,\n• When Call channel group is selected,\n0000, 0001: 144 C1, C2\n0002, 0003: 430 C1, C2\n5: Split and Select memory setting\n0=OFF*\n1= 1\n2= 2\n3= 3\n0=Split OFF,1=Split ON\n* Set 0 for Call channel.\n6~10: Operating frequency setting\nLSee “Operating frequency” (p 17)\n11, 12: Operating mode setting\nLSee “Operating mode” (p 17)\n13: Data mode setting\n1 byte data (XX)\n00: Data mode OFF\n01: Data mode ON\n14: Duplex and Tone settings\n0=Duplex OFF\n1=Duplex−\n2=Duplex+\n0=OFF\n1=TONE\n2=TSQL\n3=DTCS\n15: Digital squelch setting\n0=Digital squelch function OFF\n1=Digital call sign squelch function ON (DSQL)\n2=Digital code squelch function ON (CSQL)\nFixed\n16~18: Repeater tone frequency setting\n19~21: Repeater tone frequency setting\nLSee “Repeater tone/tone squelch frequency setting”\n(p. 22)\n22~24: DTCS code setting\nLSee “DTCS code and polarity setting” (p 22)\n25: DV Digital code squelch setting\nLSee “DV Digital code squelch setting” (p 23)\n26~28: Duplex offset frequency setting\nLSee “Duplex Offset frequency setting” (p 17)\n29~36:  UR (Destination) call sign setting\n(8 characters, fixed)\n37~44:  R1 (Access repeater) call sign setting\n(8 characters, fixed)\n45~52:  R2 (Gateway/Link repeater) call sign setting\n(8 characters, fixed)\nLSee “DV TX call signs setting” (p 23)\n53~68:  Memory name setting (16 characters, fixed)\nLSee “Codes for character entries” (p 19)\nTo clear the memory channel contents on 1A 00:\n1, 2:  Memory channel group (0000~0099)\nYou cannot specify group “0100” (Call\nchannel group)\n3, 4: Memory channel (0000~0099)\n5: “FF,” 6 ~ : None\nNOTE:\n• The same data as 6 ~ 52 are stored in 6 ~ 52.\n• When the Split function is ON, the data of 6 ~ 52\nis used for transmit.\n• Even if the Split function is OFF, enter the data\ninto 6 ~ 52 to match your transceiver. We\nrecommend that you set the same data as 6 ~ 52.\n[14 diagram glyph lines omitted]",
    "kind": "panel",
    "pages": [
     18

@@ -535,12 +535,20 @@ The supported commands are marked by "29" in the command table.
 
 ## Attenuator Settings
 
-| Radio | Command | Values |
-|-------|---------|--------|
-| IC-9700 | `0F 11` (sub-command of `0F`) | `00`=OFF, `10`=10 dB |
-| IC-705 | `0F 11` (sub-command of `0F`) | `00`=OFF, `20`=20 dB (HF/50MHz only) |
-| IC-7100 | `0F 11` (sub-command of `0F`) | `00`=OFF, `12`=12 dB |
-| IC-7300 | `11` (top-level) | `00`=OFF, `20`=20 dB |
-| IC-7300 MK2 | `11` (top-level) | `00`=OFF, `20`=20 dB |
-| IC-7610 | `11` (top-level) | `00`=OFF, `03`-`45` (3-45 dB, 3 dB steps, 16 values) |
-| IC-7760 | `11` (top-level) | `00`=OFF, `03`-`45` (3-45 dB, 3 dB steps, 16 values) |
+Top-level command `11`; the trailing byte carries the step code (frame bytes
+are `11 <code>` — the code is data, there is no sub-command).
+
+| Radio | Values |
+|-------|--------|
+| IC-9700 | `00`=OFF, `10`=10 dB |
+| IC-705 | `00`=OFF, `20`=20 dB (HF/50MHz only) |
+| IC-7100 | `00`=OFF, `12`=12 dB |
+| IC-7300 | `00`=OFF, `20`=20 dB |
+| IC-7300 MK2 | `00`=OFF, `20`=20 dB |
+| IC-7610 | `00`=OFF, `03`-`45` (3-45 dB, 3 dB steps, 16 values) |
+| IC-7760 | `00`=OFF, `03`-`45` (3-45 dB, 3 dB steps, 16 values) |
+
+> Corrected 2026-10-17: an earlier version listed the IC-9700/705/7100 frames
+> as `0F 11`, conflating the `0F 11` (Set DUP–) sub-command with command `11`.
+> Verified against both manuals' summary-table block headers (`11*` starts a
+> new command block; `10*` similarly opens the tuning-step command `10`).

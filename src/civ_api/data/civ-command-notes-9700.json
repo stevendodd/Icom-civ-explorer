@@ -5,7 +5,7 @@
  "notes": [
   {
    "title": "Operating frequency",
-   "body": "10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 9\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0 ~ 1\n100 MHz digit: 0 ~ 4\n[5 diagram glyph lines omitted]",
+   "body": "Data is 5 bytes (10-byte BCD), little-endian. Digit order: byte-1 low = 10 Hz, byte-1 high = 1 Hz, byte-2 low = 1 kHz, byte-2 high = 100 Hz, byte-3 low = 100 kHz, byte-3 high = 10 kHz, byte-4 low = 10 MHz, byte-4 high = 1 MHz, byte-5 low = 1 GHz (0-1), byte-5 high = 100 MHz (0-4 on IC-9700).\nExample: 144.000000 MHz -> 00 00 00 44 01\n\nCommands 00 / 03 / 05 read or set transceive frequency; command 1C 03 reads the transmit frequency in Split.",
    "kind": "panel",
    "pages": [
     13
@@ -35,7 +35,7 @@
   },
   {
    "title": "Operating mode",
-   "body": "qOperating mode wFilter setting\n00:LSB 05 :FM 01:FIL1\n01:USB 07 :CW-R 02:FIL2\n02:AM 08 :RTTY-R 03:FIL3\n03:CW 17 :DV —\n04:RTTY 22 :DD* —\n*  22 Command (DD) can be selected when setting the\n1200 MHz band to other than the satellite mode.\nL Filter setting, (w) can be skipped with command 01\nand 06. In that case, “FIL1” is selected with command\n01 and the default filter setting of the operating mode is\nautomatically selected with command 06.\n[2 diagram glyph lines omitted]",
+   "body": "Data is 1-2 bytes.\nByte 1 - operating mode: 00=LSB, 01=USB, 02=AM, 03=CW, 04=RTTY, 05=FM, 07=CW-R, 08=RTTY-R, 17=DV, 22=DD (DD selectable only when 1200 MHz band is set to other than satellite mode).\nByte 2 - filter: 01=FIL1, 02=FIL2, 03=FIL3 (optional with commands 01 and 06; FIL1/default selected when omitted).",
    "kind": "panel",
    "pages": [
     13
@@ -79,6 +79,31 @@
    ]
   },
   {
+   "title": "Band edge frequency settings",
+   "body": "Band edge frequencies are sent as pairs of BCD-encoded frequencies, one pair per edge:\n  byte 1: edge number (01-1E = 1-30) (not returned when reading by command 02)\n  bytes 2-6: lower edge frequency (5-byte BCD, same encoding as command 05)\n  byte 7: separator 2D (fixed)\n  bytes 8-12: higher edge frequency (5-byte BCD)\n\nCommand 02 reads band edges for the selected band (1.2 GHz uses 3-byte frequency encoding); commands 1E 01 / 1E 03 read or set numbered band edges.",
+   "kind": "panel",
+   "pages": [
+    13
+   ],
+   "matches": [
+    {
+     "cmd": "02",
+     "sub_cmd": "",
+     "data": ""
+    },
+    {
+     "cmd": "1E",
+     "sub_cmd": "01",
+     "data": ""
+    },
+    {
+     "cmd": "1E",
+     "sub_cmd": "03",
+     "data": ""
+    }
+   ]
+  },
+  {
    "title": "Codes for CW message contents",
    "body": "To send CW messages, use the following character\ncodes.\nCharacter ASCII code\nA ~ Z 41 ~ 5A\na ~ z 61 ~ 7A\n/ 2F\n? 3F\n. 2E\n− 2D\n, 2C\n: 3A\nCharacter ASCII code\n’ 27\n( 28\n) 29\n= 3D\n+ 2B\n” 22\n@ 40\nSpace 20\nL“FF” stops sending CW messages.\nL “^” is used to transmit a string of characters with no\ninter-character space.\nRemote control\n[1 diagram glyph lines omitted]",
    "kind": "panel",
@@ -95,7 +120,7 @@
   },
   {
    "title": "Band stacking register",
-   "body": "XXX X\nNOTE:\nWhen sending the contents, the codes, such as operating\nfrequency and operating mode*, should be added after\nthe frequency band code and the register code, as shown\nbelow.\n*  See t to %1 on ‘Memory content setting.’ (p. 14)\nq Frequency band codes\nCode Freq. band Frequency range (unit: MHz)\n01 VHF    144.000000 ~   148.000000\n02 UHF    430.000000 ~   450.000000\n03 1.2GHz 1240.000000 ~ 1300.000000\nw Register codes\nCode Registered number\n01 1 (Display on left side)\n02 2 (Display in center)\n03 3 (Display on Right side)\nTo read the contents, the register code should be\nadded after the frequency band code, as shown\nbelow.\nExample: When reading the frequency displayed in\nthe center of the display in the VHF band, use code\n“0202.”\n[2 diagram glyph lines omitted]",
+   "body": "NOTE:\nWhen sending the contents, the codes, such as operating\nfrequency and operating mode*, should be added after\nthe frequency band code and the register code, as shown\nbelow.\n*  See t to %1 on ‘Memory content setting.’ (p. 14)\nq Frequency band codes\nCode Freq. band Frequency range (unit: MHz)\n01 VHF    144.000000 ~   148.000000\n02 UHF    430.000000 ~   450.000000\n03 1.2GHz 1240.000000 ~ 1300.000000\nw Register codes\nCode Registered number\n01 1 (Display on left side)\n02 2 (Display in center)\n03 3 (Display on Right side)\nTo read the contents, the register code should be\nadded after the frequency band code, as shown\nbelow.\nExample: When reading the frequency displayed in\nthe center of the display in the VHF band, use code\n“0202.”\n[3 diagram glyph lines omitted]",
    "kind": "panel",
    "pages": [
     15
@@ -670,7 +695,7 @@
   },
   {
    "title": "Table footnote *1",
-   "body": "See p. 13 Read frequency offset 01 00 or 01 Read noise or S-meter squelch status See p. 20 Read Auto DV RX Call signs See p. 20 Read Auto DV RX message See p. 20 Read Auto DV RX status See p. 22 Read Auto DV RX D-PRS message status See p. 23 Read the position status Read only data",
+   "body": "Read only data",
    "kind": "footnote",
    "pages": [],
    "matches": [
@@ -683,7 +708,7 @@
   },
   {
    "title": "Table footnote *1",
-   "body": "See p. 13 Read frequency offset 01 00 or 01 Read noise or S-meter squelch status See p. 20 Read Auto DV RX Call signs See p. 20 Read Auto DV RX message See p. 20 Read Auto DV RX status See p. 22 Read Auto DV RX D-PRS message status See p. 23 Read the position status Read only data",
+   "body": "Read only data",
    "kind": "footnote",
    "pages": [],
    "matches": [
@@ -696,7 +721,7 @@
   },
   {
    "title": "Table footnote *1",
-   "body": "See p. 13 Read frequency offset 01 00 or 01 Read noise or S-meter squelch status See p. 20 Read Auto DV RX Call signs See p. 20 Read Auto DV RX message See p. 20 Read Auto DV RX status See p. 22 Read Auto DV RX D-PRS message status See p. 23 Read the position status Read only data",
+   "body": "Read only data",
    "kind": "footnote",
    "pages": [],
    "matches": [
@@ -709,7 +734,7 @@
   },
   {
    "title": "Table footnote *2",
-   "body": "Select the Memory mode 0001 to 0099 Select the Memory channel (Including the satellite mode) (0001=M-CH01, 0099=M-CH99) 0100 to 0105 Select program scan edge channel 1A/1B to 3A/3B ( 0100/0101 (1A ch/1B ch), 0104/0105 (3A ch/3B ch)) 0106, 0107 Select call channel C1/C2 (0106 (C1 ch), 0107 (C2 ch)) 09 Memory write 0A Memory copy to VFO 0B Memory clear 0C 0D See p. 13 Send frequency offset 0E 00 Cancel the scan 01 Start a Programmed/memory scan 02 Start a Programmed scan 03 Start a ∂F scan 12 Start a Fine programmed scan 13 Start a Fine ∂F scan 22 Start a Memory scan 23 Start a Select memory scan 24 Start a Mode Select scan Ax*2 (x=1 to 7) Select ∂F scan span ( x=1 (±5 kHz), x=2 (±10 kHz), x=3 (±20 kHz), x=4 (±50 kHz), x=5 (±100 kHz), x=6 (±500 kHz), x=7 (±1 MHz)) B0 Clear the Select channel setting B1*2 Set as select channel ( The previously set number by CI-V is set after turning power ON, or “1” is selected if no selection is performed.) 01 to 03 Set the channel as a Select channel (01=SEL1, 02=SEL2, 03=SEL3) B2 00 to 03 Set the Select memory scan channel (00=ALL, 01=SEL1, 02=SEL2, 03=SEL3) D0 Set Scan resume OFF D3*2 Set Scan resume ON (Close&Delay) 0F 00 Read Split OFF setting 01 Read Split ON setting 11 Read DUP– operation 12 Read DUP+ operation 13 Read DD Repeater Simplex mode (RPS) 00*2 Set Split function OFF 01*2 Set Split function ON 0F 10*2 Set the simplex operation 11*2 Set DUP– operation 12*2 Set DUP+ operation 13*2 Set DD Repeater Simplex mode (RPS) 10* 00 to 11 Send/read the tuning step ( 00=OFF (10 Hz or 1 Hz), 01=100 Hz, 02=500 Hz, 03=1 kHz, 04=5 kHz, 05=6.25 kHz, 06=10 kHz, 07=12.5 kHz, 08=20 kHz, 09=25 kHz, 10=50 kHz, 11=100 kHz) 11* 00 Send/read attenuator OFF setting 10 Send/read 10 dB attenuator setting 13 00 Speech all data with voice synthesizer (S meter level, frequency and mode) 01 Speech the operating frequency and S meter level by voice synthesizer Speech the operating mode by voice synthesizer L The mode is announced after the ongoing speech. 14* 01 0000 ~ 0255 Send/read the AF level (0000=Minimum to 0255=Maximum) 02 0000 ~ 0255 Send/read the RF gain level (0000=Minimum to 0255=Maximum) 03 0000 ~ 0255 Send/read the squelch level (0000=Minimum to 0255=Maximum) 06 0000 ~ 0255 Send/read the NR level (0000=0%, 0255=100%) 07 0000 ~ 0255 Send/read [TWIN PBT] (PBT1) position ( 0000=max. Counter Clockwise, 0128=center, 0255=max. Clockwise) 08 0000 ~ 0255 Send/read [TWIN PBT] (PBT2) position ( 0000=max. Counter Clockwise, 0128=center, 0255=max. Clockwise) 09 0000 ~ 0255 Send/read CW pitch (5 Hz steps) ( 0000=300 Hz, 0128=600 Hz, 0255=900 Hz) 0A 0000 ~ 0255 Send/read RF power ( 0000=Minimum to 0255=Maximum) 0B 0000 ~ 0255 Send/read MIC gain (0000=Minimum to 0255=Maximum) 0C 0000 ~ 0255 Send/read keying speed (0000=6 WPM to 0255=48 WPM) 0D 0000 ~ 0255 Send/read Notch filter setting ( 0000=max. Counter Clockwise, 0128=center, 0255=max. Clockwise) 0E 0000 ~ 0255 Send/read the COMP level (0000=0 to 0255=10) 0F 0000 ~ 0255 Send/read the Break-IN Delay setting (0000=2.0 d to 0255=13.0 d) 12 0000 ~ 0255 Send/read NB level (0000=0% to 0255=100%) 15 0000 ~ 0255 Send/read Monitor audio [MONI] level (0000=0% to 0255=100%) 16 0000 ~ 0255 Send/read the VOX gain (0000=0% to 0255=100%) 17 0000 ~ 0255 Send/read the Anti VOX gain (0000=0% to 0255=100%) 19 0000 ~ 0255 Send/read LCD backlight brightness (0000=0% to 0255=100%) (00=Close, 01=Open) 02 0000 to 0255 Read S-meter level (0000=S0, 0120=S9, 0241=S9+60 dB) 05 00 or 01 Read various squelch (tone squelch, and so on) status (00=Close, 01=Open) 07 00 or 01 Read the OVF status ( 00=OVF indicator is OFF, 01=OVF indicator is ON) 11 0000 ~ 0255 Read the PO meter level (0000=0% to 0143=50% to 0213=100%) NOTE: Operation of some control dials overrides CI-V commands. If a control dial, such as the AF Volume dial that  has a mark on it, is rotated after sending a CI-V command, the command will be overwritten by the operation. Remote control 01 00* 00 or 01*7 Send/read the Auto DV RX message output (00=OFF, 01=ON) 01 See p. 20 Output DV RX message for transceive 02 00* 00 or 01*7 Send/read the Auto DV RX status output (00=OFF, 01=ON) 01 See p. 20 Output DV RX status for transceive 03 00* 00 or 01*7 Send/read the Auto DV RX GPS/D-PRS data output (00=OFF, 01=ON) 0100 See p. 21 Output DV RX GPS/D-PRS Position for transceive 0101 See p. 21 Output DV RX D-PRS Object status for transceive 0102 See p. 21 Output DV RX D-PRS Item status for transceive 0103 See p. 21 Output DV RX D-PRS Weather  status for transceive 0200*1 See p. 21 Read Auto DV RX GPS/D-PRS Position status 0201*1 See p. 21 Read Auto DV RX D-PRS Object status 0202*1 See p. 21 Read Auto DV RX D-PRS Item status 0203*1 See p. 21 Read Auto DV RX D-PRS Weather status 04 00* 00 or 01*7 Send/read Auto DV RX GPS/D-PRS message output (00=OFF, 01=ON) 01 See p. 22 Output DV RX D-PRS message for transceive 21* 00 See p. 23 RIT frequency 01 00 or 01 RIT setting (00=OFF, 01=ON) 22 00 See p. 23 Set the DV TX data (Up to 30 byte) 01 00* 00 or 01 Set the Auto DV RX data output 01 See p. 23 Set the DV RX data for transceive (Up to 30 byte) 02* 00 or 01 SET > DV/DD Set > DV Data TX (00=PTT, 01=Auto) 03* 00 or 01 SET > DV/DD Set > DV Fast Data > Fast Data (00=OFF, 01=ON) 04* 00 or 01 SET > DV/DD Set > DV Fast Data > GPS Data Speed (00=Slow, 01=Fast) 05* 00 to 10 SET > DV/DD Set > DV Fast Data > TX Delay (PTT) (00=OFF, 01=1 sec. to 10=10 sec.) 23 00 01* 00, 02, 03 GPS > GPS Set > GPS Select (00=OFF, 02=External GPS, 03=Manual) 02* See p. 17 GPS > GPS Set > Manual Position 24 00 00* 00 or 01 Send/read TX output power setting (00=OFF, 01=ON) 01 00 or 01 Set the TX output power for transceive (00=OFF, 01=ON) 25* See p. 23 Set the selected or unselected VFO frequency (Only MAIN band) 26* See p. 23 Set the selected or unselected VFO’s operating mode and filter (Only MAIN band) Remote control Send only data",
+   "body": "Send only data",
    "kind": "footnote",
    "pages": [],
    "matches": [
@@ -722,7 +747,7 @@
   },
   {
    "title": "Table footnote *2",
-   "body": "Select the Memory mode 0001 to 0099 Select the Memory channel (Including the satellite mode) (0001=M-CH01, 0099=M-CH99) 0100 to 0105 Select program scan edge channel 1A/1B to 3A/3B ( 0100/0101 (1A ch/1B ch), 0104/0105 (3A ch/3B ch)) 0106, 0107 Select call channel C1/C2 (0106 (C1 ch), 0107 (C2 ch)) 09 Memory write 0A Memory copy to VFO 0B Memory clear 0C 0D See p. 13 Send frequency offset 0E 00 Cancel the scan 01 Start a Programmed/memory scan 02 Start a Programmed scan 03 Start a ∂F scan 12 Start a Fine programmed scan 13 Start a Fine ∂F scan 22 Start a Memory scan 23 Start a Select memory scan 24 Start a Mode Select scan Ax*2 (x=1 to 7) Select ∂F scan span ( x=1 (±5 kHz), x=2 (±10 kHz), x=3 (±20 kHz), x=4 (±50 kHz), x=5 (±100 kHz), x=6 (±500 kHz), x=7 (±1 MHz)) B0 Clear the Select channel setting B1*2 Set as select channel ( The previously set number by CI-V is set after turning power ON, or “1” is selected if no selection is performed.) 01 to 03 Set the channel as a Select channel (01=SEL1, 02=SEL2, 03=SEL3) B2 00 to 03 Set the Select memory scan channel (00=ALL, 01=SEL1, 02=SEL2, 03=SEL3) D0 Set Scan resume OFF D3*2 Set Scan resume ON (Close&Delay) 0F 00 Read Split OFF setting 01 Read Split ON setting 11 Read DUP– operation 12 Read DUP+ operation 13 Read DD Repeater Simplex mode (RPS) 00*2 Set Split function OFF 01*2 Set Split function ON 0F 10*2 Set the simplex operation 11*2 Set DUP– operation 12*2 Set DUP+ operation 13*2 Set DD Repeater Simplex mode (RPS) 10* 00 to 11 Send/read the tuning step ( 00=OFF (10 Hz or 1 Hz), 01=100 Hz, 02=500 Hz, 03=1 kHz, 04=5 kHz, 05=6.25 kHz, 06=10 kHz, 07=12.5 kHz, 08=20 kHz, 09=25 kHz, 10=50 kHz, 11=100 kHz) 11* 00 Send/read attenuator OFF setting 10 Send/read 10 dB attenuator setting 13 00 Speech all data with voice synthesizer (S meter level, frequency and mode) 01 Speech the operating frequency and S meter level by voice synthesizer Speech the operating mode by voice synthesizer L The mode is announced after the ongoing speech. 14* 01 0000 ~ 0255 Send/read the AF level (0000=Minimum to 0255=Maximum) 02 0000 ~ 0255 Send/read the RF gain level (0000=Minimum to 0255=Maximum) 03 0000 ~ 0255 Send/read the squelch level (0000=Minimum to 0255=Maximum) 06 0000 ~ 0255 Send/read the NR level (0000=0%, 0255=100%) 07 0000 ~ 0255 Send/read [TWIN PBT] (PBT1) position ( 0000=max. Counter Clockwise, 0128=center, 0255=max. Clockwise) 08 0000 ~ 0255 Send/read [TWIN PBT] (PBT2) position ( 0000=max. Counter Clockwise, 0128=center, 0255=max. Clockwise) 09 0000 ~ 0255 Send/read CW pitch (5 Hz steps) ( 0000=300 Hz, 0128=600 Hz, 0255=900 Hz) 0A 0000 ~ 0255 Send/read RF power ( 0000=Minimum to 0255=Maximum) 0B 0000 ~ 0255 Send/read MIC gain (0000=Minimum to 0255=Maximum) 0C 0000 ~ 0255 Send/read keying speed (0000=6 WPM to 0255=48 WPM) 0D 0000 ~ 0255 Send/read Notch filter setting ( 0000=max. Counter Clockwise, 0128=center, 0255=max. Clockwise) 0E 0000 ~ 0255 Send/read the COMP level (0000=0 to 0255=10) 0F 0000 ~ 0255 Send/read the Break-IN Delay setting (0000=2.0 d to 0255=13.0 d) 12 0000 ~ 0255 Send/read NB level (0000=0% to 0255=100%) 15 0000 ~ 0255 Send/read Monitor audio [MONI] level (0000=0% to 0255=100%) 16 0000 ~ 0255 Send/read the VOX gain (0000=0% to 0255=100%) 17 0000 ~ 0255 Send/read the Anti VOX gain (0000=0% to 0255=100%) 19 0000 ~ 0255 Send/read LCD backlight brightness (0000=0% to 0255=100%) (00=Close, 01=Open) 02 0000 to 0255 Read S-meter level (0000=S0, 0120=S9, 0241=S9+60 dB) 05 00 or 01 Read various squelch (tone squelch, and so on) status (00=Close, 01=Open) 07 00 or 01 Read the OVF status ( 00=OVF indicator is OFF, 01=OVF indicator is ON) 11 0000 ~ 0255 Read the PO meter level (0000=0% to 0143=50% to 0213=100%) NOTE: Operation of some control dials overrides CI-V commands. If a control dial, such as the AF Volume dial that  has a mark on it, is rotated after sending a CI-V command, the command will be overwritten by the operation. Remote control 01 00* 00 or 01*7 Send/read the Auto DV RX message output (00=OFF, 01=ON) 01 See p. 20 Output DV RX message for transceive 02 00* 00 or 01*7 Send/read the Auto DV RX status output (00=OFF, 01=ON) 01 See p. 20 Output DV RX status for transceive 03 00* 00 or 01*7 Send/read the Auto DV RX GPS/D-PRS data output (00=OFF, 01=ON) 0100 See p. 21 Output DV RX GPS/D-PRS Position for transceive 0101 See p. 21 Output DV RX D-PRS Object status for transceive 0102 See p. 21 Output DV RX D-PRS Item status for transceive 0103 See p. 21 Output DV RX D-PRS Weather  status for transceive 0200*1 See p. 21 Read Auto DV RX GPS/D-PRS Position status 0201*1 See p. 21 Read Auto DV RX D-PRS Object status 0202*1 See p. 21 Read Auto DV RX D-PRS Item status 0203*1 See p. 21 Read Auto DV RX D-PRS Weather status 04 00* 00 or 01*7 Send/read Auto DV RX GPS/D-PRS message output (00=OFF, 01=ON) 01 See p. 22 Output DV RX D-PRS message for transceive 21* 00 See p. 23 RIT frequency 01 00 or 01 RIT setting (00=OFF, 01=ON) 22 00 See p. 23 Set the DV TX data (Up to 30 byte) 01 00* 00 or 01 Set the Auto DV RX data output 01 See p. 23 Set the DV RX data for transceive (Up to 30 byte) 02* 00 or 01 SET > DV/DD Set > DV Data TX (00=PTT, 01=Auto) 03* 00 or 01 SET > DV/DD Set > DV Fast Data > Fast Data (00=OFF, 01=ON) 04* 00 or 01 SET > DV/DD Set > DV Fast Data > GPS Data Speed (00=Slow, 01=Fast) 05* 00 to 10 SET > DV/DD Set > DV Fast Data > TX Delay (PTT) (00=OFF, 01=1 sec. to 10=10 sec.) 23 00 01* 00, 02, 03 GPS > GPS Set > GPS Select (00=OFF, 02=External GPS, 03=Manual) 02* See p. 17 GPS > GPS Set > Manual Position 24 00 00* 00 or 01 Send/read TX output power setting (00=OFF, 01=ON) 01 00 or 01 Set the TX output power for transceive (00=OFF, 01=ON) 25* See p. 23 Set the selected or unselected VFO frequency (Only MAIN band) 26* See p. 23 Set the selected or unselected VFO’s operating mode and filter (Only MAIN band) Remote control Send only data",
+   "body": "Send only data",
    "kind": "footnote",
    "pages": [],
    "matches": [
@@ -734,8 +759,164 @@
    ]
   },
   {
+   "title": "Table footnote *2",
+   "body": "Send only data",
+   "kind": "footnote",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "08",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *1",
+   "body": "Read only data",
+   "kind": "footnote",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "0C",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *2",
+   "body": "Send only data",
+   "kind": "footnote",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "0D",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *2",
+   "body": "Send only data",
+   "kind": "footnote",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "0E",
+     "sub_cmd": "B0",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *2",
+   "body": "Send only data",
+   "kind": "footnote",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "0E",
+     "sub_cmd": "D0",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *2",
+   "body": "Send only data",
+   "kind": "footnote",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "0E",
+     "sub_cmd": "D3",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *2",
+   "body": "Send only data",
+   "kind": "footnote",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "0F",
+     "sub_cmd": "00",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *2",
+   "body": "Send only data",
+   "kind": "footnote",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "0F",
+     "sub_cmd": "01",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *2",
+   "body": "Send only data",
+   "kind": "footnote",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "0F",
+     "sub_cmd": "10",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *2",
+   "body": "Send only data",
+   "kind": "footnote",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "0F",
+     "sub_cmd": "11",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *2",
+   "body": "Send only data",
+   "kind": "footnote",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "0F",
+     "sub_cmd": "12",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *2",
+   "body": "Send only data",
+   "kind": "footnote",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "0F",
+     "sub_cmd": "13",
+     "data": ""
+    }
+   ]
+  },
+  {
    "title": "Table footnote *3",
-   "body": "In the CW mode, if the [TRANSMIT] or an external TX switch is ON, or the Break-in function is ON, a message will be transmitted as CW code when you send it from your PC. 4  When sending the power ON command (18 01), you need to repeatedly send “FE” before the standard format. The following is the approximate number of needed repetitions. • 115200 bps: 119 “FE”s • 57600 bps: 59 “FE”s • 38400 bps: 40 “FE”s • 19200 bps: 20 “FE”s • 9600 bps: 9 “FE”s • 4800 bps: 5 “FE”s ×5 Example: When using 4800 bps F 2AEFEF E E 10810 DF Preamble 9700’s address Controller’s address Command Sub command Post amble",
+   "body": "In the CW mode, if the [TRANSMIT] or an external TX switch is ON, or the Break-in function is ON, a message will be transmitted as CW code when you send it from your PC.",
    "kind": "footnote",
    "pages": [],
    "matches": [
@@ -747,8 +928,21 @@
    ]
   },
   {
+   "title": "Table footnote *4",
+   "body": "When sending the power ON command (18 01), you need to repeatedly send “FE” before the standard format. The following is the approximate number of needed repetitions. • 115200 bps: 119 “FE”s • 57600 bps: 59 “FE”s • 38400 bps: 40 “FE”s • 19200 bps: 20 “FE”s • 9600 bps: 9 “FE”s • 4800 bps: 5 “FE”s ×5 Example: When using 4800 bps F 2AEFEF E E 10810 DF Preamble 9700’s address Controller’s address Command Sub command Post amble",
+   "kind": "footnote",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "18",
+     "sub_cmd": "01",
+     "data": ""
+    }
+   ]
+  },
+  {
    "title": "Table footnote *1",
-   "body": "See p. 13 Read frequency offset 01 00 or 01 Read noise or S-meter squelch status See p. 20 Read Auto DV RX Call signs See p. 20 Read Auto DV RX message See p. 20 Read Auto DV RX status See p. 22 Read Auto DV RX D-PRS message status See p. 23 Read the position status Read only data",
+   "body": "Read only data",
    "kind": "footnote",
    "pages": [],
    "matches": [
@@ -774,7 +968,7 @@
   },
   {
    "title": "Table footnote *1",
-   "body": "See p. 13 Read frequency offset 01 00 or 01 Read noise or S-meter squelch status See p. 20 Read Auto DV RX Call signs See p. 20 Read Auto DV RX message See p. 20 Read Auto DV RX status See p. 22 Read Auto DV RX D-PRS message status See p. 23 Read the position status Read only data",
+   "body": "Read only data",
    "kind": "footnote",
    "pages": [],
    "matches": [
@@ -792,7 +986,7 @@
   },
   {
    "title": "Table footnote *1",
-   "body": "See p. 13 Read frequency offset 01 00 or 01 Read noise or S-meter squelch status See p. 20 Read Auto DV RX Call signs See p. 20 Read Auto DV RX message See p. 20 Read Auto DV RX status See p. 22 Read Auto DV RX D-PRS message status See p. 23 Read the position status Read only data",
+   "body": "Read only data",
    "kind": "footnote",
    "pages": [],
    "matches": [
@@ -805,7 +999,7 @@
   },
   {
    "title": "Table footnote *1",
-   "body": "See p. 13 Read frequency offset 01 00 or 01 Read noise or S-meter squelch status See p. 20 Read Auto DV RX Call signs See p. 20 Read Auto DV RX message See p. 20 Read Auto DV RX status See p. 22 Read Auto DV RX D-PRS message status See p. 23 Read the position status Read only data",
+   "body": "Read only data",
    "kind": "footnote",
    "pages": [],
    "matches": [
@@ -818,13 +1012,130 @@
   },
   {
    "title": "Table footnote *1",
-   "body": "See p. 13 Read frequency offset 01 00 or 01 Read noise or S-meter squelch status See p. 20 Read Auto DV RX Call signs See p. 20 Read Auto DV RX message See p. 20 Read Auto DV RX status See p. 22 Read Auto DV RX D-PRS message status See p. 23 Read the position status Read only data",
+   "body": "Read only data",
    "kind": "footnote",
    "pages": [],
    "matches": [
     {
      "cmd": "1E",
      "sub_cmd": "02",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *1",
+   "body": "Read only data",
+   "kind": "footnote",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "20",
+     "sub_cmd": "00,02",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *1",
+   "body": "Read only data",
+   "kind": "footnote",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "20",
+     "sub_cmd": "01,02",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *1",
+   "body": "Read only data",
+   "kind": "footnote",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "20",
+     "sub_cmd": "02,02",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *1",
+   "body": "Read only data",
+   "kind": "footnote",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "20",
+     "sub_cmd": "03,0200",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *1",
+   "body": "Read only data",
+   "kind": "footnote",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "20",
+     "sub_cmd": "03,0201",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *1",
+   "body": "Read only data",
+   "kind": "footnote",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "20",
+     "sub_cmd": "03,0202",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *1",
+   "body": "Read only data",
+   "kind": "footnote",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "20",
+     "sub_cmd": "03,0203",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *1",
+   "body": "Read only data",
+   "kind": "footnote",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "20",
+     "sub_cmd": "04,02",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *1",
+   "body": "Read only data",
+   "kind": "footnote",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "23",
+     "sub_cmd": "00",
      "data": ""
     }
    ]

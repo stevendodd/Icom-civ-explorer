@@ -5,7 +5,7 @@
  "notes": [
   {
    "title": "Operating frequency",
-   "body": "",
+   "body": "Data is 5 bytes (10-byte BCD), little-endian. Digit order: byte-1 low = 10 Hz, byte-1 high = 1 Hz, byte-2 low = 1 kHz, byte-2 high = 100 Hz, byte-3 low = 100 kHz, byte-3 high = 10 kHz, byte-4 low = 10 MHz, byte-4 high = 1 MHz, byte-5 low = 1 GHz (0 fixed), byte-5 high = 100 MHz (0-3 on IC-7760). MAIN/SUB band selection: see command 29 (Band Selector).\n\nCommands 00 / 03 / 05 read or set transceive frequency; command 1C 03 reads the transmit frequency in Split.",
    "kind": "panel",
    "pages": [
     17
@@ -35,7 +35,7 @@
   },
   {
    "title": "Operating mode",
-   "body": "1Operating mode 2Filter setting\n00:LSB 05 :FM 01:FIL1\n01:USB 07 :CW-R 02:FIL2\n02:AM 08 :RTTY-R 03:FIL3\n03:CW 12 :PSK —\n04:RTTY 13 :PSK-R —\nLFilter setting (2) can be skipped with commands 01\nand 06. In that case, “FIL1” is selected with command\n01 and the default filter setting of the operating mode is\nautomatically selected with command 06.",
+   "body": "Data is 1-2 bytes.\nByte 1 - operating mode: 00=LSB, 01=USB, 02=AM, 03=CW, 04=RTTY, 05=FM, 07=CW-R, 08=RTTY-R, 12=PSK, 13=PSK-R.\nByte 2 - filter: 01=FIL1, 02=FIL2, 03=FIL3 (optional with commands 01 and 06; FIL1/default selected when omitted).\n\nWith command 06, mode changes in transceive are output.",
    "kind": "panel",
    "pages": [
     17
@@ -104,36 +104,6 @@
     {
      "cmd": "1A",
      "sub_cmd": "01",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Memory content",
-   "body": "1, 2: Memory group number\n00 01 ~ 00 99: Memory channel 01 ~ 99\n01 00:  Programmed scan edge P1\n01 01:  Programmed scan edge P2\n3: Select memory setting\n0=OFF\nFixed\n1= 1\n2= 2\n3= 3\nLSet 0 for P1 and P2.\n4 ~ 8: Operating frequency setting\nLSee “\n• Operating frequency.” (p. 17)\n9, 10: Operating mode setting\nLSee “\n• Operating mode.” (p. 17)\n11: Data mode and tone type settings\n0: OFF , 1: TONE, 2: TSQL\n0: OFF , 1: DATA 1, 2: DATA 2, 3: DATA 3\n12 ~ 14: Repeater tone frequency setting\n15 ~ 17: Tone squelch frequency setting\nLSee “\n• Repeater tone/tone squelch settings.” (p. 23)\n18 ~ 27: Memory name settings\nUp to 10 characters.\nLSee “\n• Codes for character entries.”\nTo clear the memory channel contents on 1A 00:\n1, 2: Memory channel (00 01~00 99)\n3:  “FF”\n4:  None\n[6 diagram glyph lines omitted]",
-   "kind": "panel",
-   "pages": [
-    19
-   ],
-   "matches": [
-    {
-     "cmd": "1A",
-     "sub_cmd": "00",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Codes for character entries",
-   "body": "1A 05  01 76, 01 83, 01 98, 02 03, 02 07, 03 71\n- Character codes— Letters and Numbers\nCharacter ASCII code\nA ~ Z 41 ~ 5A\nCharacter ASCII code\na ~ z 61 ~ 7A\n- Character codes— Symbols\nCharacter ASCII code\n$ 24\n& 26\n? 3F\n’ 27\n^ 5E\n− 2D\n/ 2F\n, 2C\n; 3B\n< 3C\n( 28\n[ 5B\n{ 7B\n| 7C\n͂ 7E\nCharacter ASCII code\n# 23\n% 25\n\\ 5C\n” 22\n` 60\n+ 2B\n* 2A\n. 2E\n: 3A\n= 3D\n> 3E\n) 29\n] 5D\n} 7D\n_ 5F\n@ 40\nCmd. Sub cmd. Set item/selectable characters\n1A 00 Memory name*\n05 01 76 Network > Network Name\n(up to 15 characters)\nA to Z, 0 to 9, ! \" # $ % & ( ) + , - . ; = @ [ ] ^\n01 83 Network > Network Radio Name*\n(up to 16 characters)\nLIllegal characters: \\ (space)\n01 98 Display > My Call\n(up to 10 characters)\nA to Z, 0 to 9, / @ - .\n02 03 Time Set > Date/Time >\nNTP Server Address\nA to Z, a to z, 0 to 9, - .\n02 07 Time Set > CLOCK2 Name*\n(up to 3 characters)\n03 71 Network > Controller Connection (via LAN) >\nPort Forwarding Settings >\nConnection Destination (RF Deck WAN Address)\n(up to 64 characters)\nA to Z, a to z, 0 to 9, - .\n* Usable characters:  A to Z, a to z, 0 to 9, (space), ! “ # $ % & ‘ ( ) * +, - .\n} ~\n[2 diagram glyph lines omitted]",
-   "kind": "panel",
-   "pages": [
-    19
-   ],
-   "matches": [
-    {
-     "cmd": "1A",
-     "sub_cmd": "00",
      "data": ""
     }
    ]
