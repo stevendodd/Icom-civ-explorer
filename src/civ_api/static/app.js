@@ -304,7 +304,7 @@
     block.className = "cmd-note";
     var head = document.createElement("div");
     head.className = "cmd-note-head";
-    head.textContent = (n.kind === "footnote" ? "Table note — " : "") + (n.title || "Manual note");
+    head.textContent = n.title || "Manual note";
     block.appendChild(head);
     var pre = document.createElement("pre");
     pre.className = "cmd-note-body";

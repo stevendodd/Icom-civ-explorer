@@ -60,7 +60,7 @@
   },
   {
    "title": "Frequency span for ∂F scanning",
-   "body": "x Frequency span\n1 ±5 kHz\n2 ±10 kHz\n3 ±20 kHz\n4 ±50 kHz\n5 ±100 kHz\n6 ±500 kHz\n7 ±1 MHz",
+   "body": "x Frequency span\n1 ±5 kHz\n2 ±10 kHz\n3 ±20 kHz\n4 ±50 kHz\n5 ±100 kHz\n6 ±500 kHz\n7 ±1 MHz\n",
    "kind": "panel",
    "pages": [
     15
@@ -145,7 +145,7 @@
   },
   {
    "title": "Codes for CW message contents",
-   "body": "To send CW messages of up to 30 characters, use the\nfollowing character codes.\nCharacter ASCII code\nA ~ Z 41 ~ 5A\na ~ z 61 ~ 7A\n/ 2F\n? 3F\n. 2E\n− 2D\n, 2C\n: 3A\nCharacter ASCII code\n’ 27\n( 28\n) 29\n= 3D\n+ 2B\n” 22\n@ 40\n^ 5E\nSpace 20\nL“FF” stops sending CW messages\nL“^” is used to transmit a string of characters with no inter-\ncharacter space.\n[1 diagram glyph lines omitted]",
+   "body": "To send CW messages, use the following character codes.\n\nCharacter ASCII code\n0–9     30–39\nA–Z     41–5A\na–z     61–7A\n/         2F\n?         3F\n.         2E\n−         2D\n,         2C\n:         3A\n\nCharacter ASCII code\n’         27\n(         28\n)         29\n=         3D\n+         2B\n”         22\n@         40\nSpace     20\n\nℹ \"FF\" stops sending CW messages.\nℹ \"^\" is used to transmit a string of characters with no inter-character space.",
    "kind": "panel",
    "pages": [
     15
@@ -160,7 +160,7 @@
   },
   {
    "title": "Turning the transceiver ON",
-   "body": "To send this command through the [REMOTE] jack,\nyou must enter multiple “FE” characters. The required\nnumber of “FE” entries depends on the baud rate.\n• 19200 bps: 25 “FE”s\n• 9600 bps: 13 “FE”s\n• 4800 bps: 7 “FE”s\nExample: When the baud rate is 9600 bps, enter 13 “FE”s.\n13 “FE”s\nF E F E F E B 6 E 0 1 8 0 1 F DF E……",
+   "body": "To send this command through the [REMOTE] jack,\nyou must enter multiple “FE” characters. The required\nnumber of “FE” entries depends on the baud rate.\n• 19200 bps: 25 “FE”s\n• 9600 bps: 13 “FE”s\n• 4800 bps: 7 “FE”s\nExample: When the baud rate is 9600 bps, enter 13 “FE”s.\n13 “FE”s\nF E F E F E B 6 E 0 1 8 0 1 F DF E……\n",
    "kind": "panel",
    "pages": [
     15
@@ -175,7 +175,7 @@
   },
   {
    "title": "Memory channel content",
-   "body": "1, 2 Memory channel number\n00 01 ~ 00 99: Memory channel 01 ~ 99\n01 00:   Programmed scan edge P1\n01 01:   Programmed scan edge P2\n3 Split and Select memory setting\nSPLIT SELECT\nSPLIT SELECT\n0=OFF 0=OFF\n1=ON 1=1\n2=2\n3=3 LSet 00 for P1 and P2.\n4 ~ 8 Operating frequency setting\nLSee “Operating frequency” (p 16)\n9, 10 Operating mode setting\nLSee “Operating mode” (p 16)\n11 Data mode and tone type settings\nDATA TONE\n0=OFF 0=OFF\n1=ON 1=TONE\n2=TSQL\nDATA TONE\n12 ~ 14 Repeater tone frequency setting\n15 ~ 17 Tone squelch frequency setting\nLSee “Repeater tone/tone squelch frequency settings”\n(p. 23)\n18 ~ 33 Memory name settings\nUp to 16 characters.\nLSee “Codes for character entries” (p 18)\nTo clear a memory channel content, send the\ncommand “1A 00 XX XX FF.”\nLEnter a desired memory channel number* into “XX XX.”\n* Except for “01 00” and “01 01” (P1/P2).\nNOTE:\n• The same data as 4 ~ 17 are stored in 4 ~ 17.\n• When the Split function is ON, the data of 4 ~ 17\nis used for transmission.\n• Even if the Split function is OFF, we recommend\nthat you set the same data as 4 ~ 17 into 4 ~ 17\nto match your transceiver.\n[7 diagram glyph lines omitted]",
+   "body": "1, 2 Memory channel number\n00 01 ~ 00 99: Memory channel 01 ~ 99\n01 00:   Programmed scan edge P1\n01 01:   Programmed scan edge P2\n3 Split and Select memory setting\nSPLIT SELECT\nSPLIT SELECT\n0=OFF 0=OFF\n1=ON 1=1\n2=2\n3=3 LSet 00 for P1 and P2.\n4 ~ 8 Operating frequency setting\nLSee “Operating frequency” (p 16)\n9, 10 Operating mode setting\nLSee “Operating mode” (p 16)\n11 Data mode and tone type settings\nDATA TONE\n0=OFF 0=OFF\n1=ON 1=TONE\n2=TSQL\nDATA TONE\n12 ~ 14 Repeater tone frequency setting\n15 ~ 17 Tone squelch frequency setting\nLSee “Repeater tone/tone squelch frequency settings”\n(p. 23)\n18 ~ 33 Memory name settings\nUp to 16 characters.\nLSee “Codes for character entries” (p 18)\nTo clear a memory channel content, send the\ncommand “1A 00 XX XX FF.”\nLEnter a desired memory channel number* into “XX XX.”\n* Except for “01 00” and “01 01” (P1/P2).\nNOTE:\n• The same data as 4 ~ 17 are stored in 4 ~ 17.\n• When the Split function is ON, the data of 4 ~ 17\nis used for transmission.\n• Even if the Split function is OFF, we recommend\nthat you set the same data as 4 ~ 17 into 4 ~ 17\nto match your transceiver.\n",
    "kind": "panel",
    "pages": [
     16
@@ -190,7 +190,7 @@
   },
   {
    "title": "Band stacking register",
-   "body": "NOTE: When configuring the contents, add the\noperating frequency, mode, and other relevant data,*\nafter the frequency band and register code below.\n*  See 4 ~ 17 on “Memory channel content.”\n(p. 17)\n1 Frequency band codes\nCode Freq. band Frequency range (unit=MHz)\n11 GENE Other than above\n2 Register codes\nCode Registered number\n01 1 (Display on left side)\n02 2 (Display in center)\n03 3 (Display on right side)\nTo read the contents, the register code should be\nadded after the frequency band code, as shown\nbelow.\nExample:  When reading the frequency displayed\nin the center of the display in the 21 MHz\nband, use code “07 02.”\n[12 diagram glyph lines omitted]",
+   "body": "NOTE: When configuring the contents, add the\noperating frequency, mode, and other relevant data,*\nafter the frequency band and register code below.\n*  See 4 ~ 17 on “Memory channel content.”\n(p. 17)\n1 Frequency band codes\nCode Freq. band Frequency range (unit=MHz)\n11 GENE Other than above\n2 Register codes\nCode Registered number\n01 1 (Display on left side)\n02 2 (Display in center)\n03 3 (Display on right side)\nTo read the contents, the register code should be\nadded after the frequency band code, as shown\nbelow.\nExample:  When reading the frequency displayed\nin the center of the display in the 21 MHz\nband, use code “07 02.”\n",
    "kind": "panel",
    "pages": [
     18
@@ -205,7 +205,7 @@
   },
   {
    "title": "Keyer memory character entries",
-   "body": "Character codes\nCharacter ASCII code Description\n0 ~ 9 30 ~ 39 Numbers\nA ~ Z 41 ~ 5A Letters\nSpace 20 Word space\n/ 2F Symbol\n? 3F Symbol\n, 2C Symbol\n. 2E Symbol\n@ 40 Symbol\n^ 5E Example:  To send BT, enter\n“5E 42 54”\n* 2A Inserts the contest number\nLSpaces after the end of the sentence are not necessary\nLTo clear the Keyer memory contents, send one or more\nspaces.",
+   "body": "Character codes\nCharacter ASCII code Description\n0 ~ 9 30 ~ 39 Numbers\nA ~ Z 41 ~ 5A Letters\nSpace 20 Word space\n/ 2F Symbol\n? 3F Symbol\n, 2C Symbol\n. 2E Symbol\n@ 40 Symbol\n^ 5E Example:  To send BT, enter\n“5E 42 54”\n* 2A Inserts the contest number\nLSpaces after the end of the sentence are not necessary\nLTo clear the Keyer memory contents, send one or more\nspaces.\n",
    "kind": "panel",
    "pages": [
     18
@@ -220,7 +220,7 @@
   },
   {
    "title": "Keyer memory content",
-   "body": "1: Channel data\n01=M1 05=M5\n02=M2 06=M6\n03=M3 07=M7\n04=M4 08=M8\n2 ~ 71: Text data\n[2 diagram glyph lines omitted]",
+   "body": "1: Channel data\n01=M1 05=M5\n02=M2 06=M6\n03=M3 07=M7\n04=M4 08=M8\n2 ~ 71: Text data\n",
    "kind": "panel",
    "pages": [
     18
@@ -235,7 +235,7 @@
   },
   {
    "title": "IF filter width settings",
-   "body": "Mode Data Steps\nSSB/CW/RTTY 00 ~ 09 50 ~ 500 Hz (50 Hz)\nSSB/CW 10 ~ 40 600 Hz ~ 3.6 kHz (100 Hz)\nRTTY 10 ~ 31 600 Hz ~ 2.7 kHz (100 Hz)\nAM 00 ~ 49 200 Hz ~ 10.0 kHz (200 Hz)",
+   "body": "Mode Data Steps\nSSB/CW/RTTY 00 ~ 09 50 ~ 500 Hz (50 Hz)\nSSB/CW 10 ~ 40 600 Hz ~ 3.6 kHz (100 Hz)\nRTTY 10 ~ 31 600 Hz ~ 2.7 kHz (100 Hz)\nAM 00 ~ 49 200 Hz ~ 10.0 kHz (200 Hz)\n",
    "kind": "panel",
    "pages": [
     18
@@ -250,7 +250,7 @@
   },
   {
    "title": "AGC time constant settings",
-   "body": "Data\nAGC time constant (sec.)\nSSB/CW/RTTY AM\n00 OFF OFF\n[13 diagram glyph lines omitted]",
+   "body": "Data\nAGC time constant (sec.)\nSSB/CW/RTTY AM\n00 OFF OFF\n",
    "kind": "panel",
    "pages": [
     19
@@ -265,7 +265,7 @@
   },
   {
    "title": "RX HPF/LPF settings for each operating mode",
-   "body": "LPF (Lower edge)\nHPF (Upper edge)\nHPF LPF\nCode Frequency Code Frequency\n00 Through 05 ~ 24 500 ~ 2400 Hz\n01 ~20 100 ~ 2000 Hz 25 Through\nLThe value of the HPF should be smaller than that of the\nLPF\n• SSB/SSB-DATA transmission passband width\nsettings\nLower Edge: 0=100 Hz\n1=120 Hz\n2=150 Hz\n3=200 Hz\n4=300 Hz\n5=500 Hz\nHigher Edge: 0=2500 Hz\n1=2700 Hz\n2=2800 Hz\n3=2900 Hz\n[3 diagram glyph lines omitted]",
+   "body": "LPF (Lower edge)\nHPF (Upper edge)\nHPF LPF\nCode Frequency Code Frequency\n00 Through 05 ~ 24 500 ~ 2400 Hz\n01 ~20 100 ~ 2000 Hz 25 Through\nLThe value of the HPF should be smaller than that of the\nLPF\n• SSB/SSB-DATA transmission passband width\nsettings\nLower Edge: 0=100 Hz\n1=120 Hz\n2=150 Hz\n3=200 Hz\n4=300 Hz\n5=500 Hz\nHigher Edge: 0=2500 Hz\n1=2700 Hz\n2=2800 Hz\n3=2900 Hz\n",
    "kind": "panel",
    "pages": [
     19
@@ -280,7 +280,7 @@
   },
   {
    "title": "Split offset frequency setting",
-   "body": "1 kHz digit: 0  ~ 9\n100 Hz digit: 0\n(Fixed)\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 9\n(Fixed)\n1 MHz digit: 0 ~ 9\nDirection:\n00=+ direction\n01=– direction\n[3 diagram glyph lines omitted]",
+   "body": "1 kHz digit: 0  ~ 9\n100 Hz digit: 0\n(Fixed)\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 9\n(Fixed)\n1 MHz digit: 0 ~ 9\nDirection:\n00=+ direction\n01=– direction\n",
    "kind": "panel",
    "pages": [
     19
@@ -295,7 +295,7 @@
   },
   {
    "title": "[VOX/BK-IN] setting",
-   "body": "Data Function\n00 VOX/BK-IN\n01 RX-ANT\n02 APF\n03 PRESET\n04 Voice/Keyer/RTTY Memory 1\n05 Voice/Keyer/RTTY Memory 2\n06 Voice/Keyer/RTTY Memory 3\n07 Voice/Keyer/RTTY Memory 4",
+   "body": "Data Function\n00 VOX/BK-IN\n01 RX-ANT\n02 APF\n03 PRESET\n04 Voice/Keyer/RTTY Memory 1\n05 Voice/Keyer/RTTY Memory 2\n06 Voice/Keyer/RTTY Memory 3\n07 Voice/Keyer/RTTY Memory 4\n",
    "kind": "panel",
    "pages": [
     20
@@ -310,7 +310,7 @@
   },
   {
    "title": "[AUTOTUNE] setting",
-   "body": "Data Function\n00 AUTOTUNE\n01 RX-ANT\n02 APF\n03 PRESET\n04 Voice/Keyer/RTTY Memory 1\n05 Voice/Keyer/RTTY Memory 2\n06 Voice/Keyer/RTTY Memory 3\n07 Voice/Keyer/RTTY Memory 4",
+   "body": "Data Function\n00 AUTOTUNE\n01 RX-ANT\n02 APF\n03 PRESET\n04 Voice/Keyer/RTTY Memory 1\n05 Voice/Keyer/RTTY Memory 2\n06 Voice/Keyer/RTTY Memory 3\n07 Voice/Keyer/RTTY Memory 4\n",
    "kind": "panel",
    "pages": [
     20
@@ -325,7 +325,7 @@
   },
   {
    "title": "[]/[] setting",
-   "body": "Data Function\n00 M-CH UP\n01 M-CH DOWN\n02 RX-ANT\n03 APF\n04 PRESET\n05 Voice/Keyer/RTTY Memory 1\n06 Voice/Keyer/RTTY Memory 2\n07 Voice/Keyer/RTTY Memory 3\n08 Voice/Keyer/RTTY Memory 4",
+   "body": "Data Function\n00 M-CH UP\n01 M-CH DOWN\n02 RX-ANT\n03 APF\n04 PRESET\n05 Voice/Keyer/RTTY Memory 1\n06 Voice/Keyer/RTTY Memory 2\n07 Voice/Keyer/RTTY Memory 3\n08 Voice/Keyer/RTTY Memory 4\n",
    "kind": "panel",
    "pages": [
     20
@@ -340,7 +340,7 @@
   },
   {
    "title": "Remote MIC Key setting",
-   "body": "Data Function\n00 - - - (No function assigned)\n01 UP\n02 DOWN\n03 UP (VFO: kHz)\n04 DOWN (VFO: kHz)\n05 XFC\n06 VFO/MEMO\n07 BAND UP\n08 BAND DOWN\n09 SPEECH\n10 MODE\n11 Voice/Keyer/RTTY Memory 1\n12 Voice/Keyer/RTTY Memory 2\n13 Voice/Keyer/RTTY Memory 3\n14 Voice/Keyer/RTTY Memory 4\n15 TS\n16 MPAD\n17 SPLIT\n18 A/B\n19 TUNER",
+   "body": "Data Function\n00 - - - (No function assigned)\n01 UP\n02 DOWN\n03 UP (VFO: kHz)\n04 DOWN (VFO: kHz)\n05 XFC\n06 VFO/MEMO\n07 BAND UP\n08 BAND DOWN\n09 SPEECH\n10 MODE\n11 Voice/Keyer/RTTY Memory 1\n12 Voice/Keyer/RTTY Memory 2\n13 Voice/Keyer/RTTY Memory 3\n14 Voice/Keyer/RTTY Memory 4\n15 TS\n16 MPAD\n17 SPLIT\n18 A/B\n19 TUNER\n",
    "kind": "panel",
    "pages": [
     20
@@ -355,7 +355,7 @@
   },
   {
    "title": "IP address setting",
-   "body": "1st octet 4th octet3rd octet2nd octet\n1000： 0 (Fixed)\n10： 0 ~ 9\n1000： 0 (Fixed)\n10： 0 ~ 9\n1： 0 ~ 9\n1000： 0 (Fixed)\n10： 0 ~ 9\n1： 0 ~ 9\n1000： 0 (Fixed)\n10： 0 ~ 9\n1： 0 ~ 9\nLSet each octet to 00 00 ~ 02 55\nLFF=blank in command: 1A 05 01 04, 01 05, 01 06\n[8 diagram glyph lines omitted]",
+   "body": "1st octet 4th octet3rd octet2nd octet\n1000： 0 (Fixed)\n10： 0 ~ 9\n1000： 0 (Fixed)\n10： 0 ~ 9\n1： 0 ~ 9\n1000： 0 (Fixed)\n10： 0 ~ 9\n1： 0 ~ 9\n1000： 0 (Fixed)\n10： 0 ~ 9\n1： 0 ~ 9\nLSet each octet to 00 00 ~ 02 55\nLFF=blank in command: 1A 05 01 04, 01 05, 01 06\n",
    "kind": "panel",
    "pages": [
     20
@@ -370,7 +370,7 @@
   },
   {
    "title": "UTC offset setting",
-   "body": "Shift direction\n00: + (plus)\n01: − (minus)\nOffset time\n[2 diagram glyph lines omitted]",
+   "body": "Shift direction\n00: + (plus)\n01: − (minus)\nOffset time\n",
    "kind": "panel",
    "pages": [
     21
@@ -385,7 +385,7 @@
   },
   {
    "title": "Color setting",
-   "body": "R (Red)\nG (Green)\nB (Blue)\n[6 diagram glyph lines omitted]",
+   "body": "R (Red)\nG (Green)\nB (Blue)\n",
    "kind": "panel",
    "pages": [
     21
@@ -425,7 +425,7 @@
   },
   {
    "title": "“KEYER/DECODE” behavior settings",
-   "body": "Data Touch Hold\n00 Select screen\n01 KEYER screen Select screen\n02 DECODE screen Select screen",
+   "body": "Data Touch Hold\n00 Select screen\n01 KEYER screen Select screen\n02 DECODE screen Select screen\n",
    "kind": "panel",
    "pages": [
     21
@@ -440,7 +440,7 @@
   },
   {
    "title": "DATA mode with filter width settings",
-   "body": "1 DATA mode\nSSB/AM/FM CW/RTTY\n00=OFF\n00=OFF (Fixed)\n01=ON\n2 Filter setting\nSSB/AM/FM\nCW/RTTY\nDATA mode\n(1) OFF\nDATA mode\n(1) ON\n00=OFF\n(Fixed)\n01=FIL 1\n00=OFF (Fixed)02=FIL 2\n03=FIL 3\nL When 1 is set to 00 (OFF), 2 must be set to 00 (OFF)\nas well.\n[1 diagram glyph lines omitted]",
+   "body": "1 DATA mode\nSSB/AM/FM CW/RTTY\n00=OFF\n00=OFF (Fixed)\n01=ON\n2 Filter setting\nSSB/AM/FM\nCW/RTTY\nDATA mode\n(1) OFF\nDATA mode\n(1) ON\n00=OFF\n(Fixed)\n01=FIL 1\n00=OFF (Fixed)02=FIL 2\n03=FIL 3\nL When 1 is set to 00 (OFF), 2 must be set to 00 (OFF)\nas well.\n",
    "kind": "panel",
    "pages": [
     21
@@ -455,7 +455,7 @@
   },
   {
    "title": "Repeater tone/tone squelch frequency settings",
-   "body": "100 Hz digit: 0 ~ 2\n10 Hz digit: 0  ~ 9\n1 Hz digit: 0  ~ 9\n0.1 Hz digit: 0 ~ 9\nFixed digit: 0*\nFixed digit: 0*\n1*\n* Not necessary when setting a frequency.\n[3 diagram glyph lines omitted]",
+   "body": "100 Hz digit: 0 ~ 2\n10 Hz digit: 0  ~ 9\n1 Hz digit: 0  ~ 9\n0.1 Hz digit: 0 ~ 9\nFixed digit: 0*\nFixed digit: 0*\n1*\n* Not necessary when setting a frequency.\n",
    "kind": "panel",
    "pages": [
     22
@@ -475,7 +475,7 @@
   },
   {
    "title": "RIT frequency settings",
-   "body": "10 Hz: 0 ~ 9\n100 Hz: 0 ~ 9\n1 Hz: 0 ~ 9\n1 kHz: 0 ~ 9\n00: + (plus)\n01: – (minus)\n[1 diagram glyph lines omitted]",
+   "body": "10 Hz: 0 ~ 9\n100 Hz: 0 ~ 9\n1 Hz: 0 ~ 9\n1 kHz: 0 ~ 9\n00: + (plus)\n01: – (minus)\n",
    "kind": "panel",
    "pages": [
     22
@@ -490,7 +490,7 @@
   },
   {
    "title": "Selected or Unselected VFO frequency settings",
-   "body": "00: Selected VFO\n01: Unselected VFO\nOperating frequency data\n• Selected or Unselected VFO’s operating mode\nand filter settings\nBoth data and filter settings can be skipped. In that\ncase, “DATA OFF” and the default filter setting of the\noperating mode are automatically selected.\n1  VFO 2  Operating mode 3  Data\nmode 4  Filter\n00=\nSelected\nVFO\n00=LSB 05=FM 00=OFF 01=FIL1\n01=USB 07=CW-R 01=ON 02=FIL2\n01=\nUnselected\nVFO\n02=AM 08=RTTY-R 03=FIL3\n03=CW\n04=RTTY\n[3 diagram glyph lines omitted]",
+   "body": "00: Selected VFO\n01: Unselected VFO\nOperating frequency data\n• Selected or Unselected VFO’s operating mode\nand filter settings\nBoth data and filter settings can be skipped. In that\ncase, “DATA OFF” and the default filter setting of the\noperating mode are automatically selected.\n1  VFO 2  Operating mode 3  Data\nmode 4  Filter\n00=\nSelected\nVFO\n00=LSB 05=FM 00=OFF 01=FIL1\n01=USB 07=CW-R 01=ON 02=FIL2\n01=\nUnselected\nVFO\n02=AM 08=RTTY-R 03=FIL3\n03=CW\n04=RTTY\n",
    "kind": "panel",
    "pages": [
     22
@@ -505,7 +505,7 @@
   },
   {
    "title": "Scope waveform data",
-   "body": "1  Selected or Unselected VFO\n00=Selected VFO (Fixed)\n2  Order of division data (Current)\n3  Division number (Maximum)\n01 (LAN), 11 (USB)\nWhen data is sent to the controller (PC) through the\n[LAN] port on the transceiver’s rear panel, it is sent\nall at once. On the other hand, when the data is sent\nthrough the [USB] port, it is divided into 11 segments\nand sent in sequential order.\nDivision\nnumber Data length\nLAN 01 490\nUSB 11\n1st data 15\nlater data 53\n11th data 28\nThe 1st data sends only the wave information\n(1 ~ 6) without the waveform data (7). The 2nd or\nlater data sends the minimum wave information (1 ~\n3), and the waveform data (7).\n4 Spectrum scope mode data\n• 00=Center mode scope\n• 01=Fixed mode scope\n• 02=SCROLL-C mode scope\n• 03=SCROLL-F mode scope\n5  Waveform information\nThe waveform information differs, depending on the\nSpectrum scope mode.\n• In the Center mode:\nCenter frequency and span are sent.\nSee page 16 for Operating frequency data,\nand page 25 for the Scope span settings\n(2 ~ 6).\n• In the Fixed, SCROLL-C, and SCROLL-F modes:\nThe lower and higher edge frequencies are sent.\n10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 7\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0, F*\n100 MHz digit: 0 (Fixed)\n10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit:  0 ~ 9\n10 MHz digit: 0 ~ 7\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\nLower edge Higher edge\n*  “F” means that the Lower edge frequency is a negative\nvalue.\n6  Out of range information\n• 00=In range\n• 01=Out of range\nLIf the scope data is out of range, the waveform data\n(7) is omitted.\n7  Waveform data\nThe controller (PC) determines the data range or\nlength of the waveform data.\n• Data range: 00 ~ A0 (0 ~ 160)\n• Data length: 475\n[8 diagram glyph lines omitted]",
+   "body": "1  Selected or Unselected VFO\n00=Selected VFO (Fixed)\n2  Order of division data (Current)\n3  Division number (Maximum)\n01 (LAN), 11 (USB)\nWhen data is sent to the controller (PC) through the\n[LAN] port on the transceiver’s rear panel, it is sent\nall at once. On the other hand, when the data is sent\nthrough the [USB] port, it is divided into 11 segments\nand sent in sequential order.\nDivision\nnumber Data length\nLAN 01 490\nUSB 11\n1st data 15\nlater data 53\n11th data 28\nThe 1st data sends only the wave information\n(1 ~ 6) without the waveform data (7). The 2nd or\nlater data sends the minimum wave information (1 ~\n3), and the waveform data (7).\n4 Spectrum scope mode data\n• 00=Center mode scope\n• 01=Fixed mode scope\n• 02=SCROLL-C mode scope\n• 03=SCROLL-F mode scope\n5  Waveform information\nThe waveform information differs, depending on the\nSpectrum scope mode.\n• In the Center mode:\nCenter frequency and span are sent.\nSee page 16 for Operating frequency data,\nand page 25 for the Scope span settings\n(2 ~ 6).\n• In the Fixed, SCROLL-C, and SCROLL-F modes:\nThe lower and higher edge frequencies are sent.\n10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 7\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0, F*\n100 MHz digit: 0 (Fixed)\n10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit:  0 ~ 9\n10 MHz digit: 0 ~ 7\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\nLower edge Higher edge\n*  “F” means that the Lower edge frequency is a negative\nvalue.\n6  Out of range information\n• 00=In range\n• 01=Out of range\nLIf the scope data is out of range, the waveform data\n(7) is omitted.\n7  Waveform data\nThe controller (PC) determines the data range or\nlength of the waveform data.\n• Data range: 00 ~ A0 (0 ~ 160)\n• Data length: 475\n",
    "kind": "panel",
    "pages": [
     23
@@ -520,7 +520,7 @@
   },
   {
    "title": "Spectrum scope mode settings",
-   "body": "00=Center mode\n01=Fixed mode\n02=SCROLL-C mode\n03=SCROLL-F mode\nFixed\n• Scope span settings\n(for the Center and SCROLL-C mode)\n1 kHz digit: 0, 2, 5\n100 Hz digit: 0, 5\n100 kHz digit: 0, 1, 2, 5\n10 kHz digit: 0, 1, 2, 5\n10 Hz digit: 0 (Fixed)\n1 Hz digit: 0 (Fixed)\n10 MHz digit: 0 (Fixed)\n1 MHz digit: 0 (Fixed)\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\nFixed\nSpan (kHz)\n• Scope Edge number settings\n(for the Fixed and SCROLL-F mode)\n01: Edge 1\n02: Edge 2\n03: Edge 3\n04: Edge 4\nFixed\n[12 diagram glyph lines omitted]",
+   "body": "00=Center mode\n01=Fixed mode\n02=SCROLL-C mode\n03=SCROLL-F mode\nFixed\n• Scope span settings\n(for the Center and SCROLL-C mode)\n1 kHz digit: 0, 2, 5\n100 Hz digit: 0, 5\n100 kHz digit: 0, 1, 2, 5\n10 kHz digit: 0, 1, 2, 5\n10 Hz digit: 0 (Fixed)\n1 Hz digit: 0 (Fixed)\n10 MHz digit: 0 (Fixed)\n1 MHz digit: 0 (Fixed)\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\nFixed\nSpan (kHz)\n• Scope Edge number settings\n(for the Fixed and SCROLL-F mode)\n01: Edge 1\n02: Edge 2\n03: Edge 3\n04: Edge 4\nFixed\n",
    "kind": "panel",
    "pages": [
     24
@@ -535,7 +535,7 @@
   },
   {
    "title": "Scope Hold settings",
-   "body": "00: Hold OFF\n01: Hold ON\nFixed\n[1 diagram glyph lines omitted]",
+   "body": "00: Hold OFF\n01: Hold ON\nFixed\n",
    "kind": "panel",
    "pages": [
     24
@@ -550,7 +550,7 @@
   },
   {
    "title": "Scope Reference level settings",
-   "body": "00: + (plus)\n01: – (minus)\nFixed\n10 dB digit: 0 ~ 2\n1 dB digit: 0 ~ 9\n0.1 dB digit: 0, 5\n0.01 dB digit: 0 (Fixed)\nAdjustable range:  –20.0 dB ~ +20.0 dB\nin 0.5 dB steps.\n[1 diagram glyph lines omitted]",
+   "body": "00: + (plus)\n01: – (minus)\nFixed\n10 dB digit: 0 ~ 2\n1 dB digit: 0 ~ 9\n0.1 dB digit: 0, 5\n0.01 dB digit: 0 (Fixed)\nAdjustable range:  –20.0 dB ~ +20.0 dB\nin 0.5 dB steps.\n",
    "kind": "panel",
    "pages": [
     24
@@ -565,7 +565,7 @@
   },
   {
    "title": "Scope Sweep speed settings",
-   "body": "00: FAST\n01: MID\n02: SLOW\nFixed\n[1 diagram glyph lines omitted]",
+   "body": "00: FAST\n01: MID\n02: SLOW\nFixed\n",
    "kind": "panel",
    "pages": [
     24
@@ -580,7 +580,7 @@
   },
   {
    "title": "Scope VBW (Video Band Width) settings",
-   "body": "00: Narrow\n01: Wide\nFixed\n[1 diagram glyph lines omitted]",
+   "body": "00: Narrow\n01: Wide\nFixed\n",
    "kind": "panel",
    "pages": [
     24
@@ -595,7 +595,7 @@
   },
   {
    "title": "Scope Fixed edge frequency settings",
-   "body": "10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 7\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\n10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 7\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\nFrequency range\nLower edge Higher edge\nEdge number: 01 ~ 04\nLEntry of less than 1 kHz digits are ignored\n1 Selectable Frequency ranges\nData Frequency range (unit=MHz)\n2  Selectable Edge number:\n01=1\n02=2\n03=3\n04=4\n[16 diagram glyph lines omitted]",
+   "body": "10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 7\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\n10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 7\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\nFrequency range\nLower edge Higher edge\nEdge number: 01 ~ 04\nLEntry of less than 1 kHz digits are ignored\n1 Selectable Frequency ranges\nData Frequency range (unit=MHz)\n2  Selectable Edge number:\n01=1\n02=2\n03=3\n04=4\n",
    "kind": "panel",
    "pages": [
     25

@@ -35,7 +35,7 @@
   },
   {
    "title": "Duplex Offset frequency setting",
-   "body": "",
+   "body": "\n",
    "kind": "panel",
    "pages": [
     17
@@ -80,7 +80,7 @@
   },
   {
    "title": "Codes for CW message contents",
-   "body": "To send CW messages, use the following\ncharacter codes.\nCharacter ASCII code\nA ~ Z 41 ~ 5A\na ~ z 61 ~ 7A\n/ 2F\n? 3F\n. 2E\n− 2D\n, 2C\n: 3A\nCharacter ASCII code\n’ 27\n( 28\n) 29\n= 3D\n+ 2B\n” 22\n@ 40\nSpace 20\nL“FF” stops sending CW messages\nL“^” is used to transmit a string of characters with no\ninter-character space.\n[1 diagram glyph lines omitted]",
+   "body": "To send CW messages, use the following character codes.\n\nCharacter ASCII code\n0 ~ 9     30 ~ 39\nA ~ Z     41 ~ 5A\na ~ z     61 ~ 7A\n/         2F\n?         3F\n.         2E\n−         2D\n,         2C\n:         3A\n\nCharacter ASCII code\n’         27\n(         28\n)         29\n=         3D\n+         2B\n”         22\n@         40\nSpace     20\n\nℹ \"FF\" stops sending CW messages.\nℹ \"^\" is used to transmit a string of characters with no inter-character space.",
    "kind": "panel",
    "pages": [
     17
@@ -120,7 +120,7 @@
   },
   {
    "title": "Memory content",
-   "body": "26 ~ 28 29～36 37 ~ 44 45 ~ 52 6 ~ 52 53 ~ 68\n1, 2: Memory group number\n0000 ~ 0099: Memory channel group\n0100:  Call channel group\n3, 4: Memory channel numbers\n• When Memory channel group is selected,\n• When Call channel group is selected,\n0000, 0001: 144 C1, C2\n0002, 0003: 430 C1, C2\n5: Split and Select memory setting\n0=OFF*\n1= 1\n2= 2\n3= 3\n0=Split OFF,1=Split ON\n* Set 0 for Call channel.\n6~10: Operating frequency setting\nLSee “Operating frequency” (p 17)\n11, 12: Operating mode setting\nLSee “Operating mode” (p 17)\n13: Data mode setting\n1 byte data (XX)\n00: Data mode OFF\n01: Data mode ON\n14: Duplex and Tone settings\n0=Duplex OFF\n1=Duplex−\n2=Duplex+\n0=OFF\n1=TONE\n2=TSQL\n3=DTCS\n15: Digital squelch setting\n0=Digital squelch function OFF\n1=Digital call sign squelch function ON (DSQL)\n2=Digital code squelch function ON (CSQL)\nFixed\n16~18: Repeater tone frequency setting\n19~21: Repeater tone frequency setting\nLSee “Repeater tone/tone squelch frequency setting”\n(p. 22)\n22~24: DTCS code setting\nLSee “DTCS code and polarity setting” (p 22)\n25: DV Digital code squelch setting\nLSee “DV Digital code squelch setting” (p 23)\n26~28: Duplex offset frequency setting\nLSee “Duplex Offset frequency setting” (p 17)\n29~36:  UR (Destination) call sign setting\n(8 characters, fixed)\n37~44:  R1 (Access repeater) call sign setting\n(8 characters, fixed)\n45~52:  R2 (Gateway/Link repeater) call sign setting\n(8 characters, fixed)\nLSee “DV TX call signs setting” (p 23)\n53~68:  Memory name setting (16 characters, fixed)\nLSee “Codes for character entries” (p 19)\nTo clear the memory channel contents on 1A 00:\n1, 2:  Memory channel group (0000~0099)\nYou cannot specify group “0100” (Call\nchannel group)\n3, 4: Memory channel (0000~0099)\n5: “FF,” 6 ~ : None\nNOTE:\n• The same data as 6 ~ 52 are stored in 6 ~ 52.\n• When the Split function is ON, the data of 6 ~ 52\nis used for transmit.\n• Even if the Split function is OFF, enter the data\ninto 6 ~ 52 to match your transceiver. We\nrecommend that you set the same data as 6 ~ 52.\n[14 diagram glyph lines omitted]",
+   "body": "26 ~ 28 29～36 37 ~ 44 45 ~ 52 6 ~ 52 53 ~ 68\n1, 2: Memory group number\n0000 ~ 0099: Memory channel group\n0100:  Call channel group\n3, 4: Memory channel numbers\n• When Memory channel group is selected,\n• When Call channel group is selected,\n0000, 0001: 144 C1, C2\n0002, 0003: 430 C1, C2\n5: Split and Select memory setting\n0=OFF*\n1= 1\n2= 2\n3= 3\n0=Split OFF,1=Split ON\n* Set 0 for Call channel.\n6~10: Operating frequency setting\nLSee “Operating frequency” (p 17)\n11, 12: Operating mode setting\nLSee “Operating mode” (p 17)\n13: Data mode setting\n1 byte data (XX)\n00: Data mode OFF\n01: Data mode ON\n14: Duplex and Tone settings\n0=Duplex OFF\n1=Duplex−\n2=Duplex+\n0=OFF\n1=TONE\n2=TSQL\n3=DTCS\n15: Digital squelch setting\n0=Digital squelch function OFF\n1=Digital call sign squelch function ON (DSQL)\n2=Digital code squelch function ON (CSQL)\nFixed\n16~18: Repeater tone frequency setting\n19~21: Repeater tone frequency setting\nLSee “Repeater tone/tone squelch frequency setting”\n(p. 22)\n22~24: DTCS code setting\nLSee “DTCS code and polarity setting” (p 22)\n25: DV Digital code squelch setting\nLSee “DV Digital code squelch setting” (p 23)\n26~28: Duplex offset frequency setting\nLSee “Duplex Offset frequency setting” (p 17)\n29~36:  UR (Destination) call sign setting\n(8 characters, fixed)\n37~44:  R1 (Access repeater) call sign setting\n(8 characters, fixed)\n45~52:  R2 (Gateway/Link repeater) call sign setting\n(8 characters, fixed)\nLSee “DV TX call signs setting” (p 23)\n53~68:  Memory name setting (16 characters, fixed)\nLSee “Codes for character entries” (p 19)\nTo clear the memory channel contents on 1A 00:\n1, 2:  Memory channel group (0000~0099)\nYou cannot specify group “0100” (Call\nchannel group)\n3, 4: Memory channel (0000~0099)\n5: “FF,” 6 ~ : None\nNOTE:\n• The same data as 6 ~ 52 are stored in 6 ~ 52.\n• When the Split function is ON, the data of 6 ~ 52\nis used for transmit.\n• Even if the Split function is OFF, enter the data\ninto 6 ~ 52 to match your transceiver. We\nrecommend that you set the same data as 6 ~ 52.\n",
    "kind": "panel",
    "pages": [
     18
@@ -135,7 +135,7 @@
   },
   {
    "title": "Keyer memory character entries",
-   "body": "- Character codes\nCharacter ASCII code Description\n0 ~ 9 30 ~ 39 Numbers\nA ~ Z 41 ~ 5A Letters\nSpace 20 Word space\n/ 2F Symbol\n? 3F Symbol\n, 2C Symbol\n. 2E Symbol\n@ 40 Symbol\n^ 5E Example:  to send BT,\nenter ^4254\n* 2A Inserts the contest number\n(can be used for 1 channel only)\nLInformation\n• “FA” (NG) is returned if you insert the content\nnumber in more than 1 channel.\n• Spaces after the end of the sentence are not\nnecessary.\n• To clear the Keyer memory contents, send one or\nmore spaces.",
+   "body": "- Character codes\nCharacter ASCII code Description\n0 ~ 9 30 ~ 39 Numbers\nA ~ Z 41 ~ 5A Letters\nSpace 20 Word space\n/ 2F Symbol\n? 3F Symbol\n, 2C Symbol\n. 2E Symbol\n@ 40 Symbol\n^ 5E Example:  to send BT,\nenter ^4254\n* 2A Inserts the contest number\n(can be used for 1 channel only)\nLInformation\n• “FA” (NG) is returned if you insert the content\nnumber in more than 1 channel.\n• Spaces after the end of the sentence are not\nnecessary.\n• To clear the Keyer memory contents, send one or\nmore spaces.\n",
    "kind": "panel",
    "pages": [
     20
@@ -150,7 +150,7 @@
   },
   {
    "title": "Keyer memory content",
-   "body": "1: Channel data\n01=M1 05 =M5\n02=M2 06 =M6\n03=M3 07=M7\n04=M4 08=M8\n2 ~ 71: Text data\n[2 diagram glyph lines omitted]",
+   "body": "1: Channel data\n01=M1 05 =M5\n02=M2 06 =M6\n03=M3 07=M7\n04=M4 08=M8\n2 ~ 71: Text data\n",
    "kind": "panel",
    "pages": [
     20
@@ -165,7 +165,7 @@
   },
   {
    "title": "IF filter width settings",
-   "body": "Mode Data Steps\nSSB/CW/RTTY 0 ~ 9 50 ~ 500 Hz (50 Hz)\nSSB/CW 10 ~ 40 600 Hz ~ 3.6 kHz (100 Hz)\nRTTY 10 ~ 31 600 ~ 2.7 kHz (100 Hz)\nAM 0 ~ 49 200 Hz ~ 10.0 kHz (200 Hz)",
+   "body": "Mode Data Steps\nSSB/CW/RTTY 0 ~ 9 50 ~ 500 Hz (50 Hz)\nSSB/CW 10 ~ 40 600 Hz ~ 3.6 kHz (100 Hz)\nRTTY 10 ~ 31 600 ~ 2.7 kHz (100 Hz)\nAM 0 ~ 49 200 Hz ~ 10.0 kHz (200 Hz)\n",
    "kind": "panel",
    "pages": [
     20
@@ -180,7 +180,7 @@
   },
   {
    "title": "AGC time constant settings",
-   "body": "Data\nAGC time constant (sec.)\nSSB/CW/RTTY AM\n00 OFF OFF\n[13 diagram glyph lines omitted]",
+   "body": "Data\nAGC time constant (sec.)\nSSB/CW/RTTY AM\n00 OFF OFF\n",
    "kind": "panel",
    "pages": [
     20
@@ -195,7 +195,7 @@
   },
   {
    "title": "Split offset frequency setting",
-   "body": "1 kHz digit: 0 ~ 9\n100 Hz digit: 0\n(fixed)\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0\n(fixed)\n1 MHz digit: 0 ~ 9\nDirection:\n00=+ direction\n01=– direction\n[3 diagram glyph lines omitted]",
+   "body": "1 kHz digit: 0 ~ 9\n100 Hz digit: 0\n(fixed)\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0\n(fixed)\n1 MHz digit: 0 ~ 9\nDirection:\n00=+ direction\n01=– direction\n",
    "kind": "panel",
    "pages": [
     20
@@ -210,7 +210,7 @@
   },
   {
    "title": "UTC Offset setting",
-   "body": "Shift direction\n00=+ (plus)\n01=− (minus)\nOffset time\n[2 diagram glyph lines omitted]",
+   "body": "Shift direction\n00=+ (plus)\n01=− (minus)\nOffset time\n",
    "kind": "panel",
    "pages": [
     21
@@ -225,7 +225,7 @@
   },
   {
    "title": "Remote MIC Key setting",
-   "body": "Data Function\n00 No function\n01 UP\n02 DOWN\n03 UP (VFO: kHz)\n04 DOWN (VFO: kHz)\n05 VOL UP\n06 VOL DOWN\n07 XFC\n08 CALL\n09 VFO/MEMO\n10 DR\n11 FROM/TO (DR)\n12 Home CH\n13 BAND/GROUP UP\n14 BAND/GROUP DOWN\n15 SCAN\n16 Temporary Skip\n17 SPEECH\n18 MODE\n19 RF Power\n20 Voice/Keyer/RTTY Memory 1\n21 Voice/Keyer/RTTY Memory 2\n22 Voice/Keyer/RTTY Memory 3\n23 Voice/Keyer/RTTY Memory 4\n24 T-CALL*\n25 RX>CS\n26 TS\n27 MPAD\n28 SPLIT\n29 A/B\n30 TUNER\n* Only for European version.",
+   "body": "Data Function\n00 No function\n01 UP\n02 DOWN\n03 UP (VFO: kHz)\n04 DOWN (VFO: kHz)\n05 VOL UP\n06 VOL DOWN\n07 XFC\n08 CALL\n09 VFO/MEMO\n10 DR\n11 FROM/TO (DR)\n12 Home CH\n13 BAND/GROUP UP\n14 BAND/GROUP DOWN\n15 SCAN\n16 Temporary Skip\n17 SPEECH\n18 MODE\n19 RF Power\n20 Voice/Keyer/RTTY Memory 1\n21 Voice/Keyer/RTTY Memory 2\n22 Voice/Keyer/RTTY Memory 3\n23 Voice/Keyer/RTTY Memory 4\n24 T-CALL*\n25 RX>CS\n26 TS\n27 MPAD\n28 SPLIT\n29 A/B\n30 TUNER\n* Only for European version.\n",
    "kind": "panel",
    "pages": [
     21
@@ -255,7 +255,7 @@
   },
   {
    "title": "Color settings",
-   "body": "R (Red)\nG (Green)\nB (Blue)\n[6 diagram glyph lines omitted]",
+   "body": "R (Red)\nG (Green)\nB (Blue)\n",
    "kind": "panel",
    "pages": [
     21
@@ -270,7 +270,7 @@
   },
   {
    "title": "Bandscope edge frequency settings",
-   "body": "1A 05 0369 ~ 1A 05 0385\n1 kHz: 0 ~ 9\n100 Hz: 0 (fixed)\n100 kHz: 0 ~ 9\n10 kHz: 0 ~ 9\n10 MHz: 0 ~ 9\n1 MHz: 0 ~ 9\n1 GHz: 0 (fixed)\n100 MHz: 0 ~ 4\n1 kHz: 0 ~ 9\n100 Hz: 0 (fixed)\n100 kHz: 0 ~ 9\n10 kHz: 0 ~ 9\n10 MHz: 0 ~ 9\n1 MHz: 0 ~ 9\n1 GHz: 0 (fixed)\n100 MHz: 0 ~ 4\nLower edge Higher edge\n[4 diagram glyph lines omitted]",
+   "body": "1A 05 0369 ~ 1A 05 0385\n1 kHz: 0 ~ 9\n100 Hz: 0 (fixed)\n100 kHz: 0 ~ 9\n10 kHz: 0 ~ 9\n10 MHz: 0 ~ 9\n1 MHz: 0 ~ 9\n1 GHz: 0 (fixed)\n100 MHz: 0 ~ 4\n1 kHz: 0 ~ 9\n100 Hz: 0 (fixed)\n100 kHz: 0 ~ 9\n10 kHz: 0 ~ 9\n10 MHz: 0 ~ 9\n1 MHz: 0 ~ 9\n1 GHz: 0 (fixed)\n100 MHz: 0 ~ 4\nLower edge Higher edge\n",
    "kind": "panel",
    "pages": [
     21
@@ -535,7 +535,7 @@
   },
   {
    "title": "[VOX/BK-IN] setting",
-   "body": "Data Function\n00 TRANSMIT\n01 TUNER\n02 VOX/BK-IN\n03 P.AMP/ATT\n04 NOTCH\n05 NB\n06 NR\n07 SPLIT\n08 A/B\n09 VFO/MEMO\n10 CD\n11 PRESET\n12 Home CH\n13 Temporary Skip\n14 Voice/Keyer/RTTY Memory 1\n15 Voice/Keyer/RTTY Memory 2\n16 Voice/Keyer/RTTY Memory 3\n17 Voice/Keyer/RTTY Memory 4",
+   "body": "Data Function\n00 TRANSMIT\n01 TUNER\n02 VOX/BK-IN\n03 P.AMP/ATT\n04 NOTCH\n05 NB\n06 NR\n07 SPLIT\n08 A/B\n09 VFO/MEMO\n10 CD\n11 PRESET\n12 Home CH\n13 Temporary Skip\n14 Voice/Keyer/RTTY Memory 1\n15 Voice/Keyer/RTTY Memory 2\n16 Voice/Keyer/RTTY Memory 3\n17 Voice/Keyer/RTTY Memory 4\n",
    "kind": "panel",
    "pages": [
     21
@@ -550,7 +550,7 @@
   },
   {
    "title": "D-PRS Symbol setting",
-   "body": "1A 05 0310, 0324, 0335\nFirst digit Second digit\n• ⁄,\u0007\\,\u00070\u0007to\u00079,\u0007A\u0007to\u0007Z\u0007can\u0007be\u0007used\u0007for\u0007the\u0007first\u0007digit\u0007\ncharacter.\n• See “Codes for character entries” for the second\ndigit character. (p. 19)\n[1 diagram glyph lines omitted]",
+   "body": "1A 05 0310, 0324, 0335\nFirst digit Second digit\n• ⁄,\u0007\\,\u00070\u0007to\u00079,\u0007A\u0007to\u0007Z\u0007can\u0007be\u0007used\u0007for\u0007the\u0007first\u0007digit\u0007\ncharacter.\n• See “Codes for character entries” for the second\ndigit character. (p. 19)\n",
    "kind": "panel",
    "pages": [
     22
@@ -580,7 +580,7 @@
   },
   {
    "title": "Alarm area (Group) setting",
-   "body": "10 min. digit: 0 ~ 5\n1 min. digit: 0 ~ 9\n0.1 min. digit: 0 ~ 9\n0.01 min. digit: 0 ~ 9\n0.001 min. digit: 0 ~ 9\n0 (fixed)\n[3 diagram glyph lines omitted]",
+   "body": "10 min. digit: 0 ~ 5\n1 min. digit: 0 ~ 9\n0.1 min. digit: 0 ~ 9\n0.01 min. digit: 0 ~ 9\n0.001 min. digit: 0 ~ 9\n0 (fixed)\n",
    "kind": "panel",
    "pages": [
     22
@@ -595,7 +595,7 @@
   },
   {
    "title": "Data mode with filter width settings",
-   "body": "01=FIL1\n02=FIL2\n03=FIL3\n00=Data mode OFF*\n01=Data mode ON\n*When 00 is set, also set 00 to 2.\n[1 diagram glyph lines omitted]",
+   "body": "01=FIL1\n02=FIL2\n03=FIL3\n00=Data mode OFF*\n01=Data mode ON\n*When 00 is set, also set 00 to 2.\n",
    "kind": "panel",
    "pages": [
     22
@@ -610,7 +610,7 @@
   },
   {
    "title": "Repeater tone/tone squelch frequency settings",
-   "body": "100Hz digit: 0 ~ 2\n10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n0.1 Hz digit: 0 ~ 9\nFixed digit: 0*\nFixed digit: 0*\n1*\n*Not necessary when setting a frequency.\n[3 diagram glyph lines omitted]",
+   "body": "100Hz digit: 0 ~ 2\n10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n0.1 Hz digit: 0 ~ 9\nFixed digit: 0*\nFixed digit: 0*\n1*\n*Not necessary when setting a frequency.\n",
    "kind": "panel",
    "pages": [
     22
@@ -630,7 +630,7 @@
   },
   {
    "title": "DTCS code and polarity setting",
-   "body": "0 (fixed)\nFirst digit: 0 ~ 7\nSecond digit: 0 ~ 7\nThird digit: 0 ~ 7\nReceive polarity: 0=Normal\n1=Reverse\nTransmit polarity: 0=Normal\n1=Reverse\n[3 diagram glyph lines omitted]",
+   "body": "0 (fixed)\nFirst digit: 0 ~ 7\nSecond digit: 0 ~ 7\nThird digit: 0 ~ 7\nReceive polarity: 0=Normal\n1=Reverse\nTransmit polarity: 0=Normal\n1=Reverse\n",
    "kind": "panel",
    "pages": [
     22
@@ -645,7 +645,7 @@
   },
   {
    "title": "[AUTOTUNE/RX>CS] setting",
-   "body": "Data Function\n00 AUTOTUNE/RX>CS\n01 CD/RX>CS\n02 PRESET/RX>CS\n03 Home CH/RX>CS\n04 Temporary Skip/RX>CS",
+   "body": "Data Function\n00 AUTOTUNE/RX>CS\n01 CD/RX>CS\n02 PRESET/RX>CS\n03 Home CH/RX>CS\n04 Temporary Skip/RX>CS\n",
    "kind": "panel",
    "pages": [
     22
@@ -660,7 +660,7 @@
   },
   {
    "title": "DV Digital code squelch setting",
-   "body": "First digit: 0 ~ 9\nSecond digit: 0 ~ 9\n[1 diagram glyph lines omitted]",
+   "body": "First digit: 0 ~ 9\nSecond digit: 0 ~ 9\n",
    "kind": "panel",
    "pages": [
     23
@@ -675,7 +675,7 @@
   },
   {
    "title": "DV TX message setting",
-   "body": "Set the transmit message of up to 20 characters.\nSee “Codes for character entries.” (p. 19)\n“FF” stops sending or reading messages.\nWhen setting “UR,” “R1,” and “R2” call signs\nWhen setting only the “UR” call sign\n1 ~ 8:  UR (Destination) call sign setting\n(8 characters)\n∙∙∙∙∙∙∙∙\n[2 diagram glyph lines omitted]",
+   "body": "Set the transmit message of up to 20 characters.\nSee “Codes for character entries.” (p. 19)\n“FF” stops sending or reading messages.\nWhen setting “UR,” “R1,” and “R2” call signs\nWhen setting only the “UR” call sign\n1 ~ 8:  UR (Destination) call sign setting\n(8 characters)\n∙∙∙∙∙∙∙∙\n",
    "kind": "panel",
    "pages": [
     23
@@ -690,7 +690,7 @@
   },
   {
    "title": "RIT frequency settings",
-   "body": "10 Hz: 0 ~ 9\n100 Hz: 0 ~ 9\n1 Hz: 0 ~ 9\n1 kHz: 0 ~ 9\n00: + (plus)\n01: – (minus)\n[1 diagram glyph lines omitted]",
+   "body": "10 Hz: 0 ~ 9\n100 Hz: 0 ~ 9\n1 Hz: 0 ~ 9\n1 kHz: 0 ~ 9\n00: + (plus)\n01: – (minus)\n",
    "kind": "panel",
    "pages": [
     27
@@ -705,7 +705,7 @@
   },
   {
    "title": "MY position data",
-   "body": "∙∙∙∙∙∙∙ ∙∙∙∙∙∙∙\n∙∙∙∙∙∙∙ ∙∙∙∙∙∙∙\n∙∙∙∙∙∙∙\n1 ~ 5: Latitude (dd°mm.mmm format)\n6 ~ 11: Longitude (ddd°mm.mmm format)\n12 ~ 15: Altitude (0.1 meter steps)\n16, 17: Course (1 degree steps)\n18 ~ 20: Speed (0.1 km/h steps)\n21 ~ 27:  Date (UTC: yyyymmddHHMMSS)\n( y: Year, m: Month, d: Day,\nH: Hour, M: Minute, S: Second)\n[12 diagram glyph lines omitted]",
+   "body": "∙∙∙∙∙∙∙ ∙∙∙∙∙∙∙\n∙∙∙∙∙∙∙ ∙∙∙∙∙∙∙\n∙∙∙∙∙∙∙\n1 ~ 5: Latitude (dd°mm.mmm format)\n6 ~ 11: Longitude (ddd°mm.mmm format)\n12 ~ 15: Altitude (0.1 meter steps)\n16, 17: Course (1 degree steps)\n18 ~ 20: Speed (0.1 km/h steps)\n21 ~ 27:  Date (UTC: yyyymmddHHMMSS)\n( y: Year, m: Month, d: Day,\nH: Hour, M: Minute, S: Second)\n",
    "kind": "panel",
    "pages": [
     27
@@ -720,7 +720,7 @@
   },
   {
    "title": "Selected or unselected VFO frequency settings",
-   "body": "Operating frequency00=Selected VFO\n01=Unselected VFO See “Operating frequency.” (p. 17)\nLWhen using the DR function, the transceiver returns\n“FA” (NG) because these cannot be set to 01.\n• When VFO A is selected\n00=frequency of VFO A changes\n01=frequency of VFO B changes\n• When VFO B is selected\n00=frequency of VFO B changes\n01=frequency of VFO A changes\n• Selected or unselected VFO’s operating\nmode and filter settings\nBoth data and filter settings can be skipped.\nIn that case, “DATA OFF” and the default filter\nsetting of the operating mode is automatically\nselected.\n1Operating mode setting\n2Data mode setting\n3Filter setting\n00=Selected VFO\n01=Unselected VFO\nLWhen using the DR function, the transceiver returns\n“FA” (NG) because these cannot be set to 01.\n• When VFO A is selected\n00 = operating mode of VFO A changes\n01 = operating mode of VFO B changes\n• When VFO B is selected\n00 = operating mode of VFO B changes\n01 = operating mode of VFO A changes\n1  Operating mode\nsetting\n2  Data mode\nsetting\n3  Filter\nsetting\n00:LSB 05:FM 00: Data mode OFF 01:FIL1\n01:USB 06:WFM 01: Data mode ON 02:FIL2\n02:AM 07:CW-R — 03:FIL3\n03:CW 08:RTTY-R — —\n04:RTTY 17:DV — —\n[2 diagram glyph lines omitted]",
+   "body": "Operating frequency00=Selected VFO\n01=Unselected VFO See “Operating frequency.” (p. 17)\nLWhen using the DR function, the transceiver returns\n“FA” (NG) because these cannot be set to 01.\n• When VFO A is selected\n00=frequency of VFO A changes\n01=frequency of VFO B changes\n• When VFO B is selected\n00=frequency of VFO B changes\n01=frequency of VFO A changes\n• Selected or unselected VFO’s operating\nmode and filter settings\nBoth data and filter settings can be skipped.\nIn that case, “DATA OFF” and the default filter\nsetting of the operating mode is automatically\nselected.\n1Operating mode setting\n2Data mode setting\n3Filter setting\n00=Selected VFO\n01=Unselected VFO\nLWhen using the DR function, the transceiver returns\n“FA” (NG) because these cannot be set to 01.\n• When VFO A is selected\n00 = operating mode of VFO A changes\n01 = operating mode of VFO B changes\n• When VFO B is selected\n00 = operating mode of VFO B changes\n01 = operating mode of VFO A changes\n1  Operating mode\nsetting\n2  Data mode\nsetting\n3  Filter\nsetting\n00:LSB 05:FM 00: Data mode OFF 01:FIL1\n01:USB 06:WFM 01: Data mode ON 02:FIL2\n02:AM 07:CW-R — 03:FIL3\n03:CW 08:RTTY-R — —\n04:RTTY 17:DV — —\n",
    "kind": "panel",
    "pages": [
     27
@@ -735,7 +735,7 @@
   },
   {
    "title": "Scope waveform data",
-   "body": "Outputs the waveform data to the controller.\n1: 00 (Fixed)\n2: Order of division data (Current): 01~11\n3:  Division number (Maximum): 01(WLAN), 11(USB)\nLWhen data is sent to the controller using\nthe WLAN function, all data is sent together.\nHowever, when the data is sent through the\n[microUSB] port, the data is divided by 11 and\nsent in sequential order.\nLThe 1st data sends only the wave information\n(1 ~ 6) without the waveform data (7). The\n2nd or later data sends the minimum wave\ninformation (1 ~ 3) with waveform data (7).\n4: Spectrum scope mode data:\n• 00 = Center mode scope\n• 01 = Fixed mode scope\n• 02 = SCROLL-C mode scope\n• 03 = SCROLL-F mode scope\n5:  Waveform information:\nThe waveform information differs, depending on\nthe Spectrum scope mode.\n• In the Center mode:\nCenter frequency and span are sent.\nSee page 17 for Operating frequency data, and\nthe Scope span settings (2 ~ 6) on page 29.\n• In the Fixed, SCROLL-C, and SCROLL-F modes:\nLower edge and higher edge frequencies are\nsent.\n10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 9\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0 , F*\n100 MHz digit: 0 ~ 4\n10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 9\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 ~ 4\nLower edge Higher edge\n*  “F” means that the Lower edge frequency is a\nnegative value.\n6:  Out of range information:\n• 00 = In range\n• 01 = Out of range\nLIf the scope data is out of range, the waveform\ndata (7) is omitted.\n7:  Waveform data:\nThe transceiver outputs the drawn waveform data.\nThe data range or data length of the waveform\ndata is judged by the controller. (The data range is\nbasically the same as the display size of the scope\non the controller.)\n• Data range: 0 ~ 160\n• Data length: 475\n[6 diagram glyph lines omitted]",
+   "body": "Outputs the waveform data to the controller.\n1: 00 (Fixed)\n2: Order of division data (Current): 01~11\n3:  Division number (Maximum): 01(WLAN), 11(USB)\nLWhen data is sent to the controller using\nthe WLAN function, all data is sent together.\nHowever, when the data is sent through the\n[microUSB] port, the data is divided by 11 and\nsent in sequential order.\nLThe 1st data sends only the wave information\n(1 ~ 6) without the waveform data (7). The\n2nd or later data sends the minimum wave\ninformation (1 ~ 3) with waveform data (7).\n4: Spectrum scope mode data:\n• 00 = Center mode scope\n• 01 = Fixed mode scope\n• 02 = SCROLL-C mode scope\n• 03 = SCROLL-F mode scope\n5:  Waveform information:\nThe waveform information differs, depending on\nthe Spectrum scope mode.\n• In the Center mode:\nCenter frequency and span are sent.\nSee page 17 for Operating frequency data, and\nthe Scope span settings (2 ~ 6) on page 29.\n• In the Fixed, SCROLL-C, and SCROLL-F modes:\nLower edge and higher edge frequencies are\nsent.\n10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 9\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0 , F*\n100 MHz digit: 0 ~ 4\n10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 9\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 ~ 4\nLower edge Higher edge\n*  “F” means that the Lower edge frequency is a\nnegative value.\n6:  Out of range information:\n• 00 = In range\n• 01 = Out of range\nLIf the scope data is out of range, the waveform\ndata (7) is omitted.\n7:  Waveform data:\nThe transceiver outputs the drawn waveform data.\nThe data range or data length of the waveform\ndata is judged by the controller. (The data range is\nbasically the same as the display size of the scope\non the controller.)\n• Data range: 0 ~ 160\n• Data length: 475\n",
    "kind": "panel",
    "pages": [
     28
@@ -750,7 +750,7 @@
   },
   {
    "title": "Scope Reference level settings",
-   "body": "00= + (plus)\n01= – (minus)\n10 dB digit: 0, 1, 2\n1 dB digit: 0 ~ 9\n0.1 dB digit: 0, 5\n0.01 dB digit: 0\n(Fixed)\n0 (Fixed)\n0 (Fixed)\nAdjustable range:  –20.0 dB ~ +20.0 dB\nin 0.5 dB steps.\n[1 diagram glyph lines omitted]",
+   "body": "00= + (plus)\n01= – (minus)\n10 dB digit: 0, 1, 2\n1 dB digit: 0 ~ 9\n0.1 dB digit: 0, 5\n0.01 dB digit: 0\n(Fixed)\n0 (Fixed)\n0 (Fixed)\nAdjustable range:  –20.0 dB ~ +20.0 dB\nin 0.5 dB steps.\n",
    "kind": "panel",
    "pages": [
     29
@@ -765,7 +765,7 @@
   },
   {
    "title": "Scope Fixed edge frequency settings",
-   "body": "10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 9\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 ~ 4\n10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 9\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 ~ 4\nFrequency range\nLower edge Higher edge\nEdge number: 01 ~ 04\nLEntry of less than 1 kHz digits are ignored\n1 Selectable Frequency ranges:\nData Frequency range (Hz)\n2  Selectable Edge number: 01=1, 02=2, 03=3, 04=4\n[20 diagram glyph lines omitted]",
+   "body": "10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 9\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 ~ 4\n10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 9\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 ~ 4\nFrequency range\nLower edge Higher edge\nEdge number: 01 ~ 04\nLEntry of less than 1 kHz digits are ignored\n1 Selectable Frequency ranges:\nData Frequency range (Hz)\n2  Selectable Edge number: 01=1, 02=2, 03=3, 04=4\n",
    "kind": "panel",
    "pages": [
     29
@@ -779,7 +779,7 @@
    ]
   },
   {
-   "title": "Table footnote *1",
+   "title": "Footnote *1",
    "body": "Read only data",
    "kind": "footnote",
    "scope": "command",
@@ -838,7 +838,7 @@
    ]
   },
   {
-   "title": "Table footnote *1",
+   "title": "Footnote *1",
    "body": "Read only data",
    "kind": "footnote",
    "scope": "command",
@@ -852,7 +852,7 @@
    ]
   },
   {
-   "title": "Table footnote *1",
+   "title": "Footnote *1",
    "body": "Read only data",
    "kind": "footnote",
    "scope": "command",
@@ -876,7 +876,7 @@
    ]
   },
   {
-   "title": "Table footnote *1",
+   "title": "Footnote *1",
    "body": "Read only data",
    "kind": "footnote",
    "scope": "row",
@@ -890,7 +890,7 @@
    ]
   },
   {
-   "title": "Table footnote *1",
+   "title": "Footnote *1",
    "body": "Read only data",
    "kind": "footnote",
    "scope": "row",
@@ -904,7 +904,7 @@
    ]
   },
   {
-   "title": "Table footnote *1",
+   "title": "Footnote *1",
    "body": "Read only data",
    "kind": "footnote",
    "scope": "row",
@@ -918,7 +918,7 @@
    ]
   },
   {
-   "title": "Table footnote *1",
+   "title": "Footnote *1",
    "body": "Read only data",
    "kind": "footnote",
    "scope": "row",
@@ -932,7 +932,7 @@
    ]
   },
   {
-   "title": "Table footnote *1",
+   "title": "Footnote *1",
    "body": "Read only data",
    "kind": "footnote",
    "scope": "row",
@@ -946,7 +946,7 @@
    ]
   },
   {
-   "title": "Table footnote *1",
+   "title": "Footnote *1",
    "body": "Read only data",
    "kind": "footnote",
    "scope": "row",
@@ -960,7 +960,7 @@
    ]
   },
   {
-   "title": "Table footnote *1",
+   "title": "Footnote *1",
    "body": "Read only data",
    "kind": "footnote",
    "scope": "row",
@@ -974,7 +974,7 @@
    ]
   },
   {
-   "title": "Table footnote *1",
+   "title": "Footnote *1",
    "body": "Read only data",
    "kind": "footnote",
    "scope": "row",
@@ -988,7 +988,7 @@
    ]
   },
   {
-   "title": "Table footnote *1",
+   "title": "Footnote *1",
    "body": "Read only data",
    "kind": "footnote",
    "scope": "row",
@@ -1002,7 +1002,7 @@
    ]
   },
   {
-   "title": "Table footnote *1",
+   "title": "Footnote *1",
    "body": "Read only data",
    "kind": "footnote",
    "scope": "row",
@@ -1016,7 +1016,7 @@
    ]
   },
   {
-   "title": "Table footnote *1",
+   "title": "Footnote *1",
    "body": "Read only data",
    "kind": "footnote",
    "scope": "row",
@@ -1030,7 +1030,7 @@
    ]
   },
   {
-   "title": "Table footnote *1",
+   "title": "Footnote *1",
    "body": "Read only data",
    "kind": "footnote",
    "scope": "row",
@@ -1044,7 +1044,7 @@
    ]
   },
   {
-   "title": "Table footnote *1",
+   "title": "Footnote *1",
    "body": "Read only data",
    "kind": "footnote",
    "scope": "row",
@@ -1058,7 +1058,7 @@
    ]
   },
   {
-   "title": "Table footnote *1",
+   "title": "Footnote *1",
    "body": "Read only data",
    "kind": "footnote",
    "scope": "row",
@@ -1072,7 +1072,7 @@
    ]
   },
   {
-   "title": "Table footnote *1",
+   "title": "Footnote *1",
    "body": "Read only data",
    "kind": "footnote",
    "scope": "row",
@@ -1086,7 +1086,7 @@
    ]
   },
   {
-   "title": "Table footnote *1",
+   "title": "Footnote *1",
    "body": "Read only data",
    "kind": "footnote",
    "scope": "row",
@@ -1100,7 +1100,7 @@
    ]
   },
   {
-   "title": "Table footnote *1",
+   "title": "Footnote *1",
    "body": "Read only data",
    "kind": "footnote",
    "scope": "row",
@@ -1114,7 +1114,7 @@
    ]
   },
   {
-   "title": "Table footnote *1",
+   "title": "Footnote *1",
    "body": "Read only data",
    "kind": "footnote",
    "scope": "row",
@@ -1128,7 +1128,7 @@
    ]
   },
   {
-   "title": "Table footnote *1",
+   "title": "Footnote *1",
    "body": "Read only data",
    "kind": "footnote",
    "scope": "row",
@@ -1142,7 +1142,7 @@
    ]
   },
   {
-   "title": "Table footnote *1",
+   "title": "Footnote *1",
    "body": "Read only data",
    "kind": "footnote",
    "scope": "row",
@@ -1156,7 +1156,7 @@
    ]
   },
   {
-   "title": "Table footnote *1",
+   "title": "Footnote *1",
    "body": "Read only data",
    "kind": "footnote",
    "scope": "row",
@@ -1170,7 +1170,7 @@
    ]
   },
   {
-   "title": "Table footnote *1",
+   "title": "Footnote *1",
    "body": "Read only data",
    "kind": "footnote",
    "scope": "row",
@@ -1184,7 +1184,7 @@
    ]
   },
   {
-   "title": "Table footnote *2",
+   "title": "Footnote *2",
    "body": "Send only data",
    "kind": "footnote",
    "scope": "row",
@@ -1198,7 +1198,7 @@
    ]
   },
   {
-   "title": "Table footnote *2",
+   "title": "Footnote *2",
    "body": "Send only data",
    "kind": "footnote",
    "scope": "row",
@@ -1212,7 +1212,7 @@
    ]
   },
   {
-   "title": "Table footnote *2",
+   "title": "Footnote *2",
    "body": "Send only data",
    "kind": "footnote",
    "scope": "row",
@@ -1226,7 +1226,7 @@
    ]
   },
   {
-   "title": "Table footnote *2",
+   "title": "Footnote *2",
    "body": "Send only data",
    "kind": "footnote",
    "scope": "row",
@@ -1240,7 +1240,7 @@
    ]
   },
   {
-   "title": "Table footnote *2",
+   "title": "Footnote *2",
    "body": "Send only data",
    "kind": "footnote",
    "scope": "row",
@@ -1254,7 +1254,7 @@
    ]
   },
   {
-   "title": "Table footnote *2",
+   "title": "Footnote *2",
    "body": "Send only data",
    "kind": "footnote",
    "scope": "row",
@@ -1273,7 +1273,7 @@
    ]
   },
   {
-   "title": "Table footnote *2",
+   "title": "Footnote *2",
    "body": "Send only data",
    "kind": "footnote",
    "scope": "row",
@@ -1287,7 +1287,7 @@
    ]
   },
   {
-   "title": "Table footnote *2",
+   "title": "Footnote *2",
    "body": "Send only data",
    "kind": "footnote",
    "scope": "row",
@@ -1301,7 +1301,7 @@
    ]
   },
   {
-   "title": "Table footnote *2",
+   "title": "Footnote *2",
    "body": "Send only data",
    "kind": "footnote",
    "scope": "row",
@@ -1315,7 +1315,7 @@
    ]
   },
   {
-   "title": "Table footnote *2",
+   "title": "Footnote *2",
    "body": "Send only data",
    "kind": "footnote",
    "scope": "row",
@@ -1329,7 +1329,7 @@
    ]
   },
   {
-   "title": "Table footnote *2",
+   "title": "Footnote *2",
    "body": "Send only data",
    "kind": "footnote",
    "scope": "row",
@@ -1343,7 +1343,7 @@
    ]
   },
   {
-   "title": "Table footnote *2",
+   "title": "Footnote *2",
    "body": "Send only data",
    "kind": "footnote",
    "scope": "row",
@@ -1357,7 +1357,7 @@
    ]
   },
   {
-   "title": "Table footnote *2",
+   "title": "Footnote *2",
    "body": "Send only data",
    "kind": "footnote",
    "scope": "row",
@@ -4001,7 +4001,7 @@
    ]
   },
   {
-   "title": "Table footnote *3",
+   "title": "Footnote *3",
    "body": "In the CW mode, if the [PTT] or an external TX switch is ON, or the Break-in function is ON, a message will be transmitted as CW code when you send it from your PC.",
    "kind": "footnote",
    "scope": "row",
@@ -4015,7 +4015,7 @@
    ]
   },
   {
-   "title": "Table footnote *4",
+   "title": "Footnote *4",
    "body": "Sending the power ON command (18 01) turns ON the transceiver when the transceiver is OFF (Standby/Shutdown).",
    "kind": "footnote",
    "scope": "row",
@@ -4029,7 +4029,7 @@
    ]
   },
   {
-   "title": "Table footnote *5",
+   "title": "Footnote *5",
    "body": "To insert a counter, first clear the other channel’s counter.",
    "kind": "footnote",
    "scope": "row",
@@ -4043,7 +4043,7 @@
    ]
   },
   {
-   "title": "Table footnote *7",
+   "title": "Footnote *7",
    "body": "Output setting is automatically set to OFF after turning OFF the transceiver.",
    "kind": "footnote",
    "scope": "row",
@@ -4057,7 +4057,7 @@
    ]
   },
   {
-   "title": "Table footnote *7",
+   "title": "Footnote *7",
    "body": "Output setting is automatically set to OFF after turning OFF the transceiver.",
    "kind": "footnote",
    "scope": "row",
@@ -4071,7 +4071,7 @@
    ]
   },
   {
-   "title": "Table footnote *7",
+   "title": "Footnote *7",
    "body": "Output setting is automatically set to OFF after turning OFF the transceiver.",
    "kind": "footnote",
    "scope": "row",

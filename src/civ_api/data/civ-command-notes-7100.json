@@ -105,7 +105,7 @@
   },
   {
    "title": "SSB transmission bandwidth setting",
-   "body": "Lower edge\nHigher edge\nLower edge\n0: 100Hz\n1: 200Hz\n2: 300Hz\n3: 500Hz\nHigher edge\n0: 2500Hz\n1: 2700Hz\n2: 2800Hz\n3: 2900Hz\n•  RX HPF and LPF settings in each operat-\ning mode\nLPF (upper side)\nHPF (lower side)\nHPF\n00: through\n01 to 20: 100 to 2000 Hz\nLPF\n05 to 24: 500 to 2400 Hz\n25: through\nSet the LPF value larger than HPF one.\n[2 diagram glyph lines omitted]",
+   "body": "Lower edge\nHigher edge\nLower edge\n0: 100Hz\n1: 200Hz\n2: 300Hz\n3: 500Hz\nHigher edge\n0: 2500Hz\n1: 2700Hz\n2: 2800Hz\n3: 2900Hz\n•  RX HPF and LPF settings in each operat-\ning mode\nLPF (upper side)\nHPF (lower side)\nHPF\n00: through\n01 to 20: 100 to 2000 Hz\nLPF\n05 to 24: 500 to 2400 Hz\n25: through\nSet the LPF value larger than HPF one.\n",
    "kind": "panel",
    "pages": [
     369
@@ -120,7 +120,7 @@
   },
   {
    "title": "CW message contents",
-   "body": "Set a CW message of up to 30 characters.\n• Character’s code\nCharacter ASCII code Description\n0–9 30–39 Number\nA–Z 41–5A Alphabetical characters\na–z 61–7A Alphabetical characters\nspace 20 Word space\n/ 2F Symbol\n? 3F Symbol\n. 2E Symbol\n– 2D Symbol\n, 2C Symbol\n: 3A Symbol\n’ 27 Symbol\n( 28 Symbol\n) 29 Symbol\n= 3D Symbol\n+ 2B Symbol\n” 22 Symbol\n@ 40 Symbol\n• “FF” stops sending CW messages.\n•  “^” is used to transmit a string of characters with no\ninter-character space.",
+   "body": "Set a CW message of up to 30 characters.\n• Character’s code\nCharacter ASCII code Description\n0–9 30–39 Number\nA–Z 41–5A Alphabetical characters\na–z 61–7A Alphabetical characters\nspace 20 Word space\n/ 2F Symbol\n? 3F Symbol\n. 2E Symbol\n– 2D Symbol\n, 2C Symbol\n: 3A Symbol\n’ 27 Symbol\n( 28 Symbol\n) 29 Symbol\n= 3D Symbol\n+ 2B Symbol\n” 22 Symbol\n@ 40 Symbol\n• “FF” stops sending CW messages.\n•  “^” is used to transmit a string of characters with no\ninter-character space.\n",
    "kind": "panel",
    "pages": [
     369
@@ -135,7 +135,7 @@
   },
   {
    "title": "Character code setting",
-   "body": "Character ASCII code Character ASCII code\nA–Z 41–5A a–z 61–7A\n0–9 30–39 Space 20\n! 21 # 23\n$ 24 % 25\n& 26 \\ 5C\n? 3F \" 22\n’ 27 ` 60\n^ 5E + 2B\n– 2D ✱ 2A\n⁄ 2F . 2E\n, 2C : 3A\n; 3B = 3D\n< 3C > 3E\n( 28 ) 29\n[ 5B ] 5D\n{ 7B } 7D\n¦ 7C _ 5F\n¯ 7E @ 40\n[1 diagram glyph lines omitted]",
+   "body": "Character ASCII code Character ASCII code\nA–Z 41–5A a–z 61–7A\n0–9 30–39 Space 20\n! 21 # 23\n$ 24 % 25\n& 26 \\ 5C\n? 3F \" 22\n’ 27 ` 60\n^ 5E + 2B\n– 2D ✱ 2A\n⁄ 2F . 2E\n, 2C : 3A\n; 3B = 3D\n< 3C > 3E\n( 28 ) 29\n[ 5B ] 5D\n{ 7B } 7D\n¦ 7C _ 5F\n¯ 7E @ 40\n",
    "kind": "panel",
    "pages": [
     370
@@ -180,7 +180,7 @@
   },
   {
    "title": "Band stacking register",
-   "body": "When sending the contents, the codes, such as op-\nerating frequency and operating mode*, should be\nadded after the frequency band code and register\ncode, as shown below.\n* See t to %1 on ‘Memory content setting.’ (p. 20-16)\nqFrequency band code\nCode Freq. band Frequency range (unit: MHz)\n13 GENE Other than above\nwRegister code\nCode Registered No.\n01 1 (latest)\n03 3 (oldest)\nTo read the contents, the register code should be add-\ned after the frequency band code, as shown below.\nExample:  When reading the oldest contents in the\n21 MHz band, the code “0703” is used.\n[16 diagram glyph lines omitted]",
+   "body": "When sending the contents, the codes, such as op-\nerating frequency and operating mode*, should be\nadded after the frequency band code and register\ncode, as shown below.\n* See t to %1 on ‘Memory content setting.’ (p. 20-16)\nqFrequency band code\nCode Freq. band Frequency range (unit: MHz)\n13 GENE Other than above\nwRegister code\nCode Registered No.\n01 1 (latest)\n03 3 (oldest)\nTo read the contents, the register code should be add-\ned after the frequency band code, as shown below.\nExample:  When reading the oldest contents in the\n21 MHz band, the code “0703” is used.\n",
    "kind": "panel",
    "pages": [
     370
@@ -195,7 +195,7 @@
   },
   {
    "title": "Memory keyer contents",
-   "body": "q: Channel data\nw–&1: Text data\n01ɿ\u0001M1\n02ɿ\u0001M2\n03ɿ\u0001M3\n04ɿ\u0001M4\n• Character’s code\nCharacter ASCII code Description\n0–9 30–39 Number\nA–Z 41–5A Alphabetical characters\na–z 61–7A Alphabetical characters\nspace 20 Word space\n/ 2F Symbol\n? 3F Symbol\n, 2C Symbol\n. 2E Symbol\n@ 40 Symbol\n^ 5E e.g., to send BT, enter ^BT\n✱ 2A Inserts contest number (can be\nused for 1 channel only)\n[2 diagram glyph lines omitted]",
+   "body": "q: Channel data\nw–&1: Text data\n01ɿ\u0001M1\n02ɿ\u0001M2\n03ɿ\u0001M3\n04ɿ\u0001M4\n• Character’s code\nCharacter ASCII code Description\n0–9 30–39 Number\nA–Z 41–5A Alphabetical characters\na–z 61–7A Alphabetical characters\nspace 20 Word space\n/ 2F Symbol\n? 3F Symbol\n, 2C Symbol\n. 2E Symbol\n@ 40 Symbol\n^ 5E e.g., to send BT, enter ^BT\n✱ 2A Inserts contest number (can be\nused for 1 channel only)\n",
    "kind": "panel",
    "pages": [
     371
@@ -210,7 +210,7 @@
   },
   {
    "title": "Split offset frequency setting",
-   "body": "1 kHz digit: 0–9\n100 Hz digit: 0 (fixed)\n100 kHz digit: 0–9\n10 kHz digit: 0–9\n10 MHz digit: 0 (fixed)\n1 MHz digit: 0–9\nDirection:\n00: + direction\n01: – direction\n[4 diagram glyph lines omitted]",
+   "body": "1 kHz digit: 0–9\n100 Hz digit: 0 (fixed)\n100 kHz digit: 0–9\n10 kHz digit: 0–9\n10 MHz digit: 0 (fixed)\n1 MHz digit: 0–9\nDirection:\n00: + direction\n01: – direction\n",
    "kind": "panel",
    "pages": [
     371
@@ -225,7 +225,7 @@
   },
   {
    "title": "Duplex Offset frequency setting",
-   "body": "1 kHz digit: 0–9\n100 Hz digit: 0–9\n100 kHz digit: 0–9\n10 kHz digit: 0–9\n10 MHz digit: 0 (fixed)\n1 MHz digit: 0–9\n[3 diagram glyph lines omitted]",
+   "body": "1 kHz digit: 0–9\n100 Hz digit: 0–9\n100 kHz digit: 0–9\n10 kHz digit: 0–9\n10 MHz digit: 0 (fixed)\n1 MHz digit: 0–9\n",
    "kind": "panel",
    "pages": [
     371
@@ -240,7 +240,7 @@
   },
   {
    "title": "UTC Offset setting",
-   "body": "10 hour digit: 0–1\n1 hour digit: 0–9\n10 min. digit: 0–5\n1 min. digit: 0–9\nDirection\n00=+ direction\n01=– direction\n[4 diagram glyph lines omitted]",
+   "body": "10 hour digit: 0–1\n1 hour digit: 0–9\n10 min. digit: 0–5\n1 min. digit: 0–9\nDirection\n00=+ direction\n01=– direction\n",
    "kind": "panel",
    "pages": [
     371
@@ -255,7 +255,7 @@
   },
   {
    "title": "My position data setting",
-   "body": "wert yuio !0 !1 !4† !5†!3†!2†\nLatitude AltitudeLongitude\n10 degree digit: 0–9\n1 degree digit: 0–9\n10 min. digit: 0–5\n1 min. digit: 0–9\n0.1 min. digit: 0–9\n0.01 min. digit: 0–9\n0.001 min. digit: 0–9\n0 (fixed)\n0 (fixed)\nS*=0/N*=1\n0 (fixed)\n100 degree digit: 0–1\n10 degree digit: 0–9\n1 degree digit: 0–9\n10 min. digit: 0–5\n1 min. digit: 0–9\n0.1 min. digit: 0–9\n0.01 min. digit: 0–9\n0.001 min. digit: 0–9\n0 (fixed)\n0 (fixed)\nW*=0/E*=1\n10000 meter digit: 0–1\n1000 meter digit: 0–9\n100 meter digit: 0–9\n10 meter digit: 0–9\n1 meter digit: 0–9\n0.1 meter digit: 0–9\n0 (fixed)\n+=0/−=1\n* S: South latitude  N: North latitude\nW: West longitude  E: East longitude\n†  When reading the contents with no altitude, sends !2, !3, !4\nand !5 as “FF .”\nWhen sending the contents with no altitude, set !2, !3, !4\nand !5 to “FF .”\n[2 diagram glyph lines omitted]",
+   "body": "wert yuio !0 !1 !4† !5†!3†!2†\nLatitude AltitudeLongitude\n10 degree digit: 0–9\n1 degree digit: 0–9\n10 min. digit: 0–5\n1 min. digit: 0–9\n0.1 min. digit: 0–9\n0.01 min. digit: 0–9\n0.001 min. digit: 0–9\n0 (fixed)\n0 (fixed)\nS*=0/N*=1\n0 (fixed)\n100 degree digit: 0–1\n10 degree digit: 0–9\n1 degree digit: 0–9\n10 min. digit: 0–5\n1 min. digit: 0–9\n0.1 min. digit: 0–9\n0.01 min. digit: 0–9\n0.001 min. digit: 0–9\n0 (fixed)\n0 (fixed)\nW*=0/E*=1\n10000 meter digit: 0–1\n1000 meter digit: 0–9\n100 meter digit: 0–9\n10 meter digit: 0–9\n1 meter digit: 0–9\n0.1 meter digit: 0–9\n0 (fixed)\n+=0/−=1\n* S: South latitude  N: North latitude\nW: West longitude  E: East longitude\n†  When reading the contents with no altitude, sends !2, !3, !4\nand !5 as “FF .”\nWhen sending the contents with no altitude, set !2, !3, !4\nand !5 to “FF .”\n",
    "kind": "panel",
    "pages": [
     371
@@ -270,7 +270,7 @@
   },
   {
    "title": "Alarm area (Group) setting",
-   "body": "10 min. digit: 0–5\n1 min. digit: 0–9\n0.1 min. digit: 0–9\n0.01 min. digit: 0–9\n0.001 min. digit: 0–9\n0 (fixed)\n[4 diagram glyph lines omitted]",
+   "body": "10 min. digit: 0–5\n1 min. digit: 0–9\n0.1 min. digit: 0–9\n0.01 min. digit: 0–9\n0.001 min. digit: 0–9\n0 (fixed)\n",
    "kind": "panel",
    "pages": [
     371
@@ -285,7 +285,7 @@
   },
   {
    "title": "Unproto Address setting",
-   "body": "Set an unproto address of up to 56 characters.\nSee ‘Character code setting.’ (p. 20-12)",
+   "body": "Set an unproto address of up to 56 characters.\nSee ‘Character code setting.’ (p. 20-12)\n",
    "kind": "panel",
    "pages": [
     371
@@ -300,7 +300,7 @@
   },
   {
    "title": "GPS-A Symbol setting",
-   "body": "Second digit\nFirst digit\n⁄, \\, 0 to 9, A to Z can be used for the first digit char-\nacter.\nSee ‘Character code setting’ for the second digit\ncharacter. (p. 20-12)\n[1 diagram glyph lines omitted]",
+   "body": "Second digit\nFirst digit\n⁄, \\, 0 to 9, A to Z can be used for the first digit char-\nacter.\nSee ‘Character code setting’ for the second digit\ncharacter. (p. 20-12)\n",
    "kind": "panel",
    "pages": [
     372
@@ -315,7 +315,7 @@
   },
   {
    "title": "Comment setting",
-   "body": "Set a comment of up to 43 characters.\nSee ‘Character code setting.’ (p. 20-12)",
+   "body": "Set a comment of up to 43 characters.\nSee ‘Character code setting.’ (p. 20-12)\n",
    "kind": "panel",
    "pages": [
     372
@@ -330,7 +330,7 @@
   },
   {
    "title": "GPS message setting",
-   "body": "Set a GPS message of up to 20 characters.\nSee ‘Character code setting.’ (p. 20-12)",
+   "body": "Set a GPS message of up to 20 characters.\nSee ‘Character code setting.’ (p. 20-12)\n",
    "kind": "panel",
    "pages": [
     372
@@ -345,7 +345,7 @@
   },
   {
    "title": "Data mode with filter width setting",
-   "body": "01: FIL1\n02: FIL2\n03: FIL3\n00: Data mode OFF*\n01: Data mode ON\n*When “00” is set, set “00” in w.\n•  Repeater tone/tone squelch frequency\nsetting\nq* ew\n0 (fixed)\n0 (fixed)\n100 Hz digit\n10 Hz digit\n1 Hz digit\n0.1 Hz digit\n*Not necessary when setting a frequency.\n[3 diagram glyph lines omitted]",
+   "body": "01: FIL1\n02: FIL2\n03: FIL3\n00: Data mode OFF*\n01: Data mode ON\n*When “00” is set, set “00” in w.\n•  Repeater tone/tone squelch frequency\nsetting\nq* ew\n0 (fixed)\n0 (fixed)\n100 Hz digit\n10 Hz digit\n1 Hz digit\n0.1 Hz digit\n*Not necessary when setting a frequency.\n",
    "kind": "panel",
    "pages": [
     372
@@ -365,7 +365,7 @@
   },
   {
    "title": "DTCS code and polarity setting",
-   "body": "Transmit polarity:\n0: Normal\n1: Reverse\nReceive polarity:\n0: Normal\n1: Reverse\n0 (fixed)\nFirst digit: 0–7\nSecond digit: 0–7\nThird digit: 0–7\n[2 diagram glyph lines omitted]",
+   "body": "Transmit polarity:\n0: Normal\n1: Reverse\nReceive polarity:\n0: Normal\n1: Reverse\n0 (fixed)\nFirst digit: 0–7\nSecond digit: 0–7\nThird digit: 0–7\n",
    "kind": "panel",
    "pages": [
     372
@@ -380,7 +380,7 @@
   },
   {
    "title": "Digital code squelch setting",
-   "body": "Second digit: 0–9\nFirst digit: 0–9\n[2 diagram glyph lines omitted]",
+   "body": "Second digit: 0–9\nFirst digit: 0–9\n",
    "kind": "panel",
    "pages": [
     372
@@ -395,7 +395,7 @@
   },
   {
    "title": "DV MY call sign setting",
-   "body": "Set your own call sign and note of up to 12 characters.\nʜʜ\nq–i Y our own call sign setting\no–!2 Note setting\n[2 diagram glyph lines omitted]",
+   "body": "Set your own call sign and note of up to 12 characters.\nʜʜ\nq–i Y our own call sign setting\no–!2 Note setting\n",
    "kind": "panel",
    "pages": [
     372
@@ -410,7 +410,7 @@
   },
   {
    "title": "DV TX call signs setting",
-   "body": "Set “UR,” “R1” and “R2” call signs of 8 characters (fixed).\n99ʜʜ99 99 9 9 999 9ʜʜ\n!7–@4o–!6q–i\nʜʜ\nq–i UR (Destination) call sign setting\no–!6 R1 (Access repeater) call sign setting\n!7–@4 R2 (Gateway/Link repeater) call sign setting\n• Character’s code of the call sign\nCharacter ASCII code Character ASCII code\n0–9 30–39 A–Z 41–5A\nSpace 20 ⁄ 2F",
+   "body": "Set “UR,” “R1” and “R2” call signs of 8 characters (fixed).\n99ʜʜ99 99 9 9 999 9ʜʜ\n!7–@4o–!6q–i\nʜʜ\nq–i UR (Destination) call sign setting\no–!6 R1 (Access repeater) call sign setting\n!7–@4 R2 (Gateway/Link repeater) call sign setting\n• Character’s code of the call sign\nCharacter ASCII code Character ASCII code\n0–9 30–39 A–Z 41–5A\nSpace 20 ⁄ 2F\n",
    "kind": "panel",
    "pages": [
     372
@@ -425,7 +425,7 @@
   },
   {
    "title": "DV TX message setting",
-   "body": "Set the transmit message of up to 20 characters.\nSee ‘Character code setting.’ (p. 20-12)\n“FF” stops sending or reading messages.",
+   "body": "Set the transmit message of up to 20 characters.\nSee ‘Character code setting.’ (p. 20-12)\n“FF” stops sending or reading messages.\n",
    "kind": "panel",
    "pages": [
     372
@@ -440,7 +440,7 @@
   },
   {
    "title": "Memory content setting",
-   "body": "rqt ʙo! 0ɺ!1 !2 !4 @4!3 !5ʙ!7 @5ʙ@7@1ʙ@3!8ʙ@0\n999 ʜʜ 99999999999\u001199999999 9999 99 99999999 999999 9999\nwɺe\n$4ʙ%1\n99 ʜʜ 99 ʜʜʜʜʜʜ ʜʜ99 99\ntʙ%1 %2ʙ^0#6ʙ$3\n99 ʜʜ 99\n@8ʙ#5\n99 ʜʜ 99",
+   "body": "rqt ʙo! 0ɺ!1 !2 !4 @4!3 !5ʙ!7 @5ʙ@7@1ʙ@3!8ʙ@0\n999 ʜʜ 99999999999\u001199999999 9999 99 99999999 999999 9999\nwɺe\n$4ʙ%1\n99 ʜʜ 99 ʜʜʜʜʜʜ ʜʜ99 99\ntʙ%1 %2ʙ^0#6ʙ$3\n99 ʜʜ 99\n@8ʙ#5\n99 ʜʜ 99\n",
    "kind": "panel",
    "pages": [
     374
@@ -455,7 +455,7 @@
   },
   {
    "title": "RIT frequency settings",
-   "body": "10 Hz digit: 0–9\n100 Hz digit: 0–9\n1 Hz digit: 0–9\n1 kHz digit: 0–9\n00: + (plus)\n01: – (minus)\n•  Selected or unselected VFO frequency\nsettings\n00: Selected VFO\n01: Unselected VFO\nOperating frequency data\n(See “Operating frequency” described on page 20-11.)\n•  Selected or unselected VFO’s operating\nmode and filter settings\nBoth data and filter settings can be skipped. In that\ncase, “DATA OFF” and the default filter setting of the\noperating mode is automatically selected.\nq Operating mode setting\ne Filter setting\nw Data mode setting\n00: Selected VFO\n01: Unselected VFO\nq Operating mode w  Data mode\nsetting\ne  Filter\nsetting\n00: LSB 05: FM 00: Data mode OFF 01: FIL1\n01: USB 06: WFM 01: Data mode ON 02: FIL2\n02: AM 07: CW-R — 03: FIL3\n03: CW 08: RTTY -R — —\n04: RTTY 17: DV — —\n[3 diagram glyph lines omitted]",
+   "body": "10 Hz digit: 0–9\n100 Hz digit: 0–9\n1 Hz digit: 0–9\n1 kHz digit: 0–9\n00: + (plus)\n01: – (minus)\n•  Selected or unselected VFO frequency\nsettings\n00: Selected VFO\n01: Unselected VFO\nOperating frequency data\n(See “Operating frequency” described on page 20-11.)\n•  Selected or unselected VFO’s operating\nmode and filter settings\nBoth data and filter settings can be skipped. In that\ncase, “DATA OFF” and the default filter setting of the\noperating mode is automatically selected.\nq Operating mode setting\ne Filter setting\nw Data mode setting\n00: Selected VFO\n01: Unselected VFO\nq Operating mode w  Data mode\nsetting\ne  Filter\nsetting\n00: LSB 05: FM 00: Data mode OFF 01: FIL1\n01: USB 06: WFM 01: Data mode ON 02: FIL2\n02: AM 07: CW-R — 03: FIL3\n03: CW 08: RTTY -R — —\n04: RTTY 17: DV — —\n",
    "kind": "panel",
    "pages": [
     375
