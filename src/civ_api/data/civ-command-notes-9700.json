@@ -974,8 +974,8 @@
    "matches": [
     {
      "cmd": "11",
-     "sub_cmd": "00",
-     "data": ""
+     "sub_cmd": "",
+     "data": "00"
     }
    ]
   },
