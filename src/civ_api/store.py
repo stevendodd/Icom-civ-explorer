@@ -33,10 +33,18 @@ RADIOS_ORDER: tuple[str, ...] = (
 # prefix, or a trailing " See p. 16.". These are source-document artifacts (Icom
 # CI-V manual page numbers) that are not meaningful in this reference API and
 # must not surface in the UI or API responses. The page list may be a single
-# number, comma-separated, or "and"-separated (e.g. "pp. 19 and 22").
+# number, comma-separated, "and"-separated (e.g. "pp. 19 and 22"), or a
+# hyphenated chapter-page range (e.g. "see p. 20-11"). A bare prefix without
+# "See" (e.g. "p. 19-9 Send/read ...", printed in some manuals) is stripped
+# only when it occurs at the very start of the field — mid-string "p. N"
+# wording ("per manual p. 28") is kept.
+_PAGE_NUM = r"\d+(?:\s*-\s*\d+)?"
+_PAGES_LIST = rf"{_PAGE_NUM}(?:\s*(?:,\s*{_PAGE_NUM}|and\s+{_PAGE_NUM}))*"
+_PAGES_TAIL = r"\s*\.?\s*"
 _SEE_PAGE_RE = re.compile(
-    r"\s*See p+p?\.\s*[\d,\s]+(?:and\s+\d+)?\s*\.?\s*", re.IGNORECASE
+    rf"\s*See [pP]p?\.\s*{_PAGES_LIST}{_PAGES_TAIL}", re.IGNORECASE
 )
+_BARE_PAGE_PREFIX_RE = re.compile(rf"^[pP]p?\.\s*{_PAGES_LIST}{_PAGES_TAIL}")
 
 
 def _strip_page_refs(value: str) -> str:
@@ -44,6 +52,8 @@ def _strip_page_refs(value: str) -> str:
     # Remove any occurrence (standalone, leading, trailing, or mid-string),
     # collapsing leftover whitespace and stray leading separators.
     cleaned = _SEE_PAGE_RE.sub(" ", value)
+    # Also strip a bare leading "p. NN-N " prefix (no "See"), start of field only.
+    cleaned = _BARE_PAGE_PREFIX_RE.sub("", cleaned)
     # Tidy a leading separator left by a stripped leading "See p. N. ".
     cleaned = re.sub(r"^\s*\.?\s*", "", cleaned)
     return " ".join(cleaned.split()).strip()

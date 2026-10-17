@@ -348,7 +348,7 @@ use. Recommended workflow:
 pytest
 ```
 
-60 tests covering endpoints, UI serving, security headers, XSS/injection
+62 tests covering endpoints, UI serving, security headers, XSS/injection
 vectors, input validation, admin auth (and the public-POST pin), the data
 loader, and the pull/modify/push feedback round-trip.
 
