@@ -35,13 +35,18 @@ class CommandNote(BaseModel):
 
     ``kind``: "panel" (a detail-section table from the manual, e.g. the
     frequency data encoding) or "footnote" (a table-page footnote legend,
-    e.g. "*3 When sending the power ON command ...").
+    e.g. "*3 When sending the power ON command ..."). "asterisk" marks a
+    bare "*" annotation ("(Asterisk) Send/read data").
     """
 
     title: str = ""
     body: str = ""
     kind: str = "panel"
     pages: list[int] = []
+    # annotation placement from the manual: "command" when the marker sits
+    # on the command code (bare "*" or "*N" glued to the cmd token — the
+    # note covers the command), "row" when it annotates one data row
+    scope: str = "row"
 
 
 class Command(BaseModel):

@@ -318,10 +318,12 @@ use. Recommended workflow:
 - When reporting a command from the API, include the `radio_id`, `cmd`, and
   `sub_cmd` so the user can verify.
 - Rows carry `page_refs` (the manual pages the row cites) and `notes` (the
-  referenced manual tables as ASCII, e.g. the frequency data encoding). When
-  a data cell says "see p. N", the corresponding table is usually already
-  embedded in the row's `notes` — prefer quoting it over asking the user to
-  find the manual.
+  referenced manual tables as ASCII, e.g. the frequency data encoding). Each
+  entry in `notes` may set `scope`: `"command"` when the manual annotates the
+  command code itself (the note describes the whole command) or `"row"` when
+  it annotates that data row. When a data cell says "see p. N", the
+  corresponding table is usually already embedded in the row's `notes` —
+  prefer quoting it over asking the user to find the manual.
 - Only call `POST /feedback` when the user explicitly asks to submit a
   correction.
 - If your agent framework reads an OpenAPI spec, point it at `/openapi.json`.

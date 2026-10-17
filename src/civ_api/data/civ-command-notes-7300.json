@@ -467,45 +467,7 @@
    "title": "Send/read data",
    "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "08",
-     "sub_cmd": "00",
-     "data": "01 to 99"
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "0E",
-     "sub_cmd": "B1",
-     "data": "01 to 03"
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "0E",
-     "sub_cmd": "B2",
-     "data": "00 to 03"
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
+   "scope": "command",
    "pages": [],
    "matches": [
     {
@@ -559,19 +521,7 @@
    "title": "Send/read data",
    "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "11",
-     "sub_cmd": "",
-     "data": "00/20"
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
+   "scope": "command",
    "pages": [],
    "matches": [
     {
@@ -670,171 +620,7 @@
    "title": "Send/read data",
    "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "1A",
-     "sub_cmd": "05,0021",
-     "data": "00 00 to 02 55"
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "1A",
-     "sub_cmd": "05,0043",
-     "data": "00 00 to 02 55"
-    },
-    {
-     "cmd": "1A",
-     "sub_cmd": "05,0060",
-     "data": "00 00 to 02 55"
-    },
-    {
-     "cmd": "1A",
-     "sub_cmd": "05,0064",
-     "data": "00 00 to 02 55"
-    },
-    {
-     "cmd": "1A",
-     "sub_cmd": "05,0065",
-     "data": "00 00 to 02 55"
-    },
-    {
-     "cmd": "1A",
-     "sub_cmd": "05,0081",
-     "data": "00 00 to 02 55"
-    },
-    {
-     "cmd": "1A",
-     "sub_cmd": "05,0158",
-     "data": "00 00 to 02 55"
-    },
-    {
-     "cmd": "1A",
-     "sub_cmd": "05,0195",
-     "data": "00 00 to 02 55"
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "1A",
-     "sub_cmd": "05,0058",
-     "data": "00 00 to 02 55"
-    },
-    {
-     "cmd": "1A",
-     "sub_cmd": "05,0063",
-     "data": "00 00 to 02 55"
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "15",
-     "sub_cmd": "01",
-     "data": "00/01"
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "15",
-     "sub_cmd": "02",
-     "data": "00 00 to 02 55"
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "15",
-     "sub_cmd": "05",
-     "data": "00/01"
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "15",
-     "sub_cmd": "11",
-     "data": "00 00 to 02 55"
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "15",
-     "sub_cmd": "13",
-     "data": "00 00 to 02 55"
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "15",
-     "sub_cmd": "15",
-     "data": "00 00 to 02 55"
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "15",
-     "sub_cmd": "16",
-     "data": "00 00 to 02 55"
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
+   "scope": "command",
    "pages": [],
    "matches": [
     {
@@ -935,61 +721,10 @@
    ]
   },
   {
-   "title": "Table footnote *2",
-   "body": "In the CW mode, if the [TRANSMIT] or an external TX switch is ON, or the Break-in function is ON, a message will be transmitted as CW code when you send it from your PC.",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "17",
-     "sub_cmd": "",
-     "data": ""
-    }
-   ]
-  },
-  {
    "title": "Send/read data",
    "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "17",
-     "sub_cmd": "",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Table footnote *3",
-   "body": "When sending the power ON command (18 01), you need to repeatedly send “FE” before the standard format. The following is the approximated quantity of the repetition. • 115200 bps: 150 “FE”s • 57600 bps:   75 “FE”s • 38400 bps:   50 “FE”s • 19200 bps:   25 “FE”s • 9600 bps:   13 “FE”s • 4800 bps:     7 “FE”s Example: When using 4800 bps FF     E x7 49EFE E 1081O DF",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "18",
-     "sub_cmd": "01",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "18",
-     "sub_cmd": "01",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
+   "scope": "command",
    "pages": [],
    "matches": [
     {
@@ -1119,6 +854,11 @@
     },
     {
      "cmd": "1A",
+     "sub_cmd": "05,0021",
+     "data": "00 00 to 02 55"
+    },
+    {
+     "cmd": "1A",
      "sub_cmd": "05,0022",
      "data": "00/01"
     },
@@ -1239,6 +979,11 @@
     },
     {
      "cmd": "1A",
+     "sub_cmd": "05,0043",
+     "data": "00 00 to 02 55"
+    },
+    {
+     "cmd": "1A",
      "sub_cmd": "05,0044",
      "data": "00/01"
     },
@@ -1309,8 +1054,18 @@
     },
     {
      "cmd": "1A",
+     "sub_cmd": "05,0058",
+     "data": "00 00 to 02 55"
+    },
+    {
+     "cmd": "1A",
      "sub_cmd": "05,0059",
      "data": "00 or 01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0060",
+     "data": "00 00 to 02 55"
     },
     {
      "cmd": "1A",
@@ -1321,6 +1076,21 @@
      "cmd": "1A",
      "sub_cmd": "05,0062",
      "data": "00/01"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0063",
+     "data": "00 00 to 02 55"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0064",
+     "data": "00 00 to 02 55"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0065",
+     "data": "00 00 to 02 55"
     },
     {
      "cmd": "1A",
@@ -1396,6 +1166,11 @@
      "cmd": "1A",
      "sub_cmd": "05,0080",
      "data": "00 to 02"
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0081",
+     "data": "00 00 to 02 55"
     },
     {
      "cmd": "1A",
@@ -1799,6 +1574,11 @@
     },
     {
      "cmd": "1A",
+     "sub_cmd": "05,0158",
+     "data": "00 00 to 02 55"
+    },
+    {
+     "cmd": "1A",
      "sub_cmd": "05,0159",
      "data": "00/01"
     },
@@ -1979,6 +1759,11 @@
     },
     {
      "cmd": "1A",
+     "sub_cmd": "05,0195",
+     "data": "00 00 to 02 55"
+    },
+    {
+     "cmd": "1A",
      "sub_cmd": "05,0196",
      "data": ""
     },
@@ -2100,78 +1885,10 @@
    ]
   },
   {
-   "title": "Table footnote *1",
-   "body": "To insert a counter, first clear the other channel’s counter.",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "1A",
-     "sub_cmd": "02",
-     "data": ""
-    }
-   ]
-  },
-  {
    "title": "Send/read data",
    "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "00",
-     "sub_cmd": "",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "0F",
-     "sub_cmd": "",
-     "data": "00/01"
-    },
-    {
-     "cmd": "1C",
-     "sub_cmd": "02",
-     "data": "00/01"
-    },
-    {
-     "cmd": "21",
-     "sub_cmd": "01",
-     "data": "00/01"
-    },
-    {
-     "cmd": "21",
-     "sub_cmd": "02",
-     "data": "00/01"
-    },
-    {
-     "cmd": "27",
-     "sub_cmd": "10",
-     "data": "00/01"
-    },
-    {
-     "cmd": "27",
-     "sub_cmd": "11",
-     "data": "00/01"
-    },
-    {
-     "cmd": "27",
-     "sub_cmd": "1B",
-     "data": "00/01"
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
+   "scope": "command",
    "pages": [],
    "matches": [
     {
@@ -2190,24 +1907,7 @@
    "title": "Send/read data",
    "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "1C",
-     "sub_cmd": "00",
-     "data": "00"
-    },
-    {
-     "cmd": "1C",
-     "sub_cmd": "00",
-     "data": "01"
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
+   "scope": "command",
    "pages": [],
    "matches": [
     {
@@ -2221,77 +1921,23 @@
    "title": "Send/read data",
    "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "02",
-     "sub_cmd": "",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "04",
-     "sub_cmd": "",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "1E",
-     "sub_cmd": "03",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
+   "scope": "command",
    "pages": [],
    "matches": [
     {
      "cmd": "21",
      "sub_cmd": "00",
      "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
+    },
     {
-     "cmd": "25",
-     "sub_cmd": "",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
+     "cmd": "21",
+     "sub_cmd": "01",
+     "data": "00/01"
+    },
     {
-     "cmd": "26",
-     "sub_cmd": "",
-     "data": ""
+     "cmd": "21",
+     "sub_cmd": "02",
+     "data": "00/01"
     }
    ]
   },
@@ -2299,12 +1945,23 @@
    "title": "Send/read data",
    "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
+   "scope": "command",
    "pages": [],
    "matches": [
     {
      "cmd": "27",
      "sub_cmd": "00",
      "data": ""
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "10",
+     "data": "00/01"
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "11",
+     "data": "00/01"
     },
     {
      "cmd": "27",
@@ -2348,6 +2005,11 @@
     },
     {
      "cmd": "27",
+     "sub_cmd": "1B",
+     "data": "00/01"
+    },
+    {
+     "cmd": "27",
      "sub_cmd": "1C",
      "data": "00 to 02"
     },
@@ -2369,9 +2031,66 @@
    ]
   },
   {
-   "title": "Table footnote *4",
-   "body": "You can only set this item when “Unlink from [REMOTE]” is selected on the “CI-V USB port” screen, and then “115200” is selected on the “CI-V Baud Rate” screen.",
-   "kind": "footnote",
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "scope": "command",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "28",
+     "sub_cmd": "00",
+     "data": "00 to 08"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "08",
+     "sub_cmd": "00",
+     "data": "01 to 99"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "0E",
+     "sub_cmd": "B1",
+     "data": "01 to 03"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "0E",
+     "sub_cmd": "B2",
+     "data": "00 to 03"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "scope": "row",
    "pages": [],
    "matches": [
     {
@@ -2385,12 +2104,303 @@
    "title": "Send/read data",
    "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
+   "scope": "row",
    "pages": [],
    "matches": [
     {
-     "cmd": "28",
+     "cmd": "15",
+     "sub_cmd": "01",
+     "data": "00/01"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "15",
+     "sub_cmd": "02",
+     "data": "00 00 to 02 55"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "15",
+     "sub_cmd": "05",
+     "data": "00/01"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "15",
+     "sub_cmd": "11",
+     "data": "00 00 to 02 55"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "15",
+     "sub_cmd": "13",
+     "data": "00 00 to 02 55"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "15",
+     "sub_cmd": "15",
+     "data": "00 00 to 02 55"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "15",
+     "sub_cmd": "16",
+     "data": "00 00 to 02 55"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "17",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "18",
+     "sub_cmd": "01",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "00",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "0F",
+     "sub_cmd": "",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1C",
+     "sub_cmd": "02",
+     "data": "00/01"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1C",
      "sub_cmd": "00",
-     "data": "00 to 08"
+     "data": "00"
+    },
+    {
+     "cmd": "1C",
+     "sub_cmd": "00",
+     "data": "01"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "02",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "04",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1E",
+     "sub_cmd": "03",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "25",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "26",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *2",
+   "body": "In the CW mode, if the [TRANSMIT] or an external TX switch is ON, or the Break-in function is ON, a message will be transmitted as CW code when you send it from your PC.",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "17",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *3",
+   "body": "When sending the power ON command (18 01), you need to repeatedly send “FE” before the standard format. The following is the approximated quantity of the repetition. • 115200 bps: 150 “FE”s • 57600 bps:   75 “FE”s • 38400 bps:   50 “FE”s • 19200 bps:   25 “FE”s • 9600 bps:   13 “FE”s • 4800 bps:     7 “FE”s Example: When using 4800 bps FF     E x7 49EFE E 1081O DF",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "18",
+     "sub_cmd": "01",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *1",
+   "body": "To insert a counter, first clear the other channel’s counter.",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "02",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *4",
+   "body": "You can only set this item when “Unlink from [REMOTE]” is selected on the “CI-V USB port” screen, and then “115200” is selected on the “CI-V Baud Rate” screen.",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "11",
+     "sub_cmd": "",
+     "data": "00/20"
     }
    ]
   }

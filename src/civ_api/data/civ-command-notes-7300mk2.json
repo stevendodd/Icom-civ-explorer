@@ -612,6 +612,7 @@
    "title": "Send/read data",
    "body": "",
    "kind": "asterisk",
+   "scope": "row",
    "pages": [],
    "matches": [
     {

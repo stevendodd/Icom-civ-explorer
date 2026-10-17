@@ -472,6 +472,7 @@
    "title": "Send/read data",
    "body": "",
    "kind": "asterisk",
+   "scope": "row",
    "pages": [],
    "matches": [
     {
@@ -485,6 +486,7 @@
    "title": "Send/read data",
    "body": "",
    "kind": "asterisk",
+   "scope": "row",
    "pages": [],
    "matches": [
     {
@@ -498,6 +500,7 @@
    "title": "Send/read data",
    "body": "",
    "kind": "asterisk",
+   "scope": "row",
    "pages": [],
    "matches": [
     {

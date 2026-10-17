@@ -697,6 +697,85 @@
    "title": "Table footnote *1",
    "body": "Read only data",
    "kind": "footnote",
+   "scope": "command",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "15",
+     "sub_cmd": "",
+     "data": ""
+    },
+    {
+     "cmd": "15",
+     "sub_cmd": "01",
+     "data": "00 or 01"
+    },
+    {
+     "cmd": "15",
+     "sub_cmd": "02",
+     "data": "0000 to 0255"
+    },
+    {
+     "cmd": "15",
+     "sub_cmd": "05",
+     "data": "00 or 01"
+    },
+    {
+     "cmd": "15",
+     "sub_cmd": "07",
+     "data": "00 or 01"
+    },
+    {
+     "cmd": "15",
+     "sub_cmd": "11",
+     "data": "0000 ~ 0255"
+    },
+    {
+     "cmd": "15",
+     "sub_cmd": "12",
+     "data": "0000 ~ 0255"
+    },
+    {
+     "cmd": "15",
+     "sub_cmd": "13",
+     "data": "0000 ~ 0255"
+    },
+    {
+     "cmd": "15",
+     "sub_cmd": "14",
+     "data": "0000 ~ 0255"
+    },
+    {
+     "cmd": "15",
+     "sub_cmd": "15",
+     "data": "0000 ~ 0255"
+    },
+    {
+     "cmd": "15",
+     "sub_cmd": "16",
+     "data": "0000 ~ 0255"
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *1",
+   "body": "Read only data",
+   "kind": "footnote",
+   "scope": "command",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "19",
+     "sub_cmd": "00",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *1",
+   "body": "Read only data",
+   "kind": "footnote",
+   "scope": "row",
    "pages": [],
    "matches": [
     {
@@ -710,6 +789,7 @@
    "title": "Table footnote *1",
    "body": "Read only data",
    "kind": "footnote",
+   "scope": "row",
    "pages": [],
    "matches": [
     {
@@ -723,6 +803,7 @@
    "title": "Table footnote *1",
    "body": "Read only data",
    "kind": "footnote",
+   "scope": "row",
    "pages": [],
    "matches": [
     {
@@ -733,9 +814,192 @@
    ]
   },
   {
+   "title": "Table footnote *1",
+   "body": "Read only data",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "0C",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *1",
+   "body": "Read only data",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1E",
+     "sub_cmd": "00",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *1",
+   "body": "Read only data",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1E",
+     "sub_cmd": "01",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *1",
+   "body": "Read only data",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1E",
+     "sub_cmd": "02",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *1",
+   "body": "Read only data",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "20",
+     "sub_cmd": "00,02",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *1",
+   "body": "Read only data",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "20",
+     "sub_cmd": "01,02",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *1",
+   "body": "Read only data",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "20",
+     "sub_cmd": "02,02",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *1",
+   "body": "Read only data",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "20",
+     "sub_cmd": "03,0200",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *1",
+   "body": "Read only data",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "20",
+     "sub_cmd": "03,0201",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *1",
+   "body": "Read only data",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "20",
+     "sub_cmd": "03,0202",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *1",
+   "body": "Read only data",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "20",
+     "sub_cmd": "03,0203",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *1",
+   "body": "Read only data",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "20",
+     "sub_cmd": "04,02",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *1",
+   "body": "Read only data",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "23",
+     "sub_cmd": "00",
+     "data": ""
+    }
+   ]
+  },
+  {
    "title": "Table footnote *2",
    "body": "Send only data",
    "kind": "footnote",
+   "scope": "row",
    "pages": [],
    "matches": [
     {
@@ -749,6 +1013,7 @@
    "title": "Table footnote *2",
    "body": "Send only data",
    "kind": "footnote",
+   "scope": "row",
    "pages": [],
    "matches": [
     {
@@ -759,9 +1024,178 @@
    ]
   },
   {
+   "title": "Table footnote *2",
+   "body": "Send only data",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "08",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *2",
+   "body": "Send only data",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "0D",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *2",
+   "body": "Send only data",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "0E",
+     "sub_cmd": "B0",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *2",
+   "body": "Send only data",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "0E",
+     "sub_cmd": "B2",
+     "data": "00 to 03"
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *2",
+   "body": "Send only data",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "0E",
+     "sub_cmd": "D0",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *2",
+   "body": "Send only data",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "0E",
+     "sub_cmd": "D3",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *2",
+   "body": "Send only data",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "0F",
+     "sub_cmd": "00",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *2",
+   "body": "Send only data",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "0F",
+     "sub_cmd": "01",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *2",
+   "body": "Send only data",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "0F",
+     "sub_cmd": "10",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *2",
+   "body": "Send only data",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "0F",
+     "sub_cmd": "11",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *2",
+   "body": "Send only data",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "0F",
+     "sub_cmd": "12",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *2",
+   "body": "Send only data",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "0F",
+     "sub_cmd": "13",
+     "data": ""
+    }
+   ]
+  },
+  {
    "title": "Send/read data",
    "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
+   "scope": "command",
    "pages": [],
    "matches": [
     {
@@ -812,191 +1246,10 @@
    ]
   },
   {
-   "title": "Table footnote *2",
-   "body": "Send only data",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "08",
-     "sub_cmd": "",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Table footnote *1",
-   "body": "Read only data",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "0C",
-     "sub_cmd": "",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Table footnote *2",
-   "body": "Send only data",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "0D",
-     "sub_cmd": "",
-     "data": ""
-    }
-   ]
-  },
-  {
    "title": "Send/read data",
    "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "0D",
-     "sub_cmd": "",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Table footnote *2",
-   "body": "Send only data",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "0E",
-     "sub_cmd": "B0",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Table footnote *2",
-   "body": "Send only data",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "0E",
-     "sub_cmd": "B2",
-     "data": "00 to 03"
-    }
-   ]
-  },
-  {
-   "title": "Table footnote *2",
-   "body": "Send only data",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "0E",
-     "sub_cmd": "D0",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Table footnote *2",
-   "body": "Send only data",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "0E",
-     "sub_cmd": "D3",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Table footnote *2",
-   "body": "Send only data",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "0F",
-     "sub_cmd": "00",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Table footnote *2",
-   "body": "Send only data",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "0F",
-     "sub_cmd": "01",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Table footnote *2",
-   "body": "Send only data",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "0F",
-     "sub_cmd": "10",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Table footnote *2",
-   "body": "Send only data",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "0F",
-     "sub_cmd": "11",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Table footnote *2",
-   "body": "Send only data",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "0F",
-     "sub_cmd": "12",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Table footnote *2",
-   "body": "Send only data",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "0F",
-     "sub_cmd": "13",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
+   "scope": "command",
    "pages": [],
    "matches": [
     {
@@ -1010,6 +1263,7 @@
    "title": "Send/read data",
    "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
+   "scope": "command",
    "pages": [],
    "matches": [
     {
@@ -1028,6 +1282,7 @@
    "title": "Send/read data",
    "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
+   "scope": "command",
    "pages": [],
    "matches": [
     {
@@ -1123,35 +1378,10 @@
    ]
   },
   {
-   "title": "Table footnote *1",
-   "body": "Read only data",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "15",
-     "sub_cmd": "01",
-     "data": "00 or 01"
-    }
-   ]
-  },
-  {
-   "title": "Table footnote *1",
-   "body": "Read only data",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "15",
-     "sub_cmd": "12",
-     "data": "0000 ~ 0255"
-    }
-   ]
-  },
-  {
    "title": "Send/read data",
    "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
+   "scope": "command",
    "pages": [],
    "matches": [
     {
@@ -1282,48 +1512,10 @@
    ]
   },
   {
-   "title": "Table footnote *3",
-   "body": "In the CW mode, if the [TRANSMIT] or an external TX switch is ON, or the Break-in function is ON, a message will be transmitted as CW code when you send it from your PC.",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "17",
-     "sub_cmd": "",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Table footnote *4",
-   "body": "When sending the power ON command (18 01), you need to repeatedly send “FE” before the standard format. The following is the approximate number of needed repetitions. • 115200 bps: 119 “FE”s • 57600 bps: 59 “FE”s • 38400 bps: 40 “FE”s • 19200 bps: 20 “FE”s • 9600 bps: 9 “FE”s • 4800 bps: 5 “FE”s ×5 Example: When using 4800 bps F 2AEFEF E E 10810 DF Preamble 9700’s address Controller’s address Command Sub command Post amble",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "18",
-     "sub_cmd": "01",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Table footnote *1",
-   "body": "Read only data",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "19",
-     "sub_cmd": "00",
-     "data": ""
-    }
-   ]
-  },
-  {
    "title": "Send/read data",
    "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
+   "scope": "command",
    "pages": [],
    "matches": [
     {
@@ -3089,22 +3281,10 @@
    ]
   },
   {
-   "title": "Table footnote *5",
-   "body": "To insert a counter, first clear the other channel’s counter.",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "1A",
-     "sub_cmd": "02",
-     "data": ""
-    }
-   ]
-  },
-  {
    "title": "Send/read data",
    "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
+   "scope": "command",
    "pages": [],
    "matches": [
     {
@@ -3133,21 +3313,14 @@
    "title": "Send/read data",
    "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
+   "scope": "command",
    "pages": [],
    "matches": [
     {
      "cmd": "1C",
      "sub_cmd": "00",
      "data": "00 or 01"
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
+    },
     {
      "cmd": "1C",
      "sub_cmd": "02",
@@ -3156,61 +3329,10 @@
    ]
   },
   {
-   "title": "Table footnote *1",
-   "body": "Read only data",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "1E",
-     "sub_cmd": "00",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Table footnote *1",
-   "body": "Read only data",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "1E",
-     "sub_cmd": "01",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Table footnote *1",
-   "body": "Read only data",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "1E",
-     "sub_cmd": "02",
-     "data": ""
-    }
-   ]
-  },
-  {
    "title": "Send/read data",
    "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "1E",
-     "sub_cmd": "03",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
+   "scope": "command",
    "pages": [],
    "matches": [
     {
@@ -3231,243 +3353,10 @@
    ]
   },
   {
-   "title": "Table footnote *7",
-   "body": "Output setting is automatically set to OFF after turning OFF the transceiver.",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "20",
-     "sub_cmd": "00,00",
-     "data": "00 or 01"
-    }
-   ]
-  },
-  {
    "title": "Send/read data",
    "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "20",
-     "sub_cmd": "00,00",
-     "data": "00 or 01"
-    }
-   ]
-  },
-  {
-   "title": "Table footnote *1",
-   "body": "Read only data",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "20",
-     "sub_cmd": "00,02",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Table footnote *7",
-   "body": "Output setting is automatically set to OFF after turning OFF the transceiver.",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "20",
-     "sub_cmd": "01,00",
-     "data": "00 or 01"
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "20",
-     "sub_cmd": "01,00",
-     "data": "00 or 01"
-    }
-   ]
-  },
-  {
-   "title": "Table footnote *1",
-   "body": "Read only data",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "20",
-     "sub_cmd": "01,02",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Table footnote *7",
-   "body": "Output setting is automatically set to OFF after turning OFF the transceiver.",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "20",
-     "sub_cmd": "02,00",
-     "data": "00 or 01"
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "20",
-     "sub_cmd": "02,00",
-     "data": "00 or 01"
-    }
-   ]
-  },
-  {
-   "title": "Table footnote *1",
-   "body": "Read only data",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "20",
-     "sub_cmd": "02,02",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Table footnote *7",
-   "body": "Output setting is automatically set to OFF after turning OFF the transceiver.",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "20",
-     "sub_cmd": "03,00",
-     "data": "00 or 01"
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "20",
-     "sub_cmd": "03,00",
-     "data": "00 or 01"
-    }
-   ]
-  },
-  {
-   "title": "Table footnote *1",
-   "body": "Read only data",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "20",
-     "sub_cmd": "03,0200",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Table footnote *1",
-   "body": "Read only data",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "20",
-     "sub_cmd": "03,0201",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Table footnote *1",
-   "body": "Read only data",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "20",
-     "sub_cmd": "03,0202",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Table footnote *1",
-   "body": "Read only data",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "20",
-     "sub_cmd": "03,0203",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Table footnote *7",
-   "body": "Output setting is automatically set to OFF after turning OFF the transceiver.",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "20",
-     "sub_cmd": "04,00",
-     "data": "00 or 01"
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "20",
-     "sub_cmd": "04,00",
-     "data": "00 or 01"
-    }
-   ]
-  },
-  {
-   "title": "Table footnote *1",
-   "body": "Read only data",
-   "kind": "footnote",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "20",
-     "sub_cmd": "04,02",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
+   "scope": "command",
    "pages": [],
    "matches": [
     {
@@ -3486,25 +3375,18 @@
    "title": "Send/read data",
    "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "22",
-     "sub_cmd": "01,00",
-     "data": "00 or 01"
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data",
-   "kind": "asterisk",
+   "scope": "command",
    "pages": [],
    "matches": [
     {
      "cmd": "22",
      "sub_cmd": "00",
      "data": ""
+    },
+    {
+     "cmd": "22",
+     "sub_cmd": "01,00",
+     "data": "00 or 01"
     },
     {
      "cmd": "22",
@@ -3534,14 +3416,15 @@
    ]
   },
   {
-   "title": "Table footnote *1",
-   "body": "Read only data",
-   "kind": "footnote",
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "scope": "row",
    "pages": [],
    "matches": [
     {
-     "cmd": "23",
-     "sub_cmd": "00",
+     "cmd": "0D",
+     "sub_cmd": "",
      "data": ""
     }
    ]
@@ -3550,13 +3433,107 @@
    "title": "Send/read data",
    "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1E",
+     "sub_cmd": "03",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "20",
+     "sub_cmd": "00,00",
+     "data": "00 or 01"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "20",
+     "sub_cmd": "01,00",
+     "data": "00 or 01"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "20",
+     "sub_cmd": "02,00",
+     "data": "00 or 01"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "20",
+     "sub_cmd": "03,00",
+     "data": "00 or 01"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "20",
+     "sub_cmd": "04,00",
+     "data": "00 or 01"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "scope": "row",
    "pages": [],
    "matches": [
     {
      "cmd": "23",
      "sub_cmd": "01",
      "data": "00, 02, 03"
-    },
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "scope": "row",
+   "pages": [],
+   "matches": [
     {
      "cmd": "23",
      "sub_cmd": "02",
@@ -3568,6 +3545,7 @@
    "title": "Send/read data",
    "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
+   "scope": "row",
    "pages": [],
    "matches": [
     {
@@ -3581,6 +3559,7 @@
    "title": "Send/read data",
    "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
+   "scope": "row",
    "pages": [],
    "matches": [
     {
@@ -3594,12 +3573,125 @@
    "title": "Send/read data",
    "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
+   "scope": "row",
    "pages": [],
    "matches": [
     {
      "cmd": "26",
      "sub_cmd": "",
      "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *3",
+   "body": "In the CW mode, if the [TRANSMIT] or an external TX switch is ON, or the Break-in function is ON, a message will be transmitted as CW code when you send it from your PC.",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "17",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *4",
+   "body": "When sending the power ON command (18 01), you need to repeatedly send “FE” before the standard format. The following is the approximate number of needed repetitions. • 115200 bps: 119 “FE”s • 57600 bps: 59 “FE”s • 38400 bps: 40 “FE”s • 19200 bps: 20 “FE”s • 9600 bps: 9 “FE”s • 4800 bps: 5 “FE”s ×5 Example: When using 4800 bps F 2AEFEF E E 10810 DF Preamble 9700’s address Controller’s address Command Sub command Post amble",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "18",
+     "sub_cmd": "01",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *5",
+   "body": "To insert a counter, first clear the other channel’s counter.",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "02",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *7",
+   "body": "Output setting is automatically set to OFF after turning OFF the transceiver.",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "20",
+     "sub_cmd": "00,00",
+     "data": "00 or 01"
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *7",
+   "body": "Output setting is automatically set to OFF after turning OFF the transceiver.",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "20",
+     "sub_cmd": "01,00",
+     "data": "00 or 01"
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *7",
+   "body": "Output setting is automatically set to OFF after turning OFF the transceiver.",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "20",
+     "sub_cmd": "02,00",
+     "data": "00 or 01"
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *7",
+   "body": "Output setting is automatically set to OFF after turning OFF the transceiver.",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "20",
+     "sub_cmd": "03,00",
+     "data": "00 or 01"
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *7",
+   "body": "Output setting is automatically set to OFF after turning OFF the transceiver.",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "20",
+     "sub_cmd": "04,00",
+     "data": "00 or 01"
     }
    ]
   }

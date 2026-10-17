@@ -104,6 +104,7 @@ def _load_command_notes(path: Path) -> dict[tuple[str, str, str], list[CommandNo
             body=note.get("body") or "",
             kind=note.get("kind") or "panel",
             pages=[int(p) for p in (note.get("pages") or [])],
+            scope=note.get("scope") or "row",
         )
         for m in note.get("matches", []):
             key = (m["cmd"], m["sub_cmd"], m["data"])

@@ -278,29 +278,25 @@
   // ---- commands -----------------------------------------------------------
   // Manual note block for one command row: page refs as chips, then each
   // note as a titled monospace panel. All text goes in via textContent.
-  // groupShared: a set of note keys already rendered at the top row of the
-  // command group — notes shared by every row in a group are rendered once
-  // at the group's top instead of repeated on each sub-command row.
+  // Command-scoped notes (the manual annotates the command code itself)
+  // render once in the block above the browse table; row-scoped notes
+  // stay attached to their row.
   function noteKey(n) {
     return (n.kind || "") + "|" + (n.title || "") + "|" + (n.body || "");
   }
 
-  function groupSharedNotes(rows) {
-    // Notes appearing on 2+ rows of the command group — returned as note
-    // objects in first-appearance order.
-    var counts = {}, last = {};
+  function commandScopedNotes(rows) {
+    // Notes the manual annotates at the command level (scope "command") —
+    // returned as note objects in first-appearance order.
+    var seen = {}, out = [];
     (rows || []).forEach(function (c) {
       (c.notes || []).forEach(function (n) {
+        if (n.scope !== "command") { return; }
         var k = noteKey(n);
-        counts[k] = (counts[k] || 0) + 1;
-        last[k] = n;
+        if (!seen[k]) { seen[k] = true; out.push(n); }
       });
     });
-    return Object.keys(counts).filter(function (k) {
-      return counts[k] >= 2;
-    }).map(function (k) {
-      return last[k];
-    });
+    return out;
   }
 
   function noteBlock(n) {
@@ -533,19 +529,20 @@
     detail.appendChild(back);
 
     var table = tag("table", null, { class: "browse-table" });
-    // Command-level notes hoist above the table: notes bound to the
-    // command's top-level row (empty sub_cmd), plus notes shared by 2+
-    // rows of the group. Rows skip whatever is listed here.
+    // Command-level notes hoist above the table: (a) notes the manual
+    // annotates on the command code itself (scope "command"), (b) notes
+    // bound to the command's own row (sub_cmd and data both empty). Rows
+    // skip whatever is listed here; row-scoped notes stay on their row.
     var hoisted = {};
     var hoistOrder = [];
     rows.forEach(function (c) {
-      if (c.sub_cmd) { return; }
+      if (c.sub_cmd || c.data) { return; }
       (c.notes || []).forEach(function (n) {
         var k = noteKey(n);
         if (!hoisted[k]) { hoisted[k] = n; hoistOrder.push(k); }
       });
     });
-    groupSharedNotes(rows).forEach(function (n) {
+    commandScopedNotes(rows).forEach(function (n) {
       var k = noteKey(n);
       if (!hoisted[k]) { hoisted[k] = n; hoistOrder.push(k); }
     });

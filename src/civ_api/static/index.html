@@ -254,7 +254,9 @@ Use `curl` (or `webfetch`) against these endpoints:
   that say "see p. N"; empty list when citing nothing
 - `notes` — the referenced manual content, embedded: detail-section tables/panels (ASCII,
   e.g. the data-mode or frequency encoding tables) and numbered table footnotes (`"Table footnote *3"`),
-  each bound to the rows the manual applies them to. Empty list when the row has no notes
+  each bound to the rows the manual applies them to. Each entry may set `scope` —
+  `"command"` (the manual annotates the command code itself) or `"row"` (it annotates that
+  data row). Empty list when the row has no notes
 
 **Capability object schema** (from `/radios/{id}/capabilities`):
 ```json
