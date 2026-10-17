@@ -50,7 +50,7 @@
   },
   {
    "title": "Band stacking register",
-   "body": "\u0003\u000e\n1 Frequency band codes\nCode Freq. band Frequency range (unit: MHz)\n11 GENE Other than above\n2 Register codes\nCode Registered number\n01 1 (latest)\n03 3 (oldest)\nFor example, when sending/reading the oldest\ncontents in the 21 MHz band, the code “07 03” is\nused.\n",
+   "body": "1 Frequency band codes\nCode Freq. band Frequency range (unit: MHz)\n01 1.8  1.800000 ~  1.999999\n02 3.5  3.400000 ~  4.099999\n03 7    6.900000 ~  7.499999\n04 10   9.900000 ~ 10.499999\n05 14   13.900000 ~ 14.499999\n06 18   17.900000 ~ 18.499999\n07 21   20.900000 ~ 21.499999\n08 24   24.400000 ~ 25.099999\n09 28   28.000000 ~ 29.999999\n10 50   50.000000 ~ 54.000000\n11 GENE Other than above\n\n2 Register codes\nCode Registered number\n01 1 (latest)\n02 2\n03 3 (oldest)\nFor example, when sending/reading the oldest contents in the 21 MHz band, the code “07 03” is used.",
    "kind": "panel",
    "pages": [
     10
