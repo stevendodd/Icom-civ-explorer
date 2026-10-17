@@ -1,7 +1,8 @@
 version: '1'
 domains:
-  - civ-api
-  - reference-data
+  civ-api: {}
+  reference-data: {}
+  ui: {}
 governance:
   max_entries: 100
   warn_entries: 150
