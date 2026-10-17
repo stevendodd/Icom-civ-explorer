@@ -296,11 +296,9 @@
         seen[k] = true;
       });
     });
-    var shared = {};
-    Object.keys(counts).forEach(function (k) {
-      if (counts[k] >= 2) shared[k] = true;
-    });
-    return shared;
+    return new Set(Object.keys(counts).filter(function (k) {
+      return counts[k] >= 2;
+    }));
   }
 
   function appendNoteCells(cell, item, groupShared) {
