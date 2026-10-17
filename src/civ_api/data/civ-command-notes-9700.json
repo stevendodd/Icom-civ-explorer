@@ -194,6 +194,21 @@
    ]
   },
   {
+   "title": "RX HPF/LPF setting for each operating mode",
+   "body": "*The value of the HPF should be smaller than the LPF.\nHPF (Lower edge)\n00=Through\n01 ~ 20=100 ~ 2000 Hz\nLPF(Upper edge)\n05 ~ 24=500~2400 Hz\n25=Through\n",
+   "kind": "panel",
+   "pages": [
+    16
+   ],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0001",
+     "data": ""
+    }
+   ]
+  },
+  {
    "title": "Color settings",
    "body": "R (Red)\nG (Green)\nB (Blue)\n",
    "kind": "panel",
@@ -650,7 +665,7 @@
   },
   {
    "title": "Scope Reference level settings",
-   "body": "Common settings for the Main and Sub scopes.\n00= + (plus)\n01= – (minus)\n00=Main scope\n01=Sub scope\n10 dB digit: 0, 1, 2\n1 dB digit: 0 ~ 9\n0.1 dB digit: 0, 5\n0.01 dB digit: 0\n(Fixed)\nL Adjustable range: –20.0 dB ~ +20.0 dB in 0.5 dB steps.\n",
+   "body": "Common settings for the Main and Sub scopes.\n00= + (plus)\n01= – (minus)\n00=Main scope\n01=Sub scope\n10 dB digit: 0, 1, 2\n1 dB digit: 0 ~ 9\n0.1 dB digit: 0, 5\n0.01 dB digit: 0\n(Fixed)\nℹ Adjustable range: –20.0 dB ~ +20.0 dB in 0.5 dB steps.\n",
    "kind": "panel",
    "pages": [
     24
@@ -680,7 +695,7 @@
   },
   {
    "title": "Scope Fixed edge frequency settings",
-   "body": "10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 9\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0 ~ 1\n100 MHz digit: 0 ~ 4\n10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 9\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0 ~ 1\n100 MHz digit: 0 ~ 4\nFrequency range\nLower edge Higher edge\nEdge number: 01 ~ 03\nL Entry of 100 Hz less than digits are ignored.\nq Selectable Frequency ranges\nData Frequency range (Hz)\nw Selectable Edge number: 01=1, 02=2, 03=3\n",
+   "body": "10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 9\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0 ~ 1\n100 MHz digit: 0 ~ 4\n10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 9\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0 ~ 1\n100 MHz digit: 0 ~ 4\nFrequency range\nLower edge Higher edge\nEdge number: 01 ~ 03\nℹ Entry of 100 Hz less than digits are ignored.\nq Selectable Frequency ranges\nData Frequency range (Hz)\nw Selectable Edge number: 01=1, 02=2, 03=3\n",
    "kind": "panel",
    "pages": [
     25
@@ -695,7 +710,7 @@
   },
   {
    "title": "Footnote *1",
-   "body": "Read only data",
+   "body": "See p. 13 Read frequency offset 01 00 or 01 Read noise or S-meter squelch status See p. 20 Read Auto DV RX Call signs See p. 20 Read Auto DV RX message See p. 20 Read Auto DV RX status See p. 22 Read Auto DV RX D-PRS message status See p. 23 Read the position status Read only data",
    "kind": "footnote",
    "scope": "command",
    "pages": [],
@@ -709,7 +724,7 @@
   },
   {
    "title": "Footnote *1",
-   "body": "Read only data",
+   "body": "See p. 13 Read frequency offset 01 00 or 01 Read noise or S-meter squelch status See p. 20 Read Auto DV RX Call signs See p. 20 Read Auto DV RX message See p. 20 Read Auto DV RX status See p. 22 Read Auto DV RX D-PRS message status See p. 23 Read the position status Read only data",
    "kind": "footnote",
    "scope": "command",
    "pages": [],
@@ -723,7 +738,7 @@
   },
   {
    "title": "Footnote *1",
-   "body": "Read only data",
+   "body": "See p. 13 Read frequency offset 01 00 or 01 Read noise or S-meter squelch status See p. 20 Read Auto DV RX Call signs See p. 20 Read Auto DV RX message See p. 20 Read Auto DV RX status See p. 22 Read Auto DV RX D-PRS message status See p. 23 Read the position status Read only data",
    "kind": "footnote",
    "scope": "command",
    "pages": [],
@@ -737,30 +752,11 @@
   },
   {
    "title": "Footnote *1",
-   "body": "Read only data",
+   "body": "See p. 13 Read frequency offset 01 00 or 01 Read noise or S-meter squelch status See p. 20 Read Auto DV RX Call signs See p. 20 Read Auto DV RX message See p. 20 Read Auto DV RX status See p. 22 Read Auto DV RX D-PRS message status See p. 23 Read the position status Read only data",
    "kind": "footnote",
    "scope": "command",
    "pages": [],
    "matches": [
-    {
-     "cmd": "0C",
-     "sub_cmd": "",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Footnote *1",
-   "body": "Read only data",
-   "kind": "footnote",
-   "scope": "command",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "15",
-     "sub_cmd": "",
-     "data": ""
-    },
     {
      "cmd": "15",
      "sub_cmd": "01",
@@ -815,7 +811,7 @@
   },
   {
    "title": "Footnote *1",
-   "body": "Read only data",
+   "body": "See p. 13 Read frequency offset 01 00 or 01 Read noise or S-meter squelch status See p. 20 Read Auto DV RX Call signs See p. 20 Read Auto DV RX message See p. 20 Read Auto DV RX status See p. 22 Read Auto DV RX D-PRS message status See p. 23 Read the position status Read only data",
    "kind": "footnote",
    "scope": "command",
    "pages": [],
@@ -829,7 +825,7 @@
   },
   {
    "title": "Footnote *1",
-   "body": "Read only data",
+   "body": "See p. 13 Read frequency offset 01 00 or 01 Read noise or S-meter squelch status See p. 20 Read Auto DV RX Call signs See p. 20 Read Auto DV RX message See p. 20 Read Auto DV RX status See p. 22 Read Auto DV RX D-PRS message status See p. 23 Read the position status Read only data",
    "kind": "footnote",
    "scope": "row",
    "pages": [],
@@ -843,7 +839,7 @@
   },
   {
    "title": "Footnote *1",
-   "body": "Read only data",
+   "body": "See p. 13 Read frequency offset 01 00 or 01 Read noise or S-meter squelch status See p. 20 Read Auto DV RX Call signs See p. 20 Read Auto DV RX message See p. 20 Read Auto DV RX status See p. 22 Read Auto DV RX D-PRS message status See p. 23 Read the position status Read only data",
    "kind": "footnote",
    "scope": "row",
    "pages": [],
@@ -857,7 +853,7 @@
   },
   {
    "title": "Footnote *1",
-   "body": "Read only data",
+   "body": "See p. 13 Read frequency offset 01 00 or 01 Read noise or S-meter squelch status See p. 20 Read Auto DV RX Call signs See p. 20 Read Auto DV RX message See p. 20 Read Auto DV RX status See p. 22 Read Auto DV RX D-PRS message status See p. 23 Read the position status Read only data",
    "kind": "footnote",
    "scope": "row",
    "pages": [],
@@ -871,49 +867,7 @@
   },
   {
    "title": "Footnote *1",
-   "body": "Read only data",
-   "kind": "footnote",
-   "scope": "row",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "20",
-     "sub_cmd": "00,02",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Footnote *1",
-   "body": "Read only data",
-   "kind": "footnote",
-   "scope": "row",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "20",
-     "sub_cmd": "01,02",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Footnote *1",
-   "body": "Read only data",
-   "kind": "footnote",
-   "scope": "row",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "20",
-     "sub_cmd": "02,02",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Footnote *1",
-   "body": "Read only data",
+   "body": "See p. 13 Read frequency offset 01 00 or 01 Read noise or S-meter squelch status See p. 20 Read Auto DV RX Call signs See p. 20 Read Auto DV RX message See p. 20 Read Auto DV RX status See p. 22 Read Auto DV RX D-PRS message status See p. 23 Read the position status Read only data",
    "kind": "footnote",
    "scope": "row",
    "pages": [],
@@ -927,7 +881,7 @@
   },
   {
    "title": "Footnote *1",
-   "body": "Read only data",
+   "body": "See p. 13 Read frequency offset 01 00 or 01 Read noise or S-meter squelch status See p. 20 Read Auto DV RX Call signs See p. 20 Read Auto DV RX message See p. 20 Read Auto DV RX status See p. 22 Read Auto DV RX D-PRS message status See p. 23 Read the position status Read only data",
    "kind": "footnote",
    "scope": "row",
    "pages": [],
@@ -941,7 +895,7 @@
   },
   {
    "title": "Footnote *1",
-   "body": "Read only data",
+   "body": "See p. 13 Read frequency offset 01 00 or 01 Read noise or S-meter squelch status See p. 20 Read Auto DV RX Call signs See p. 20 Read Auto DV RX message See p. 20 Read Auto DV RX status See p. 22 Read Auto DV RX D-PRS message status See p. 23 Read the position status Read only data",
    "kind": "footnote",
    "scope": "row",
    "pages": [],
@@ -955,7 +909,7 @@
   },
   {
    "title": "Footnote *1",
-   "body": "Read only data",
+   "body": "See p. 13 Read frequency offset 01 00 or 01 Read noise or S-meter squelch status See p. 20 Read Auto DV RX Call signs See p. 20 Read Auto DV RX message See p. 20 Read Auto DV RX status See p. 22 Read Auto DV RX D-PRS message status See p. 23 Read the position status Read only data",
    "kind": "footnote",
    "scope": "row",
    "pages": [],
@@ -968,36 +922,8 @@
    ]
   },
   {
-   "title": "Footnote *1",
-   "body": "Read only data",
-   "kind": "footnote",
-   "scope": "row",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "20",
-     "sub_cmd": "04,02",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Footnote *1",
-   "body": "Read only data",
-   "kind": "footnote",
-   "scope": "row",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "23",
-     "sub_cmd": "00",
-     "data": ""
-    }
-   ]
-  },
-  {
    "title": "Footnote *2",
-   "body": "Send only data",
+   "body": "Select the Memory mode Clear the Select channel setting 00 to 03 Set the Select memory scan channel Set Scan resume OFF Send only data",
    "kind": "footnote",
    "scope": "command",
    "pages": [],
@@ -1011,7 +937,7 @@
   },
   {
    "title": "Footnote *2",
-   "body": "Send only data",
+   "body": "Select the Memory mode Clear the Select channel setting 00 to 03 Set the Select memory scan channel Set Scan resume OFF Send only data",
    "kind": "footnote",
    "scope": "command",
    "pages": [],
@@ -1025,36 +951,7 @@
   },
   {
    "title": "Footnote *2",
-   "body": "Send only data",
-   "kind": "footnote",
-   "scope": "command",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "08",
-     "sub_cmd": "",
-     "data": ""
-    },
-    {
-     "cmd": "08",
-     "sub_cmd": "",
-     "data": "0001 to 0099"
-    },
-    {
-     "cmd": "08",
-     "sub_cmd": "",
-     "data": "0100 to 0105"
-    },
-    {
-     "cmd": "08",
-     "sub_cmd": "",
-     "data": "0106, 0107"
-    }
-   ]
-  },
-  {
-   "title": "Footnote *2",
-   "body": "Send only data",
+   "body": "Select the Memory mode Clear the Select channel setting 00 to 03 Set the Select memory scan channel Set Scan resume OFF Send only data",
    "kind": "footnote",
    "scope": "command",
    "pages": [],
@@ -1068,49 +965,7 @@
   },
   {
    "title": "Footnote *2",
-   "body": "Send only data",
-   "kind": "footnote",
-   "scope": "row",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "0E",
-     "sub_cmd": "B0",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Footnote *2",
-   "body": "Send only data",
-   "kind": "footnote",
-   "scope": "row",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "0E",
-     "sub_cmd": "B2",
-     "data": "00 to 03"
-    }
-   ]
-  },
-  {
-   "title": "Footnote *2",
-   "body": "Send only data",
-   "kind": "footnote",
-   "scope": "row",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "0E",
-     "sub_cmd": "D0",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Footnote *2",
-   "body": "Send only data",
+   "body": "Select the Memory mode Clear the Select channel setting 00 to 03 Set the Select memory scan channel Set Scan resume OFF Send only data",
    "kind": "footnote",
    "scope": "row",
    "pages": [],
@@ -1124,7 +979,7 @@
   },
   {
    "title": "Footnote *2",
-   "body": "Send only data",
+   "body": "Select the Memory mode Clear the Select channel setting 00 to 03 Set the Select memory scan channel Set Scan resume OFF Send only data",
    "kind": "footnote",
    "scope": "row",
    "pages": [],
@@ -1138,7 +993,7 @@
   },
   {
    "title": "Footnote *2",
-   "body": "Send only data",
+   "body": "Select the Memory mode Clear the Select channel setting 00 to 03 Set the Select memory scan channel Set Scan resume OFF Send only data",
    "kind": "footnote",
    "scope": "row",
    "pages": [],
@@ -1152,7 +1007,7 @@
   },
   {
    "title": "Footnote *2",
-   "body": "Send only data",
+   "body": "Select the Memory mode Clear the Select channel setting 00 to 03 Set the Select memory scan channel Set Scan resume OFF Send only data",
    "kind": "footnote",
    "scope": "row",
    "pages": [],
@@ -1166,7 +1021,7 @@
   },
   {
    "title": "Footnote *2",
-   "body": "Send only data",
+   "body": "Select the Memory mode Clear the Select channel setting 00 to 03 Set the Select memory scan channel Set Scan resume OFF Send only data",
    "kind": "footnote",
    "scope": "row",
    "pages": [],
@@ -1180,7 +1035,7 @@
   },
   {
    "title": "Footnote *2",
-   "body": "Send only data",
+   "body": "Select the Memory mode Clear the Select channel setting 00 to 03 Set the Select memory scan channel Set Scan resume OFF Send only data",
    "kind": "footnote",
    "scope": "row",
    "pages": [],
@@ -1194,7 +1049,7 @@
   },
   {
    "title": "Footnote *2",
-   "body": "Send only data",
+   "body": "Select the Memory mode Clear the Select channel setting 00 to 03 Set the Select memory scan channel Set Scan resume OFF Send only data",
    "kind": "footnote",
    "scope": "row",
    "pages": [],
@@ -1570,6 +1425,11 @@
     {
      "cmd": "1A",
      "sub_cmd": "04",
+     "data": ""
+    },
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0001",
      "data": ""
     },
     {
@@ -3274,26 +3134,6 @@
     },
     {
      "cmd": "1A",
-     "sub_cmd": "05,0100",
-     "data": ""
-    },
-    {
-     "cmd": "1A",
-     "sub_cmd": "05,0101",
-     "data": ""
-    },
-    {
-     "cmd": "1A",
-     "sub_cmd": "05,0102",
-     "data": ""
-    },
-    {
-     "cmd": "1A",
-     "sub_cmd": "05,0103",
-     "data": ""
-    },
-    {
-     "cmd": "1A",
      "sub_cmd": "06",
      "data": ""
     },
@@ -3476,6 +3316,80 @@
    "title": "Send/read data",
    "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
+   "scope": "command",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "27",
+     "sub_cmd": "10",
+     "data": "00 or 01"
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "11",
+     "data": "00 or 01"
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "12",
+     "data": "00 or 01"
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "14",
+     "data": ""
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "15",
+     "data": ""
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "16",
+     "data": ""
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "17",
+     "data": ""
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "19",
+     "data": ""
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "1A",
+     "data": ""
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "1B",
+     "data": "00 or 01"
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "1C",
+     "data": "00 to 02"
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "1D",
+     "data": ""
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "1E",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
    "scope": "row",
    "pages": [],
    "matches": [
@@ -3614,7 +3528,7 @@
   },
   {
    "title": "Footnote *4",
-   "body": "When sending the power ON command (18 01), you need to repeatedly send “FE” before the standard format. The following is the approximate number of needed repetitions. • 115200 bps: 119 “FE”s • 57600 bps: 59 “FE”s • 38400 bps: 40 “FE”s • 19200 bps: 20 “FE”s • 9600 bps: 9 “FE”s • 4800 bps: 5 “FE”s ×5 Example: When using 4800 bps F 2AEFEF E E 10810 DF Preamble 9700’s address Controller’s address Command Sub command Post amble",
+   "body": "When sending the power ON command (18 01), you need to repeatedly send “FE” before the standard format. The following is the approximate number of needed repetitions. • 115200 bps: 119 “FE”s • 57600 bps: 59 “FE”s • 38400 bps: 40 “FE”s • 19200 bps: 20 “FE”s • 9600 bps: 9 “FE”s • 4800 bps: 5 “FE”s ×5 Example: When using 4800 bps",
    "kind": "footnote",
    "scope": "row",
    "pages": [],
@@ -3642,7 +3556,7 @@
   },
   {
    "title": "Footnote *7",
-   "body": "Output setting is automatically set to OFF after turning OFF the transceiver.",
+   "body": "Output setting is automatically set to OFF after turning",
    "kind": "footnote",
    "scope": "row",
    "pages": [],
@@ -3656,7 +3570,7 @@
   },
   {
    "title": "Footnote *7",
-   "body": "Output setting is automatically set to OFF after turning OFF the transceiver.",
+   "body": "Output setting is automatically set to OFF after turning",
    "kind": "footnote",
    "scope": "row",
    "pages": [],
@@ -3670,7 +3584,7 @@
   },
   {
    "title": "Footnote *7",
-   "body": "Output setting is automatically set to OFF after turning OFF the transceiver.",
+   "body": "Output setting is automatically set to OFF after turning",
    "kind": "footnote",
    "scope": "row",
    "pages": [],
@@ -3684,7 +3598,7 @@
   },
   {
    "title": "Footnote *7",
-   "body": "Output setting is automatically set to OFF after turning OFF the transceiver.",
+   "body": "Output setting is automatically set to OFF after turning",
    "kind": "footnote",
    "scope": "row",
    "pages": [],
@@ -3698,7 +3612,7 @@
   },
   {
    "title": "Footnote *7",
-   "body": "Output setting is automatically set to OFF after turning OFF the transceiver.",
+   "body": "Output setting is automatically set to OFF after turning",
    "kind": "footnote",
    "scope": "row",
    "pages": [],

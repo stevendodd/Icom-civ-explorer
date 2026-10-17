@@ -1,7 +1,7 @@
 {
  "radio_id": "7610",
  "source_pdf": "IC-7610_ENG_CI-V_3.pdf",
- "asterisk_note": "",
+ "asterisk_note": "Send/read data",
  "notes": [
   {
    "title": "Operating frequency",
@@ -90,7 +90,7 @@
   },
   {
    "title": "Memory content",
-   "body": "1, 2 Memory channel numbers\n00 01 ~ 00 99: Memory channel 01 ~ 99\n01 00:  Programmed scan edge P1\n01 01:  Programmed scan edge P2\n3 Select memory setting\nLSet 0 for P1 and P2.\n4 ~ 8 Operating frequency setting\nSee “\n• Operating frequency.”\n9, 10 Operating mode setting\nSee “\n• Operating mode.”\n11 Data mode and tone type settings\n12 ~ 14 Repeater tone frequency setting\n15 ~ 17 Tone squelch frequency setting\nSee “\n• Repeater tone/tone squelch settings.”\n18 ~ 27 Memory name settings\nUp to 10 characters.\nSee “\n• Codes for character entries.”\nTo clear the memory channel contents on 1A 00:\n1, 2: Memory channel (00 01~00 99)\n3: “FF”\n4: None\n0=OFF\nFixed\n1= 1\n2= 2\n3= 3\n0: OFF , 1: TONE, 2: TSQL\n0: OFF , 1: DATA 1, 2: DATA 2, 3: DATA 3\n",
+   "body": "1, 2 Memory channel numbers\n00 01 ~ 00 99: Memory channel 01 ~ 99\n01 00:  Programmed scan edge P1\n01 01:  Programmed scan edge P2\n3 Select memory setting\nℹ Set 0 for P1 and P2.\n4 ~ 8 Operating frequency setting\nSee “\n• Operating frequency.”\n9, 10 Operating mode setting\nSee “\n• Operating mode.”\n11 Data mode and tone type settings\n12 ~ 14 Repeater tone frequency setting\n15 ~ 17 Tone squelch frequency setting\nSee “\n• Repeater tone/tone squelch settings.”\n18 ~ 27 Memory name settings\nUp to 10 characters.\nSee “\n• Codes for character entries.”\nTo clear the memory channel contents on 1A 00:\n1, 2: Memory channel (00 01~00 99)\n3: “FF”\n4: None\n0=OFF\nFixed\n1= 1\n2= 2\n3= 3\n0: OFF , 1: TONE, 2: TSQL\n0: OFF , 1: DATA 1, 2: DATA 2, 3: DATA 3\n",
    "kind": "panel",
    "pages": [
     11
@@ -345,7 +345,7 @@
   },
   {
    "title": "Scope waveform data",
-   "body": "Outputs the waveform data to the controller\n1 Main or Sub scope data\n• 00=Main scope, 01=Sub scope\n2 Order of division data (Current)\n3 Division number (01 or 15)\nWhen data is sent to the controller through the\nLAN port, all data is sent together. However,\nwhen the data is sent through the USB port, the\ndata is divided by 15 and sent in sequential order.\nDivision number Data length\nLAN 01 704\nUSB 15\n1st data 15\nlater data 53\n15th data 42\nThe 1st data sends only the wave information\n(1 ~ 6) without the waveform data (7).\nThe 2nd or later data sends the minimum wave\ninformation (1 ~ 3) with waveform data (7).\n4 Spectrum scope mode data:\n• 00 = Center mode scope\n• 01 = Fixed mode scope\n• 02 = SCROLL-C mode scope\n• 03 = SCROLL-F mode scope\n5 Waveform information:\nThe waveform information differs, depending on\nthe Spectrum scope mode.\n• In the Center mode:\nCenter frequency and span are sent.\nSee page 10 for Operating frequency data, and the\nScope span settings to the right.\n• In the Fixed, SCROLL-C, and SCROLL-F modes:\nLower edge and higher edge frequencies are sent.\n10 Hz digit: 0–9\n1 Hz digit: 0–9\n1 kHz digit: 0–9\n100 Hz digit: 0–9\n100 kHz digit: 0–9\n10 kHz digit: 0–9\n10 MHz digit: 0–6\n1 MHz digit: 0–9\n1 GHz digit: 0, F*\n100 MHz digit: 0 (Fixed)\n10 Hz digit: 0–9\n1 Hz digit: 0–9\n1 kHz digit: 0–9\n100 Hz digit: 0–9\n100 kHz digit: 0–9\n10 kHz digit:  0–9\n10 MHz digit:  0–6\n1 MHz digit:  0–9\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\nLower edge Higher edge\n6 Out of range information\n• 00 = In range\n• 01 = Out of range\nL If the scope data is out of range, the waveform data\n(7) is omitted.\n7 Waveform data\nThe transceiver outputs the drawn waveform data.\nThe data range or data length of the waveform data is\njudged by the controller. (The data range is basically\nthe same as the display size of the scope on the\ncontroller.)\n• Data range: 00 ~ C8 (0 ~ 200)\n• Data length: 689\n",
+   "body": "Outputs the waveform data to the controller\n1 Main or Sub scope data\n• 00=Main scope, 01=Sub scope\n2 Order of division data (Current)\n3 Division number (01 or 15)\nWhen data is sent to the controller through the\nLAN port, all data is sent together. However,\nwhen the data is sent through the USB port, the\ndata is divided by 15 and sent in sequential order.\nDivision number Data length\nLAN 01 704\nUSB 15\n1st data 15\nlater data 53\n15th data 42\nThe 1st data sends only the wave information\n(1 ~ 6) without the waveform data (7).\nThe 2nd or later data sends the minimum wave\ninformation (1 ~ 3) with waveform data (7).\n4 Spectrum scope mode data:\n• 00 = Center mode scope\n• 01 = Fixed mode scope\n• 02 = SCROLL-C mode scope\n• 03 = SCROLL-F mode scope\n5 Waveform information:\nThe waveform information differs, depending on\nthe Spectrum scope mode.\n• In the Center mode:\nCenter frequency and span are sent.\nSee page 10 for Operating frequency data, and the\nScope span settings to the right.\n• In the Fixed, SCROLL-C, and SCROLL-F modes:\nLower edge and higher edge frequencies are sent.\n10 Hz digit: 0–9\n1 Hz digit: 0–9\n1 kHz digit: 0–9\n100 Hz digit: 0–9\n100 kHz digit: 0–9\n10 kHz digit: 0–9\n10 MHz digit: 0–6\n1 MHz digit: 0–9\n1 GHz digit: 0, F*\n100 MHz digit: 0 (Fixed)\n10 Hz digit: 0–9\n1 Hz digit: 0–9\n1 kHz digit: 0–9\n100 Hz digit: 0–9\n100 kHz digit: 0–9\n10 kHz digit:  0–9\n10 MHz digit:  0–6\n1 MHz digit:  0–9\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\nLower edge Higher edge\n6 Out of range information\n• 00 = In range\n• 01 = Out of range\nℹ If the scope data is out of range, the waveform data\n(7) is omitted.\n7 Waveform data\nThe transceiver outputs the drawn waveform data.\nThe data range or data length of the waveform data is\njudged by the controller. (The data range is basically\nthe same as the display size of the scope on the\ncontroller.)\n• Data range: 00 ~ C8 (0 ~ 200)\n• Data length: 689\n",
    "kind": "panel",
    "pages": [
     14
@@ -375,7 +375,7 @@
   },
   {
    "title": "Scope Reference level settings",
-   "body": "00= + (plus)\n01= – (minus)\n00=Main scope\n01=Sub scope\n10 dB digit: 0–3\n1 dB digit: 0–9\n0.1 dB digit: 0, 5\n0.01 dB digit: 0 (Fixed)\nL Adjustable range: –30.0 dB ~ +10.0 dB in 0.5 dB steps\n",
+   "body": "00= + (plus)\n01= – (minus)\n00=Main scope\n01=Sub scope\n10 dB digit: 0–3\n1 dB digit: 0–9\n0.1 dB digit: 0, 5\n0.01 dB digit: 0 (Fixed)\nℹ Adjustable range: –30.0 dB ~ +10.0 dB in 0.5 dB steps\n",
    "kind": "panel",
    "pages": [
     15
@@ -398,7 +398,7 @@
    "matches": [
     {
      "cmd": "29",
-     "sub_cmd": "00 or 01",
+     "sub_cmd": "",
      "data": ""
     }
    ]
@@ -434,8 +434,23 @@
    ]
   },
   {
+   "title": "Scope RBW (Resolution Band Width) settings",
+   "body": "00=WIDE\n01=MID\n01=NAR\n00=MAIN\n01=SUB\n",
+   "kind": "panel",
+   "pages": [
+    15
+   ],
+   "matches": [
+    {
+     "cmd": "27",
+     "sub_cmd": "1F",
+     "data": ""
+    }
+   ]
+  },
+  {
    "title": "Scope Fixed edge frequency settings",
-   "body": "10 Hz digit: 0–9\n1 Hz digit: 0–9\n1 kHz digit: 0–9\n100 Hz digit: 0–9\n100 kHz digit: 0–9\n10 kHz digit: 0–9\n10 MHz digit: 0–6\n1 MHz digit: 0–9\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\n10 Hz digit: 0–9\n1 Hz digit: 0–9\n1 kHz digit: 0–9\n100 Hz digit: 0–9\n100 kHz digit: 0–9\n10 kHz digit: 0–9\n10 MHz digit: 0–6\n1 MHz digit: 0–9\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\nFrequency range\nLower edge Higher edge\nEdge number: 01–04\nL Entry of less than 1 kHz digits is ignored.\n1 Selectable Frequency ranges\nData Frequency range (MHz)\n2 Selectable Edge number: 01=1, 02=2, 03=3, 04=4\n00: MAIN\n01: SUB\nSupported commands\nCommands Data\nThe supported commands are marked by “29” in the\ncommand table.\n",
+   "body": "10 Hz digit: 0–9\n1 Hz digit: 0–9\n1 kHz digit: 0–9\n100 Hz digit: 0–9\n100 kHz digit: 0–9\n10 kHz digit: 0–9\n10 MHz digit: 0–6\n1 MHz digit: 0–9\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\n10 Hz digit: 0–9\n1 Hz digit: 0–9\n1 kHz digit: 0–9\n100 Hz digit: 0–9\n100 kHz digit: 0–9\n10 kHz digit: 0–9\n10 MHz digit: 0–6\n1 MHz digit: 0–9\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\nFrequency range\nLower edge Higher edge\nEdge number: 01–04\nℹ Entry of less than 1 kHz digits is ignored.\n1 Selectable Frequency ranges\nData Frequency range (MHz)\n2 Selectable Edge number: 01=1, 02=2, 03=3, 04=4\n00: MAIN\n01: SUB\nSupported commands\nCommands Data\nThe supported commands are marked by “29” in the\ncommand table.\n",
    "kind": "panel",
    "pages": [
     15
@@ -450,7 +465,7 @@
   },
   {
    "title": "Send/read data",
-   "body": "",
+   "body": "Send/read data",
    "kind": "asterisk",
    "scope": "command",
    "pages": [],
@@ -509,7 +524,7 @@
   },
   {
    "title": "Send/read data",
-   "body": "",
+   "body": "Send/read data",
    "kind": "asterisk",
    "scope": "command",
    "pages": [],
@@ -523,7 +538,7 @@
   },
   {
    "title": "Send/read data",
-   "body": "",
+   "body": "Send/read data",
    "kind": "asterisk",
    "scope": "command",
    "pages": [],
@@ -612,7 +627,7 @@
   },
   {
    "title": "Send/read data",
-   "body": "",
+   "body": "Send/read data",
    "kind": "asterisk",
    "scope": "command",
    "pages": [],
@@ -726,7 +741,7 @@
   },
   {
    "title": "Send/read data",
-   "body": "",
+   "body": "Send/read data",
    "kind": "asterisk",
    "scope": "command",
    "pages": [],
@@ -890,7 +905,7 @@
   },
   {
    "title": "Send/read data",
-   "body": "",
+   "body": "Send/read data",
    "kind": "asterisk",
    "scope": "command",
    "pages": [],
@@ -1502,6 +1517,11 @@
     },
     {
      "cmd": "1A",
+     "sub_cmd": "05,0115",
+     "data": "00 or 01"
+    },
+    {
+     "cmd": "1A",
      "sub_cmd": "05,0116",
      "data": "00 or 01"
     },
@@ -1562,8 +1582,13 @@
     },
     {
      "cmd": "1A",
+     "sub_cmd": "05,0128",
+     "data": "00 00 00 00 00 00 00 01 ~ 02 55 02 55 02 55 02 54"
+    },
+    {
+     "cmd": "1A",
      "sub_cmd": "05,0129",
-     "data": "00 or 01"
+     "data": "01 ~ 30"
     },
     {
      "cmd": "1A",
@@ -1608,32 +1633,32 @@
     {
      "cmd": "1A",
      "sub_cmd": "05,0138",
-     "data": "0000000000000001 ~ 0255025502550254"
+     "data": "00 00 01 ~ 06 55 35"
     },
     {
      "cmd": "1A",
      "sub_cmd": "05,0139",
-     "data": "0000000000000001 ~ 0255025502550254"
+     "data": "00 or 01"
     },
     {
      "cmd": "1A",
      "sub_cmd": "05,0140",
-     "data": "01 ~ 30"
+     "data": ""
     },
     {
      "cmd": "1A",
      "sub_cmd": "05,0141",
-     "data": "0000000000000001 ~ 0255025502550254, FF"
+     "data": "00 00 ~ 02 55"
     },
     {
      "cmd": "1A",
      "sub_cmd": "05,0142",
-     "data": "0000000000000001 ~ 0255025502550254, FF"
+     "data": "00 00 ~ 02 55"
     },
     {
      "cmd": "1A",
      "sub_cmd": "05,0143",
-     "data": "0000000000000001 ~ 0255025502550254, FF"
+     "data": "00 or 01"
     },
     {
      "cmd": "1A",
@@ -1653,17 +1678,17 @@
     {
      "cmd": "1A",
      "sub_cmd": "05,0147",
-     "data": "000001 ~ 065535"
+     "data": "00 or 01"
     },
     {
      "cmd": "1A",
      "sub_cmd": "05,0148",
-     "data": "000001 ~ 065535"
+     "data": "00 or 01"
     },
     {
      "cmd": "1A",
      "sub_cmd": "05,0149",
-     "data": "000001 ~ 065535"
+     "data": "00 or 01"
     },
     {
      "cmd": "1A",
@@ -1863,7 +1888,7 @@
     {
      "cmd": "1A",
      "sub_cmd": "05,0189",
-     "data": "00 ~ 02"
+     "data": ""
     },
     {
      "cmd": "1A",
@@ -2348,7 +2373,7 @@
     {
      "cmd": "1A",
      "sub_cmd": "05,0286",
-     "data": "00 to 1850"
+     "data": ""
     },
     {
      "cmd": "1A",
@@ -2418,7 +2443,7 @@
     {
      "cmd": "1A",
      "sub_cmd": "05,0300",
-     "data": "00 to 1850"
+     "data": ""
     },
     {
      "cmd": "1A",
@@ -2494,7 +2519,7 @@
   },
   {
    "title": "Send/read data",
-   "body": "",
+   "body": "Send/read data",
    "kind": "asterisk",
    "scope": "command",
    "pages": [],
@@ -2508,7 +2533,7 @@
   },
   {
    "title": "Send/read data",
-   "body": "",
+   "body": "Send/read data",
    "kind": "asterisk",
    "scope": "command",
    "pages": [],
@@ -2522,7 +2547,7 @@
   },
   {
    "title": "Send/read data",
-   "body": "",
+   "body": "Send/read data",
    "kind": "asterisk",
    "scope": "command",
    "pages": [],
@@ -2536,12 +2561,17 @@
      "cmd": "21",
      "sub_cmd": "01",
      "data": "00 or 01"
+    },
+    {
+     "cmd": "21",
+     "sub_cmd": "02",
+     "data": "00 or 01"
     }
    ]
   },
   {
    "title": "Send/read data",
-   "body": "",
+   "body": "Send/read data",
    "kind": "asterisk",
    "scope": "command",
    "pages": [],
@@ -2555,7 +2585,7 @@
   },
   {
    "title": "Send/read data",
-   "body": "",
+   "body": "Send/read data",
    "kind": "asterisk",
    "scope": "command",
    "pages": [],
@@ -2569,7 +2599,7 @@
   },
   {
    "title": "Send/read data",
-   "body": "",
+   "body": "Send/read data",
    "kind": "asterisk",
    "scope": "command",
    "pages": [],
@@ -2622,7 +2652,7 @@
     {
      "cmd": "27",
      "sub_cmd": "13",
-     "data": "00 to 02"
+     "data": "00 or 01"
     },
     {
      "cmd": "27",
@@ -2673,6 +2703,253 @@
      "cmd": "27",
      "sub_cmd": "1E",
      "data": ""
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "1F",
+     "data": ""
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "20",
+     "data": "00 or 01"
+    }
+   ]
+  },
+  {
+   "title": "Footnote *1",
+   "body": "If the Antenna Type is set to “RX-I/O,” command “01 (RX",
+   "kind": "footnote",
+   "scope": "command",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "12",
+     "sub_cmd": "00",
+     "data": "00 or 01"
+    },
+    {
+     "cmd": "12",
+     "sub_cmd": "01",
+     "data": "00 or 01"
+    }
+   ]
+  },
+  {
+   "title": "Footnote *3",
+   "body": "In the CW mode, if the [TRANSMIT] or an external TX",
+   "kind": "footnote",
+   "scope": "command",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "17",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Footnote *4",
+   "body": "When sending the power ON command (18 01), you need",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "18",
+     "sub_cmd": "01",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Footnote *6",
+   "body": "To insert a counter, first clear the other channel’s counter.",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "02",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Footnote *5",
+   "body": "Read only data",
+   "kind": "footnote",
+   "scope": "command",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "02",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Footnote *5",
+   "body": "Read only data",
+   "kind": "footnote",
+   "scope": "command",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "08",
+     "sub_cmd": "01",
+     "data": "00"
+    },
+    {
+     "cmd": "08",
+     "sub_cmd": "01",
+     "data": "01"
+    },
+    {
+     "cmd": "08",
+     "sub_cmd": "",
+     "data": ""
+    },
+    {
+     "cmd": "08",
+     "sub_cmd": "",
+     "data": "0001 to 0099"
+    }
+   ]
+  },
+  {
+   "title": "Footnote *5",
+   "body": "Read only data",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "05,0114",
+     "data": "00 or 01"
+    }
+   ]
+  },
+  {
+   "title": "Footnote *7",
+   "body": "When you use the [USB 1] port, you need to select “Unlink",
+   "kind": "footnote",
+   "scope": "command",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "27",
+     "sub_cmd": "00",
+     "data": ""
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "01",
+     "data": "00 or 01"
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "02",
+     "data": "00 or 01"
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "06",
+     "data": "00 or 01"
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "07",
+     "data": ""
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "08",
+     "data": "00 or 01"
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "10",
+     "data": "00 or 01"
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "11",
+     "data": "00 or 01"
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "12",
+     "data": "00 or 01"
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "13",
+     "data": "00 or 01"
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "14",
+     "data": ""
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "15",
+     "data": ""
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "16",
+     "data": ""
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "17",
+     "data": ""
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "19",
+     "data": ""
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "1A",
+     "data": ""
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "1B",
+     "data": "00 or 01"
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "1C",
+     "data": "00 to 02"
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "1D",
+     "data": ""
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "1E",
+     "data": ""
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "1F",
+     "data": ""
+    },
+    {
+     "cmd": "27",
+     "sub_cmd": "20",
+     "data": "00 or 01"
     }
    ]
   }

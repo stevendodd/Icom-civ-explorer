@@ -175,7 +175,7 @@
   },
   {
    "title": "Memory channel content",
-   "body": "1, 2 Memory channel number\n00 01 ~ 00 99: Memory channel 01 ~ 99\n01 00:   Programmed scan edge P1\n01 01:   Programmed scan edge P2\n3 Split and Select memory setting\nSPLIT SELECT\nSPLIT SELECT\n0=OFF 0=OFF\n1=ON 1=1\n2=2\n3=3 LSet 00 for P1 and P2.\n4 ~ 8 Operating frequency setting\nLSee “Operating frequency” (p 16)\n9, 10 Operating mode setting\nLSee “Operating mode” (p 16)\n11 Data mode and tone type settings\nDATA TONE\n0=OFF 0=OFF\n1=ON 1=TONE\n2=TSQL\nDATA TONE\n12 ~ 14 Repeater tone frequency setting\n15 ~ 17 Tone squelch frequency setting\nLSee “Repeater tone/tone squelch frequency settings”\n(p. 23)\n18 ~ 33 Memory name settings\nUp to 16 characters.\nLSee “Codes for character entries” (p 18)\nTo clear a memory channel content, send the\ncommand “1A 00 XX XX FF.”\nLEnter a desired memory channel number* into “XX XX.”\n* Except for “01 00” and “01 01” (P1/P2).\nNOTE:\n• The same data as 4 ~ 17 are stored in 4 ~ 17.\n• When the Split function is ON, the data of 4 ~ 17\nis used for transmission.\n• Even if the Split function is OFF, we recommend\nthat you set the same data as 4 ~ 17 into 4 ~ 17\nto match your transceiver.\n",
+   "body": "1, 2 Memory channel number\n00 01 ~ 00 99: Memory channel 01 ~ 99\n01 00:   Programmed scan edge P1\n01 01:   Programmed scan edge P2\n3 Split and Select memory setting\nSPLIT SELECT\nSPLIT SELECT\n0=OFF 0=OFF\n1=ON 1=1\n2=2\n3=3 LSet 00 for P1 and P2.\n4 ~ 8 Operating frequency setting\nℹ See “Operating frequency” (p 16)\n9, 10 Operating mode setting\nℹ See “Operating mode” (p 16)\n11 Data mode and tone type settings\nDATA TONE\n0=OFF 0=OFF\n1=ON 1=TONE\n2=TSQL\nDATA TONE\n12 ~ 14 Repeater tone frequency setting\n15 ~ 17 Tone squelch frequency setting\nℹ See “Repeater tone/tone squelch frequency settings”\n(p. 23)\n18 ~ 33 Memory name settings\nUp to 16 characters.\nℹ See “Codes for character entries” (p 18)\nTo clear a memory channel content, send the\ncommand “1A 00 XX XX FF.”\nLEnter a desired memory channel number* into “XX XX.”\n* Except for “01 00” and “01 01” (P1/P2).\nNOTE:\n• The same data as 4 ~ 17 are stored in 4 ~ 17.\n• When the Split function is ON, the data of 4 ~ 17\nis used for transmission.\n• Even if the Split function is OFF, we recommend\nthat you set the same data as 4 ~ 17 into 4 ~ 17\nto match your transceiver.\n",
    "kind": "panel",
    "pages": [
     16
@@ -265,7 +265,7 @@
   },
   {
    "title": "RX HPF/LPF settings for each operating mode",
-   "body": "LPF (Lower edge)\nHPF (Upper edge)\nHPF LPF\nCode Frequency Code Frequency\n00 Through 05 ~ 24 500 ~ 2400 Hz\n01 ~20 100 ~ 2000 Hz 25 Through\nLThe value of the HPF should be smaller than that of the\nLPF\n• SSB/SSB-DATA transmission passband width\nsettings\nLower Edge: 0=100 Hz\n1=120 Hz\n2=150 Hz\n3=200 Hz\n4=300 Hz\n5=500 Hz\nHigher Edge: 0=2500 Hz\n1=2700 Hz\n2=2800 Hz\n3=2900 Hz\n",
+   "body": "LPF (Lower edge)\nHPF (Upper edge)\nHPF LPF\nCode Frequency Code Frequency\n00 Through 05 ~ 24 500 ~ 2400 Hz\n01 ~20 100 ~ 2000 Hz 25 Through\nℹ The value of the HPF should be smaller than that of the\nLPF\n• SSB/SSB-DATA transmission passband width\nsettings\nLower Edge: 0=100 Hz\n1=120 Hz\n2=150 Hz\n3=200 Hz\n4=300 Hz\n5=500 Hz\nHigher Edge: 0=2500 Hz\n1=2700 Hz\n2=2800 Hz\n3=2900 Hz\n",
    "kind": "panel",
    "pages": [
     19
@@ -355,7 +355,7 @@
   },
   {
    "title": "IP address setting",
-   "body": "1st octet 4th octet3rd octet2nd octet\n1000： 0 (Fixed)\n10： 0 ~ 9\n1000： 0 (Fixed)\n10： 0 ~ 9\n1： 0 ~ 9\n1000： 0 (Fixed)\n10： 0 ~ 9\n1： 0 ~ 9\n1000： 0 (Fixed)\n10： 0 ~ 9\n1： 0 ~ 9\nLSet each octet to 00 00 ~ 02 55\nLFF=blank in command: 1A 05 01 04, 01 05, 01 06\n",
+   "body": "1st octet 4th octet3rd octet2nd octet\n1000： 0 (Fixed)\n10： 0 ~ 9\n1000： 0 (Fixed)\n10： 0 ~ 9\n1： 0 ~ 9\n1000： 0 (Fixed)\n10： 0 ~ 9\n1： 0 ~ 9\n1000： 0 (Fixed)\n10： 0 ~ 9\n1： 0 ~ 9\nℹ Set each octet to 00 00 ~ 02 55\nℹ FF=blank in command: 1A 05 01 04, 01 05, 01 06\n",
    "kind": "panel",
    "pages": [
     20
@@ -440,7 +440,7 @@
   },
   {
    "title": "DATA mode with filter width settings",
-   "body": "1 DATA mode\nSSB/AM/FM CW/RTTY\n00=OFF\n00=OFF (Fixed)\n01=ON\n2 Filter setting\nSSB/AM/FM\nCW/RTTY\nDATA mode\n(1) OFF\nDATA mode\n(1) ON\n00=OFF\n(Fixed)\n01=FIL 1\n00=OFF (Fixed)02=FIL 2\n03=FIL 3\nL When 1 is set to 00 (OFF), 2 must be set to 00 (OFF)\nas well.\n",
+   "body": "1 DATA mode\nSSB/AM/FM CW/RTTY\n00=OFF\n00=OFF (Fixed)\n01=ON\n2 Filter setting\nSSB/AM/FM\nCW/RTTY\nDATA mode\n(1) OFF\nDATA mode\n(1) ON\n00=OFF\n(Fixed)\n01=FIL 1\n00=OFF (Fixed)02=FIL 2\n03=FIL 3\nℹ When 1 is set to 00 (OFF), 2 must be set to 00 (OFF)\nas well.\n",
    "kind": "panel",
    "pages": [
     21
@@ -505,7 +505,7 @@
   },
   {
    "title": "Scope waveform data",
-   "body": "1  Selected or Unselected VFO\n00=Selected VFO (Fixed)\n2  Order of division data (Current)\n3  Division number (Maximum)\n01 (LAN), 11 (USB)\nWhen data is sent to the controller (PC) through the\n[LAN] port on the transceiver’s rear panel, it is sent\nall at once. On the other hand, when the data is sent\nthrough the [USB] port, it is divided into 11 segments\nand sent in sequential order.\nDivision\nnumber Data length\nLAN 01 490\nUSB 11\n1st data 15\nlater data 53\n11th data 28\nThe 1st data sends only the wave information\n(1 ~ 6) without the waveform data (7). The 2nd or\nlater data sends the minimum wave information (1 ~\n3), and the waveform data (7).\n4 Spectrum scope mode data\n• 00=Center mode scope\n• 01=Fixed mode scope\n• 02=SCROLL-C mode scope\n• 03=SCROLL-F mode scope\n5  Waveform information\nThe waveform information differs, depending on the\nSpectrum scope mode.\n• In the Center mode:\nCenter frequency and span are sent.\nSee page 16 for Operating frequency data,\nand page 25 for the Scope span settings\n(2 ~ 6).\n• In the Fixed, SCROLL-C, and SCROLL-F modes:\nThe lower and higher edge frequencies are sent.\n10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 7\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0, F*\n100 MHz digit: 0 (Fixed)\n10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit:  0 ~ 9\n10 MHz digit: 0 ~ 7\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\nLower edge Higher edge\n*  “F” means that the Lower edge frequency is a negative\nvalue.\n6  Out of range information\n• 00=In range\n• 01=Out of range\nLIf the scope data is out of range, the waveform data\n(7) is omitted.\n7  Waveform data\nThe controller (PC) determines the data range or\nlength of the waveform data.\n• Data range: 00 ~ A0 (0 ~ 160)\n• Data length: 475\n",
+   "body": "1  Selected or Unselected VFO\n00=Selected VFO (Fixed)\n2  Order of division data (Current)\n3  Division number (Maximum)\n01 (LAN), 11 (USB)\nWhen data is sent to the controller (PC) through the\n[LAN] port on the transceiver’s rear panel, it is sent\nall at once. On the other hand, when the data is sent\nthrough the [USB] port, it is divided into 11 segments\nand sent in sequential order.\nDivision\nnumber Data length\nLAN 01 490\nUSB 11\n1st data 15\nlater data 53\n11th data 28\nThe 1st data sends only the wave information\n(1 ~ 6) without the waveform data (7). The 2nd or\nlater data sends the minimum wave information (1 ~\n3), and the waveform data (7).\n4 Spectrum scope mode data\n• 00=Center mode scope\n• 01=Fixed mode scope\n• 02=SCROLL-C mode scope\n• 03=SCROLL-F mode scope\n5  Waveform information\nThe waveform information differs, depending on the\nSpectrum scope mode.\n• In the Center mode:\nCenter frequency and span are sent.\nSee page 16 for Operating frequency data,\nand page 25 for the Scope span settings\n(2 ~ 6).\n• In the Fixed, SCROLL-C, and SCROLL-F modes:\nThe lower and higher edge frequencies are sent.\n10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 7\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0, F*\n100 MHz digit: 0 (Fixed)\n10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit:  0 ~ 9\n10 MHz digit: 0 ~ 7\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\nLower edge Higher edge\n*  “F” means that the Lower edge frequency is a negative\nvalue.\n6  Out of range information\n• 00=In range\n• 01=Out of range\nℹ If the scope data is out of range, the waveform data\n(7) is omitted.\n7  Waveform data\nThe controller (PC) determines the data range or\nlength of the waveform data.\n• Data range: 00 ~ A0 (0 ~ 160)\n• Data length: 475\n",
    "kind": "panel",
    "pages": [
     23
@@ -595,7 +595,7 @@
   },
   {
    "title": "Scope Fixed edge frequency settings",
-   "body": "10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 7\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\n10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 7\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\nFrequency range\nLower edge Higher edge\nEdge number: 01 ~ 04\nLEntry of less than 1 kHz digits are ignored\n1 Selectable Frequency ranges\nData Frequency range (unit=MHz)\n2  Selectable Edge number:\n01=1\n02=2\n03=3\n04=4\n",
+   "body": "10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 7\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\n10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 7\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\nFrequency range\nLower edge Higher edge\nEdge number: 01 ~ 04\nℹ Entry of less than 1 kHz digits are ignored\n1 Selectable Frequency ranges\nData Frequency range (unit=MHz)\n2  Selectable Edge number:\n01=1\n02=2\n03=3\n04=4\n",
    "kind": "panel",
    "pages": [
     25
@@ -610,7 +610,7 @@
   },
   {
    "title": "Send/read data",
-   "body": "",
+   "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
    "scope": "command",
    "pages": [],

@@ -1,7 +1,7 @@
 {
  "radio_id": "7760",
  "source_pdf": "IC-7760_ENG_CI-V_2.pdf",
- "asterisk_note": "(Asterisk) Send/read data 29 Command 29 supported.",
+ "asterisk_note": "(Asterisk) Send/read data",
  "notes": [
   {
    "title": "Operating frequency",
@@ -47,11 +47,6 @@
      "data": ""
     },
     {
-     "cmd": "01",
-     "sub_cmd": "00",
-     "data": ""
-    },
-    {
      "cmd": "04",
      "sub_cmd": "",
      "data": ""
@@ -74,11 +69,6 @@
     {
      "cmd": "02",
      "sub_cmd": "",
-     "data": ""
-    },
-    {
-     "cmd": "02",
-     "sub_cmd": "00/01",
      "data": ""
     },
     {
@@ -125,7 +115,7 @@
   },
   {
    "title": "Keyer memory character entries",
-   "body": "- Character codes\nCharacter ASCII code Description\n0 ~ 9 30 ~ 39 Numbers\nA ~ Z 41 ~ 5A Letters\nSpace 20 Word space\n/ 2F Symbol\n? 3F Symbol\n, 2C Symbol\n. 2E Symbol\n@ 40 Symbol\n^ 5E Example:  to send BT,\nenter “5E 42 54”\n* 2A Inserts the contest number\nLInformation\n• Spaces after the end of the sentence are not necessary.\n• To clear the Keyer memory contents, send one or more\nspaces.\n",
+   "body": "- Character codes\nCharacter ASCII code Description\n0 ~ 9 30 ~ 39 Numbers\nA ~ Z 41 ~ 5A Letters\nSpace 20 Word space\n/ 2F Symbol\n? 3F Symbol\n, 2C Symbol\n. 2E Symbol\n@ 40 Symbol\n^ 5E Example:  to send BT,\nenter “5E 42 54”\n* 2A Inserts the contest number\nℹ Information\n• Spaces after the end of the sentence are not necessary.\n• To clear the Keyer memory contents, send one or more\nspaces.\n",
    "kind": "panel",
    "pages": [
     20
@@ -185,7 +175,7 @@
   },
   {
    "title": "RX HPF/LPF settings for each operating mode",
-   "body": "HPF (Lower edge)\n00=Through\n01 ~ 20=100 ~ 2000 Hz\nLPF(Upper edge)\n05 ~ 24=500~2400 Hz\n25=Through\n• SSB/SSB-DATA transmission passband width\nsettings\nXX Higher edge\n0= 2500 Hz\n1= 2700 Hz\n2= 2800 Hz\n3= 2900 Hz\nLower edge\n0= 100 Hz\n1= 120 Hz\n2= 150 Hz\n3= 200 Hz\n4= 300 Hz\n5= 500 Hz\nLower edge\nHigher edge\nL The value of the HPF should be smaller than the LPF.\n",
+   "body": "HPF (Lower edge)\n00=Through\n01 ~ 20=100 ~ 2000 Hz\nLPF(Upper edge)\n05 ~ 24=500~2400 Hz\n25=Through\n• SSB/SSB-DATA transmission passband width\nsettings\nXX Higher edge\n0= 2500 Hz\n1= 2700 Hz\n2= 2800 Hz\n3= 2900 Hz\nLower edge\n0= 100 Hz\n1= 120 Hz\n2= 150 Hz\n3= 200 Hz\n4= 300 Hz\n5= 500 Hz\nLower edge\nHigher edge\nℹ The value of the HPF should be smaller than the LPF.\n",
    "kind": "panel",
    "pages": [
     20
@@ -245,7 +235,7 @@
   },
   {
    "title": "IP address setting",
-   "body": "1st octet 4th octet3rd octet2nd octet\n1000 ：0 (Fixed)\n10 ：0 ~ 9\n1 ：0 ~ 9\n1000 ：0 (Fixed)\n10 ：0 ~ 9\n1 ：0 ~ 9\n1000 ：0 (Fixed)\n10 ：0 ~ 9\n1 ：0 ~ 9\n1000 ：0 (Fixed)\n10 ：0 ~ 9\n1 ：0 ~ 9\nLSet each octet to 00 00 ~ 02 55.\nLFF = blank in command 1A 05 01 67,  01 68,\n01 69, and 01 74.\n",
+   "body": "1st octet 4th octet3rd octet2nd octet\n1000 ：0 (Fixed)\n10 ：0 ~ 9\n1 ：0 ~ 9\n1000 ：0 (Fixed)\n10 ：0 ~ 9\n1 ：0 ~ 9\n1000 ：0 (Fixed)\n10 ：0 ~ 9\n1 ：0 ~ 9\n1000 ：0 (Fixed)\n10 ：0 ~ 9\n1 ：0 ~ 9\nℹ Set each octet to 00 00 ~ 02 55.\nℹ FF = blank in command 1A 05 01 67,  01 68,\n01 69, and 01 74.\n",
    "kind": "panel",
    "pages": [
     21
@@ -383,14 +373,14 @@
    "matches": [
     {
      "cmd": "26",
-     "sub_cmd": "SEE",
+     "sub_cmd": "",
      "data": ""
     }
    ]
   },
   {
    "title": "Scope waveform data",
-   "body": "Outputs the waveform data to the controller (PC).\n1: Main or Sub scope data\n• 00=Main scope, 01=Sub scope\n2: Order of division data (Current): 01~15\n3:  Division number (Maximum): 01(LAN), 15(USB)\nWhen data is sent to the controller (PC) using the\nRF deck’s [LAN] port, all data is sent together.\nHowever, when the data is sent through the [USB B]\nport on the controller’s rear panel, the data is divided\nby 15 and sent in sequential order.\nDivision number Data length\nLAN 01 704\nUSB 15\n1st data 15\nlater data 53\n15th data 42\nThe 1st data sends only the wave information\n(1 ~ 6) without the waveform data (7). The\n2nd or later data sends the Main or Sub scope\ndata (1), the order of division data (Current) (2),\nthe division number (Maximum) (3), and the\nwaveform data (7).\n4: Spectrum scope mode data:\n• 00 = Center mode scope\n• 01 = Fixed mode scope\n• 02 = SCROLL-C mode scope\n• 03 = SCROLL-F mode scope\n5:  Waveform information:\nThe waveform information differs, depending on\nthe Spectrum scope mode.\n• In the Center mode:\nCenter frequency and span are sent.\nSee page 17 for Operating frequency data, and\npage 25 for the Scope span settings (2 ~ 6).\n• In the Fixed, SCROLL-C, and SCROLL-F modes:\nLower edge and higher edge frequencies are sent.\n10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 6\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0, F*\n100 MHz digit: 0 (Fixed)\n10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit:  0 ~ 9\n10 MHz digit:  0 ~ 6\n1 MHz digit:  0 ~ 9\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\nLower edge Higher edge\nL“F” means that the Lower edge frequency is a\nnegative value.\n6:  Out of range information:\n• 00 = In range\n• 01 = Out of range\nLIf the scope data is out of range, the waveform data\n(7) is omitted.\n7:  Waveform data:\nThe transceiver outputs the drawn waveform data.\nThe data range or data length of the waveform\ndata is judged by the controller (PC). (The data\nrange is basically the same as the display size of\nthe scope on the controller (PC).)\n• Data range: 00 ~ C8 (0 ~ 200)\n• Data length: 689\n",
+   "body": "Outputs the waveform data to the controller (PC).\n1: Main or Sub scope data\n• 00=Main scope, 01=Sub scope\n2: Order of division data (Current): 01~15\n3:  Division number (Maximum): 01(LAN), 15(USB)\nWhen data is sent to the controller (PC) using the\nRF deck’s [LAN] port, all data is sent together.\nHowever, when the data is sent through the [USB B]\nport on the controller’s rear panel, the data is divided\nby 15 and sent in sequential order.\nDivision number Data length\nLAN 01 704\nUSB 15\n1st data 15\nlater data 53\n15th data 42\nThe 1st data sends only the wave information\n(1 ~ 6) without the waveform data (7). The\n2nd or later data sends the Main or Sub scope\ndata (1), the order of division data (Current) (2),\nthe division number (Maximum) (3), and the\nwaveform data (7).\n4: Spectrum scope mode data:\n• 00 = Center mode scope\n• 01 = Fixed mode scope\n• 02 = SCROLL-C mode scope\n• 03 = SCROLL-F mode scope\n5:  Waveform information:\nThe waveform information differs, depending on\nthe Spectrum scope mode.\n• In the Center mode:\nCenter frequency and span are sent.\nSee page 17 for Operating frequency data, and\npage 25 for the Scope span settings (2 ~ 6).\n• In the Fixed, SCROLL-C, and SCROLL-F modes:\nLower edge and higher edge frequencies are sent.\n10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 6\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0, F*\n100 MHz digit: 0 (Fixed)\n10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit:  0 ~ 9\n10 MHz digit:  0 ~ 6\n1 MHz digit:  0 ~ 9\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\nLower edge Higher edge\nL“F” means that the Lower edge frequency is a\nnegative value.\n6:  Out of range information:\n• 00 = In range\n• 01 = Out of range\nℹ If the scope data is out of range, the waveform data\n(7) is omitted.\n7:  Waveform data:\nThe transceiver outputs the drawn waveform data.\nThe data range or data length of the waveform\ndata is judged by the controller (PC). (The data\nrange is basically the same as the display size of\nthe scope on the controller (PC).)\n• Data range: 00 ~ C8 (0 ~ 200)\n• Data length: 689\n",
    "kind": "panel",
    "pages": [
     24
@@ -495,7 +485,7 @@
   },
   {
    "title": "Scope Fixed edge frequency settings",
-   "body": "LEntry of less than 1 kHz digits are ignored.\n1 Selectable Frequency ranges:\nData Frequency range (unit: MHz)\n2  Selectable Edge number: 01=1, 02=2, 03=3, 04=4\n10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 6\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\n10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 6\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\nFrequency range\nLower edge Higher edge\nEdge number: 01 ~ 04\n• Directly specify the Main or Sub band and\nsend/read the supported command\nSpecify the Main or Sub band before entering the\nsupported commands.\nWhen you receive the OK code (FB), or the NG code\n(FA), the Command 29 and Main/Sub specify (00 or 01)\nis omitted.\n00: MAIN\n01: SUB\nSupported commands\nCommands Data\nThe supported commands are marked by “29” in the\ncommand table.\n",
+   "body": "ℹ Entry of less than 1 kHz digits are ignored.\n1 Selectable Frequency ranges:\nData Frequency range (unit: MHz)\n2  Selectable Edge number: 01=1, 02=2, 03=3, 04=4\n10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 6\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\n10 Hz digit: 0 ~ 9\n1 Hz digit: 0 ~ 9\n1 kHz digit: 0 ~ 9\n100 Hz digit: 0 ~ 9\n100 kHz digit: 0 ~ 9\n10 kHz digit: 0 ~ 9\n10 MHz digit: 0 ~ 6\n1 MHz digit: 0 ~ 9\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\nFrequency range\nLower edge Higher edge\nEdge number: 01 ~ 04\n• Directly specify the Main or Sub band and\nsend/read the supported command\nSpecify the Main or Sub band before entering the\nsupported commands.\nWhen you receive the OK code (FB), or the NG code\n(FA), the Command 29 and Main/Sub specify (00 or 01)\nis omitted.\n00: MAIN\n01: SUB\nSupported commands\nCommands Data\nThe supported commands are marked by “29” in the\ncommand table.\n",
    "kind": "panel",
    "pages": [
     26
@@ -510,7 +500,7 @@
   },
   {
    "title": "Send/read data",
-   "body": "(Asterisk) Send/read data 29 Command 29 supported.",
+   "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
    "scope": "command",
    "pages": [],
@@ -569,21 +559,21 @@
   },
   {
    "title": "Send/read data",
-   "body": "(Asterisk) Send/read data 29 Command 29 supported.",
+   "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
    "scope": "command",
    "pages": [],
    "matches": [
     {
      "cmd": "10",
-     "sub_cmd": "00",
+     "sub_cmd": "",
      "data": "00 ~ 08"
     }
    ]
   },
   {
    "title": "Send/read data",
-   "body": "(Asterisk) Send/read data 29 Command 29 supported.",
+   "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
    "scope": "command",
    "pages": [],
@@ -650,11 +640,6 @@
     },
     {
      "cmd": "14",
-     "sub_cmd": "0D",
-     "data": "01"
-    },
-    {
-     "cmd": "14",
      "sub_cmd": "0E",
      "data": "00 00 ~ 02 55"
     },
@@ -702,7 +687,7 @@
   },
   {
    "title": "Send/read data",
-   "body": "(Asterisk) Send/read data 29 Command 29 supported.",
+   "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
    "scope": "command",
    "pages": [],
@@ -866,7 +851,7 @@
   },
   {
    "title": "Send/read data",
-   "body": "(Asterisk) Send/read data 29 Command 29 supported.",
+   "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
    "scope": "command",
    "pages": [],
@@ -939,7 +924,7 @@
     {
      "cmd": "1A",
      "sub_cmd": "05,0201",
-     "data": "00 00 ~ 23"
+     "data": "00 00 ~ 23 59"
     },
     {
      "cmd": "1A",
@@ -2790,26 +2775,36 @@
   },
   {
    "title": "Send/read data",
-   "body": "(Asterisk) Send/read data 29 Command 29 supported.",
+   "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
    "scope": "command",
    "pages": [],
    "matches": [
     {
-     "cmd": "01",
+     "cmd": "1C",
      "sub_cmd": "00",
-     "data": ""
+     "data": "00/01"
     },
     {
-     "cmd": "01",
-     "sub_cmd": "",
-     "data": ""
+     "cmd": "1C",
+     "sub_cmd": "01",
+     "data": "00 ~ 02"
+    },
+    {
+     "cmd": "1C",
+     "sub_cmd": "02",
+     "data": "00/01"
+    },
+    {
+     "cmd": "1C",
+     "sub_cmd": "04",
+     "data": "00/01"
     }
    ]
   },
   {
    "title": "Send/read data",
-   "body": "(Asterisk) Send/read data 29 Command 29 supported.",
+   "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
    "scope": "command",
    "pages": [],
@@ -2818,17 +2813,12 @@
      "cmd": "02",
      "sub_cmd": "",
      "data": ""
-    },
-    {
-     "cmd": "02",
-     "sub_cmd": "00/01",
-     "data": ""
     }
    ]
   },
   {
    "title": "Send/read data",
-   "body": "(Asterisk) Send/read data 29 Command 29 supported.",
+   "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
    "scope": "command",
    "pages": [],
@@ -2852,7 +2842,35 @@
   },
   {
    "title": "Send/read data",
-   "body": "(Asterisk) Send/read data 29 Command 29 supported.",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "scope": "command",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "25",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
+   "kind": "asterisk",
+   "scope": "command",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "26",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
    "scope": "command",
    "pages": [],
@@ -2946,35 +2964,21 @@
   },
   {
    "title": "Send/read data",
-   "body": "(Asterisk) Send/read data 29 Command 29 supported.",
+   "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
-   "scope": "row",
+   "scope": "command",
    "pages": [],
    "matches": [
     {
-     "cmd": "1C",
-     "sub_cmd": "00",
-     "data": "00/01"
+     "cmd": "01",
+     "sub_cmd": "",
+     "data": ""
     }
    ]
   },
   {
    "title": "Send/read data",
-   "body": "(Asterisk) Send/read data 29 Command 29 supported.",
-   "kind": "asterisk",
-   "scope": "row",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "1C",
-     "sub_cmd": "04",
-     "data": "00/01"
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data 29 Command 29 supported.",
+   "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
    "scope": "row",
    "pages": [],
@@ -2987,36 +2991,8 @@
    ]
   },
   {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data 29 Command 29 supported.",
-   "kind": "asterisk",
-   "scope": "row",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "25",
-     "sub_cmd": "SEE",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data 29 Command 29 supported.",
-   "kind": "asterisk",
-   "scope": "row",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "26",
-     "sub_cmd": "SEE",
-     "data": ""
-    }
-   ]
-  },
-  {
    "title": "Footnote *2",
-   "body": "If the Antenna Type is set to “RX-I/O,” command “01 (RX ANT ON)” is invalid and “00 (RX ANT OFF)” is always returned.",
+   "body": "If the Antenna Type is set to “RX-I/O,” command “01 (RX ANT ON)” is",
    "kind": "footnote",
    "scope": "command",
    "pages": [],
@@ -3030,7 +3006,7 @@
   },
   {
    "title": "Footnote *2",
-   "body": "If the Antenna Type is set to “RX-I/O,” command “01 (RX ANT ON)” is invalid and “00 (RX ANT OFF)” is always returned.",
+   "body": "If the Antenna Type is set to “RX-I/O,” command “01 (RX ANT ON)” is",
    "kind": "footnote",
    "scope": "command",
    "pages": [],
@@ -3039,17 +3015,12 @@
      "cmd": "01",
      "sub_cmd": "",
      "data": ""
-    },
-    {
-     "cmd": "01",
-     "sub_cmd": "00",
-     "data": ""
     }
    ]
   },
   {
    "title": "Footnote *2",
-   "body": "If the Antenna Type is set to “RX-I/O,” command “01 (RX ANT ON)” is invalid and “00 (RX ANT OFF)” is always returned.",
+   "body": "If the Antenna Type is set to “RX-I/O,” command “01 (RX ANT ON)” is",
    "kind": "footnote",
    "scope": "command",
    "pages": [],
@@ -3058,17 +3029,12 @@
      "cmd": "02",
      "sub_cmd": "",
      "data": ""
-    },
-    {
-     "cmd": "02",
-     "sub_cmd": "00/01",
-     "data": ""
     }
    ]
   },
   {
    "title": "Footnote *2",
-   "body": "If the Antenna Type is set to “RX-I/O,” command “01 (RX ANT ON)” is invalid and “00 (RX ANT OFF)” is always returned.",
+   "body": "If the Antenna Type is set to “RX-I/O,” command “01 (RX ANT ON)” is",
    "kind": "footnote",
    "scope": "command",
    "pages": [],
@@ -3082,7 +3048,7 @@
   },
   {
    "title": "Footnote *4",
-   "body": "In the CW mode, if the transceiver transmits or the Break-in function is ON, a message will be transmitted as CW code when you send it from your PC.",
+   "body": "In the CW mode, if the transceiver transmits or the Break-in function",
    "kind": "footnote",
    "scope": "command",
    "pages": [],
@@ -3096,19 +3062,14 @@
   },
   {
    "title": "Footnote *5",
-   "body": "Sending the power ON command (18 01) turns ON the transceiver when the [USB B] port on the controller’s rear panel is connected to the PC and the transceiver is OFF (Standby/Shutdown). LWhen the transceiver is remotely controlled through the [REMOTE] jack on the RF deck’s rear panel, the transceiver is not turned ON even if the command is sent.",
+   "body": "Sending the power ON command (18 01) turns ON the transceiver",
    "kind": "footnote",
-   "scope": "command",
+   "scope": "row",
    "pages": [],
    "matches": [
     {
-     "cmd": "01",
-     "sub_cmd": "",
-     "data": ""
-    },
-    {
-     "cmd": "01",
-     "sub_cmd": "00",
+     "cmd": "18",
+     "sub_cmd": "01",
      "data": ""
     }
    ]
@@ -3188,7 +3149,7 @@
     {
      "cmd": "1A",
      "sub_cmd": "05,0201",
-     "data": "00 00 ~ 23"
+     "data": "00 00 ~ 23 59"
     },
     {
      "cmd": "1A",

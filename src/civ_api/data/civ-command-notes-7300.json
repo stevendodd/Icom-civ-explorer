@@ -175,7 +175,7 @@
   },
   {
    "title": "Memory content",
-   "body": "3 4−8 9, 10 11 12−14 15−17\n1, 2 18−274−17\n1, 2 Memory channel numbers\n00 01–00 99: Memory channel 01 to 99\n01 00:  Programmed scan edge P1\n01 01:  Programmed scan edge P2\n3 Split and Select memory setting\nLSet both 0 for P1 and P2.\n4~8 Operating frequency setting\nSee “\n• Operating frequency.”\n9, 10 Operating mode setting\nSee “\n• Operating mode.”\n11 Data mode and tone type settings\n12~14 Repeater tone frequency setting\n15~17 Tone squelch frequency setting\nSee “\n• Repeater tone/tone squelch settings.”\n18~27 Memory name settings\nUp to 10 characters.\nSee “\n• Codes for character entries”\nTo clear the memory channel contents on 1A 00:\n1,2: Memory channel (00 01~00 99)\n3: “FF”\n4: None\nNOTE:\n• The same data as 4–17 are stored in 4–17.\n•  When the Split function is ON, the data of 4 –17 is\nused for transmit.\n•  Even if the Split function is OFF, enter the data into\n4–17 to match your transceiver. We recommend\nthat you set the same data as 4–17.\n0=OFF\n0=Split OFF, 1=Split ON\n1= 1\n2= 2\n3= 3\n0: OFF, 1: TONE, 2: TSQL\n0=Data mode OFF\n1=Data mode ON\n",
+   "body": "3 4−8 9, 10 11 12−14 15−17\n1, 2 18−274−17\n1, 2 Memory channel numbers\n00 01–00 99: Memory channel 01 to 99\n01 00:  Programmed scan edge P1\n01 01:  Programmed scan edge P2\n3 Split and Select memory setting\nℹ Set both 0 for P1 and P2.\n4~8 Operating frequency setting\nSee “\n• Operating frequency.”\n9, 10 Operating mode setting\nSee “\n• Operating mode.”\n11 Data mode and tone type settings\n12~14 Repeater tone frequency setting\n15~17 Tone squelch frequency setting\nSee “\n• Repeater tone/tone squelch settings.”\n18~27 Memory name settings\nUp to 10 characters.\nSee “\n• Codes for character entries”\nTo clear the memory channel contents on 1A 00:\n1,2: Memory channel (00 01~00 99)\n3: “FF”\n4: None\nNOTE:\n• The same data as 4–17 are stored in 4–17.\n•  When the Split function is ON, the data of 4 –17 is\nused for transmit.\n•  Even if the Split function is OFF, enter the data into\n4–17 to match your transceiver. We recommend\nthat you set the same data as 4–17.\n0=OFF\n0=Split OFF, 1=Split ON\n1= 1\n2= 2\n3= 3\n0: OFF, 1: TONE, 2: TSQL\n0=Data mode OFF\n1=Data mode ON\n",
    "kind": "panel",
    "pages": [
     168
@@ -360,7 +360,7 @@
   },
   {
    "title": "Scope waveform data",
-   "body": "Outputs the waveform data to the controller\n1 00 (Fixed)\n2 Order of division data (Current): 01~11\n3 Division number (Maximum): 11 (USB)\nL  When sent through the USB port, the data is divided\nby 11 and sent in sequential order.\nL  The 1st data sends only the wave information (1 ~ 6)\nwithout the waveform data (7).The 2nd or later data\nsends the minimum wave information (1 ~ 3) with\nwaveform data (7).\n4 Spectrum scope mode data:\n• 00 = Center mode scope\n• 01 = Fixed mode scope\n• 02 = SCROLL-C mode scope\n• 03 = SCROLL-F mode scope\n5 Waveform information\nThe waveform information is different between\nCenter mode and fixed mode.\n• In the Center mode:\nCenter frequency and span are sent.\nSee below for Frequency data, and the Scope\nspan settings (2 ~ 6) to the right.\n• In the Fixed, SCROLL-C, and SCROLL-F modes:\nLower edge and higher edge frequencies are sent.\n10 Hz digit: 0–9\n1 Hz digit: 0–9\n1 kHz digit: 0–9\n100 Hz digit: 0–9\n100 kHz digit: 0–9\n10 kHz digit: 0–9\n10 MHz digit: 0–7\n1 MHz digit: 0–9\n1 GHz digit: 0, F*\n100 MHz digit: 0 (Fixed)\n10 Hz digit: 0–9\n1 Hz digit: 0–9\n1 kHz digit: 0–9\n100 Hz digit: 0–9\n100 kHz digit: 0–9\n10 kHz digit:  0–7\n10 MHz digit:  0–9\n1 MHz digit:  0–9\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\nLower edge Higher edge\n",
+   "body": "Outputs the waveform data to the controller\n1 00 (Fixed)\n2 Order of division data (Current): 01~11\n3 Division number (Maximum): 11 (USB)\nℹ When sent through the USB port, the data is divided\nby 11 and sent in sequential order.\nℹ The 1st data sends only the wave information (1 ~ 6)\nwithout the waveform data (7).The 2nd or later data\nsends the minimum wave information (1 ~ 3) with\nwaveform data (7).\n4 Spectrum scope mode data:\n• 00 = Center mode scope\n• 01 = Fixed mode scope\n• 02 = SCROLL-C mode scope\n• 03 = SCROLL-F mode scope\n5 Waveform information\nThe waveform information is different between\nCenter mode and fixed mode.\n• In the Center mode:\nCenter frequency and span are sent.\nSee below for Frequency data, and the Scope\nspan settings (2 ~ 6) to the right.\n• In the Fixed, SCROLL-C, and SCROLL-F modes:\nLower edge and higher edge frequencies are sent.\n10 Hz digit: 0–9\n1 Hz digit: 0–9\n1 kHz digit: 0–9\n100 Hz digit: 0–9\n100 kHz digit: 0–9\n10 kHz digit: 0–9\n10 MHz digit: 0–7\n1 MHz digit: 0–9\n1 GHz digit: 0, F*\n100 MHz digit: 0 (Fixed)\n10 Hz digit: 0–9\n1 Hz digit: 0–9\n1 kHz digit: 0–9\n100 Hz digit: 0–9\n100 kHz digit: 0–9\n10 kHz digit:  0–7\n10 MHz digit:  0–9\n1 MHz digit:  0–9\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\nLower edge Higher edge\n",
    "kind": "panel",
    "pages": [
     171
@@ -375,7 +375,7 @@
   },
   {
    "title": "Spectrum scope mode settings",
-   "body": "00=Center mode\n01=Fixed mode\n02=SCROLL-C mode\n03=SCROLL-F mode\nFixed\n• Scope span settings\n(in the Center mode and SCROLL-C mode Scope)\n0 (Fixed)\n1 kHz digit: 0, 2, 5\n100 Hz digit: 0, 5\n100 kHz digit: 0, 1, 2, 5\n10 kHz digit: 0, 1, 2, 5\n10 Hz digit: 0 (Fixed)\n1 Hz digit: 0 (Fixed)\n10 MHz digit: 0 (Fixed)\n1 MHz digit: 0 (Fixed)\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\n0 (Fixed)\n2 3 4 5 6 Span (kHz)\n6 Out of range information\n• 00 = In range\n• 01 = Out of range\nL If the scope data is out of range, the waveform data (7)\nis omitted.\n7 Waveform data\nThe transceiver outputs the drawn waveform data.\nThe data range or data length of the waveform\ndata is judged by the controller. (The data range is\nbasically the same as the display size of the scope\non the controller.)\nData range 00 ~ A0 (0 ~ 160)\nData length 475\n*  “F” means that the Lower edge frequency is a negative\nvalue.\n",
+   "body": "00=Center mode\n01=Fixed mode\n02=SCROLL-C mode\n03=SCROLL-F mode\nFixed\n• Scope span settings\n(in the Center mode and SCROLL-C mode Scope)\n0 (Fixed)\n1 kHz digit: 0, 2, 5\n100 Hz digit: 0, 5\n100 kHz digit: 0, 1, 2, 5\n10 kHz digit: 0, 1, 2, 5\n10 Hz digit: 0 (Fixed)\n1 Hz digit: 0 (Fixed)\n10 MHz digit: 0 (Fixed)\n1 MHz digit: 0 (Fixed)\n1 GHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\n0 (Fixed)\n2 3 4 5 6 Span (kHz)\n6 Out of range information\n• 00 = In range\n• 01 = Out of range\nℹ If the scope data is out of range, the waveform data (7)\nis omitted.\n7 Waveform data\nThe transceiver outputs the drawn waveform data.\nThe data range or data length of the waveform\ndata is judged by the controller. (The data range is\nbasically the same as the display size of the scope\non the controller.)\nData range 00 ~ A0 (0 ~ 160)\nData length 475\n*  “F” means that the Lower edge frequency is a negative\nvalue.\n",
    "kind": "panel",
    "pages": [
     171
@@ -405,7 +405,7 @@
   },
   {
    "title": "Scope Fixed edge frequency settings",
-   "body": "10 Hz digit: 0–9\n1 Hz digit: 0–9\n1 kHz digit: 0–9\n100 Hz digit: 0–9\n100 kHz digit: 0–9\n10 kHz digit: 0–9\n10 MHz digit: 0–6\n1 MHz digit: 0–9\n1000 MHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\n10 Hz digit: 0–9\n1 Hz digit: 0–9\n1 kHz digit: 0–9\n100 Hz digit: 0–9\n100 kHz digit: 0–9\n10 kHz digit: 0–9\n10 MHz digit: 0–6\n1 MHz digit: 0–9\n1000 MHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\nFrequency range\nLower edge Higher edge\nEdge number: 01–04\nL Entry of digits less than 1 kHz is ignored.\n1 Selectable Frequency ranges\nData Frequency range (Hz)\n2 Selectable Edge number:  01 = 1, 02 = 2,\n03 = 3, 04 = 4\n• Scope Edge number settings\n(in the Fixed mode and SCROLL-F mode Scope)\n01=Edge 1\n02=Edge 2\n03=Edge 3\n04=Edge 4Fixed\n",
+   "body": "10 Hz digit: 0–9\n1 Hz digit: 0–9\n1 kHz digit: 0–9\n100 Hz digit: 0–9\n100 kHz digit: 0–9\n10 kHz digit: 0–9\n10 MHz digit: 0–6\n1 MHz digit: 0–9\n1000 MHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\n10 Hz digit: 0–9\n1 Hz digit: 0–9\n1 kHz digit: 0–9\n100 Hz digit: 0–9\n100 kHz digit: 0–9\n10 kHz digit: 0–9\n10 MHz digit: 0–6\n1 MHz digit: 0–9\n1000 MHz digit: 0 (Fixed)\n100 MHz digit: 0 (Fixed)\nFrequency range\nLower edge Higher edge\nEdge number: 01–04\nℹ Entry of digits less than 1 kHz is ignored.\n1 Selectable Frequency ranges\nData Frequency range (Hz)\n2 Selectable Edge number:  01 = 1, 02 = 2,\n03 = 3, 04 = 4\n• Scope Edge number settings\n(in the Fixed mode and SCROLL-F mode Scope)\n01=Edge 1\n02=Edge 2\n03=Edge 3\n04=Edge 4Fixed\n",
    "kind": "panel",
    "pages": [
     172
@@ -435,7 +435,7 @@
   },
   {
    "title": "Scope Reference level settings",
-   "body": "00= + (plus)\n01= – (minus)\n10 dB digit: 0, 1, 2\n1 dB digit: 0–9\n0.1 dB digit: 0, 5\n0.01 dB digit: 0\n(Fixed)\n0 (Fixed)\n0 (Fixed)\nL Adjustable range: –20.0 dB ~ +20.0 dB in 0.5 dB steps\n",
+   "body": "00= + (plus)\n01= – (minus)\n10 dB digit: 0, 1, 2\n1 dB digit: 0–9\n0.1 dB digit: 0, 5\n0.01 dB digit: 0\n(Fixed)\n0 (Fixed)\n0 (Fixed)\nℹ Adjustable range: –20.0 dB ~ +20.0 dB in 0.5 dB steps\n",
    "kind": "panel",
    "pages": [
     172
@@ -2364,7 +2364,7 @@
   },
   {
    "title": "Footnote *3",
-   "body": "When sending the power ON command (18 01), you need to repeatedly send “FE” before the standard format. The following is the approximated quantity of the repetition. • 115200 bps: 150 “FE”s • 57600 bps:   75 “FE”s • 38400 bps:   50 “FE”s • 19200 bps:   25 “FE”s • 9600 bps:   13 “FE”s • 4800 bps:     7 “FE”s Example: When using 4800 bps FF     E x7 49EFE E 1081O DF",
+   "body": "When sending the power ON command (18 01), you need to repeatedly send “FE” before the standard format. The following is the approximated quantity of the repetition. • 115200 bps: 150 “FE”s • 57600 bps:   75 “FE”s • 38400 bps:   50 “FE”s • 19200 bps:   25 “FE”s • 9600 bps:   13 “FE”s • 4800 bps:     7 “FE”s Example: When using 4800 bps",
    "kind": "footnote",
    "scope": "row",
    "pages": [],
@@ -2392,7 +2392,7 @@
   },
   {
    "title": "Footnote *4",
-   "body": "You can only set this item when “Unlink from [REMOTE]” is selected on the “CI-V USB port” screen, and then “115200” is selected on the “CI-V Baud Rate” screen.",
+   "body": "You can only set this item when “Unlink from [REMOTE]”",
    "kind": "footnote",
    "scope": "row",
    "pages": [],

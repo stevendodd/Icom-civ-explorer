@@ -469,8 +469,22 @@
    ]
   },
   {
+   "title": "Footnote *1",
+   "body": "In the CW mode, if an external TX switch is ON, or the Break-in func-",
+   "kind": "footnote",
+   "scope": "command",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "17",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
    "title": "Send/read data",
-   "body": "",
+   "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
    "scope": "command",
    "pages": [],
@@ -484,21 +498,21 @@
   },
   {
    "title": "Send/read data",
-   "body": "",
+   "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
-   "scope": "row",
+   "scope": "command",
    "pages": [],
    "matches": [
     {
-     "cmd": "18",
-     "sub_cmd": "01",
+     "cmd": "01",
+     "sub_cmd": "",
      "data": ""
     }
    ]
   },
   {
    "title": "Send/read data",
-   "body": "",
+   "body": "(Asterisk) Send/read data",
    "kind": "asterisk",
    "scope": "row",
    "pages": [],
@@ -517,6 +531,72 @@
      "cmd": "1A",
      "sub_cmd": "02",
      "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Footnote *2",
+   "body": "When sending the power ON command (18 01), the command “FE”",
+   "kind": "footnote",
+   "scope": "command",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "01",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Footnote *3",
+   "body": "Output setting is automatically turned OFF after turning the",
+   "kind": "footnote",
+   "scope": "command",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "01",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Footnote *3",
+   "body": "Output setting is automatically turned OFF after turning the",
+   "kind": "footnote",
+   "scope": "command",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "02",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Footnote *3",
+   "body": "Output setting is automatically turned OFF after turning the",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "20",
+     "sub_cmd": "00",
+     "data": "00"
+    },
+    {
+     "cmd": "20",
+     "sub_cmd": "00",
+     "data": "01"
+    },
+    {
+     "cmd": "20",
+     "sub_cmd": "00",
+     "data": "02"
     }
    ]
   }
