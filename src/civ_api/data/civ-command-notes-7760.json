@@ -520,6 +520,58 @@
    ]
   },
   {
+   "title": "Table footnote *2",
+   "body": "If the Antenna Type is set to “RX-I/O,” command “01 (RX ANT ON)” is invalid and “00 (RX ANT OFF)” is always returned.",
+   "kind": "footnote",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "00",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *2",
+   "body": "If the Antenna Type is set to “RX-I/O,” command “01 (RX ANT ON)” is invalid and “00 (RX ANT OFF)” is always returned.",
+   "kind": "footnote",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "01",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *2",
+   "body": "If the Antenna Type is set to “RX-I/O,” command “01 (RX ANT ON)” is invalid and “00 (RX ANT OFF)” is always returned.",
+   "kind": "footnote",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "02",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Table footnote *2",
+   "body": "If the Antenna Type is set to “RX-I/O,” command “01 (RX ANT ON)” is invalid and “00 (RX ANT OFF)” is always returned.",
+   "kind": "footnote",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "03",
+     "sub_cmd": "",
+     "data": ""
+    }
+   ]
+  },
+  {
    "title": "Send/read data",
    "body": "(Asterisk) Send/read data 29 Command 29 supported.",
    "kind": "asterisk",
@@ -555,16 +607,6 @@
      "cmd": "16",
      "sub_cmd": "02",
      "data": "00"
-    },
-    {
-     "cmd": "16",
-     "sub_cmd": "02",
-     "data": "01"
-    },
-    {
-     "cmd": "16",
-     "sub_cmd": "02",
-     "data": "02"
     }
    ]
   },
@@ -604,11 +646,6 @@
      "cmd": "01",
      "sub_cmd": "",
      "data": ""
-    },
-    {
-     "cmd": "18",
-     "sub_cmd": "01",
-     "data": ""
     }
    ]
   },
@@ -633,99 +670,8 @@
    "matches": [
     {
      "cmd": "1A",
-     "sub_cmd": "05",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data 29 Command 29 supported.",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "1A",
-     "sub_cmd": "05",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data 29 Command 29 supported.",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "1A",
-     "sub_cmd": "05",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data 29 Command 29 supported.",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "1A",
-     "sub_cmd": "05",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data 29 Command 29 supported.",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "1A",
-     "sub_cmd": "05",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data 29 Command 29 supported.",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "1A",
-     "sub_cmd": "05",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data 29 Command 29 supported.",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "1A",
-     "sub_cmd": "05",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data 29 Command 29 supported.",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "1A",
-     "sub_cmd": "05",
-     "data": ""
+     "sub_cmd": "05,0013",
+     "data": "00 ~ 10"
     }
    ]
   },
@@ -756,144 +702,27 @@
    ]
   },
   {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data 29 Command 29 supported.",
-   "kind": "asterisk",
+   "title": "Table footnote *1",
+   "body": "1A 05  01 63, 1A 08, 1A 0A, and 1A 0D cannot be sent.",
+   "kind": "footnote",
    "pages": [],
    "matches": [
     {
      "cmd": "1A",
-     "sub_cmd": "05",
-     "data": ""
+     "sub_cmd": "08",
+     "data": "00 ~ 02"
     }
    ]
   },
   {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data 29 Command 29 supported.",
-   "kind": "asterisk",
+   "title": "Table footnote *1",
+   "body": "1A 05  01 63, 1A 08, 1A 0A, and 1A 0D cannot be sent.",
+   "kind": "footnote",
    "pages": [],
    "matches": [
     {
-     "cmd": "1A",
-     "sub_cmd": "05",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data 29 Command 29 supported.",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "1A",
-     "sub_cmd": "05",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data 29 Command 29 supported.",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "1A",
-     "sub_cmd": "05",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data 29 Command 29 supported.",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "1A",
-     "sub_cmd": "05",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data 29 Command 29 supported.",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "1A",
-     "sub_cmd": "05",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data 29 Command 29 supported.",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "1A",
-     "sub_cmd": "05",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data 29 Command 29 supported.",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "1A",
-     "sub_cmd": "05",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data 29 Command 29 supported.",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "1A",
-     "sub_cmd": "05",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data 29 Command 29 supported.",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "1A",
-     "sub_cmd": "05",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data 29 Command 29 supported.",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "1A",
-     "sub_cmd": "05",
+     "cmd": "0A",
+     "sub_cmd": "",
      "data": ""
     }
    ]
@@ -934,16 +763,6 @@
      "cmd": "01",
      "sub_cmd": "00",
      "data": ""
-    },
-    {
-     "cmd": "01",
-     "sub_cmd": "",
-     "data": ""
-    },
-    {
-     "cmd": "01",
-     "sub_cmd": "",
-     "data": ""
     }
    ]
   },
@@ -980,8 +799,8 @@
    "pages": [],
    "matches": [
     {
-     "cmd": "03",
-     "sub_cmd": "",
+     "cmd": "1E",
+     "sub_cmd": "03",
      "data": ""
     }
    ]
@@ -1045,38 +864,7 @@
    "pages": [],
    "matches": [
     {
-     "cmd": "1A",
-     "sub_cmd": "00",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data 29 Command 29 supported.",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
      "cmd": "01",
-     "sub_cmd": "",
-     "data": ""
-    },
-    {
-     "cmd": "01",
-     "sub_cmd": "",
-     "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "(Asterisk) Send/read data 29 Command 29 supported.",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "02",
      "sub_cmd": "",
      "data": ""
     }

@@ -456,6 +456,19 @@
    "matches": [
     {
      "cmd": "07",
+     "sub_cmd": "C2",
+     "data": "00 or 01"
+    }
+   ]
+  },
+  {
+   "title": "Send/read data",
+   "body": "",
+   "kind": "asterisk",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "07",
      "sub_cmd": "D2",
      "data": "00"
     }
@@ -510,16 +523,6 @@
      "cmd": "16",
      "sub_cmd": "02",
      "data": "00"
-    },
-    {
-     "cmd": "16",
-     "sub_cmd": "02",
-     "data": "01"
-    },
-    {
-     "cmd": "16",
-     "sub_cmd": "02",
-     "data": "02"
     }
    ]
   },
@@ -544,21 +547,8 @@
    "matches": [
     {
      "cmd": "1A",
-     "sub_cmd": "05,0135",
+     "sub_cmd": "05,0114",
      "data": "00 or 01"
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "01",
-     "sub_cmd": "",
-     "data": ""
     }
    ]
   },
@@ -572,45 +562,6 @@
      "cmd": "02",
      "sub_cmd": "",
      "data": ""
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "1A",
-     "sub_cmd": "05,0135",
-     "data": "00 or 01"
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "1A",
-     "sub_cmd": "05,0135",
-     "data": "00 or 01"
-    }
-   ]
-  },
-  {
-   "title": "Send/read data",
-   "body": "",
-   "kind": "asterisk",
-   "pages": [],
-   "matches": [
-    {
-     "cmd": "1A",
-     "sub_cmd": "05,0135",
-     "data": "00 or 01"
     }
    ]
   },

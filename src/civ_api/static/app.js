@@ -278,12 +278,44 @@
   // ---- commands -----------------------------------------------------------
   // Manual note block for one command row: page refs as chips, then each
   // note as a titled monospace panel. All text goes in via textContent.
-  function appendNoteCells(cell, item) {
+  // groupShared: a set of note keys already rendered at the top row of the
+  // command group — notes shared by every row in a group are rendered once
+  // at the group's top instead of repeated on each sub-command row.
+  function noteKey(n) {
+    return (n.kind || "") + "|" + (n.title || "") + "|" + (n.body || "");
+  }
+
+  function groupSharedNoteKeys(rows) {
+    // A note is "shared" when it appears on 2+ rows of the command group.
+    var counts = {};
+    (rows || []).forEach(function (c) {
+      var seen = {};
+      (c.notes || []).forEach(function (n) {
+        var k = noteKey(n);
+        if (!seen[k]) counts[k] = (counts[k] || 0) + 1;
+        seen[k] = true;
+      });
+    });
+    var shared = {};
+    Object.keys(counts).forEach(function (k) {
+      if (counts[k] >= 2) shared[k] = true;
+    });
+    return shared;
+  }
+
+  function appendNoteCells(cell, item, groupShared) {
+    // groupShared (browse path): { shared: Set-of-keys, isFirst: bool } —
+    // notes shared across the command group render only on its first row.
     if (item.page_refs && item.page_refs.length > 0) {
       cell.appendChild(tag("div", "Manual: " + item.page_refs.join(", "),
         { class: "note-ref" }));
     }
     (item.notes || []).forEach(function (n) {
+      var k = noteKey(n);
+      if (groupShared && groupShared.shared.has(k)) {
+        if (groupShared.rendered[k]) { return; }   // already shown at its first row
+        groupShared.rendered[k] = true;            // render once, here
+      }
       var block = document.createElement("div");
       block.className = "cmd-note";
       var head = document.createElement("div");
@@ -298,12 +330,12 @@
     });
   }
 
-  function cmdCellWithNotes(item) {
+  function cmdCellWithNotes(item, groupShared) {
     var cell = document.createElement("td");
     var desc = document.createElement("div");
     desc.textContent = item.description || "";
     cell.appendChild(desc);
-    appendNoteCells(cell, item);
+    appendNoteCells(cell, item, groupShared);
     return cell;
   }
 
@@ -501,6 +533,8 @@
     detail.appendChild(back);
 
     var table = tag("table", null, { class: "browse-table" });
+    var shared = groupSharedNoteKeys(rows);
+    var renderedShared = {};
     var thead = tag("thead");
     var hr = tag("tr", null, {});
     hr.appendChild(tag("th", "Sub cmd"));
@@ -514,7 +548,10 @@
       var tr = tag("tr", null, {});
       tr.appendChild(tag("td", c.sub_cmd));
       tr.appendChild(tag("td", c.data));
-      tr.appendChild(cmdCellWithNotes(c));
+      tr.appendChild(cmdCellWithNotes(c, {
+        shared: shared,
+        rendered: renderedShared,
+      }));
       var cell = tag("td");
       var link = tag("a", "Feedback", { href: "#feedback" });
       link.addEventListener("click", function (ev) {
