@@ -831,6 +831,40 @@
    "pages": [],
    "matches": [
     {
+     "cmd": "0F",
+     "sub_cmd": "",
+     "data": "00"
+    },
+    {
+     "cmd": "0F",
+     "sub_cmd": "",
+     "data": "01"
+    },
+    {
+     "cmd": "0F",
+     "sub_cmd": "",
+     "data": "11"
+    },
+    {
+     "cmd": "0F",
+     "sub_cmd": "",
+     "data": "12"
+    },
+    {
+     "cmd": "0F",
+     "sub_cmd": "",
+     "data": "13"
+    }
+   ]
+  },
+  {
+   "title": "Footnote *1",
+   "body": "Read only data",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
      "cmd": "1E",
      "sub_cmd": "00",
      "data": ""
@@ -929,28 +963,106 @@
    "pages": [],
    "matches": [
     {
-     "cmd": "0F",
+     "cmd": "1A",
+     "sub_cmd": "0A",
+     "data": "00 or 01"
+    }
+   ]
+  },
+  {
+   "title": "Footnote *1",
+   "body": "Read only data",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "09",
+     "data": "00 to 02"
+    }
+   ]
+  },
+  {
+   "title": "Footnote *1",
+   "body": "Read only data",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1C",
+     "sub_cmd": "03",
+     "data": ""
+    }
+   ]
+  },
+  {
+   "title": "Footnote *1",
+   "body": "Read only data",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "23",
      "sub_cmd": "00",
      "data": ""
-    },
+    }
+   ]
+  },
+  {
+   "title": "Footnote *1",
+   "body": "Read only data",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
     {
-     "cmd": "0F",
-     "sub_cmd": "01",
+     "cmd": "20",
+     "sub_cmd": "00,02",
      "data": ""
-    },
+    }
+   ]
+  },
+  {
+   "title": "Footnote *1",
+   "body": "Read only data",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
     {
-     "cmd": "0F",
-     "sub_cmd": "11",
+     "cmd": "20",
+     "sub_cmd": "01,02",
      "data": ""
-    },
+    }
+   ]
+  },
+  {
+   "title": "Footnote *1",
+   "body": "Read only data",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
     {
-     "cmd": "0F",
-     "sub_cmd": "12",
+     "cmd": "20",
+     "sub_cmd": "02,02",
      "data": ""
-    },
+    }
+   ]
+  },
+  {
+   "title": "Footnote *1",
+   "body": "Read only data",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
     {
-     "cmd": "0F",
-     "sub_cmd": "13",
+     "cmd": "20",
+     "sub_cmd": "04,02",
      "data": ""
     }
    ]
@@ -3150,11 +3262,6 @@
      "cmd": "1A",
      "sub_cmd": "07",
      "data": ""
-    },
-    {
-     "cmd": "1A",
-     "sub_cmd": "08",
-     "data": "00 or 01"
     }
    ]
   },
@@ -3573,6 +3680,40 @@
    ]
   },
   {
+   "title": "Footnote *7",
+   "body": "Output setting is automatically set to OFF after turning OFF the transceiver.",
+   "kind": "footnote",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "20",
+     "sub_cmd": "00,00",
+     "data": "00 or 01"
+    },
+    {
+     "cmd": "20",
+     "sub_cmd": "01,00",
+     "data": "00 or 01"
+    },
+    {
+     "cmd": "20",
+     "sub_cmd": "02,00",
+     "data": "00 or 01"
+    },
+    {
+     "cmd": "20",
+     "sub_cmd": "03,00",
+     "data": "00 or 01"
+    },
+    {
+     "cmd": "20",
+     "sub_cmd": "04,00",
+     "data": "00 or 01"
+    }
+   ]
+  },
+  {
    "title": "Footnote *6",
    "body": "Set at least 1 GPS sentence to ON. Up to 4 GPS sentences can be set to ON at the same time.",
    "kind": "footnote",
@@ -3613,7 +3754,7 @@
   },
   {
    "title": "Footnote *8",
-   "body": "When you use the [USB] port, select “Unlink from [REMOTE]” (the setting to link the [REMOTE] jack with the [USB] port) in the USB port’s “USB SEND/Keying Unlink (REMOTE)” setting, or the transceiver may not work correctly.",
+   "body": "When you use the [USB] port, select “Unlink from [REMOTE]” in the “CI-V USB port” item, and select “115200” in the “CI-V Baud Rate” item.",
    "kind": "footnote",
    "scope": "row",
    "pages": [],

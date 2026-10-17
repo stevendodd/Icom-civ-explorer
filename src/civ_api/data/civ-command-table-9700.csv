@@ -40,11 +40,11 @@ Cmd.,Sub cmd.,Data,Description
 0E,B2,00 to 03,"Set the Select memory scan channel (00=ALL, 01=SEL1, 02=SEL2, 03=SEL3)"
 0E,D0,,Set Scan resume OFF
 0E,D3,,Set Scan resume ON (Close&Delay)
-0F,00,,Read Split OFF setting
-0F,01,,Read Split ON setting
-0F,11,,Read DUP– operation
-0F,12,,Read DUP+ operation
-0F,13,,Read DD Repeater Simplex mode (RPS)
+0F,,00,Read Split OFF setting
+0F,,01,Read Split ON setting
+0F,,11,Read DUP– operation
+0F,,12,Read DUP+ operation
+0F,,13,Read DD Repeater Simplex mode (RPS)
 0F,00,,Set Split function OFF
 0F,01,,Set Split function ON
 0F,10,,Set the simplex operation

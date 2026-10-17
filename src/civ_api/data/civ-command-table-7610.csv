@@ -31,7 +31,6 @@ Cmd.,Sub cmd.,Data,Description,Band
 0E,13,,Start a Fine ∂ F scan,
 0E,22,,Start a Memory scan,
 0E,23,,Start a Select memory scan,
-0E,24,,Start a Mode Select scan,
 0E,B0,,Clear the Select channel setting,
 0E,B1,,"Set as select channel (The previously set number by CI-V is set after turning power ON, or ""1"" is selected if no selection is performed.)",
 0E,B1,01 to 03,"Set the channel as a Select channel (01=SEL1, 02=SEL2, 03=SEL3)",
@@ -166,8 +165,6 @@ Cmd.,Sub cmd.,Data,Description,Band
 1A,"05,0028",00 ~ 02,"Function > RF/SQL Control (00=Auto, 01=SQL, 02=RF+SQL)",
 1A,"05,0029",00 ~ 05,"Function > TX Delay > HF (00=OFF, 01=10 ms, 02=15 ms, 03=20 ms, 04=25 ms, 05=30 ms)",
 1A,"05,0030",00 ~ 05,"Function > TX Delay > 50M (00=OFF, 01=10 ms, 02=15 ms, 03=20 ms, 04=25 ms, 05=30 ms)",
-1A,"05,0030",02,SET > Function > Band Edge Beep (02=ON (User)),
-1A,"05,0030",03,SET > Function > Band Edge Beep (03=ON (User) & TX Limit),
 1A,"05,0031",00 ~ 05,"Function > Time-Out Timer (CI-V) ( 00=OFF, 01=3 min., 02=5 min., 03=10 min., 04=20 min., 05=30 min.)",
 1A,"05,0032",00 or 01,"Function > Quick Dualwatch (00=OFF, 01=ON)",
 1A,"05,0033",00 or 01,"Function > SPLIT > Quick SPLIT (00=OFF, 01=ON) ( Setting the [SPLIT] key operation when it is held down for 1 second.)",
@@ -451,14 +448,11 @@ Cmd.,Sub cmd.,Data,Description,Band
 1A,"05,0929",00 or 01,"AF Mute (00=OFF, 01=ON)",
 1A,"05,0A29",00 or 01,"Read the OVF indicator status (00=OFF, 01=ON)",
 1A,06,see p. 12,DATA mode with filter set
-1A,07,See p. 18,Set the Satellite memory contents,
 1A,08,00 or 01,"NTP server access (00=Terminate, 01=Initiate)",
 1A,09,00 to 02,"Read NTP server access result (00=Accessing, or have not accessed after Power ON, 01=Succeeded, 02=Failed)",
 1A,0A,00 or 01,"Read the OVF indicator status (00=OFF, 01=ON)",
 1B,00,see p. 13,Send/read the Repeater tone frequency
 1B,01,see p. 13,Send/read the TSQL tone frequency
-1B,02,See p. 19,Send/read the DTCS code and polarity,29
-1B,07,See p. 19,Send/read the CSQL code (DV mode),29
 1C,00,00 or 01,Send/read the transceiver's status,
 1C,01,00 ~ 02,"Antenna tuner (00=OFF, 01=ON, 02=Tune)",
 1C,02,00 or 01,"Send/read the Transmit frequency monitor (00=OFF, 01=ON)",
@@ -468,55 +462,15 @@ Cmd.,Sub cmd.,Data,Description,Band
 1E,01,see p. 10,Read TX band edge frequencies
 1E,02,,Read number of user-set TX frequency band,
 1E,03,see p. 10,Set the user-set TX band edge frequencies
-1F,00,See p. 19,SET > My Station > My Call Sign (DV),
-1F,01,See p. 19,SET > Display > TX Call Sign Display,
-1F,02,See p. 19,SET > My Station > TX Message (DV),
-20,"00,00",00 or 01,Send/read the Auto DV RX Call signs output,
-20,"00,01",See p. 20,Output DV RX Call signs for transceive,
-20,"00,02",,,
-20,"01,00",00 or 01,Send/read the Auto DV RX message output,
-20,"01,01",See p. 20,Output DV RX message for transceive,
-20,"01,02",,,
-20,"02,00",00 or 01,Send/read the Auto DV RX status output,
-20,"02,01",See p. 20,Output DV RX status for transceive,
-20,"02,02",,,
-20,"03,00",00 or 01,Send/read the Auto DV RX GPS/D-PRS data,
-20,"03,01",See p. 22,Output DV RX GPS/D-PRS data for transceive,
-20,"03,02",,,
-20,"04,00",00 or 01,Send/read Auto DV RX,
-20,"04,01",See p. 22,Output DV RX D-PRS message for transceive,
-20,"04,02",,,
-20,"06,00",See p. 17,DATA mode with filter set,
-20,"07,00",See p. 18,Set the Satellite memory contents,
-20,"08,00",00 or 01,"NTP server access (00=Terminate, 01=Initiate)",
 21,00,see p. 13,RIT frequency
 21,01,00 or 01,"RIT setting (00=OFF, 01=ON)"
 21,02,00 or 01,"∂TX setting (00=OFF, 01=ON)"
-22,00,See p. 23,Set the DV TX data (Up to 30 byte),
-22,"01,00",00 or 01,Set the Auto DV RX data output,
-22,"01,01",See p. 23,Set the DV RX data for transceive,
-22,"01,02",,,
-22,02,00 or 01,SET > DV/DD Set > DV Data TX,
-22,03,00 or 01,SET > DV/DD Set > DV Fast Data,
-22,04,00 or 01,SET > DV/DD Set > DV Fast Data,
-22,05,00 to 10,SET > DV/DD Set > DV Fast Data,
-23,00,,,
-23,01,"00, 02, 03",GPS > GPS Set > GPS Select,
-23,02,See p. 17,GPS > GPS Set > Manual Position,
-24,"00,00",00 or 01,Send/read TX output power setting,
-24,"00,01",00 or 01,Set the TX output power for transceive,
 25,,See p. 23,Send/read the main or sub band frequency
 26,,See p. 23,Send/read the operating mode and filter setting (for both Main and Sub bands)
 27,00,see p. 14,Read the Scope waveform data
-27,01,00 or 01,Send/read the Scope Span setting,
-27,02,00 or 01,Send/read the Scope Edge setting,
-27,06,00 or 01,Send/read the Scope Span setting in the Center mode Scope,
-27,07,,Set the Satellite memory contents,
-27,08,00 or 01,Send/read the Scope edge frequency setting,
 27,10,00 or 01,Send/read the Scope ON/OFF status,
 27,11,00 or 01,"Send/read the Scope wave data output (00=OFF, 01=ON)",
 27,12,00 or 01,Send/read the Scope Center frequency setting,
-27,13,00 or 01,"Single/Dual scope setting (00=Single, 01=Dual)"
 27,14,See p. 24,Send/read the Scope Center mode or Fixed mode,
 27,15,See p. 24,Send/read the Span setting in the Center mode Scope,
 27,16,See p. 24,Send/read the Edge number setting in the Fixed mode Scope,
