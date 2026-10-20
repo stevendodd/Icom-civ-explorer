@@ -375,7 +375,7 @@
   },
   {
    "title": "Scope Reference level settings",
-   "body": "00= + (plus)\n01= – (minus)\n00=Main scope\n01=Sub scope\n10 dB digit: 0–3\n1 dB digit: 0–9\n0.1 dB digit: 0, 5\n0.01 dB digit: 0 (Fixed)\nℹ Adjustable range: –30.0 dB ~ +10.0 dB in 0.5 dB steps\n",
+   "body": "Data: 4 bytes — d1 = Scope selector (00=Main scope, 01=Sub scope), d2 = 10 dB digit + 1 dB digit, d3 = 0.1 dB digit + 0.01 dB digit (0, Fixed), d4 = sign (00=+, 01=–).\n\n00= + (plus)\n01= – (minus)\n00=Main scope\n01=Sub scope\n10 dB digit: 0–3\n1 dB digit: 0–9\n0.1 dB digit: 0, 5\n0.01 dB digit: 0 (Fixed)\nℹ Adjustable range: –30.0 dB ~ +10.0 dB in 0.5 dB steps\n",
    "kind": "panel",
    "pages": [
     15

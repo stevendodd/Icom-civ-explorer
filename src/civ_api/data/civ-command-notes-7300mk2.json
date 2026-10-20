@@ -550,7 +550,7 @@
   },
   {
    "title": "Scope Reference level settings",
-   "body": "00: + (plus)\n01: – (minus)\nFixed\n10 dB digit: 0 ~ 2\n1 dB digit: 0 ~ 9\n0.1 dB digit: 0, 5\n0.01 dB digit: 0 (Fixed)\nAdjustable range:  –20.0 dB ~ +20.0 dB\nin 0.5 dB steps.\n",
+   "body": "Data: 4 bytes — d1 = fixed 00 (placeholder byte — included in sends and replies; parsers skip it), d2 = 10 dB digit + 1 dB digit, d3 = 0.1 dB digit + 0.01 dB digit (0, Fixed), d4 = sign (00:+, 01:–).\n\n00: + (plus)\n01: – (minus)\nFixed\n10 dB digit: 0 ~ 2\n1 dB digit: 0 ~ 9\n0.1 dB digit: 0, 5\n0.01 dB digit: 0 (Fixed)\nAdjustable range:  –20.0 dB ~ +20.0 dB\nin 0.5 dB steps.\n",
    "kind": "panel",
    "pages": [
     24
