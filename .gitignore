@@ -24,3 +24,4 @@ feedback.jsonl
 feedback-live.jsonl
 # Site admin credentials for the feedback-management API (never commit)
 .civ-admin.json
+working/
