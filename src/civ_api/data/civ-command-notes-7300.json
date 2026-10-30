@@ -2403,6 +2403,20 @@
      "data": "00/20"
     }
    ]
+  },
+  {
+   "title": "IF filter width settings",
+   "body": "The data byte holds the decimal value in its nibbles (decimal-digit encoding, e.g. byte 0x28 = digits “28” = code 28), not plain binary.",
+   "kind": "panel",
+   "scope": "row",
+   "pages": [],
+   "matches": [
+    {
+     "cmd": "1A",
+     "sub_cmd": "03",
+     "data": "00 to 49"
+    }
+   ]
   }
  ]
 }

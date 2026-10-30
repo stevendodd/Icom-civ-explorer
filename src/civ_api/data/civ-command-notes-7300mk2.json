@@ -235,7 +235,7 @@
   },
   {
    "title": "IF filter width settings",
-   "body": "Mode Data Steps\nSSB/CW/RTTY 00 ~ 09 50 ~ 500 Hz (50 Hz)\nSSB/CW 10 ~ 40 600 Hz ~ 3.6 kHz (100 Hz)\nRTTY 10 ~ 31 600 Hz ~ 2.7 kHz (100 Hz)\nAM 00 ~ 49 200 Hz ~ 10.0 kHz (200 Hz)\n",
+   "body": "Mode Data Steps\nSSB/CW/RTTY 00 ~ 09 50 ~ 500 Hz (50 Hz)\nSSB/CW 10 ~ 40 600 Hz ~ 3.6 kHz (100 Hz)\nRTTY 10 ~ 31 600 Hz ~ 2.7 kHz (100 Hz)\nAM 00 ~ 49 200 Hz ~ 10.0 kHz (200 Hz)\n\nThe data byte holds the decimal value in its nibbles (decimal-digit encoding, e.g. byte 0x28 = digits “28” = code 28), not plain binary.\n",
    "kind": "panel",
    "pages": [
     18

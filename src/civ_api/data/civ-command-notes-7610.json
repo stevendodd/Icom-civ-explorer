@@ -105,7 +105,7 @@
   },
   {
    "title": "Data mode with filter width settings",
-   "body": "\n",
+   "body": "Data: 2 bytes — d1 = data mode select, d2 = filter width select.\nd1: 00=Data mode OFF*, 01=DATA1, 02=DATA2, 03=DATA3\nd2: 01=FIL1, 02=FIL2, 03=FIL3\nℹ *When 00 is set, also set 00 to 2.\n",
    "kind": "panel",
    "pages": [
     12
@@ -120,7 +120,7 @@
   },
   {
    "title": "IF filter width settings",
-   "body": "\n",
+   "body": "Mode Data Steps\nSSB/CW/RTTY/PSK 00 ~ 09 50 ~ 500 Hz (50 Hz)\nSSB/CW/PSK 10 ~ 40 600 Hz ~ 3.6 kHz (100 Hz)\nRTTY 10 ~ 31 600 ~ 2.7 kHz (100 Hz)\nAM 00 ~ 49 200 Hz ~ 10.0 kHz (200 Hz)\n\nThe data byte holds the decimal value in its nibbles (decimal-digit encoding, e.g. byte 0x28 = digits “28” = code 28), not plain binary.\n",
    "kind": "panel",
    "pages": [
     12
