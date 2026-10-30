@@ -1,4 +1,4 @@
-Cmd.,Sub cmd.,Data,Description,Band
+Cmd.,Sub cmd.,Data,Description
 00,,See p. 17,Send the frequency data (transceive)
 01,,See p. 17,Send the mode data (transceive)
 02,,See p. 17,Read the band edge frequencies
@@ -15,7 +15,7 @@ Cmd.,Sub cmd.,Data,Description,Band
 07,D0,,Select the Main band
 07,D1,,Select the Sub band
 07,D2,00,Send/read Main band selection
-07,,,Select the VFO mode,29
+07,,,Select the VFO mode
 08,00,01 ~ 00 99,"Select the Memory channel (00 01=M-CH01, 00 99=M-CH99)"
 08,01,00,Select program scan edge channel P1
 08,01,01,Select program scan edge channel P2
@@ -42,86 +42,86 @@ Cmd.,Sub cmd.,Data,Description,Band
 0F,00/01,,"Read Split setting (00=Split OFF, 01=Split ON)"
 0F,01,,Set Split function ON
 10,,00 ~ 08,"Send/read the tuning step (00=OFF (10Hz or 1Hz), 01=100Hz, 02=1kHz, 03=5kHz, 04=9kHz, 05=10kHz, 06=12.5kHz, 07=20kHz, 08=25kHz)"
-11,00,,Send/read attenuator OFF setting,29
-11,03,,Send/read 3 dB attenuator setting,29
-11,06,,Send/read 6 dB attenuator setting,29
-11,09,,Send/read 9 dB attenuator setting,29
-11,12,,Send/read 12 dB attenuator setting,29
-11,15,,Send/read 15 dB attenuator setting,29
-11,18,,Send/read 18 dB attenuator setting,29
-11,21,,Send/read 21 dB attenuator setting,29
-11,24,,Send/read 24 dB attenuator setting,29
-11,27,,Send/read 27 dB attenuator setting,29
-11,30,,Send/read 30 dB attenuator setting,29
-11,33,,Send/read 33 dB attenuator setting,29
-11,36,,Send/read 36 dB attenuator setting,29
-11,39,,Send/read 39 dB attenuator setting,29
-11,42,,Send/read 42 dB attenuator setting,29
-11,45,,Send/read 45 dB attenuator setting,29
+11,00,,Send/read attenuator OFF setting
+11,03,,Send/read 3 dB attenuator setting
+11,06,,Send/read 6 dB attenuator setting
+11,09,,Send/read 9 dB attenuator setting
+11,12,,Send/read 12 dB attenuator setting
+11,15,,Send/read 15 dB attenuator setting
+11,18,,Send/read 18 dB attenuator setting
+11,21,,Send/read 21 dB attenuator setting
+11,24,,Send/read 24 dB attenuator setting
+11,27,,Send/read 27 dB attenuator setting
+11,30,,Send/read 30 dB attenuator setting
+11,33,,Send/read 33 dB attenuator setting
+11,36,,Send/read 36 dB attenuator setting
+11,39,,Send/read 39 dB attenuator setting
+11,42,,Send/read 42 dB attenuator setting
+11,45,,Send/read 45 dB attenuator setting
 12,00,00/01,"Select/read ANT1 selection (00=RX ANT OFF, 01=RX ANT ON)"
 12,01,00/01,"Select/read ANT2 selection (00=RX ANT OFF, 01=RX ANT ON)"
 12,02,00/01,"Select/read ANT3 selection (00=RX ANT OFF, 01=RX ANT ON)"
 12,03,00/01,"Select/read ANT4 selection (00=RX ANT OFF, 01=RX ANT ON)"
-14,01,00 00 ~ 02 55,Send/read the AF level (00 00=Minimum ~ 02 55=Maximum),29
-14,02,00 00 ~ 02 55,Send/read the RF gain level (00 00=Minimum ~ 02 55=Maximum),29
-14,03,00 00 ~ 02 55,Send/read the squelch level (00 00=Minimum ~ 02 55=Maximum),29
-14,05,00 00 ~ 02 55,"Send/read the APF position (10 Hz steps) ( 00 00=Pitch–550 Hz, 01 28=Pitch, 02 55=Pitch+550 Hz)",29
-14,06,00 00 ~ 02 55,Send/read the NR level (00 00=0% ~ 02 55=100%),29
-14,07,00 00 ~ 02 55,Send/read [TWIN PBT] (PBT1) position ( 00 00=max. Counter Clockwise ~ 01 28=center ~ 02 55=max. Clockwise),29
-14,08,00 00 ~ 02 55,Send/read [TWIN PBT] (PBT2) position ( 00 00=max. Counter Clockwise ~ 01 28=center ~ 02 55=max. Clockwise),29
+14,01,00 00 ~ 02 55,Send/read the AF level (00 00=Minimum ~ 02 55=Maximum)
+14,02,00 00 ~ 02 55,Send/read the RF gain level (00 00=Minimum ~ 02 55=Maximum)
+14,03,00 00 ~ 02 55,Send/read the squelch level (00 00=Minimum ~ 02 55=Maximum)
+14,05,00 00 ~ 02 55,"Send/read the APF position (10 Hz steps) ( 00 00=Pitch–550 Hz, 01 28=Pitch, 02 55=Pitch+550 Hz)"
+14,06,00 00 ~ 02 55,Send/read the NR level (00 00=0% ~ 02 55=100%)
+14,07,00 00 ~ 02 55,Send/read [TWIN PBT] (PBT1) position ( 00 00=max. Counter Clockwise ~ 01 28=center ~ 02 55=max. Clockwise)
+14,08,00 00 ~ 02 55,Send/read [TWIN PBT] (PBT2) position ( 00 00=max. Counter Clockwise ~ 01 28=center ~ 02 55=max. Clockwise)
 14,09,00 00 ~ 02 55,Send/read CW pitch (5 Hz steps) ( 00 00=300 Hz ~ 01 28=600 Hz ~ 02 55=900 Hz)
 14,0A,00 00 ~ 02 55,Send/read the selected band’s RF power (00 00=Minimum ~ 02 55=Maximum)
 14,0B,00 00 ~ 02 55,Send/read MIC gain (00 00=Minimum ~ 02 55=Maximum)
 14,0C,00 00 ~ 02 55,Send/read keying speed (00 00=6 WPM ~ 02 55=48 WPM)
-14,0D,00 00 ~ 02 55,Send/read Notch filter setting ( 00 00=max. Counter Clockwise ~,29
+14,0D,00 00 ~ 02 55,Send/read Notch filter setting ( 00 00=max. Counter Clockwise ~
 14,0E,00 00 ~ 02 55,Send/read the COMP level (00 00=0 ~ 02 55=10)
 14,0F,00 00 ~ 02 55,Send/read the Break-IN Delay setting (00 00=2.0d ~ 02 55=13.0d)
-14,12,00 00 ~ 02 55,Send/read NB level (00 00=0% ~ 02 55=100%),29
-14,13,00 00 ~ 02 55,Send/read the DIGI-SEL shift amount (00 00=min. ~ 02 55=max.),29
+14,12,00 00 ~ 02 55,Send/read NB level (00 00=0% ~ 02 55=100%)
+14,13,00 00 ~ 02 55,Send/read the DIGI-SEL shift amount (00 00=min. ~ 02 55=max.)
 14,14,00 00 ~ 02 55,Send/read DRIVE Gain (00 00=0% ~ 02 55=100%)
 14,15,00 00 ~ 02 55,Send/read Monitor audio [MONI] level (00 00=0% ~ 02 55=100%)
 14,16,00 00 ~ 02 55,Send/read the VOX gain (00 00=0% ~ 02 55=100%)
 14,17,00 00 ~ 02 55,Send/read the Anti VOX gain (00 00=0% ~ 02 55=100%)
 14,19,00 00 ~ 02 55,Send/read LCD backlight brightness (00 00=0% ~ 02 55=100%)
-15,01,00/01,"Read noise or S-meter squelch status (00=Close, 01=Open)",29
-15,02,00 00 ~ 02 55,"Read S-meter level (00 00=S0, 01 20=S9, 02 41=S9+60 dB)",29
-15,05,00/01,"Read various squelch (tone squelch, and so on) status (00=Close, 01=Open)",29
-15,07,00/01,"Read the OVF status (00=OVF indicator is OFF, 01=OVF indicator is ON)",29
+15,01,00/01,"Read noise or S-meter squelch status (00=Close, 01=Open)"
+15,02,00 00 ~ 02 55,"Read S-meter level (00 00=S0, 01 20=S9, 02 41=S9+60 dB)"
+15,05,00/01,"Read various squelch (tone squelch, and so on) status (00=Close, 01=Open)"
+15,07,00/01,"Read the OVF status (00=OVF indicator is OFF, 01=OVF indicator is ON)"
 15,11,00 00 ~ 02 55,Read the Po meter level (00 00=0W ~ 01 43=100W ~ 02 12=200W)
 15,12,00 00 ~ 02 55,"Read SWR meter level (00 00=SWR1.0, 00 48=SWR1.5, 00 80=SWR2.0, 01 20=SWR3.0)"
 15,13,00 00 ~ 02 55,Read ALC meter level (00 00=Minimum ~ 01 20=Maximum)
 15,14,00 00 ~ 02 55,Read COMP meter level (00 00=0 dB ~ 01 30=15 dB ~ 02 41=30 dB)
 15,15,00 00 ~ 02 55,Read Vd meter level (00 00=0 V ~ 01 51=44 V ~ 02 11=52 V)
 15,16,00 00 ~ 02 55,Read Id meter level (00 00=0 A ~ 00 77=5 A ~ 01 65=10 A ~ 02 41=15 A)
-16,02,00,Preamp OFF,29
+16,02,00,Preamp OFF
 16,02,01,Preamp 1 ON
-16,02,02,Preamp 2 ON,29
-16,12,01 ~ 03,"Send/read the AGC time constant (01=FAST, 02=MID, 03=SLOW)",29
-16,22,00/01,"Send/read the Noise blanker (00=OFF, 01=ON)",29
-16,32,00,Audio peak filter OFF,29
-16,32,01,Audio peak filter WIDE ON (320 Hz is selected when SHARP APF is set),29
-16,32,02,Audio peak filter MID ON (160 Hz is selected when SHARP APF is set),29
-16,32,03,Audio peak filter NAR ON (80 Hz is selected when SHARP APF is set),29
-16,40,00/01,"Send/read the Noise reduction (00=OFF, 01=ON)",29
-16,41,00/01,"Send/read the Auto Notch function (00=OFF, 01=ON)",29
-16,42,00/01,"Send/read the Repeater tone (00=OFF, 01=ON)",29
-16,43,00/01,"Send/read the Tone squelch (00=OFF, 01=ON)",29
+16,02,02,Preamp 2 ON
+16,12,01 ~ 03,"Send/read the AGC time constant (01=FAST, 02=MID, 03=SLOW)"
+16,22,00/01,"Send/read the Noise blanker (00=OFF, 01=ON)"
+16,32,00,Audio peak filter OFF
+16,32,01,Audio peak filter WIDE ON (320 Hz is selected when SHARP APF is set)
+16,32,02,Audio peak filter MID ON (160 Hz is selected when SHARP APF is set)
+16,32,03,Audio peak filter NAR ON (80 Hz is selected when SHARP APF is set)
+16,40,00/01,"Send/read the Noise reduction (00=OFF, 01=ON)"
+16,41,00/01,"Send/read the Auto Notch function (00=OFF, 01=ON)"
+16,42,00/01,"Send/read the Repeater tone (00=OFF, 01=ON)"
+16,43,00/01,"Send/read the Tone squelch (00=OFF, 01=ON)"
 16,44,00/01,"Send/read the Speech compressor (00=OFF, 01=ON)"
 16,45,00/01,"Send/read the Monitor [MONI] function (00=OFF, 01=ON)"
 16,46,00/01,"Send/read the VOX function (00=OFF, 01=ON)"
 16,47,00,BK-IN function OFF
 16,47,01,Semi BK-IN function ON
 16,47,02,Full BK-IN function ON
-16,48,00/01,"Send/read the Manual Notch function (00=OFF, 01=ON)",29
-16,4E,00/01,"Send/read the DIGI-SEL function (00=OFF, 01=ON)",29
-16,4F,00/01,"Send/read the Twin peak filter (00=OFF, 01=ON) ( Can be turned ON only when Mark and Shift are set to 2125 Hz and 170 Hz, respectively)",29
+16,48,00/01,"Send/read the Manual Notch function (00=OFF, 01=ON)"
+16,4E,00/01,"Send/read the DIGI-SEL function (00=OFF, 01=ON)"
+16,4F,00/01,"Send/read the Twin peak filter (00=OFF, 01=ON) ( Can be turned ON only when Mark and Shift are set to 2125 Hz and 170 Hz, respectively)"
 16,50,00/01,"Send/read the Dial Lock function (00=OFF, 01=ON) LThe main dial or panel display is locked, depending on the Lock Function (1A 05 00 77)."
 16,53,00/01,"Send/read the ANT-RX I/O (00=OFF, 01=ON)"
-16,56,00/01,"Send/read DSP IF filter type (00=SHARP, 01=SOFT)",29
-16,57,00 ~ 02,"Send/read the Manual Notch width (00=WIDE, 01=MID, 02=NAR)",29
+16,56,00/01,"Send/read DSP IF filter type (00=SHARP, 01=SOFT)"
+16,57,00 ~ 02,"Send/read the Manual Notch width (00=WIDE, 01=MID, 02=NAR)"
 16,58,00 ~ 02,"Send/read SSB transmit bandwidth (00=WIDE, 01=MID, 02=NAR) ( One of the following values is applied, depending on the “COMP” status (ON or OFF): WIDE (Command: 1A 05 00 15), MID (Command: 1A 05 00 16), or NAR (Command: 1A 05 00 17))"
 16,5E,00/01,"MAIN/SUB Tracking function (00=OFF, 01=ON)"
-16,65,00/01,"Set the IP Plus function (00=OFF, 01=ON)",29
+16,65,00/01,"Set the IP Plus function (00=OFF, 01=ON)"
 16,66,00/01,"Send/read the TX Inhibit function (00=OFF, 01=ON)"
 16,67,00/01,"Send/read the DPD function (00=OFF, 01=ON)"
 17,,See p. 17,Send CW messages
